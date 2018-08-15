@@ -6,7 +6,7 @@
                 <img src="../assets/img/logo1.png" alt="logo">
                 <a style="color: #fff;font-size:21px;font-weight: 500;line-height: 56px;font-family: 'Microsoft YaHei' ">固安县环境保护网格化管理平台</a>
             </div>
-            <!--<div style="color: #fff;float: left;height: 56px;line-height: 66px;margin-left: 4px">2018版</div>-->
+           <!---->
             <ul class="bnav">
                 <li><a href="#/likewinter">首页</a></li>
                 <li>
@@ -86,9 +86,7 @@
                         <!--</div>-->
                     </div>
                 </li>
-                <!--<li>-->
-                    <!--<a href="http://117.119.97.150:6918/" target="_blank">全民举报</a>-->
-                <!--</li>-->
+
                 <!--系统后台-退出系统-->
                 <li style="margin-right: 0;">
                     <img style="padding: 0 20px" src="../assets/img/btn_intercalate.png" class="activehov">

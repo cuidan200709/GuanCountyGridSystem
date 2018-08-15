@@ -26,55 +26,14 @@
         name: 'header',
         data () {
             return {
-                msg: 'App',
-                houtaiSrc: '../../static/imgs/mues/header/btn_Backstage2.png',
-                houtaiChesSrc: '../../static/imgs/mues/header/btn_Backstage1.png',
-                tuichuSrc: '../../static/imgs/mues/header/btn_quit2.png',
-                tuichuChesSrc: '../../static/imgs/mues/header/btn_quit1.png'
+
             }
         },
         mounted(){
-            let t = this;
-            $(".houtai").hover(function () {
-                $(".houtai img").attr('src', t.houtaiSrc);
-            }, function () {
-                $(".houtai img").attr('src', t.houtaiChesSrc);
-            });
-            //
-            $(".tuichu").hover(function () {
-                $(".tuichu img").attr('src', t.tuichuSrc);
-            }, function () {
-                $(".tuichu img").attr('src', t.tuichuChesSrc);
-            });
-           // this.DropDownAnimation('li');
+
         },
         methods: {
-            exit(){
-                this.$cookies.remove('auth')
-                setTimeout(() => {
 
-                    this.$router.push('/login')
-                })
-            },
-            //下拉动画
-            // DropDownAnimation(_this){
-            //     $(_this).each(function () {
-            //         var $this = $(this);
-            //         var theMenu = $this.find(".submenu");
-            //         var tarHeight = theMenu.height() + 20;
-            //         theMenu.css({height: 0});
-            //         $this.hover(
-            //             function () {
-            //                 theMenu.stop().show().animate({height: tarHeight}, 400);
-            //             },
-            //             function () {
-            //                 theMenu.stop().animate({height: 0}, 400, function () {
-            //                     $(this).css({display: "none"});
-            //                 });
-            //             }
-            //         );
-            //     });
-            // }
         }
     }
 </script>

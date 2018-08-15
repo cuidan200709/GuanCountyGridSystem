@@ -385,8 +385,7 @@
             //图例开关
             changeimggengai(){
                 const _this = this;
-                //console.log('惦记我了啊')
-                //console.log(_this.imgtuli);
+                //
                 if(_this.imgtuli == false){
                     _this.imgtuli = true;
                     _this.imgkey = _this.imgkeyss;
@@ -415,12 +414,7 @@
             },
             //table点击事件
             RowCurrentChange(val) {
-                //this.currentRow = val;
-                // let citygid = this.currentRow.citygid;//城市id
-                // let latitude = this.currentRow.latitude;//纬度
-                // let longitude = this.currentRow.longitude;//经度
-                // // console.log(this.currentRow)
-                // bus.$emit('showWindowInfo', longitude, latitude, citygid)
+
             },
             //渲染
             switchRender(type) {
