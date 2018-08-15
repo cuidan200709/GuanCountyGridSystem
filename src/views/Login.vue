@@ -143,7 +143,7 @@
                             });
                             setTimeout(function () {
                                 // _this.$router.push('/')
-                                _this.$router.push('/')
+                                _this.$router.push('/likewinter');
                             }, 2000)
 
                         } else {

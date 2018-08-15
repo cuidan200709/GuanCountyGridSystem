@@ -8,13 +8,13 @@
             </div>
             <!--<div style="color: #fff;float: left;height: 56px;line-height: 66px;margin-left: 4px">2018版</div>-->
             <ul class="bnav">
-                <li><a href="#/">首页</a></li>
+                <li><a href="#/likewinter">首页</a></li>
                 <li>
                     <a style="padding: 0 10px">实时监测<i style="padding: 0 10px"></i></a>
                     <div class="Twoitem submenu same">
                         <div>
                             <h3>调度</h3>
-                            <a href="#/index">实时监测</a>
+                            <a href="#/">实时监测</a>
                         </div>
                         <div>
                             <h3>视频</h3>
@@ -51,39 +51,39 @@
                             <a href="#/TvocRange">TVOC排名</a>
 
                         </div>
-                        <div>
-                            <h3>考核</h3>
-                            <!--<a>环保部考核</a>-->
-                            <!--<div class="line"></div>-->
-                            <a href="#/CountyCheck">区县考核</a>
-                            <div class="line"></div>
-                            <a href="#/CityCheck">乡镇考核</a>
-
-                        </div>
-                        <div>
-                            <h3>分析</h3>
-
-                            <a href="#/MeanRatioSensorNetwork">国省控点均值比</a>
-                            <!--<a>国省控点均值比</a>-->
-                            <div class="line"></div>
-                            <a href="#/LargeDataResources">污染物对比</a>
-                            <div class="line"></div>
-                            <a href="#/FixedSourceStatistics">固定源统计</a>
-                            <!--<a>固定源统计</a>-->
-                            <!--<div class="line"></div>-->
-                            <!--<a href="#/DustEmissionStatistics">扬尘源统计</a>-->
+                        <!--<div>-->
+                            <!--<h3>考核</h3>-->
+                            <!--&lt;!&ndash;<a>环保部考核</a>&ndash;&gt;-->
                             <!--&lt;!&ndash;<div class="line"></div>&ndash;&gt;-->
-                            <!--<a href="#/DistrictsCounties">区县打分</a>-->
-                            <div class="line"></div>
-                            <a href="#/AirStation">乡镇空气站统计</a>
-                        </div>
+                            <!--<a href="#/CountyCheck">区县考核</a>-->
+                            <!--<div class="line"></div>-->
+                            <!--<a href="#/CityCheck">乡镇考核</a>-->
 
-                        <div>
-                            <h3>数据报告</h3>
-                            <a href="#/LikeWinter">今日战报</a>
-                            <div class="line"></div>
-                            <a href="#/OfficialReport">官方报告</a>
-                        </div>
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<h3>分析</h3>-->
+
+                            <!--<a href="#/MeanRatioSensorNetwork">国省控点均值比</a>-->
+                            <!--&lt;!&ndash;<a>国省控点均值比</a>&ndash;&gt;-->
+                            <!--<div class="line"></div>-->
+                            <!--<a href="#/LargeDataResources">污染物对比</a>-->
+                            <!--<div class="line"></div>-->
+                            <!--<a href="#/FixedSourceStatistics">固定源统计</a>-->
+                            <!--&lt;!&ndash;<a>固定源统计</a>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="line"></div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="#/DustEmissionStatistics">扬尘源统计</a>&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<div class="line"></div>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="#/DistrictsCounties">区县打分</a>&ndash;&gt;-->
+                            <!--<div class="line"></div>-->
+                            <!--<a href="#/AirStation">乡镇空气站统计</a>-->
+                        <!--</div>-->
+
+                        <!--<div>-->
+                            <!--<h3>数据报告</h3>-->
+                            <!--<a href="#/LikeWinter">今日战报</a>-->
+                            <!--<div class="line"></div>-->
+                            <!--<a href="#/OfficialReport">官方报告</a>-->
+                        <!--</div>-->
                     </div>
                 </li>
                 <!--<li>-->
