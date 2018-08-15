@@ -10,27 +10,18 @@
             <ul class="bnav">
                 <li><a href="#/likewinter">首页</a></li>
                 <li>
-                    <a style="padding: 0 10px">实时监测<i style="padding: 0 10px"></i></a>
-                    <div class="Twoitem submenu same">
-                        <div>
-                            <h3>调度</h3>
-                            <a href="#/">实时监测</a>
-                        </div>
-                        <div>
-                            <h3>视频</h3>
-                            <a href="#/HighVideos">视频监控</a>
-                        </div>
-                    </div>
+                    <a style="padding: 0 10px" href="#/">
+                        实时监测
+                    </a>
                 </li>
                 <!--气象预报-->
                 <li>
                     <a style="padding: 0 10px">气象预报<i style="padding: 0 10px"></i></a>
                     <div class="Fouritem submenu same">
-                        <a href="#/weatherstation">气象站</a><br/>
-                        <a href="#/superstation">超级站</a><br/>
-                        <a href="#/GridPrediction">网格预测</a><br/>
                         <a href="#/dynamicweather">动态风场</a><br/>
-                        <a href="#/Weather">天气预报</a>
+                        <a href="#/Weather">天气预报</a><br/>
+                        <a >沙尘预报</a><br/>
+                        <a >雾霾预报</a>
                     </div>
                 </li>
 
@@ -40,8 +31,8 @@
                     <div class="Fiveitem submenu same">
                         <div>
                             <h3>排名</h3>
-                            <a href="#/CityRankings">城市排名</a>
-                            <div class="line"></div>
+                            <!--<a href="#/CityRankings">城市排名</a>-->
+                            <!--<div class="line"></div>-->
                             <a href="#/StateControl">国省控排名</a>
                             <div class="line"></div>
                             <a href="#/DustRange">工地扬尘排名</a>
@@ -49,41 +40,8 @@
                             <a href="#/SixParamRange">六参数排名</a>
                             <div class="line"></div>
                             <a href="#/TvocRange">TVOC排名</a>
-
                         </div>
-                        <!--<div>-->
-                            <!--<h3>考核</h3>-->
-                            <!--&lt;!&ndash;<a>环保部考核</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class="line"></div>&ndash;&gt;-->
-                            <!--<a href="#/CountyCheck">区县考核</a>-->
-                            <!--<div class="line"></div>-->
-                            <!--<a href="#/CityCheck">乡镇考核</a>-->
 
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<h3>分析</h3>-->
-
-                            <!--<a href="#/MeanRatioSensorNetwork">国省控点均值比</a>-->
-                            <!--&lt;!&ndash;<a>国省控点均值比</a>&ndash;&gt;-->
-                            <!--<div class="line"></div>-->
-                            <!--<a href="#/LargeDataResources">污染物对比</a>-->
-                            <!--<div class="line"></div>-->
-                            <!--<a href="#/FixedSourceStatistics">固定源统计</a>-->
-                            <!--&lt;!&ndash;<a>固定源统计</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class="line"></div>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#/DustEmissionStatistics">扬尘源统计</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;&lt;!&ndash;<div class="line"></div>&ndash;&gt;&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#/DistrictsCounties">区县打分</a>&ndash;&gt;-->
-                            <!--<div class="line"></div>-->
-                            <!--<a href="#/AirStation">乡镇空气站统计</a>-->
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<h3>数据报告</h3>-->
-                            <!--<a href="#/LikeWinter">今日战报</a>-->
-                            <!--<div class="line"></div>-->
-                            <!--<a href="#/OfficialReport">官方报告</a>-->
-                        <!--</div>-->
                     </div>
                 </li>
 
@@ -168,26 +126,7 @@
                     this.$router.push('/login')
                 })
             },
-            //下拉动画
-            // DropDownAnimation(_this){
-            //    // console.log(_this)
-            //     $(_this).each(function () {
-            //         var $this = $(this);
-            //         var theMenu = $this.find(".submenu");
-            //         var tarHeight = theMenu.height() + 20;
-            //         theMenu.css({height: 0});
-            //         $this.hover(
-            //             function () {
-            //                 theMenu.stop().show().animate({height: tarHeight}, 400);
-            //             },
-            //             function () {
-            //                 theMenu.stop().animate({height: 0}, 400, function () {
-            //                     $(this).css({display: "none"});
-            //                 });
-            //             }
-            //         );
-            //     });
-            // }
+
         },
         activated(){
             $('.submenu').hide();
@@ -218,7 +157,7 @@
         }
 
         .bnav {
-            width: 870px;
+            width: 850px;
             float: right;
             height: 56px;
 
