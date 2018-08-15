@@ -45,7 +45,7 @@ export default new Router({
         },
         //实时监控页面（主页面）
         {
-            path: '/',
+            path: '/index',
             name: 'index',
             meta: { keepAlive: true },
             component: Index,
@@ -277,7 +277,7 @@ export default new Router({
         },
         //冬防战报（今日战报）
         {
-            path: '/LikeWinter',
+            path: '/',
             name: 'likewinter',
             meta: { keepAlive: false },
             component: LikeWinter

@@ -217,7 +217,7 @@
                 <div class="class-fx">
                   <weather></weather>
                 </div>
-                <router-link to="/">
+                <router-link to="/index">
                     <el-button class="qjmap"
                                style="position: absolute;top: 5px;right: 5px;z-index: 20;color: #fff;background: #2494F2;border: none">
                         全局地图
