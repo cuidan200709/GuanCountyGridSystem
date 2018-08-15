@@ -327,11 +327,6 @@ export default new Router({
 	                    	path:'/Management/BusinessManagement/Business-DayData',
 	                    	component:resolve => require(['@/views/Management/Business/BusinessDayData'], resolve)
                 		},
-                		//案件管理
-                		{
-	                    	path:'/Management/BusinessManagement/Case-Review',
-	                    	component:resolve => require(['@/views/Management/Business/CaseReview'], resolve)
-                		},
                         //官方报告
                         {
                             path:'/Management/BusinessManagement/Business-Presentation',
@@ -347,11 +342,86 @@ export default new Router({
                             path:'/Management/BusinessManagement/Business-operation',
                             component:resolve => require(['@/views/Management/Business/BusinessOperation'], resolve)
                         },
+                        //责任部门管理
+                        {
+                            path:'/Management/BusinessManagement/Business-Duty',
+                            component:resolve => require(['@/views/Management/Business/BusinessDuty'], resolve)
+                        },
+                        //巡查员管理
+                        {
+                            path:'/Management/BusinessManagement/Business-Patroller',
+                            component:resolve => require(['@/views/Management/Business/BusinessPatroller'], resolve)
+                        },
+                        //视频类型管理
+                        {
+                            path:'/Management/BusinessManagement/Business-Video',
+                            component:resolve => require(['@/views/Management/Business/BusinessVideo'], resolve)
+                        },
+                        //企业污染源
+                        {
+                            path:'/Management/BusinessManagement/Business-Pollution',
+                            component:resolve => require(['@/views/Management/Business/BusinessPollution'], resolve)
+                        },
+                        //饭店
+                        {
+                            path:'/Management/BusinessManagement/Business-Hotel',
+                            component:resolve => require(['@/views/Management/Business/BusinessHotel'], resolve)
+                        },
+                        //工地
+                        {
+                            path:'/Management/BusinessManagement/Business-Slite',
+                            component:resolve => require(['@/views/Management/Business/BusinessSlite'], resolve)
+                        },
+                        //渣土车
+                        {
+                            path:'/Management/BusinessManagement/Business-Car',
+                            component:resolve => require(['@/views/Management/Business/BusinessCar'], resolve)
+                        },
                         //BusinessElectricity.vue
                         {
                             path:'/Management/BusinessManagement/Business-Electricity',
                             component:resolve => require(['@/views/Management/Business/BusinessElectricity'], resolve)
-                        }
+                        },
+                        //案件
+                        //案件处理
+                		{
+	                    	path:'/Management/BusinessManagement/Case-Review',
+	                    	component:resolve => require(['@/views/Management/Business/CaseReview'], resolve)
+                		},
+                		//案件类型占比
+                		{
+	                    	path:'/Management/BusinessManagement/Case-Type',
+	                    	component:resolve => require(['@/views/Management/Business/CaseType'], resolve)
+                		},
+                		//案件统计
+                		{
+	                    	path:'/Management/BusinessManagement/Case-Count',
+	                    	component:resolve => require(['@/views/Management/Business/CaseCount'], resolve)
+                		},
+                		//调度记录
+                		{
+	                    	path:'/Management/BusinessManagement/Manage-Record',
+	                    	component:resolve => require(['@/views/Management/Business/ManageRecord'], resolve)
+                		},
+                		////绩效考核
+                		//明星巡查员
+                		{
+	                    	path:'/Management/BusinessManagement/Star-Patroller',
+	                    	component:resolve => require(['@/views/Management/Business/StarPatroller'], resolve)
+                		},
+                		//通报巡查员
+                		{
+	                    	path:'/Management/BusinessManagement/Report-Patroller',
+	                    	component:resolve => require(['@/views/Management/Business/ReportPatroller'], resolve)
+                		},
+                		{
+	                    	path:'/Management/BusinessManagement/Sign-Count',
+	                    	component:resolve => require(['@/views/Management/Business/SignCount'], resolve)
+                		},
+                		{
+	                    	path:'/Management/BusinessManagement/Report-Search',
+	                    	component:resolve => require(['@/views/Management/Business/ReportSearch'], resolve)
+                		},
 		            ]
 		        },
                 

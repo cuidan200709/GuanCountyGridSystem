@@ -1,18 +1,18 @@
 
-<!--后台管理-监测点管理-->
+<!--后台管理--工地管理-->
 <template>
     <div class="businessOperation">
-		<!--------------监测点管理右侧数据展示------>
+		<!--------------工地管理右侧数据展示------>
 		<div id="right">
-			<!----------监测点管理-->
+			<!----------工地管理-->
 			<div class="box">
                 <div class="warning">
-                    <a>监测点管理</a>
+                    <a>工地污染源</a>
                 </div>
             </div>
             <!-----------查询部分------->
 			<div class="search">
-				<el-button type="primary" class='btns' @click="openWin">添加监测点</el-button>
+				<el-button type="primary" class='btns' @click="openWin">添加工地</el-button>
 			</div>
 			
 			<!--------------列表部分---------->

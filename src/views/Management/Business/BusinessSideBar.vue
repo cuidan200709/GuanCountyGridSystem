@@ -12,30 +12,44 @@
 								<!--<i class="el-icon-message"></i>-->
 								<img src="../../../../static/imgs/main/业务数据.png" />
 								业务数据</template>
-							<!--<el-menu-item index="Business-point">国控点管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Province">省控点管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Params">六参数传感器管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-TVOC">TVOC管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Video">监控视频管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Weather">气象站管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Slite">工地管理</el-menu-item>-->
 							<el-menu-item index="Business-Warning">预警信息管理</el-menu-item>
 							<el-menu-item index="Business-TVOCVal">TVOC指标管理</el-menu-item>
 							<el-menu-item index="Business-WarningVal">预警值管理</el-menu-item>
-							<el-menu-item index="Business-Presentation">官方报告</el-menu-item>
-							<el-menu-item index="Business-Economic">经济数据管理</el-menu-item>
+							<!--<el-menu-item index="Business-Presentation">官方报告</el-menu-item>-->
+							<!--<el-menu-item index="Business-Economic">经济数据管理</el-menu-item>-->
 							<el-menu-item index="Business-DayData">日数据管理</el-menu-item>
-							<el-menu-item index="Business-Operation">运维记录管理</el-menu-item>
-							<el-menu-item index="Business-Electricity">用电量管理</el-menu-item>
+							<el-menu-item index="Business-Operation">监测点管理</el-menu-item>
+							<el-menu-item index="Business-Duty">责任部门管理</el-menu-item>
+							<el-menu-item index="Business-Patroller">巡查员管理</el-menu-item>
+							<el-menu-item index="Business-Video">视频类型管理</el-menu-item>
+							<el-menu-item index="Business-Pollution">企业污染源</el-menu-item>
+							<el-menu-item index="Business-Hotel">饭店</el-menu-item>
+							<el-menu-item index="Business-Slite">工地</el-menu-item>
+							<el-menu-item index="Business-Car">渣土车</el-menu-item>
 						</el-submenu>
 						<el-submenu index="active2" >
 							<template slot="title">
-								<!--<i class="el-icon-menu"></i>-->
 								<img src="../../../../static/imgs/main/案件管理.png" />
-								案件管理</template>
-							<el-menu-item index="Case-Review">案件审核</el-menu-item>
+								案件</template>
+							<el-menu-item index="Case-Review">案件处理</el-menu-item>
+							<el-menu-item index="Case-Type">案件类型占比</el-menu-item>
+							<el-menu-item index="Case-Count">案件统计</el-menu-item>
 						</el-submenu>
-						<!--<el-menu-item index="active3"><i class="el-icon-setting"></i>设置管理</el-menu-item>-->
+						<el-submenu index="active3" >
+							<template slot="title">
+								<img src="../../../../static/imgs/main/案件管理.png" />
+								指挥调度</template>
+							<el-menu-item index="Manage-Record">调度记录</el-menu-item>
+						</el-submenu>
+						<el-submenu index="active4" >
+							<template slot="title">
+								<img src="../../../../static/imgs/main/案件管理.png" />
+								绩效考核</template>
+							<el-menu-item index="Star-Patroller">明星巡查员</el-menu-item>
+							<el-menu-item index="Report-Patroller">通报巡查员</el-menu-item>
+							<el-menu-item index="Sign-Count">签到统计</el-menu-item>
+							<el-menu-item index="Report-Search">上报查询</el-menu-item>
+						</el-submenu>
 					</el-menu>
 				</el-col>
 			</el-col>
