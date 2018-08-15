@@ -277,7 +277,7 @@ export default new Router({
         },
         //冬防战报（今日战报）
         {
-            path: '/LikeWinter',
+            path: '/likewinter',
             name: 'likewinter',
             meta: { keepAlive: false },
             component: LikeWinter
@@ -435,13 +435,6 @@ export default new Router({
             name: 'GridPrediction',
             meta: { keepAlive: false },
             component: GridPrediction
-        },
-        //扬尘源统计
-        // {
-        //     path: '/DustEmissionStatistics',
-        //     name: 'DustEmissionStatistics',
-        //     meta: { keepAlive: false },
-        //     component: DustEmissionStatistics
-        // }
+        }
     ]
 })
