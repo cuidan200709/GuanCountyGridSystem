@@ -10,11 +10,11 @@
             <ul class="bnav">
             	<div>
                     <img src="../assets/img/sy-z.png" alt="">
-                    <a href="#/">首页</a>
+                    <a href="#/likewinter">首页</a>
                 </div>
                 <div>
                     <img src="../assets/img/tc-z.png" alt="">
-                    <a style="padding: 0 10px" @click="exit">退出</a>
+                    <a style="padding: 0 10px" href="#/">退出</a>
                 </div>
             </ul>
         </div>

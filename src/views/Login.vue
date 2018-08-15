@@ -100,8 +100,7 @@
                 let urlcon =  api.GetUserLoginRes();
                 //console.log(urlcon);
                 $.ajax({
-                    url:urlcon ,////
-                   // url: 'http://117.119.97.150:8063/api/login/UserLogin',
+                    url:urlcon ,
                     data: {
                         username: this.userName,
                         password: this.passWord

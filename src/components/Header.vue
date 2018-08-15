@@ -137,7 +137,7 @@
             }, function () {
                 $(".tuichu img").attr('src', t.tuichuChesSrc);
             });
-            //this.DropDownAnimation('li');
+
             //右侧伸缩栏模块
             $(".bnav li").hover(function () {
                //console.log($(this).find('div'))
@@ -171,25 +171,25 @@
                 })
             },
             //下拉动画
-            DropDownAnimation(_this){
-               // console.log(_this)
-                $(_this).each(function () {
-                    var $this = $(this);
-                    var theMenu = $this.find(".submenu");
-                    var tarHeight = theMenu.height() + 20;
-                    theMenu.css({height: 0});
-                    $this.hover(
-                        function () {
-                            theMenu.stop().show().animate({height: tarHeight}, 400);
-                        },
-                        function () {
-                            theMenu.stop().animate({height: 0}, 400, function () {
-                                $(this).css({display: "none"});
-                            });
-                        }
-                    );
-                });
-            }
+            // DropDownAnimation(_this){
+            //    // console.log(_this)
+            //     $(_this).each(function () {
+            //         var $this = $(this);
+            //         var theMenu = $this.find(".submenu");
+            //         var tarHeight = theMenu.height() + 20;
+            //         theMenu.css({height: 0});
+            //         $this.hover(
+            //             function () {
+            //                 theMenu.stop().show().animate({height: tarHeight}, 400);
+            //             },
+            //             function () {
+            //                 theMenu.stop().animate({height: 0}, 400, function () {
+            //                     $(this).css({display: "none"});
+            //                 });
+            //             }
+            //         );
+            //     });
+            // }
         },
         activated(){
             $('.submenu').hide();
