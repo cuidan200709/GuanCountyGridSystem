@@ -11,41 +11,9 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
-				<div class="searchBox">
-				    <span>案件状态</span>
-				    <el-select v-model="CaseStatusVal" @change="selectChangeStatus" clearable placeholder="请选择">
-				        <el-option
-				          v-for="item in optionsCase"
-				          :key="item.value"
-				      	  :label="item.label"
-				          :value="item.value">
-				        </el-option>
-				    </el-select>
-				</div>
-				<div class="searchBox" v-show="$store.state.responsibility===false">
-				    <span>责任主体</span>
-				    <el-select v-model="DutyMainVal" @change="selectChangeDuty" clearable placeholder="请选择">
-				        <el-option
-				          v-for="item in optionsDuty"
-				          :key="item.value"
-				      	  :label="item.name"
-				          :value="item.code">
-				        </el-option>
-				    </el-select>
-				</div>
-				<div class="searchBox">
-				    <span>污染类别</span>
-				    <el-select v-model="PollutionClassVal" @change="selectChangePollution" clearable placeholder="请选择">
-				        <el-option
-				          v-for="item in optionsPollution"
-				          :key="item.value"
-				      	  :label="item.name"
-				          :value="item.code">
-				        </el-option>
-				    </el-select>
-				</div>
+				
 				<div class="block" style="margin-top: 20px;">
-				    <span class="demonstration">案件时间</span>
+				    <span class="demonstration">起始时间</span>
 				    <el-date-picker
 				      v-model="CaseStartTime"
 				      type="date"
@@ -64,8 +32,7 @@
 				    <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
 				    <div class="InsertOrOut">
 						<span>
-							<img src="../../../../static/imgs/main/Out.png"/>
-							<a @click="GetExportCase">Excel导出</a>
+							<el-button type="primary" @click="GetExportCase">Excel导出</el-button>
 						</span>
 					</div>
 				</div>
@@ -82,43 +49,62 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="pollutiontype"
-			      label="污染类别"
-			      width="200">
+			      label="责任部门"
+			      width="100">
 			    </el-table-column>
 			    <el-table-column
 			      prop="status"
-			      label="案件状态"
-			      width="350">
+			      label="案件数量"
+			      width="100">
 			    </el-table-column>
 			    <el-table-column
 			      prop="createtime"
-			      label="案发时间"
-			      width="">
+			      label="露天烧烤"
+			      width="100">
 			    </el-table-column>
 			    <el-table-column
 			      prop="location"
-			      label="位置">
+			      label="车辆限行">
 			    </el-table-column>
 			    <el-table-column
 			      prop="departmenttype"
-			      label="责任主体">
+			      label="道路扬尘">
 			    </el-table-column>
 			    <el-table-column
-			      label="操作"
-			      width="200">
-			      <template scope="scope">
-			      	<div v-if="scope.row.status=='未处理'">
-						<el-button v-show="$store.state.responsibility" type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
-			      		<el-button v-show="$store.state.responsibility === false" @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
-				        <span style="color: #eee;">|</span>
-				        <span class="OverBox">
-				        	<el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='noeidt'>回复</el-button>
-				        </span>
-			      	</div>
-			        <div v-else>
-			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
-			        </div>
-			      </template>
+			      prop="departmenttype"
+			      label="餐饮油烟">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="垃圾焚烧">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="裸露土地">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="企业废气">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="汽车尾气">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="垃圾堆放">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="建筑扬尘">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="锅炉黑烟">
+			    </el-table-column>
+			    <el-table-column
+			      prop="departmenttype"
+			      label="其他">
 			    </el-table-column>
 			</el-table>
 		   	<div class="page">

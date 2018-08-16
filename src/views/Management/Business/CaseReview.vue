@@ -12,6 +12,17 @@
             <!-----------查询部分------->
 			<div class="search">
 				<div class="searchBox">
+				    <span>案件来源</span>
+				    <el-select v-model="CaseOriginVal" @change="selectChangeOrigin" clearable placeholder="请选择">
+				        <el-option
+				          v-for="item in optionsCaseOrigin"
+				          :key="item.value"
+				      	  :label="item.label"
+				          :value="item.value">
+				        </el-option>
+				    </el-select>
+				</div>
+				<div class="searchBox">
 				    <span>案件状态</span>
 				    <el-select v-model="CaseStatusVal" @change="selectChangeStatus" clearable placeholder="请选择">
 				        <el-option
@@ -61,11 +72,12 @@
 				      placeholder="选择日期时间"
 				      @change='endChange'>
 				    </el-date-picker>
+				    <span>乡镇名称</span>
+					<el-input v-model='cityName' placeholder="请输入内容"></el-input>
 				    <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
 				    <div class="InsertOrOut">
 						<span>
-							<img src="../../../../static/imgs/main/Out.png"/>
-							<a @click="GetExportCase">Excel导出</a>
+							<el-button type="primary" @click="GetExportCase">Excel导出</el-button>
 						</span>
 					</div>
 				</div>
@@ -373,8 +385,16 @@
             	optionsCase: [{
 		          value: '0',
 		          label: '未处理'
-		        }, {
+		        }, 
+		        {
 		          value: '1',
+		          label: '已派发'
+		        },
+		        {
+		          value: '2',
+		          label: '待审核'
+		        },{
+		          value: '3',
 		          label: '处理完毕'
 		        }],
 		        //责任主体
@@ -451,7 +471,25 @@
 	         id:'',
 	         zrxtCode:'',
 	         afterCaseImg:'',
-	         imgUrl:''
+	         imgUrl:'',
+	         //案件来源
+	         optionsCaseOrigin:[{
+		          value: '0',
+		          label: '领导督办'
+		        }, {
+		          value: '1',
+		          label: '巡查'
+		        },
+	         	{
+		          value: '2',
+		          label: '市民投诉'
+		        },
+	         	{
+		          value: '3',
+		          label: '信访'
+		        }],
+		     CaseOriginVal:'',
+		     origin:''
             }
         },
         created(){
@@ -557,52 +595,6 @@
 		   			
 		   		})
 		   },
-        	//上传图片
-//      	handleRemove(file, fileList) {
-//		        console.log(file, fileList);
-//		    },
-//		    handlePictureCardPreview(file) {
-//		        this.dialogImageUrl = file.url;
-//		        this.dialogVisible = true;
-//		    },
-//		    success(response, file, fileList){
-//		    	 this.dialogVisible = true;
-//		    },
-		     // 上传前对文件的大小的判断
-//		    beforeAvatarUpload (file) {
-//			    const extension = file.name.split('.')[1] === 'jpg'
-//			    const extension2 = file.name.split('.')[1] === 'png'
-//			    const isLt2M = file.size / 1024 / 1024 < 5
-//			    if (!extension && !extension2) {
-//			        console.log('上传模板只能是jpg/png 格式!')
-//			    }
-//			    if (!isLt2M) {
-//			        console.log('上传模板大小不能超过 10MB!')
-//			    }
-//			    return extension || extension2 && isLt2M
-//		    },
-		     // 文件上传前
-//			beforeImgUpload (file) {
-//			    const self = this;  //这个很重要！
-//			    var reader = new FileReader();
-//			    reader.readAsDataURL(file);
-//			    reader.onloadend = function() {
-//			        self.form.upLoadData.img_base64 = this.result;
-//			        console.log(self.form.upLoadData.img_base64);
-//			    };
-//			},
-//			// 上传成功后的回调
-//			uploadSuccess (response, file, fileList) {
-//			    console.log('上传文件', response)
-//			    this.$alert(response.retData.msg);
-//			    console.log(this.form.upLoadData.img_base64);
-//			},
-//			uploadError(){
-//				
-//			},
-			GetUploadImg(){
-				
-			},
 			GetCaseImg(caseCode){
 				api.GetCaseImg(caseCode).then(res=>{
 					console.log(res)
@@ -717,6 +709,10 @@
       		//案件状态选择
       		selectChangeStatus(val){
       			this.status = val;
+      		},
+      		//案件来源选择
+      		selectChangeOrigin(val){
+      			this.origin = val;
       		},
       		//责任主体选择
       		selectChangeDuty(val){
