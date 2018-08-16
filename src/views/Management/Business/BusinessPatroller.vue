@@ -11,7 +11,40 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
+				<span>网格员名称</span><el-input v-model="input" placeholder="请输入内容"></el-input>
+				<span>级别</span>
+				<el-select v-model="levelVal" placeholder="请选择">
+				    <el-option
+				      v-for="item in optionsLevelVal"
+				      :key="item.value"
+				      :label="item.label"
+				      :value="item.value">
+				    </el-option>
+				</el-select>
+				<el-button type="primary" class='btns' @click="">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加网格员</el-button>
+				
+			</div>
+			<div class="search">
+				<span>组织</span>
+				<el-select v-model="organizeVal" placeholder="请选择">
+				    <el-option
+				      v-for="item in optionsOrganizeVal"
+				      :key="item.value"
+				      :label="item.label"
+				      :value="item.value">
+				    </el-option>
+				</el-select>
+				<span>岗位</span>
+				<el-select v-model="stationVal" placeholder="请选择">
+				    <el-option
+				      v-for="item in optionsStationVal"
+				      :key="item.value"
+				      :label="item.label"
+				      :value="item.value">
+				    </el-option>
+				</el-select>
+				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->
@@ -25,28 +58,48 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="登录名"
+			      width="100">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="姓名"
+			      width="100">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="组织"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
-			      width="350">
+			      label="岗位"
+			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
-			      width="">
+			      label="登录APP"
+			      width="200">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="处理案件"
+			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      label="操作"
-			      width="200">
+			      width="">
 			      <template scope="scope">
 			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>编辑</el-button>
-			        <span style="color: #eee;">|</span>
+			        <span style="color: #000;">|</span>
+			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>重置密码</el-button>
+			        <span style="color: #000;">|</span>
+			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>修改密码</el-button>
+			        <span style="color: #000;">|</span>
 			        <span class="OverBox">
 			        	<el-button @click="DeleteOperatorInfo(scope.row)" type="text" size="small" class='eidt'>删除</el-button>
 			        </span>
+			     
 			      </template>
 			    </el-table-column>
 			</el-table>
@@ -236,7 +289,27 @@
 				equipmentEditTime:'',
 				equipmentEditChenge:'',
 				defualtData:{},
-				isEdit:false
+				isEdit:false,
+				//级别
+				optionsLevelVal:[{label:1,value:1},{label:2,value:2},{label:3,value:3}],
+				levelVal:'',
+				//组织
+				optionsOrganizeVal:[{label:'环保局',value:'环保局'},
+									{label:'大气办',value:'大气办'},
+									{label:'建设局',value:'建设局'},
+									{label:'综合执法队',value:'综合执法队'},
+									{label:'固安镇',value:'固安镇'},
+									{label:'牛驼镇',value:'牛驼镇'},
+									{label:'马庄镇',value:'马庄镇'}
+									],
+				organizeVal:'',
+				//岗位
+				optionsStationVal:[{label:'二级网格员',value:'环保局'},
+									{label:'二级网格长',value:'大气办'},
+									{label:'分包领导',value:'建设局'},
+									{label:'二级网格长个人账户',value:'综合执法队'}
+									],
+				stationVal:''
             }
         },
         created(){

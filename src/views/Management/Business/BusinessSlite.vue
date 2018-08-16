@@ -12,7 +12,11 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
+				<span>工地名称</span><el-input v-model="sliteName" placeholder="请输入内容"></el-input>
+				<span>住建局负责人</span><el-input v-model="slitePerson" placeholder="请输入内容"></el-input>
+				<el-button type="primary" class='btns' @click="">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加工地</el-button>
+				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->
@@ -26,17 +30,32 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="工地名称"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
+			      label="管控措施"
 			      width="350">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
+			      label="工地负责人"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="联系方式"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="住建局负责人"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="联系方式"
 			      width="">
 			    </el-table-column>
 			    <el-table-column
@@ -237,7 +256,10 @@
 				equipmentEditTime:'',
 				equipmentEditChenge:'',
 				defualtData:{},
-				isEdit:false
+				isEdit:false,
+				//工地
+				slitePerson:'',
+				sliteName:''
             }
         },
         created(){

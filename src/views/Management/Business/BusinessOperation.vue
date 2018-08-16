@@ -26,17 +26,17 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="监测点名称"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
+			      label="监测点类别"
 			      width="350">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
+			      label="说明"
 			      width="">
 			    </el-table-column>
 			    <el-table-column

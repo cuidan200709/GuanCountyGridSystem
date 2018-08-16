@@ -12,7 +12,11 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
+				<span>企业名称</span><el-input v-model="componyName" placeholder="请输入内容"></el-input>
+				<span>网格名称</span><el-input v-model="gridName" placeholder="请输入内容"></el-input>
+				<el-button type="primary" class='btns' @click="">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加企业</el-button>
+				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->
@@ -26,17 +30,52 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="污染源名称"
+			      width="150">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="污染源地址"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
-			      width="350">
+			      label="联系人"
+			      width="">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
+			      label="联系方式"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="污染源性质"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="控制级别"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="行业名称"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="经度"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="纬度"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="所属网格"
 			      width="">
 			    </el-table-column>
 			    <el-table-column
@@ -237,7 +276,9 @@
 				equipmentEditTime:'',
 				equipmentEditChenge:'',
 				defualtData:{},
-				isEdit:false
+				isEdit:false,
+				componyName:'',
+				gridName:''
             }
         },
         created(){

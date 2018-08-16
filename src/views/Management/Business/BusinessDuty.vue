@@ -10,7 +10,10 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
+				<span>部门名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
+				<el-button type="primary" class='btns' @click="">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加网格</el-button>
+				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->
@@ -24,22 +27,42 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="网格编号"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
-			      width="350">
+			      label="网格名称"
+			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
+			      label="主管领导"
 			      width="">
+			    </el-table-column>
+			     <el-table-column
+			      prop="CreateTime"
+			      label="联系方式"
+			      width="200">
+			    </el-table-column>
+			     <el-table-column
+			      prop="CreateTime"
+			      label="级别"
+			      width="100">
+			    </el-table-column>
+			     <el-table-column
+			      prop="CreateTime"
+			      label="所属辖区"
+			      width="200">
+			    </el-table-column>
+			     <el-table-column
+			      prop="CreateTime"
+			      label="所在乡镇/街办处/园区"
+			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      label="操作"
-			      width="200">
+			      width="100">
 			      <template scope="scope">
 			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>编辑</el-button>
 			        <span style="color: #eee;">|</span>
@@ -235,7 +258,9 @@
 				equipmentEditTime:'',
 				equipmentEditChenge:'',
 				defualtData:{},
-				isEdit:false
+				isEdit:false,
+				//部门名称
+				departmentVal:'',
             }
         },
         created(){

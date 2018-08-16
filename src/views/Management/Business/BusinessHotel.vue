@@ -12,7 +12,12 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
-				<el-button type="primary" class='btns' @click="openWin">添加运维记录</el-button>
+				<span>饭店名称</span><el-input v-model="hotelName" placeholder="请输入内容"></el-input>
+				<span>饭店地址</span><el-input v-model="hotelAddress" placeholder="请输入内容"></el-input>
+				<el-button type="primary" class='btns' @click="">查询</el-button>
+				<el-button type="primary" class='btns' @click="">导入</el-button>
+				<el-button type="primary" class='btns' @click="">批量修改</el-button>
+				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->
@@ -26,17 +31,47 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="饭店名称"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
-			      width="350">
+			      label="联系人"
+			      width="100">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
+			      label="联系电话"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="地址"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="经度"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="纬度"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="灶头个数"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="净化器类型"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="状态"
 			      width="">
 			    </el-table-column>
 			    <el-table-column
@@ -237,7 +272,10 @@
 				equipmentEditTime:'',
 				equipmentEditChenge:'',
 				defualtData:{},
-				isEdit:false
+				isEdit:false,
+				//饭店
+				hotelAddress:'',
+				hotelName:''
             }
         },
         created(){

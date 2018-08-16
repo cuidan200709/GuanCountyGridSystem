@@ -12,7 +12,11 @@
             </div>
             <!-----------查询部分------->
 			<div class="search">
+				<span>车牌号码</span><el-input v-model="carNumber" placeholder="请输入内容"></el-input>
+				<span>所属单位</span><el-input v-model="unitName" placeholder="请输入内容"></el-input>
+				<el-button type="primary" class='btns' @click="">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加渣土车</el-button>
+				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->
@@ -26,17 +30,27 @@
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
-			      label="设备名称"
+			      label="车牌号码"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="最近运维时间"
+			      label="所属单位"
 			      width="350">
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
-			      label="上传时间"
+			      label="改造完成时间"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="联系人"
+			      width="">
+			    </el-table-column>
+			    <el-table-column
+			      prop="CreateTime"
+			      label="联系方式"
 			      width="">
 			    </el-table-column>
 			    <el-table-column
@@ -237,7 +251,10 @@
 				equipmentEditTime:'',
 				equipmentEditChenge:'',
 				defualtData:{},
-				isEdit:false
+				isEdit:false,
+				//渣土车
+				unitName:'',
+				carNumber:''
             }
         },
         created(){
