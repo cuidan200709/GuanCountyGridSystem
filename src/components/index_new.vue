@@ -24,8 +24,6 @@
                 </div>
             </div>
             <div class="panel">
-                <!--<img class="shrink" src="../assets/img/左.png" v-if="zuo"/>-->
-                <!--<img class="shrink" src="../assets/img/右.png" v-if="you"/>-->
                 <!--面板切换视图区域-->
                 <router-view></router-view>
                 <!---->
@@ -35,13 +33,11 @@
                 <ul>
                     <!--默认选项-->
                     <li @click="selectRightNavData('统计')" :class="isSelect === '统计' ? 'backgroundColor' : ''">
-                        <!--<el-tooltip class="item" effect="dark" :content="'统计'" placement="left">-->
                             <img :src="Jtimgurl">
-                        <!--</el-tooltip>-->
                     </li>
                     <!--动态生成-->
                     <li v-for="item in RightNavData" @click="selectRightNavData(item.title)" :class="isSelect === item.title ? 'backgroundColor' : ''">
-                        <!--<p :class="isSelect === item.title ? 'active' : ''">{{item.title}}</p>-->
+                       <!---->
                         <el-tooltip class="item" effect="dark" :content="item.title_tx" placement="left">
                             <img :src="isSelect === item.title ? item.url_one : item.url">
                         </el-tooltip>
@@ -114,15 +110,13 @@
         activated() {
             api.GetXhHbPoints().then(res => {
                 let data = res.data.Data;
-
                 this.Statistics = data;
             })
             api.GetOfficeProgess().then(res => {
                 let data = res.data.Data;
-
                 this.RightStatistics = data;
             })
-            this.GetEcharsData()
+
         },
         mounted() {
 
@@ -140,7 +134,7 @@
         updated(){
             //跟新数据后调用功能
             if(this.RightNavData == false){
-                console.log('我现在没有东西了')
+               // console.log('我现在没有东西了')
                 this.$router.push('/MonitoringPoint');
                 this.isSelect = '国省';
                 this.shengchu();
@@ -229,232 +223,6 @@
                         break;
                 }
                 return rtValue;
-            },
-            //空气传感器占比图
-            AirSensorRatio() {
-                let data = this.AirPie.map(function (v) {
-                    return {value: v.count, name: v.name}
-                }) || [];
-                // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('bing_item1'));
-                // 指定图表的配置项和数据
-                let option = {
-                    series: [
-                        {
-                            name: '空气传感器占比',
-                            type: 'pie',
-                            radius: ['0%', '75%'],
-                            hoverAnimation: false,
-                            itemStyle: {
-                                normal: {
-                                    label: {
-                                        show: true,
-                                        position: 'inside',
-                                        formatter: '{d}%'
-                                    },
-                                    labelLine: {
-                                        show: false
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-                //动态设置参数
-                myChart.setOption({
-
-                    series: [{
-                        data: data,
-                        color: [
-                            '#0392e0',
-                            '#f7cc5c',
-                            '#a0cb3e',
-                        ]
-                    }]
-                })
-            },
-            //视频类型占比
-            VideoratioPie() {
-                let data = this.VideoPie.map(function (v) {
-                    return {value: v.count, name: v.name}
-                }) || [];
-                // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('bing_item2'));
-                // 指定图表的配置项和数据
-                let option = {
-
-                    series: [
-                        {
-                            name: '视频类型占比',
-                            type: 'pie',
-                            radius: ['0%', '75%'],
-                            hoverAnimation: false,
-                            itemStyle: {
-                                normal: {
-                                    label: {
-                                        show: true,
-                                        position: 'inside',
-                                        formatter: '{d}%'
-                                    },
-                                    labelLine: {
-                                        show: false
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-                //动态设置参数
-                myChart.setOption({
-//                    legend: {
-//                        data: data.map(function (v) {
-//                            return v.name
-//                        })
-//                    },
-                    series: [{
-                        data: data,
-                        color: [
-                            '#0392e0',
-                            '#f7cc5c',
-                            '#a0cb3e',
-                        ]
-                    }]
-                })
-            },
-            //网格类型占比
-            GridTypeProportionPie() {
-                let data = this.GridPie.map(function (v) {
-                    return {value: v.count, name: v.name}
-                }) || [];
-                // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('bing_item3'));
-                // 指定图表的配置项和数据
-                let option = {
-                    calculable: true,
-                    series: [
-                        {
-                            name: '网格类型占比',
-                            type: 'pie',
-                            radius: ['0%', '75%'],
-                            hoverAnimation: false,
-                            itemStyle: {
-                                normal: {
-                                    label: {
-                                        show: true,
-//                                        position: 'inside',
-//                                        formatter: '{d}%'
-                                        formatter: '{d}%'
-                                    },
-                                    labelLine: {
-                                        show: true,
-                                        length: 10,
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-                //动态设置参数
-                myChart.setOption({
-//                    legend: {
-//                        data: data.map(function (v) {
-//                            return v.name
-//                        })
-//                    },
-                    series: [{
-                        data: data,
-                        color: [
-                            '#0392e0',
-                            '#f7cc5c',
-                            '#a0cb3e',
-                        ]
-                    }],
-                })
-            },
-            //网格员占比
-            GridSharePie() {
-                let data = this.GridMemberPie.map(function (v) {
-                    return {value: v.count, name: v.name}
-                }) || [];
-                // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('bing_item4'));
-                // 指定图表的配置项和数据
-                let option = {
-                    series: [
-                        {
-                            name: '网格员占比',
-                            type: 'pie',
-                            radius: ['0%', '75%'],
-                            hoverAnimation: false,
-                            itemStyle: {
-                                normal: {
-                                    label: {
-                                        show: true,
-                                        position: 'inside',
-                                        formatter: '{d}%'
-                                    },
-                                    labelLine: {
-                                        show: false
-                                    }
-                                },
-
-                            }
-                        }
-                    ]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-                //动态设置参数
-                myChart.setOption({
-//                    legend: {
-//                        data: data.map(function (v) {
-//                            return v.name
-//                        })
-//                    },
-                    series: [{
-                        data: data,
-                        color: [
-                            '#f7cc5c',
-                            '#0392e0',
-                            '#a0cb3e',
-                        ]
-                    }],
-                })
-            },
-            //图标数据请求
-            GetEcharsData() {
-                let t = this;
-                //传感器
-                api.GetAirPie().then(res => {
-                    let data = res.data.Data;
-                    t.AirPie = data;
-                    t.AirSensorRatio();
-                })
-                //视频
-                api.GetVideoPie().then(res => {
-                    let data = res.data.Data;
-                    t.VideoPie = data;
-                    t.VideoratioPie();
-                })
-                //网格类
-                api.GetGridPie().then(res => {
-                    let data = res.data.Data;
-                    t.GridPie = data;
-                    t.GridTypeProportionPie();
-                })
-                //网格员
-                api.GetGridMemberPie().then(res => {
-                    let data = res.data.Data;
-                    t.GridMemberPie = data;
-
-                    t.GridSharePie();
-                })
             },
             //右侧切换菜单栏
             selectRightNavData (title) {
