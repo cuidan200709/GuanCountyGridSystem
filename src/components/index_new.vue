@@ -35,9 +35,9 @@
                 <ul>
                     <!--默认选项-->
                     <li @click="selectRightNavData('统计')" :class="isSelect === '统计' ? 'backgroundColor' : ''">
-                        <el-tooltip class="item" effect="dark" :content="'统计'" placement="left">
+                        <!--<el-tooltip class="item" effect="dark" :content="'统计'" placement="left">-->
                             <img :src="Jtimgurl">
-                        </el-tooltip>
+                        <!--</el-tooltip>-->
                     </li>
                     <!--动态生成-->
                     <li v-for="item in RightNavData" @click="selectRightNavData(item.title)" :class="isSelect === item.title ? 'backgroundColor' : ''">
@@ -101,7 +101,7 @@
                 //右侧栏统计2
                 RightStatistics: {},
                 //默认面板值
-                isSelect: '统计',
+                isSelect: '国省',
                 //
                 Jtimgurl:'static/imgs/indeximgs/morenimg/tongji.png',
                 //右侧菜单栏项目
@@ -134,13 +134,15 @@
             this.RightNavData = this.$store.state.menuData;
             //
             bus.$on('menuative', this.selectRightNavData);//
+            //
+            bus.$emit('menuative', '国省');
         },
         updated(){
             //跟新数据后调用功能
             if(this.RightNavData == false){
                 console.log('我现在没有东西了')
                 this.$router.push('/MonitoringPoint');
-                this.isSelect = '统计';
+                this.isSelect = '国省';
                 this.shengchu();
                 this.StatisticsSwitch = true;
             }
@@ -172,7 +174,7 @@
             isTabChange(){
                 //当返回实时监控页面时候监控路由情况
                 if(this.$route.path==='/'){
-                    this.isSelect = '统计';
+                    this.isSelect = '国省';
                     this.StatisticsSwitch = true;
                 }
             },
