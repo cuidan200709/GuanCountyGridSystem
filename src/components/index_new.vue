@@ -783,7 +783,7 @@
                 right: 0;
                 width: 34px;
                 height: 100%;
-                background: rgba(160,160,160,0.6);
+                background: rgb(160,160,160);
                 z-index: 60;
                 ul{
                     padding-top: 42px;
