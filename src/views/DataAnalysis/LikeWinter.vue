@@ -390,149 +390,18 @@
             <div class="Window_Four htt-four" style="margin-top: -54px">
                 <!--大气污染、燃煤数据、用电量数据、经济数据-->
                 <el-tabs v-model="activeName_t" @tab-click="">
-                    <el-tab-pane label="大气污染改善" name="fourth_t">
-                        <div class="daqititle">
-                            <span>2014-2017年{{DaqiType}}年均浓度{{DaqiDanw}}</span>
-                            <select id="selectID" @change="DaQiWuRanTuBiao">
-                                <option value="PM2.5">PM2.5</option>
-                                <option value="PM10">PM10</option>
-                                <option value="SO2">SO2</option>
-                                <option value="NO2">NO2</option>
-                                <option value="CO">CO</option>
-                                <option value="O3">O3</option>
-                                <option value="综指">综指</option>
-                            </select>
-                        </div>
-                        <div id="pmcodepc" style="width: 366px;height: 200px;color: #fff!important;"></div>
+                    <el-tab-pane label="案件处理率同比" name="fourth_t">
+                    	<div id="CaseDeal" style="width: 366px;height: 200px;"></div>
                     </el-tab-pane>
-                    <el-tab-pane label="燃煤替代" name="first_t">
-                        <div class="renwu-box">
-                            <div class="e_users" style="border-right: solid 1px #ccc">
-                                <p>810,<span>33</span></p>
-                                <a>煤改电任务用户</a>
-                            </div>
-                            <div class="e_users">
-                                <h5>100% </h5>
-                                <a>煤改电进度</a><br/>
-                                <font style="font-size: 12px;color:#BECBEC; ">固安尚未完成，进度94.6%</font>
-                            </div>
-                            <div class="e_users" style="border-right: solid 1px #ccc">
-                                <p>611,<span>764</span></p>
-                                <a>煤改气任务用户</a>
-                            </div>
-                            <div class="e_users">
-                                <h5>100% </h5>
-                                <a>煤改气进度</a>
-                            </div>
-                        </div>
-                    </el-tab-pane>
-                    <el-tab-pane label="用电量数据" name="second_t">
-                        <div class="" style="padding: 10px 0">区县{{DianTime}}用电量</div>
-                        <div id="dian_type" style="width: 366px;height: 200px;"></div>
-                    </el-tab-pane>
-                    <el-tab-pane label="经济数据" name="third_t">
-                        <el-tabs v-model="activeName_j" @tab-click="">
-                            <el-tab-pane label="全市生产总值" name="first_j">
-                                <table border="1" class="nytable">
-                                    <tr>
-                                        <th class="goLeft">指标名称</th>
-                                        <th style="width:112px">前三季度（亿元）</th>
-                                        <th style="width:112px">同比增速（%）</th>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">全市生产总值</td>
-                                        <td>2083.7</td>
-                                        <td>7.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="goLeft">第一产业</td>
-                                        <td>136.3</td>
-                                        <td>0.1</td>
-                                    </tr>
-                                    <tr class="darkColor">
-                                        <td class="goLeft">第二产业</td>
-                                        <td>938.6</td>
-                                        <td>2.9</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">#工业</td>
-                                        <td>779.1</td>
-                                        <td>2.0</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">建筑业</td>
-                                        <td>159.6</td>
-                                        <td>7.9</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="goLeft">第三产业</td>
-                                        <td>1008.8</td>
-                                        <td>12.8</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">#交通运输、仓储和邮政业</td>
-                                        <td>62.3</td>
-                                        <td>6.1</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">批发和零售业</td>
-                                        <td>126.1</td>
-                                        <td>7.6</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">住宿和餐饮业</td>
-                                        <td>32.1</td>
-                                        <td>8.6</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">金融业</td>
-                                        <td>174.8</td>
-                                        <td>13.5</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">房地产业</td>
-                                        <td>184.1</td>
-                                        <td>16.8</td>
-                                    </tr>
-                                    <tr class="lightColor">
-                                        <td class="goLeft">其他服务业</td>
-                                        <td>426.8</td>
-                                        <td>13.5</td>
-                                    </tr>
-                                </table>
-                            </el-tab-pane>
-                            <el-tab-pane label="能源消耗" name="second_j" class="allCity">
-                                <div class="table_container">
-                                    <el-table
-                                            :data="nenyuanData"
-                                            border
-                                            stripe
-                                            highlight-current-row
-                                    >
-                                        <el-table-column
-                                                property="zhibiao"
-                                                label="指标"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                property="danwei"
-                                                label="单位"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                property="qiansan"
-                                                label="前三季度"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                property="zensu"
-                                                label="同比增速(%)"
-                                        >
-                                        </el-table-column>
-                                    </el-table>
-                                </div>
-                            </el-tab-pane>
-                        </el-tabs>
+                    <el-tab-pane label="案件类型占比" name="first_t">
+                        <div class="select" style="float: right;">
+                            <select id="" @change="">
+								<option value="2016" selected>近一周</option>
+								<option value="2017">近一月</option>
+								<option value="2018">近一年</option>
+							</select>
+                    	</div>
+                    	<div id="CaseType" style="width: 366px;height: 200px;"></div>
                     </el-tab-pane>
                 </el-tabs>
             </div>
@@ -2201,137 +2070,199 @@
 			        // 使用刚指定的配置项和数据显示图表。
 			        myChart.setOption(options);
             },
-            // 用电量
-            ElectricityConsumption() {
+            // 案件处理率同比
+             ElectricityConsumption() {
                 let seriesData = this.Diandata.seriesData;
                 let xAxisData = this.Diandata.xAxisData;
                 // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('dian_type'));
+                let myChart = echarts.init(document.getElementById('CaseDeal'));
                 // 指定图表的配置项和数据
-                let option = {
-
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross',
-                            crossStyle: {
-                                color: '#fff'
-                            }
-                        }
-                    },
-                    toolbox: {
-                        feature: {
-                            dataView: {show: true, readOnly: false},
-                            magicType: {show: true, type: ['line', 'bar']},
-                            restore: {show: true},
-                            saveAsImage: {show: true}
-                        }
-                    },
-                    legend: {
-                        data: ['用电量', '增长率'],
-                        left: 'left',
-                        textStyle: {
+//              let option = {
+//
+//                  tooltip: {
+//                      trigger: 'axis',
+//                      axisPointer: {
+//                          type: 'cross',
+//                          crossStyle: {
+//                              color: '#fff'
+//                          }
+//                      }
+//                  },
+//                  toolbox: {
+//                      feature: {
+//                          dataView: {show: true, readOnly: false},
+//                          magicType: {show: true, type: ['line', 'bar']},
+//                          restore: {show: true},
+//                          saveAsImage: {show: true}
+//                      }
+//                  },
+//                  legend: {
+//                      data: ['用电量', '增长率'],
+//                      left: 'left',
+//                      textStyle: {
+//                          color: '#fff'
+//                      },
+//                  },
+//                  xAxis: [
+//                      {
+//                          type: 'category',
+//                          data: [],//xAxisData,//['广阳区','安次区','开发区','香河县','大厂县','三河市','固安县','永清县','霸州市','文安县','大城县'],
+//                          axisPointer: {
+//                              type: 'shadow'
+//                          },
+//                          axisLabel: {
+//                              textStyle: {
+//                                  color: '#fff'
+//                              }
+//                          },
+//                      }
+//                  ],
+//                  yAxis: [
+//                      {
+//                          type: 'value',
+//                          name: '单位(万千瓦时)',
+//                          min: 0,
+//                          max: 800,
+//                          interval: 200,
+//                          axisLabel: {
+//                              formatter: '{value}',
+//                              textStyle: {
+//                                  color: '#fff',
+//                              }
+//                          },
+//                          nameTextStyle: {
+//                              color: '#fff'
+//                          },
+//                      },
+//                      {
+//                          type: 'value',
+//                          name: '单位（%）',
+//                          min: -10,
+//                          max: 10,
+//                          interval: 5,
+//                          axisLabel: {
+//                              formatter: '{value}',
+//                              textStyle: {
+//                                  color: '#fff'
+//                              }
+//                          },
+//                          nameTextStyle: {
+//                              color: '#fff'
+//                          },
+//                      }
+//                  ],
+//                  series: [
+//                      {
+//                          name: '用电量',
+//                          type: 'bar',
+//                          //data:[],//[200.6, 500.9, 239.0, 296.4, 699.7, 470.7, 175.6, 182.2, 648.7, 718.8, 360.0],
+//                          itemStyle: {
+//                              normal: {
+//                                  color: new echarts.graphic.LinearGradient(
+//                                      0, 0, 0, 1,
+//                                      [
+//                                          {offset: 0, color: '#83bff6'},
+//                                          {offset: 0.5, color: '#188df0'},
+//                                          {offset: 1, color: '#188df0'}
+//                                      ]
+//                                  )
+//                              },
+//                              emphasis: {
+//                                  color: new echarts.graphic.LinearGradient(
+//                                      0, 0, 0, 1,
+//                                      [
+//                                          {offset: 0, color: '#2378f7'},
+//                                          {offset: 0.7, color: '#2378f7'},
+//                                          {offset: 1, color: '#83bff6'}
+//                                      ]
+//                                  )
+//                              }
+//                          },
+//                      },
+//                      {
+//                          name: '环比',
+//                          type: 'line',
+//                          yAxisIndex: 1
+//                          //
+//                          // data:[],//seriesData[1].data//[1.0, 2.2, 3.3, 4.5, 6.3, 8.2, 9, 9.4, 5.0, 6.5, 2.0]
+//                      }
+//                  ]
+//              };
+//              // 使用刚指定的配置项和数据显示图表。
+//
+//              myChart.setOption(option);
+//
+//              myChart.setOption({        //加载数据图表
+//                  xAxis: {
+//                      data: xAxisData
+//                  },
+//                  series: seriesData
+//              })
+                //动态设置参数
+                
+				let option = {
+				    tooltip: {
+				        trigger: 'axis',
+				        axisPointer: {
+				            type: ''
+				        }
+				    },
+				    legend: {
+				        data: ['2011年', '2012年'],
+				        textStyle: {
                             color: '#fff'
                         },
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: [],//xAxisData,//['广阳区','安次区','开发区','香河县','大厂县','三河市','固安县','永清县','霸州市','文安县','大城县'],
-                            axisPointer: {
-                                type: 'shadow'
-                            },
-                            axisLabel: {
-                                textStyle: {
-                                    color: '#fff'
-                                }
-                            },
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name: '单位(万千瓦时)',
-                            min: 0,
-                            max: 800,
-                            interval: 200,
-                            axisLabel: {
-                                formatter: '{value}',
-                                textStyle: {
-                                    color: '#fff',
-                                }
-                            },
-                            nameTextStyle: {
-                                color: '#fff'
-                            },
-                        },
-                        {
-                            type: 'value',
-                            name: '单位（%）',
-                            min: -10,
-                            max: 10,
-                            interval: 5,
-                            axisLabel: {
-                                formatter: '{value}',
-                                textStyle: {
-                                    color: '#fff'
-                                }
-                            },
-                            nameTextStyle: {
-                                color: '#fff'
-                            },
-                        }
-                    ],
-                    series: [
-                        {
-                            name: '用电量',
-                            type: 'bar',
-                            //data:[],//[200.6, 500.9, 239.0, 296.4, 699.7, 470.7, 175.6, 182.2, 648.7, 718.8, 360.0],
-                            itemStyle: {
-                                normal: {
-                                    color: new echarts.graphic.LinearGradient(
-                                        0, 0, 0, 1,
-                                        [
-                                            {offset: 0, color: '#83bff6'},
-                                            {offset: 0.5, color: '#188df0'},
-                                            {offset: 1, color: '#188df0'}
-                                        ]
-                                    )
-                                },
-                                emphasis: {
-                                    color: new echarts.graphic.LinearGradient(
-                                        0, 0, 0, 1,
-                                        [
-                                            {offset: 0, color: '#2378f7'},
-                                            {offset: 0.7, color: '#2378f7'},
-                                            {offset: 1, color: '#83bff6'}
-                                        ]
-                                    )
-                                }
-                            },
-                        },
-                        {
-                            name: '环比',
-                            type: 'line',
-                            yAxisIndex: 1
-                            //
-                            // data:[],//seriesData[1].data//[1.0, 2.2, 3.3, 4.5, 6.3, 8.2, 9, 9.4, 5.0, 6.5, 2.0]
-                        }
-                    ]
-                };
-                // 使用刚指定的配置项和数据显示图表。
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '20%',
+				        containLabel: true
+				    },
+				    xAxis: {
+				        type: 'value',
+				        min: 0,
+                        max: 100,
+                        interval: 25,
+				        axisLabel: {
+	                        formatter: '{value}%',
+	                        textStyle: {
+	                            color: '#fff'
+	                        }
+	                    },
+	                    axisLine:{
+	                        lineStyle:{
+	                            color:'#2394f2'
+	                        }
+	        			},
+	                    splitLine:{show: false},//去除网格线
+				    },
+				    yAxis: {
+				        type: 'category',
+				        data: ['公主府乡','牛驼镇','马庄镇','环保局','固安镇'],
+				        axisLine:{
+	                        lineStyle:{
+	                            color:'#2394f2'
+	                        }
+	        			},
+				    },
+				    series: [
+				        {
+				            name: '2011年',
+				            type: 'bar',
+				            data: [18, 23, 29, 10, 13]
+				        },
+				        {
+				            name: '2012年',
+				            type: 'bar',
+				            data: [19, 28, 31, 14, 11]
+				        }
+				    ]
+				};
+				myChart.setOption(option);
 
-                myChart.setOption(option);
-
-                myChart.setOption({        //加载数据图表
-                    xAxis: {
-                        data: xAxisData
-                    },
-                    series: seriesData
-                })
-                //动态设置参数
             },
-            // 大气污染改善
+            // 案件类型占比
             DataConsumption(data) {
                 let value = data.data;
                 let yvalue = data.ydata;
@@ -2339,70 +2270,55 @@
                 let max = data.ymax;
                 let vd = data.vd;
                 // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('pmcodepc'));
+                let myChart = echarts.init(document.getElementById('CaseType'));
                 // 指定图表的配置项和数据
                 let option = {
-
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    yAxis: {
-                        type: 'value',
-//                        min: 120,
-//                        max: 180,
-//                        interval: 20,
-                        axisLabel: {
-                            formatter: '{value}',
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        },
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: ['2014', '2015', '2016', '2017'],
-                            axisLabel: {
-                                textStyle: {
-                                    color: '#fff'
-                                }
-                            },
-                        }
-                    ],
+					title : {
+				        text: '案件类型占比',
+				        x:'left'
+				    },
                     series: [
                         {
-                            name: '浓度指标',
-                            type: 'line',
-                            smooth: true,
+                            name: '---',
+                            type: 'pie',
+                            //图大小
+                            radius: ['0%', '65%'],
+                            //图上下
+                            center:['200','45%'],
+                            hoverAnimation: false,
                             itemStyle: {
                                 normal: {
-                                    areaStyle: {
-                                        color: '#188DF0',
-                                        type: 'default'
+                                    label: {
+                                        show: true,
+                                        position: 'inside',
+                                        formatter: '{d}%'
                                     },
-                                    lineStyle: {
-                                        color: '#188DF0',
-                                        type: 'solid'
+                                    labelLine: {
+                                        show: false
                                     }
-                                },
-                            },
-                            // data:[100,260, 830, 710]
-                        },
-
+                                }
+                            }
+                        }
                     ]
                 };
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
                 //动态设置参数
                 myChart.setOption({
-                    yAxis: {
-                        min: min,
-                        max: max,
-                        interval: vd,
+                    legend: {
+                        orient: 'vertical',
+                        top:30,
+        				right:10,
+                        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
                     },
                     series: [{
-                        data: value
+                        data:[
+			                {value:335, name:'直接访问'},
+			                {value:310, name:'邮件营销'},
+			                {value:234, name:'联盟广告'},
+			                {value:135, name:'视频广告'},
+			                {value:1548, name:'搜索引擎'}
+			            ],
                     }]
                 })
             },
@@ -2952,11 +2868,14 @@
             margin-left: 10px!important;
         }
         /*---用电量---*/
-        #dian_type{
+        #dian_type,#CaseDeal,#CaseType{
             margin-top: 15px!important;
-            width: 453px!important;
+            width: 400px!important;
             height: 250px!important;
-            margin-left: 10px!important;
+            /*margin-left: 10px!important;*/
+        }
+        #CaseType{
+        	background: #fff!important;
         }
     }
 
