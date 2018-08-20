@@ -436,5 +436,6 @@ export default new Router({
             meta: { keepAlive: false },
             component: GridPrediction
         }
+
     ]
 })

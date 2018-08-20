@@ -24,219 +24,8 @@
                 </div>
             </div>
             <div class="panel">
-                <img class="shrink" src="../assets/img/左.png" v-if="zuo"/>
-                <img class="shrink" src="../assets/img/右.png" v-if="you"/>
-                <!--首页统计面板-->
-                <div class="main" v-show="StatisticsSwitch">
-                    <!--切换部分-->
-                    <el-tabs v-model="activeName">
-                        <el-tab-pane label="统计一览" name="first">
-                            <!--统计部分-->
-                            <div class="tongji" v-if="tongji">
-                                <div class="table_item">
-                                    <strong>{{Statistics.AirCount}}</strong>
-                                    <p>接入空气传感器</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.DustCount}}</strong>
-                                    <p>接入工地监测</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.VideoCount}}</strong>
-                                    <p>接入视频</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.CompanyCount}}</strong>
-                                    <p>接入企业监测</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.GridCount}}</strong>
-                                    <p>网格总数</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.GridMemberCount}}</strong>
-                                    <p>网格员总数</p>
-                                </div>
-                                <div class="table_item">
-                                    <!--<strong>{{Statistics.PollutionCount ? Statistics.PollutionCount : '&#45;&#45;'}}</strong>-->
-                                    <strong>2698</strong>
-                                    <p>源清单企业总数</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.CoalToGasCount ? Statistics.CoalToGasCount : '100%'}}</strong>
-                                    <p>煤改气进度</p>
-                                </div>
-                                <div class="table_item">
-                                    <strong>{{Statistics.ColaToEle ? Statistics.ColaToEle : '100%'}}</strong>
-                                    <p>煤改电进度</p>
-                                </div>
-                            </div>
-                            <!--饼图展示-->
-                            <div class="bing">
-                                <div class="look" style="margin-left: 6px">
-                                    <p>空气传感器占比</p>
-                                    <div class="bing_item1" id="bing_item1" style="width: 203px;height: 180px;"></div>
-                                    <div class="tuli">
-                                        <ul>
-                                            <li><img src="../../static/imgs/piebiao/icon_lan1.png" alt="">六参数传感器</li>
-                                            <li><img src="../../static/imgs/piebiao/icon_huang2.png" alt="">TVOC传感器</li>
-                                            <li><img src="../../static/imgs/piebiao/icon_lu3.png" alt="">工地传感器</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="look">
-                                    <p>视频类型占比</p>
-                                    <div class="bing_item2" id="bing_item2" style="width: 203px;height: 180px;"></div>
-                                    <div class="tuli">
-                                        <ul>
-                                            <li><img src="../../static/imgs/piebiao/icon_lan1.png" alt="">VOCs企业</li>
-                                            <li><img src="../../static/imgs/piebiao/icon_huang2.png" alt="">高空五公里</li>
-                                            <li><img src="../../static/imgs/piebiao/icon_lu3.png" alt="">散乱污企业</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="look" style="margin-top: 20px;margin-left: 6px">
-                                    <p>网格类型占比</p>
-                                    <div class="bing_item3" id="bing_item3" style="width: 203px;height: 180px;"></div>
-                                    <div class="tuli">
-                                        <ul>
-                                            <li style="width: 66px"><img src="../../static/imgs/piebiao/icon_lan1.png"
-                                                                         alt="">一级
-                                            </li>
-                                            <li style="width: 66px"><img src="../../static/imgs/piebiao/icon_huang2.png"
-                                                                         alt="">二级
-                                            </li>
-                                            <li style="width: 66px"><img src="../../static/imgs/piebiao/icon_lu3.png"
-                                                                         alt="">三级
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="look" style="margin-top: 20px">
-                                    <p>网格员占比</p>
-                                    <div class="bing_item4" id="bing_item4" style="width: 203px;height: 180px;"></div>
-                                    <div class="tuli">
-                                        <ul>
-                                            <li style="width: 66px"><img src="../../static/imgs/piebiao/icon_lan1.png"
-                                                                         alt="">开发区
-                                            </li>
-                                            <li style="width: 66px"><img src="../../static/imgs/piebiao/icon_huang2.png"
-                                                                         alt="">广阳区
-                                            </li>
-                                            <li style="width: 66px"><img src="../../static/imgs/piebiao/icon_lu3.png"
-                                                                         alt="">安次区
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </el-tab-pane>
-                        <el-tab-pane label="各局数据接入进度" name="second">
-                            <!--表格-->
-                            <ul class="table_tie">
-                                <li class="table_title" style="background:#ddd">
-                                    <div class="item-table1">排名</div>
-                                    <div class="item-table2">机关单位</div>
-                                    <div class="item-table3">接入状态</div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">1</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">市环保局</div>
-                                    <div class="item-table3" style="height: 40px;line-height: 40px">
-                                        <p>
-                                            接入在线监测企业{{RightStatistics.companyCount}}个，正常{{RightStatistics.CompanyCountOnline}}个，离线{{RightStatistics.companyCountUnline}}个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 240px;line-height: 240px">2</div>
-                                    <div class="item-table2" style="height: 240px;line-height: 240px">开发区管委会</div>
-                                    <div class="item-table3" style="height: 240px;">
-                                        <p>
-                                            接入六参数空气质量传感器{{RightStatistics.kfqSixCount}}个，正常{{RightStatistics.kfqSixCountOnline}}个，离线{{RightStatistics.kfqSixCountUnline}}个</p>
-                                        <p>
-                                            接入扬尘传感器{{RightStatistics.kfqDustCount}}个，正常{{RightStatistics.kfqDustCountOnline}}个，离线{{RightStatistics.kfqDustCountUnline}}个</p>
-                                        <p>
-                                            接入TVOC传感器{{RightStatistics.kfqVocCount}}个，正常{{RightStatistics.kfqVocCountOnline}}个，离线{{RightStatistics.kfqVocCountUnline}}</p>
-                                        <p>接入TVOC企业视频监控{{RightStatistics.kfqVideoVoc}}个</p>
-                                        <p>接入小散乱污企业视频{{RightStatistics.kfqVideoSlw}}个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 80px;line-height: 80px">3</div>
-                                    <div class="item-table2" style="height: 80px;line-height: 80px">广阳区政府</div>
-                                    <div class="item-table3" style="height: 80px;">
-                                        <p>接入TVOC企业视频监控{{RightStatistics.gyqVideoVoc}}个</p>
-                                        <p>接入小散乱污视频{{RightStatistics.gyqVideoSlw}}个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 240px;line-height: 240px">4</div>
-                                    <div class="item-table2" style="height: 240px;line-height: 240px">安次区政府</div>
-                                    <div class="item-table3" style="height: 240px;">
-                                        <p>
-                                            接入六参数空气质量传感器{{RightStatistics.acqSixCount}}个，正常{{RightStatistics.acqSixCountOnline}}个，离线{{RightStatistics.acqSixCountUnline}}个</p>
-                                        <p>
-                                            接入扬尘传感器{{RightStatistics.acqDustCount}}个，正常{{RightStatistics.acqDustCountOnline}}个，离线{{RightStatistics.acqDustCountUnline}}个</p>
-                                        <p>
-                                            接入TVOC传感器{{RightStatistics.acqVocCount}}个，正常{{RightStatistics.acqVocCountOnline}}个，离线{{RightStatistics.acqVocCountUnline}}个</p>
-                                        <p>接入TVOC企业视频监控{{RightStatistics.acqVideoVoc}}个</p>
-                                        <p>接入小散乱污企业视频{{RightStatistics.acqVideoSlw}}个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 80px;line-height: 80px">5</div>
-                                    <div class="item-table2" style="height: 80px;line-height: 80px">市建设局</div>
-                                    <div class="item-table3" style="height: 80px;">
-                                        <p>煤改气数据最近更新时间：---</p>
-                                        <p>接入工地视频监控--个，正常--个，离线--个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">6</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">供电公司</div>
-                                    <div class="item-table3" style="height: 40px;">
-                                        <p>用电量数据最近更新时间：---</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">7</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">市统计局</div>
-                                    <div class="item-table3" style="height: 40px;">
-                                        <p>经济运行数据最近更新时间：---</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">8</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">市气象局</div>
-                                    <div class="item-table3" style="height: 40px;">
-                                        <p>接入气象站--个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">9</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">市综合执法局</div>
-                                    <div class="item-table3" style="height: 40px;">
-                                        <p>接入车辆--个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">10</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">市环卫局</div>
-                                    <div class="item-table3" style="height: 40px;">
-                                        <p>接入车辆--个</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-table1" style="height: 40px;line-height: 40px">11</div>
-                                    <div class="item-table2" style="height: 40px;line-height: 40px">市交警支队</div>
-                                    <div class="item-table3" style="height: 40px;">
-                                        <p>接入监控视频--个</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </el-tab-pane>
-                    </el-tabs>
-                </div>
+                <!--<img class="shrink" src="../assets/img/左.png" v-if="zuo"/>-->
+                <!--<img class="shrink" src="../assets/img/右.png" v-if="you"/>-->
                 <!--面板切换视图区域-->
                 <router-view></router-view>
                 <!---->
@@ -336,28 +125,10 @@
             this.GetEcharsData()
         },
         mounted() {
-            //右侧收放
-            const that = this;
-            let flag = true;
+
             //分类切换模块
             $('.first .tables a').on('click', function () {
                 $(this).addClass('bai').siblings().removeClass('bai')
-            })
-            //右侧伸缩栏模块
-            $('.shrink').on('click', function () {
-                $('#list')[0].style.transition = "all 500ms"
-                if (flag) {
-                    that.zuo = true;
-                    that.you = false;
-                    $('#list')[0].style.WebkitTransform = "translate(467px)"
-                    $('#list')[0].style.transform = "translate(467px)"
-                    flag = false;
-                } else {
-                    that.zuo = false;
-                    that.you = true;
-                    $('#list')[0].style.transform = "translate(0)"
-                    flag = true;
-                }
             })
             //根源菜单赋值
             this.RightNavData = this.$store.state.menuData;
@@ -368,8 +139,9 @@
             //跟新数据后调用功能
             if(this.RightNavData == false){
                 console.log('我现在没有东西了')
-                this.$router.push('/');
+                this.$router.push('/MonitoringPoint');
                 this.isSelect = '统计';
+                this.shengchu();
                 this.StatisticsSwitch = true;
             }
 
@@ -411,6 +183,21 @@
                     let value2 = object2[propertyName]
                     return value2 - value1
                 }
+            },
+            //动画001伸出
+            shengchu(){
+                $('#list')[0].style.transition = 'all 50ms';
+                $('#list')[0].style.WebkitTransform = "translate(467px)";
+                $('#list')[0].style.transform = "translate(467px)";
+                $('.meun_right')[0].style.right = '467px';
+                $('.line_bottom')[0].style.left = '-342px'
+            },
+            //动画002收回
+            shouhui(){
+                $('#list')[0].style.transition = 'all 500ms';
+                $('#list')[0].style.transform = "translate(0)";
+                $('.meun_right')[0].style.right = '0px';
+                $('.line_bottom')[0].style.left = '-309px';
             },
             //table点击事件
             RowCurrentChange(val) {
@@ -675,65 +462,78 @@
                     case '统计':
                         this.StatisticsSwitch = true;
                         this.$router.push('/');
+                        this.shengchu();
                         break
                     case '国省':
                          this.StatisticsSwitch = false;
                         this.$router.push('/MonitoringPoint');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break
                     case '六参':
                          this.StatisticsSwitch = false;
                         this.$router.push('/SenPanel');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break
                     case '乡镇':
                         this.StatisticsSwitch = false;
                         this.$router.push('/TownshipPanel');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break
                     case '工地':
                         this.StatisticsSwitch = false;
                         this.$router.push('/OnlineListPanel');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break
                     case '企业':
                         this.StatisticsSwitch = false;
                         this.$router.push('/EnterprisePanel');
+                        this.shouhui();
                         this.Legendswtch = false;
                         break
                     case '静态':
                         this.StatisticsSwitch = false;
                         this.$router.push('/StaticdustPanel');
+                        this.shouhui();
                         this.Legendswtch = false;
                         break
                     case '应急':
                         this.StatisticsSwitch = false;
                         this.$router.push('/EmergencylistPanel');
+                        this.shouhui();
                         this.Legendswtch = false;
                         break
                     case 'VOC':
                         this.StatisticsSwitch = false;
                         this.$router.push('/tvocPanel');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break
                     case '散乱视频':
                         this.StatisticsSwitch = false;
                         this.$router.push('/ScatteredDirtData');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break
                     case 'VOC视频':
                         this.StatisticsSwitch = false;
                         this.$router.push('/VocsVideoData');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break;
                     case '全民举报':
                         this.StatisticsSwitch = false;
                         this.$router.push('/ReportWholePeople');
+                        this.shouhui();
                         this.Legendswtch = true;
                         break;
                     default:
                         this.StatisticsSwitch = true;
                         this.$router.push('/');
+                        this.shengchu();
                         this.Legendswtch = true;
                         break
                 }
@@ -773,6 +573,7 @@
             top: 56px;
             right: 0;
             z-index: 9;
+            transition: all 500ms;
             box-shadow: 0px 5px 15px #333333;
             .gensui {
 
@@ -976,7 +777,7 @@
             }
             .meun_right{
                 position: absolute;
-                top: 0;
+                top: 0px;
                 right: 0;
                 width: 34px;
                 height: 100%;

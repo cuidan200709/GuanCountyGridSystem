@@ -5,16 +5,16 @@
             <search-module></search-module>
         </div>
         <!--工具模块-->
-        <div class="lein_2" id="gjbox" @click="radioClick2">
-            <img src="../../static/imgs/toor/icon_tool_1.png" alt="">
-            <span>工具</span>
-            <img src="../../static/imgs/toor/btn_jiantou_1.png" alt="">
-            <div id="gj" class="css_toolbar">
-                <slot name="toors"></slot>
-            </div>
-        </div>
+        <!--<div class="lein_2" id="gjbox" @click="radioClick2">-->
+            <!--<img src="../../static/imgs/toor/icon_tool_1.png" alt="">-->
+            <!--<span>工具</span>-->
+            <!--<img src="../../static/imgs/toor/btn_jiantou_1.png" alt="">-->
+            <!--<div id="gj" class="css_toolbar">-->
+                <!--<slot name="toors"></slot>-->
+            <!--</div>-->
+        <!--</div>-->
         <!--网格筛选-->
-        <div class="clolrbr" style="float: left;height:28px;width: 1px;border-right: solid 1px #ccc"></div>
+        <!--<div class="clolrbr" style="float: left;height:28px;width: 1px;border-right: solid 1px #ccc"></div>-->
         <div class="lein_3" id="tcbox" @click="radioClick3">
             <img src="../../static/imgs/toor/icon_layer_1.png" alt="">
             <span>网格筛选</span>
