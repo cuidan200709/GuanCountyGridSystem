@@ -2,9 +2,15 @@
 <template>
   <div class="publicInfo" v-if="hasData">
   	<ul>
-  		<li><i>|</i>预警级别：{{warningLevel}}</li>
-  		<li class="content"><i>|</i><marquee direction=left>{{content}}</marquee></li>
-  		<li><i>|</i>企业应急状态：{{Responded}}家已响应, {{UnResponded}}家未响应</li>
+  		<li>
+  			<img src="../assets/img/icon_yj.png"/>
+  		</li>
+  		<!--<li><i>|</i>预警级别：{{warningLevel}}</li>-->
+  		<li class="content">
+  			<!--<i>|</i>-->
+  			<marquee direction=left>{{content}}</marquee>
+  		</li>
+  		<!--<li><i>|</i>企业应急状态：{{Responded}}家已响应, {{UnResponded}}家未响应</li>-->
   	</ul>
   </div>
 </template>
@@ -60,18 +66,19 @@ export default {
 .publicInfo{
    width: 100%;
    height: 35px;
-   border-bottom: 1px solid #cac7b4;
+   /*border-bottom: 1px solid #cac7b4;*/
    font-size: 12px;
    position: absolute;
-   background: #f4f4f4;
+   /*background: #f4f4f4;*/
    line-height: 35px;
    text-align: left;
-   padding-left: 40px;
+   padding-left: 100px;
    ul{
    		li{
    			list-style: none;
    			float: left;
    			margin-right: 20px;
+   			color: red;
    			i{
    				float: left;
    				font-style: normal;
