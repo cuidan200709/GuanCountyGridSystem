@@ -2,25 +2,21 @@
     <div class="DistrictsCounties">
         <!--区县打分-->
         <v-header></v-header>
-        <iframe
-                frameborder="0"
-                width="100%"
-                height="100%"
-                :src="DistrictsCountiesUrl"
-                scrolling="no"
-        >
-
-        </iframe>
+        <div class="">
+            <calender></calender>
+        </div>
     </div>
 </template>
 
 <script>
+    import calender from '@/components/calender';
     export default {
+        //
         name: 'DistrictsCounties',
         data() {
             return {
-                DistrictsCountiesUrl: 'http://60.10.135.153:3005/api/v1/lf_palm/quxiandafen_page_load_api',
-                fullscreenLoading: false
+                // DistrictsCountiesUrl: 'http://60.10.135.153:3005/api/v1/lf_palm/quxiandafen_page_load_api',
+                // fullscreenLoading: false
             }
         },
         mounted() {
@@ -34,6 +30,9 @@
                     this.fullscreenLoading = false;
                 }, 4000);
             }
+        },
+        components:{
+            calender
         }
     }
 
