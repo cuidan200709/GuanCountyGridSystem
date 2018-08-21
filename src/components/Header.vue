@@ -41,7 +41,12 @@
                             <div class="line"></div>
                             <a href="#/TvocRange">TVOC排名</a>
                         </div>
-
+						<div>
+                            <h3>考核</h3>
+                            <a href="#/CountyCheck">区县</a>
+                            <div class="line"></div>
+                            <a href="#/CityCheck">乡镇</a>
+                        </div>
                     </div>
                 </li>
 
