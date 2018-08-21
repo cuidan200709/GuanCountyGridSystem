@@ -391,7 +391,7 @@
                 <!--大气污染、燃煤数据、用电量数据、经济数据-->
                 <el-tabs v-model="activeName_t" @tab-click="">
                     <el-tab-pane label="案件处理率同比" name="fourth_t">
-                    	<div id="CaseDeal" style="width: 366px;height: 200px;"></div>
+                    	<div id="CaseDeal" style="width: 366px;height: 250px;"></div>
                     </el-tab-pane>
                     <el-tab-pane label="案件类型占比" name="first_t">
                         <div class="select" style="float: right;">
@@ -2076,130 +2076,6 @@
                 let xAxisData = this.Diandata.xAxisData;
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('CaseDeal'));
-                // 指定图表的配置项和数据
-//              let option = {
-//
-//                  tooltip: {
-//                      trigger: 'axis',
-//                      axisPointer: {
-//                          type: 'cross',
-//                          crossStyle: {
-//                              color: '#fff'
-//                          }
-//                      }
-//                  },
-//                  toolbox: {
-//                      feature: {
-//                          dataView: {show: true, readOnly: false},
-//                          magicType: {show: true, type: ['line', 'bar']},
-//                          restore: {show: true},
-//                          saveAsImage: {show: true}
-//                      }
-//                  },
-//                  legend: {
-//                      data: ['用电量', '增长率'],
-//                      left: 'left',
-//                      textStyle: {
-//                          color: '#fff'
-//                      },
-//                  },
-//                  xAxis: [
-//                      {
-//                          type: 'category',
-//                          data: [],//xAxisData,//['广阳区','安次区','开发区','香河县','大厂县','三河市','固安县','永清县','霸州市','文安县','大城县'],
-//                          axisPointer: {
-//                              type: 'shadow'
-//                          },
-//                          axisLabel: {
-//                              textStyle: {
-//                                  color: '#fff'
-//                              }
-//                          },
-//                      }
-//                  ],
-//                  yAxis: [
-//                      {
-//                          type: 'value',
-//                          name: '单位(万千瓦时)',
-//                          min: 0,
-//                          max: 800,
-//                          interval: 200,
-//                          axisLabel: {
-//                              formatter: '{value}',
-//                              textStyle: {
-//                                  color: '#fff',
-//                              }
-//                          },
-//                          nameTextStyle: {
-//                              color: '#fff'
-//                          },
-//                      },
-//                      {
-//                          type: 'value',
-//                          name: '单位（%）',
-//                          min: -10,
-//                          max: 10,
-//                          interval: 5,
-//                          axisLabel: {
-//                              formatter: '{value}',
-//                              textStyle: {
-//                                  color: '#fff'
-//                              }
-//                          },
-//                          nameTextStyle: {
-//                              color: '#fff'
-//                          },
-//                      }
-//                  ],
-//                  series: [
-//                      {
-//                          name: '用电量',
-//                          type: 'bar',
-//                          //data:[],//[200.6, 500.9, 239.0, 296.4, 699.7, 470.7, 175.6, 182.2, 648.7, 718.8, 360.0],
-//                          itemStyle: {
-//                              normal: {
-//                                  color: new echarts.graphic.LinearGradient(
-//                                      0, 0, 0, 1,
-//                                      [
-//                                          {offset: 0, color: '#83bff6'},
-//                                          {offset: 0.5, color: '#188df0'},
-//                                          {offset: 1, color: '#188df0'}
-//                                      ]
-//                                  )
-//                              },
-//                              emphasis: {
-//                                  color: new echarts.graphic.LinearGradient(
-//                                      0, 0, 0, 1,
-//                                      [
-//                                          {offset: 0, color: '#2378f7'},
-//                                          {offset: 0.7, color: '#2378f7'},
-//                                          {offset: 1, color: '#83bff6'}
-//                                      ]
-//                                  )
-//                              }
-//                          },
-//                      },
-//                      {
-//                          name: '环比',
-//                          type: 'line',
-//                          yAxisIndex: 1
-//                          //
-//                          // data:[],//seriesData[1].data//[1.0, 2.2, 3.3, 4.5, 6.3, 8.2, 9, 9.4, 5.0, 6.5, 2.0]
-//                      }
-//                  ]
-//              };
-//              // 使用刚指定的配置项和数据显示图表。
-//
-//              myChart.setOption(option);
-//
-//              myChart.setOption({        //加载数据图表
-//                  xAxis: {
-//                      data: xAxisData
-//                  },
-//                  series: seriesData
-//              })
-                //动态设置参数
-                
 				let option = {
 				    tooltip: {
 				        trigger: 'axis',
@@ -2250,12 +2126,14 @@
 				        {
 				            name: '2011年',
 				            type: 'bar',
-				            data: [18, 23, 29, 10, 13]
+				            data: [18, 23, 29, 10, 13],
+				            barWidth : 10
 				        },
 				        {
 				            name: '2012年',
 				            type: 'bar',
-				            data: [19, 28, 31, 14, 11]
+				            data: [19, 28, 31, 14, 11],
+				            barWidth : 10
 				        }
 				    ]
 				};
@@ -2876,6 +2754,9 @@
         }
         #CaseType{
         	background: #fff!important;
+        }
+        #CaseDeal{
+        	height: 312px!important;
         }
     }
 
