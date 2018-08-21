@@ -8,11 +8,13 @@
                 <el-tab-pane label="乡镇考核" name="first">
                     <div class="kass">
                         <div class="wbiaoti">
+                        	<i class="el-icon-caret-right"></i>
                             <a>查询条件</a>
                         </div>
                     </div>
                     <div class="chaxuntiaojian">
                         <div class="float001">
+                        	<span>选择时间</span>
 						    <el-date-picker
 						      v-model="dateTime"
 						      type="date"
@@ -25,6 +27,7 @@
                     <!---->
                     <div class="kass">
                         <div class="wbiaoti">
+                        	<i class="el-icon-caret-right"></i>
                             <a>筛选区域</a>
                         </div>
                     </div>
@@ -34,6 +37,7 @@
                             <el-radio-group v-model="TownshipScreeningName" @change='clickChangeData'>
                                 <el-radio-button label="全市"></el-radio-button>
                                 <el-radio-button label="区县"></el-radio-button>
+                                <el-radio-button label="固安"></el-radio-button>
                             </el-radio-group>
                         </div>
                        
@@ -115,6 +119,7 @@
                     <div class="shituquxian" v-show="TownshipScreeningName=='区县'?true:false">
                         <div class="kass">
 	                        <div class="wbiaoti">
+	                        	<i class="el-icon-caret-right"></i>
 	                            <a>北部县区</a>
 	                            <div class="legend">
 	                            	<span class="circleRed"></span>连续进入倒排第三
@@ -187,6 +192,7 @@
                         </div>
                     	<div class="kass">
 	                        <div class="wbiaoti">
+	                        	<i class="el-icon-caret-right"></i>
 	                            <a>中部县区</a>
 	                        </div>
 	                    </div>
@@ -255,6 +261,7 @@
                         </div>
                     	<div class="kass">
 	                        <div class="wbiaoti">
+	                        	<i class="el-icon-caret-right"></i>
 	                            <a>南部县区</a>
 	                        </div>
 	                    </div>
@@ -773,13 +780,18 @@
                 width: 100%;
                 height: auto;
                 .wbiaoti {
+                	i{
+                		color: #009688;
+                		font-size: 18px;
+                	}
                     a {
                         display: inline-block;
                         height: 20px;
-                        border-left: solid 3px #428bca;
-                        padding-left: 13px;
+                        /*border-left: solid 3px #428bca;*/
+                        /*padding-left: 13px;*/
                         font-size: 16px;
                         line-height: 20px;
+                        color: #009688;
                     }
                     .legend{
                     	float: right;

@@ -8,11 +8,13 @@
                 <el-tab-pane label="区县考核" name="first">
                     <div class="kass">
                         <div class="wbiaoti">
+                        	<i class="el-icon-caret-right"></i>
                             <a>查询条件</a>
                         </div>
                     </div>
                     <div class="chaxuntiaojian">
                         <div class="float001">
+                        	<span>选择时间</span>
 						    <el-date-picker
 						      v-model="dateTime"
 						      type="date"
@@ -27,6 +29,7 @@
                     <div class="shituquxian">
                         <div class="kass">
 	                        <div class="wbiaoti">
+	                        	<i class="el-icon-caret-right"></i>
 	                            <a>市区组</a>
 	                            <div class="legend">
 	                            	<span class="circleRed"></span>连续进入倒排第一
@@ -87,6 +90,7 @@
                         </div>
                     	<div class="kass">
 	                        <div class="wbiaoti">
+	                        	<i class="el-icon-caret-right"></i>
 	                            <a>环京县市组</a>
 	                        </div>
 	                    </div>
@@ -143,6 +147,7 @@
                         </div>
                     	<div class="kass">
 	                        <div class="wbiaoti">
+	                        	<i class="el-icon-caret-right"></i>
 	                            <a>南部县市组</a>
 	                        </div>
 	                    </div>
@@ -357,13 +362,18 @@
                 width: 100%;
                 height: auto;
                 .wbiaoti {
+                	i{
+                		color: #009688;
+                		font-size: 18px;
+                	}
                     a {
                         display: inline-block;
                         height: 20px;
-                        border-left: solid 3px #428bca;
-                        padding-left: 13px;
+                        /*border-left: solid 3px #428bca;*/
+                        /*padding-left: 13px;*/
                         font-size: 16px;
                         line-height: 20px;
+                        color: #009688;
                     }
                     .legend{
                     	float: right;
