@@ -20,12 +20,12 @@
       </div>
       <div id="search_char"></div>
     </el-dialog>
-    <history-handle></history-handle>
+    <!--<history-handle></history-handle>-->
   </div>
 </template>
 <script>
   import BMap from 'BMap'
-  import MainLayerHandle from '@/map/controls/MainLayerHandleNew'
+  import MainLayerHandle from '@/map/controls/MainLayerHandle'
   import MapHandle from '@/map/controls/MapHandle'
   import HistoryHandle from '@/map/controls/HistoryHandle'
   import RequestHandle from '@/request/'
