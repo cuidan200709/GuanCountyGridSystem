@@ -306,8 +306,8 @@
             height: 54px;
             overflow: hidden;
             text-indent: -99999px;
-            background: #f76f54;
-            background: linear-gradient(top, #f76f54 0, #dd3535 49%, #d32121 51%, #c61f1f 100%);
+            background: #2494f2;
+            /*background: linear-gradient(top, #f76f54 0, #dd3535 49%, #d32121 51%, #c61f1f 100%);*/
             border: 4px solid #fff;
             border-radius: 50%;
             outline: none;
