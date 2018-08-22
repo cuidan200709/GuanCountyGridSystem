@@ -28,7 +28,7 @@
     background: #eef1f6!important;
 }
 .Like-winter .el-table .has-gutter tr th{
-  background: #242953!important;
+background: #242953!important;
 }
 tr {
   .cell {
@@ -73,7 +73,19 @@ td {
     text-align: center !important;
   }
 }
-
+.Window_Three .el-table,.Window_Three .el-table__expanded-cell,.Window_Three .el-table th,.Window_Three .el-table tr{
+    background: #1d2339!important;
+    color: #fff;
+}
+html .Window_Three table, body .Window_Three table{
+    border: none!important;
+}
+.Window_Three #pane-first_s{
+    padding: 0 10px;
+}
+.Window_Three .el-table--enable-row-hover .el-table__body tr:hover>td{
+    background: none;
+}
 //tables样式
 .el-table .cell, .el-table th > div {
   padding: 0;
