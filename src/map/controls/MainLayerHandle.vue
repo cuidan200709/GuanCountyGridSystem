@@ -75,11 +75,13 @@
         JCtargets: [
           {
             name: 'layer_gs',
+            code:'layer_gs',
             value: '国省控监测',
             parentName: 'layer_jc',
             src: 'static/imgs/main/gs.png',
             checkedSrc: 'static/imgs/main/gs_c.png',
             checked:false,
+            displayName: 'pointname',
             childs:[{
               text: 'AQI',
               fieldName: 'aqi'
@@ -283,6 +285,7 @@
         this.setParentStates(parentIndex, hasParentChecked, parentName);
 
         bus.$emit('targetMainLayer', type, hasChecked);
+        this.rightPanel(hasChecked,type);
       },
 
       //指标切换点击事件
@@ -305,6 +308,7 @@
         let hasParentChecked = this.hasCheckedChildElement('SP') || false;
         this.setParentStates(parentIndex, hasParentChecked, parentName);
         bus.$emit('targetMainLayer', type, hasChecked,from);
+        this.rightPanel(hasChecked,type);
       },
 
       //设置父节点状态
@@ -343,10 +347,185 @@
         }
         return false;
       },
-      targetChanged(e){
-        let a = 1;
+      rightPanel(hasChecked,type){
+        ///动态添加右侧菜单
+        if (hasChecked && type != 'layer_lk' && type != 'layer_zt' && type != 'layer_hw' && type != 'layer_jy') {
+          //添加对应右侧菜单
+          switch (type) {
+            case 'layer_gs':
+              this.$store.state.menuData.unshift({
+                title: '国省',
+                title_tx: '国省控点',
+                show_xs: 'layer_gs',
+                url: 'static/imgs/indeximgs/morenimg/icon_fang.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_fang.png'
+              });
+              bus.$emit('menuative', '国省');
+              break;
+            case 'layer_cgq_lcs':
+              this.$store.state.menuData.unshift({
+                title: '六参',
+                title_tx: '六参数',
+                show_xs: 'layer_cgq_lcs',
+                url: 'static/imgs/indeximgs/morenimg/icon_yuan1.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_yuan1.png'
+              });
+              bus.$emit('menuative', '六参');
+              break;
+            case 'layer_cgq_voc':
+              this.$store.state.menuData.unshift({
+                title: 'VOC',
+                title_tx: 'VOC监测',
+                show_xs: 'layer_cgq_voc',
+                url: 'static/imgs/indeximgs/morenimg/icon_Triangle_3.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_Triangle_3.png'
+              });
+              bus.$emit('menuative', 'VOC');
+              break;
+            case 'layer_cx':
+              this.$store.state.menuData.unshift({
+                title: '乡镇',
+                title_tx: '乡镇统计',
+                show_xs: 'layer_cx',
+                url: 'static/imgs/indeximgs/morenimg/icon_ditu2.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_ditu2.png'
+              });
+              bus.$emit('menuative', '乡镇');
+              break;
+            case 'layer_gd':
+              this.$store.state.menuData.unshift({
+                title: '工地',
+                title_tx: '工地扬尘',
+                show_xs: 'layer_gd',
+                url: 'static/imgs/indeximgs/morenimg/icon_gd.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_gd.png'
+              });
+              bus.$emit('menuative', '工地');
+              break;
+            case 'layer_qy':
+              this.$store.state.menuData.unshift({
+                title: '企业',
+                title_tx: '企业监测',
+                show_xs: 'layer_qy',
+                url: 'static/imgs/indeximgs/morenimg/icon_enterprise.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_enterprise.png'
+              });
+              bus.$emit('menuative', '企业');
+              break;
+            case 'layer_yqd':
+              this.$store.state.menuData.unshift({
+                title: '静态',
+                title_tx: '大气排放源清单',
+                show_xs: 'layer_yqd',
+                url: 'static/imgs/indeximgs/morenimg/icon_jiayou.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_jiayou.png'
+              });
+              bus.$emit('menuative', '静态');
+              break;
+            case 'layer_yj':
+              this.$store.state.menuData.unshift({
+                title: '应急',
+                title_tx: '应急清单',
+                show_xs: 'layer_yj',
+                url: 'static/imgs/indeximgs/morenimg/icon_huanwei.png',
+                url_one: 'static/imgs/indeximgs/morenimg/icon_huanwei.png'
+              });
+              bus.$emit('menuative', '应急');
+              break;
+            case 'layer_sp_slw':
+              this.$store.state.menuData.unshift({
+                title: '散乱视频',
+                title_tx: '散乱污视频监控',
+                show_xs: 'layer_sp_slw',
+                url: 'static/imgs/indeximgs/morenimg/slw.png',
+                url_one: 'static/imgs/indeximgs/morenimg/slw.png'
+              });
+              bus.$emit('menuative', '散乱视频');
+              break;
+            case 'layer_sp_voc':
+              this.$store.state.menuData.unshift({
+                title: 'VOC视频',
+                title_tx: 'VOC视频监控',
+                show_xs: 'layer_sp_voc',
+                url: 'static/imgs/indeximgs/morenimg/voc.png',
+                url_one: 'static/imgs/indeximgs/morenimg/voc.png'
+              });
+              bus.$emit('menuative', 'VOC视频');
+              break;
+            case 'layer_sp_gkw':
+              this.$store.state.menuData.unshift({
+                title: '高空视频',
+                title_tx: '高空五公里视频监控',
+                show_xs: 'layer_sp_gkw',
+                url: 'static/imgs/indeximgs/morenimg/gkw.png',
+                url_one: 'static/imgs/indeximgs/morenimg/gkw.png'
+              });
+              bus.$emit('menuative', '高空视频');
+              break;
+            case 'layer_qm':
+              this.$store.state.menuData.unshift({
+                title: '全民举报',
+                title_tx: '全民举报',
+                show_xs: 'layer_qm',
+                url: 'static/imgs/indeximgs/morenimg/quanmin.png',
+                url_one: 'static/imgs/indeximgs/morenimg/quanmin.png'
+              });
+              bus.$emit('menuative', '全民举报');
+              break;
+            default:
+              bus.$emit('menuative', '统计');
+              break;
+          }
+          console.log(type);
+        } else {
+          //删除选项
+          let keyarr = this.$store.state.menuData;
+          for (let i = 0; i < keyarr.length; i++) {
+            //console.log(keyarr[i]);
+            if (keyarr[i].show_xs == type) {
+              // console.log('该删除我了')
+              console.log(keyarr[i])
+              // 删除指定对象
+              this.removeObjWithArr(keyarr, keyarr[i])
+            }
+          }
+        }
+      },
+      //删除指定对象
+      removeObjWithArr(_arr, _obj) {
+        let length = _arr.length;
+        for (let i = 0; i < length; i++) {
+          if (_arr[i] == _obj) {
+            if (i == 0) {
+              _arr.shift(); //删除并返回数组的第一个元素
+              return;
+            }
+            else if (i == length - 1) {
+              _arr.pop();  //删除并返回数组的最后一个元素
+              return;
+            }
+            else {
+              _arr.splice(i, 1); //删除下标为i的元素
+              return;
+            }
+          }
+        }
+      },
+      //
+      targetChanged(e) {
         this.hasSelect = true;
-      }
+        let childElement = e.currentTarget;
+        let index = childElement.getAttribute('data-index');
+        let selectedIndex = childElement.selectedIndex;
+        let targets = this.$data.JCtargets;
+        let item = targets[index];
+        let ckItem = item.childs[selectedIndex];
+        let displayName = item.displayName;
+        let primaryKey = item.primaryKey;
+        let type = item.code;
+        // console.log(type);
+        bus.$emit('targetPollution', type, ckItem.fieldName, displayName, primaryKey);
+      },
     },
     components: {MainHandle}
   };
