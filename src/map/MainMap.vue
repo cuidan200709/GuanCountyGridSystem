@@ -20,14 +20,18 @@
       </div>
       <div id="search_char"></div>
     </el-dialog>
-    <history-handle></history-handle>
+    <!--<history-handle></history-handle>-->
+    <div class="left-bottom">
+      <revolving-menu></revolving-menu>
+    </div>
   </div>
 </template>
 <script>
   import BMap from 'BMap'
-  import MainLayerHandle from '@/map/controls/MainLayerHandleNew'
+  import MainLayerHandle from '@/map/controls/MainLayerHandle'
   import MapHandle from '@/map/controls/MapHandle'
-  import HistoryHandle from '@/map/controls/HistoryHandle'
+  //import HistoryHandle from '@/map/controls/HistoryHandle'
+  import RevolvingMenu from '@/components/RevolvingMenu'
   import RequestHandle from '@/request/'
   import {bus} from '@/js/bus.js'
 
@@ -336,10 +340,23 @@
           + (t.getHours() > 9 ? t.getHours() : ('0' + (t.getHours()))) + ':00:00';
       }
     },
-    components: {MainLayerHandle, MapHandle, HistoryHandle}
+    components: {
+        MainLayerHandle,
+        MapHandle,
+        RevolvingMenu,
+        //HistoryHandle
+    }
   };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+
+  .left-bottom{
+    width: 220px;
+    height: 200px;
+    position: fixed;
+    bottom:0px;
+    left: 0;
+  }
   .main-map-content {
     height: calc(100% - 56px);
     width: 100%;

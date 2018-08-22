@@ -78,9 +78,9 @@
           boxShadow: '1px 3px 4px rgba(0,0,0,0.18)',
           padding: 0
         }), this.mouseLabel.hide(), this.map.addOverlay(this.mouseLabel));
-        if (this.map) {
-          this.targetClick(this.defaultType, true);
-        }
+        // if (this.map) {
+          //this.targetClick(this.defaultType, true);
+        // }
       },
 
       //切换响应事件
