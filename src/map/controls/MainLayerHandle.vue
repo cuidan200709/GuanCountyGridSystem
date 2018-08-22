@@ -3,8 +3,8 @@
     <div class="main-layer-handle">筛选监测点</div>
     <ul class="warp-box">
       <li v-for="(item,index) in targets" :id="('Litem_'+ index)" :style="'background:'+(item.checked ? '#2494F2' : 'rgba(0, 0, 0, 0.6)')" :data-index="index" :data-type="item.name" @click="liClick">
-        <img :src="item.checked ? item.checkedSrc : item.src" title=""/>
-        <span>{{item.value}}</span>
+        <img style="width: 0" :src="item.checked ? item.checkedSrc : item.src" title=""/>
+        <span class="warp-botn">{{item.value}}</span>
       </li>
     </ul>
     <ol class="kqworp" v-show="kongqi">
@@ -16,25 +16,19 @@
         </select>
       </li>
     </ol>
-    <ol class="vdworp" v-show="shiping" :style="'top:'+(kongqi ? 38*6 : 38*2)+'px'">
+    <ol class="vdworp" v-show="shiping" :style="'top:'+(kongqi ? 38*6+3 : 38*2+3)+'px'">
       <li style="width: 136px;" v-for="(item,index) in JKtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OVDClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
       </li>
     </ol>
-    <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*8 : 38*4) : (kongqi ? 38*7 : 38*3))+'px'">
+    <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*8+6 : 38*4+6) : (kongqi ? 38*7+6 : 38*3+6))+'px'">
       <li style="width: 136px;" v-for="(item,index) in ZHtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OVDClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
       </li>
     </ol>
-    <a href="https://auth.ys7.com/signIn?from=509cb5ddedd147e486fb&r=1767655759&returnUrl=https%3A%2F%2Fys7.com%2F%3FloginRedirect%3D1&host=www.ys7.com%2Flogin%2F"
-       class="ACvideo"
-       target="view_window"
-        v-show="aclink"
-    >
-      查看安次区污染源企业视频
-    </a>
+
     <main-handle></main-handle>
   </div>
 </template>
@@ -225,12 +219,12 @@
         if (parseInt(index) === 0) {
           t.kongqi = !t.kongqi;
           t.getParentStyle(index);
-          mt = t.kongqi ? 38*4 : 0;
+          mt = t.kongqi ? 38*4+3 : 0;
         }
         else if (parseInt(index) === 1) {
           t.shiping = !t.shiping;
           t.getParentStyle(index);
-          mt = t.shiping ? 38 : 0;
+          mt = t.shiping ? 38+3 : 0;
         }
         else if (parseInt(index) === 2) {
           t.jiankong = !t.jiankong;
@@ -342,13 +336,26 @@
     top: 50px;
     z-index: 1;
     .warp-box{
-      li{
-        img{
-          margin: 14px 0;
-          float: right;
-          padding-right: 6px;
+        margin-left: 6px;
+        li{
+          width: 135px;
+          margin-right: 5px;
+          margin-top: 1px;
+          border-radius: 18px;
+          box-shadow: 0 0 5px #1080cc;
+          span{
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: yellow;
+          }
+
+          img{
+            margin: 14px 0;
+            float: right;
+            padding-right: 6px;
+          }
         }
-      }
     }
   }
 
@@ -385,7 +392,7 @@
     width: 148px;
     background: #fff;
     color: #2494F2;
-   font-weight: bold;
+    font-weight: bold;
     line-height: 38px;
     opacity: 0.8;
   }
