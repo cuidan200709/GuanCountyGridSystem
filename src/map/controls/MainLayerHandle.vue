@@ -257,6 +257,7 @@
         }
 
         childElement.style.marginBottom = mt + 'px';
+          
       },
 
       //指标切换点击事件
@@ -306,7 +307,26 @@
         this.setParentStates(parentIndex, hasParentChecked, parentName);
         bus.$emit('targetMainLayer', type, hasChecked,from);
       },
-
+        //删除指定对象
+        removeObjWithArr(_arr, _obj) {
+            let length = _arr.length;
+            for (let i = 0; i < length; i++) {
+                if (_arr[i] == _obj) {
+                    if (i == 0) {
+                        _arr.shift(); //删除并返回数组的第一个元素
+                        return;
+                    }
+                    else if (i == length - 1) {
+                        _arr.pop();  //删除并返回数组的最后一个元素
+                        return;
+                    }
+                    else {
+                        _arr.splice(i, 1); //删除下标为i的元素
+                        return;
+                    }
+                }
+            }
+        },
       //设置父节点状态
       setParentStates(index, hasChecked, name){
         let item = this.$data.targets[index];
