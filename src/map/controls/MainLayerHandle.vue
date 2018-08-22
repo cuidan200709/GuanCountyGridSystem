@@ -16,13 +16,13 @@
         </select>
       </li>
     </ol>
-    <ol class="vdworp" v-show="shiping" :style="'top:'+(kongqi ? 38*6+3 : 38*2+3)+'px'">
+    <ol class="vdworp" v-show="shiping" :style="'top:'+(kongqi ? 38*9+3 : 38*2+3)+'px'">
       <li style="width: 136px;" v-for="(item,index) in JKtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OVDClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
       </li>
     </ol>
-    <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*8+6 : 38*4+6) : (kongqi ? 38*7+6 : 38*3+6))+'px'">
+    <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*11+6 : 38*4+6) : (kongqi ? 38*10+6 : 38*3+6))+'px'">
       <li style="width: 136px;" v-for="(item,index) in ZHtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OVDClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
@@ -41,9 +41,9 @@
     data () {
       return {
         hasSelect:false,
-        kongqi: false,
-        jiankong:false,
-        shiping: false,
+        kongqi: true,
+        jiankong:true,
+        shiping: true,
         aclink:false,
         defaultType:'LAYER_GS',
         clicksrc:'static/imgs/main/left.png',
@@ -117,6 +117,14 @@
               text: '风力',
               fieldName: 'windspeed'
             }]
+          },{
+            name: 'layer_lcs',
+            parentName: 'layer_jc',
+            value: '六参数传感器',
+            src: 'static/imgs/main/m_cx.png',
+            checkedSrc: 'static/imgs/main/cx_c.png',
+            checked:false,
+            childs: []
           },
           {
             name: 'layer_cx',
@@ -153,7 +161,23 @@
             checkedSrc: 'static/imgs/main/zt_c.png',
             checked:false,
             childs:[]
-          }
+          },{
+            name: 'layer_tvoc',
+            parentName: 'layer_jc',
+            value: 'TVOC监测',
+            src: 'static/imgs/main/m_cx.png',
+            checkedSrc: 'static/imgs/main/cx_c.png',
+            checked:false,
+            childs: []
+          },{
+            name: 'layer_cy',
+            parentName: 'layer_jc',
+            value: '餐饮油烟监测',
+            src: 'static/imgs/main/m_cx.png',
+            checkedSrc: 'static/imgs/main/cx_c.png',
+            checked:false,
+            childs: []
+          },
         ],
         //指挥调度
         ZHtargets: [
@@ -219,7 +243,7 @@
         if (parseInt(index) === 0) {
           t.kongqi = !t.kongqi;
           t.getParentStyle(index);
-          mt = t.kongqi ? 38*4+3 : 0;
+          mt = t.kongqi ? 38*7+3 : 0;
         }
         else if (parseInt(index) === 1) {
           t.shiping = !t.shiping;
@@ -331,7 +355,6 @@
   .main-layer {
     position: absolute;
     left: 0;
-    border-right: solid 1px #fff;
     border-radius: 4px;
     top: 50px;
     z-index: 1;
@@ -356,6 +379,12 @@
             padding-right: 6px;
           }
         }
+        li:nth-child(1){
+          margin-bottom:266px;
+        }
+        li:nth-child(2){
+          margin-bottom: 38px;
+        }
     }
   }
 
@@ -376,14 +405,14 @@
   }
   .vdworp {
     position: absolute;
-    top: 228px;
+    top: 342px;
     left: 150px;
     color: #fff;
   }
 
   .jkworp {
     position: absolute;
-    top: 342px;
+    top: 456px;
     left: 150px;
     color: #fff;
   }
@@ -394,6 +423,7 @@
     color: #2494F2;
     font-weight: bold;
     line-height: 38px;
+    visibility: hidden;
     opacity: 0.8;
   }
 
