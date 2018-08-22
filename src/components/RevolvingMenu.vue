@@ -4,12 +4,12 @@
             <div class="flyout-wrap">
                 <a class="flyout-btn" href="#" title="Toggle"><span>Flyout Menu Toggle</span></a>
                 <ul class="flyout flyout-init">
-                    <li><a href="#"><span>Item</span></a></li>
-                    <li><a href="#"><span>Item</span></a></li>
-                    <li><a href="#"><span>Item</span></a></li>
-                    <li><a href="#"><span>Item</span></a></li>
-                    <li><a href="#"><span>Item</span></a></li>
-                    <li><a href="#"><span>Item</span></a></li>
+                    <li><a href="#/likewinter" title="首页"><span class="icon-shouye">Item</span></a></li>
+                    <li><a href="#" title="污染物对比"><span class="icon-wrwdb">Item</span></a></li>
+                    <li><a href="#" title="省控点均值比"><span class="icon-sjzb">Item</span></a></li>
+                    <li><a href="#" title="固定源统计"><span class="icon-gdytj">Item</span></a></li>
+                    <li><a href="#" title="乡镇空气站"><span class="icon-xzkqz">Item</span></a></li>
+                    <li><a href="#" title="污染日历"><span class="icon-wrrl">Item</span></a></li>
                 </ul>
             </div>
         </div>
@@ -124,11 +124,11 @@
         .flyout-wrap .flyout > li a {
             position: absolute;
             display: block;
-            width: 26px;
-            height: 26px;
+            width: 42px;
+            height: 42px;
             overflow: hidden;
             text-indent: -99999px;
-            background: #444;
+            background: rgba(0,0,0,0.3);
             border: 3px solid #fff;
             border-radius: 50%;
             box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0, rgba(0, 0, 0, 0.2) 0 0 0 1px, inset rgba(0, 0, 0, 0.5) 0 0 2px 0;
@@ -142,10 +142,34 @@
         }
         .flyout-wrap .flyout > li a span {
             display: block;
-            width: 26px;
-            height: 26px;
-            background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px'><path fill='#fff' d='M11.045,9.879l1.906,6.114l-4.949-3.791L3.059,16l1.9-6.117L0,6.114l6.123,0.013L7.998,0l1.879,6.12L16,6.104L11.045,9.879z'/></svg>") no-repeat center center;
-            background-size: 16px 16px;
+            width: 42px;
+            height: 42px;
+            background-size: 26px 26px;
+        }
+        /*背景设置*/
+        .icon-shouye{
+            margin: -3px;
+            background: url("../../static/imgs/revolving/sy.png") no-repeat center center;
+        }
+        .icon-wrwdb{
+            margin: -2px;
+            background: url("../../static/imgs/revolving/wrwdb.png") no-repeat center center;
+        }
+        .icon-sjzb{
+            margin: -2px;
+            background: url("../../static/imgs/revolving/skjzb.png") no-repeat center center;
+        }
+        .icon-gdytj{
+            margin: -2px;
+            background: url("../../static/imgs/revolving/gdytj.png") no-repeat center center;
+        }
+        .icon-xzkqz{
+            margin: -2px;
+            background: url("../../static/imgs/revolving/xzkqz.png") no-repeat center center;
+        }
+        .icon-wrrl{
+            margin: -2px;
+            background: url("../../static/imgs/revolving/wrrl.png") no-repeat center center;
         }
         .flyout-wrap .flyout-init li {
             display: none;
@@ -268,11 +292,11 @@
         }
         .flyout-wrap .flyout-btn {
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -10px;
+            left: -4px;
             z-index: 9999;
-            width: 36px;
-            height: 36px;
+            width: 54px;
+            height: 54px;
             overflow: hidden;
             text-indent: -99999px;
             background: #f76f54;
@@ -284,8 +308,8 @@
         }
         .flyout-wrap .flyout-btn span {
             display: block;
-            width: 36px;
-            height: 36px;
+            width: 46px;
+            height: 46px;
             background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20px' height='20px'><g><path fill='#fff' d='M20,11.402c0,0.453-0.367,0.82-0.822,0.82H0.82c-0.453,0-0.82-0.367-0.82-0.82V8.598 c0-0.454,0.367-0.821,0.82-0.821h18.357C19.633,7.776,20,8.144,20,8.598V11.402z'/><path fill='#fff' d='M8.598,20c-0.453,0-0.821-0.367-0.821-0.82V0.821c0-0.452,0.368-0.82,0.821-0.82h2.804 c0.453,0,0.82,0.368,0.82,0.82V19.18c0,0.453-0.367,0.82-0.82,0.82H8.598z'/></g></svg>") no-repeat center center;
             transition: transform .4s ease;
         }
