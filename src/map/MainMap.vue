@@ -388,7 +388,10 @@
   };
 </script>
 <style lang="scss" scoped>
-
+  .dianlode{
+    height: 760px;
+    overflow-y: auto;
+  }
   .left-bottom{
     width: 220px;
     height: 200px;

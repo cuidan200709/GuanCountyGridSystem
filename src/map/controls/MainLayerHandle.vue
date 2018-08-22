@@ -257,7 +257,7 @@
         }
 
         childElement.style.marginBottom = mt + 'px';
-          
+
       },
 
       //指标切换点击事件
