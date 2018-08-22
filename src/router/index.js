@@ -11,14 +11,14 @@ import WeatherStation from '@/views/WeatherForecast/WeatherStation'//气象站
 import Weather from '@/views/WeatherForecast/Weather'//天气预报
 import GridPrediction from '@/views/WeatherForecast/GridPrediction'//网格预报
 //大数据模块组页面
-import DustEmissionStatistics from '@/views/DataAnalysis/DustEmissionStatistics'//扬尘源统计
-import LargeDataResources from '@/views/DataAnalysis/LargeDataResources'//大数据资源
-import DistrictsCounties from '@/views/DataAnalysis/DistrictsCounties'//区县打分
-import FixedSourceStatistics from '@/views/DataAnalysis/FixedSourceStatistics'//固定源统计
+import pollution from '@/views/PollutionCalendar/pollution'//污染日历
+//import LargeDataResources from '@/views/DataAnalysis/LargeDataResources'//污染物对比
+//import DistrictsCounties from '@/views/DataAnalysis/DistrictsCounties'//区县打分
+//import FixedSourceStatistics from '@/views/DataAnalysis/FixedSourceStatistics'//固定源统计
 import SensorNetworkRanking from '@/views/DataAnalysis/SensorNetworkRanking'//传感网排名
-import MeanRatioSensorNetwork from '@/views/DataAnalysis/MeanRatioSensorNetwork'//传感网均值比
+//import MeanRatioSensorNetwork from '@/views/DataAnalysis/MeanRatioSensorNetwork'//传感网均值比
 import LikeWinter from '@/views/DataAnalysis/LikeWinter'//(今日战报)冬防战报
-import AirStation from '@/views/DataAnalysis/AirStation'//乡镇空气站统计
+//import AirStation from '@/views/DataAnalysis/AirStation'//乡镇空气站统计
 import CityCheck from '@/views/DataAnalysis/CityCheck'//乡镇考核页面
 import CountyCheck from '@/views/DataAnalysis/CountyCheck'//乡镇考核页面
 import StateControl from '@/views/DataAnalysis/StateControl'//国省控排名页面
@@ -120,12 +120,12 @@ export default new Router({
             ]
         },
         //乡镇统计
-        {
-            path: '/AirStation',
-            name: 'AirStation',
-            meta: { keepAlive: false },
-            component: AirStation,
-        },
+        // {
+        //     path: '/AirStation',
+        //     name: 'AirStation',
+        //     meta: { keepAlive: false },
+        //     component: AirStation,
+        // },
         //城市排名页面
         {
             path: '/CityRankings',
@@ -139,6 +139,13 @@ export default new Router({
             name: 'DustRange',
             meta: { keepAlive: false },
             component: DustRange,
+        },
+        //污染日历
+        {
+            path:'/pollution',
+            name: 'pollution',
+            meta: { keepAlive: false },
+            component: pollution,
         },
          //六参数排名页面
         {
@@ -183,19 +190,19 @@ export default new Router({
             component: CityRankings,
         },
         //传感网均值比
-        {
-            path: '/MeanRatioSensorNetwork',
-            name: 'Meanratiosensornetwork',
-            meta: { keepAlive: false },
-            component: MeanRatioSensorNetwork
-        },
+        // {
+        //     path: '/MeanRatioSensorNetwork',
+        //     name: 'Meanratiosensornetwork',
+        //     meta: { keepAlive: false },
+        //     component: MeanRatioSensorNetwork
+        // },
         //大数据资源
-        {
-            path: '/LargeDataResources',
-            name: 'LargeDataResources',
-            meta: { keepAlive: false },
-            component: LargeDataResources
-        },
+        // {
+        //     path: '/LargeDataResources',
+        //     name: 'LargeDataResources',
+        //     meta: { keepAlive: false },
+        //     component: LargeDataResources
+        // },
         //高点监控（视频监控页面）
         {
             path: '/HighVideos',
@@ -227,12 +234,12 @@ export default new Router({
             ]
         },
         //固定源统计
-        {
-            path: '/FixedSourceStatistics',
-            name: 'Fixedsourcestatistics',
-            meta: { keepAlive: false },
-            component: FixedSourceStatistics
-        },
+        // {
+        //     path: '/FixedSourceStatistics',
+        //     name: 'Fixedsourcestatistics',
+        //     meta: { keepAlive: false },
+        //     component: FixedSourceStatistics
+        // },
         //传感网排名
         {
             path: '/SensorNetworkRanking',
@@ -269,12 +276,12 @@ export default new Router({
             component: Weather
         },
         //区县打分
-        {
-            path: '/DistrictsCounties',
-            name: 'DistrictsCounties',
-            meta: { keepAlive: false },
-            component: DistrictsCounties
-        },
+        // {
+        //     path: '/DistrictsCounties',
+        //     name: 'DistrictsCounties',
+        //     meta: { keepAlive: false },
+        //     component: DistrictsCounties
+        // },
         //冬防战报（今日战报）
         {
             path: '/likewinter',

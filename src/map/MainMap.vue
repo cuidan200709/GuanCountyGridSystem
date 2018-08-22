@@ -20,6 +20,16 @@
       </div>
       <div id="search_char"></div>
     </el-dialog>
+    <!--弹出框面板-->
+    <el-dialog :visible.sync="wachiVisible" top="40px" width="80%" :before-close="wachhandleClose">
+      <div class="dianlode">
+        <!---->
+        <largedata v-show="clokue === 'WRWDB'"></largedata>
+        <fixedscs v-show="clokue === 'GDYTJ'"></fixedscs>
+        <airstation v-show="clokue === 'XZKQZ'"></airstation>
+        <meanratio v-show="clokue === 'SKJZB'"></meanratio>
+      </div>
+    </el-dialog>
     <!--<history-handle></history-handle>-->
     <div class="left-bottom">
       <revolving-menu></revolving-menu>
@@ -30,8 +40,17 @@
   import BMap from 'BMap'
   import MainLayerHandle from '@/map/controls/MainLayerHandle'
   import MapHandle from '@/map/controls/MapHandle'
-  //import HistoryHandle from '@/map/controls/HistoryHandle'
+  //污染物对比
+  import largedata from '@/views/DataAnalysis/LargeDataResources'
+  //固定源统计
+  import fixedscs from '@/views/DataAnalysis/FixedSourceStatistics'
+  //乡镇空气站统计
+  import Airstation from '@/views/DataAnalysis/AirStation'
+  //传感网均值比
+  import meanratio from '@/views/DataAnalysis/MeanRatioSensorNetwork'
+  //左下角菜单
   import RevolvingMenu from '@/components/RevolvingMenu'
+  //
   import RequestHandle from '@/request/'
   import {bus} from '@/js/bus.js'
 
@@ -39,141 +58,158 @@
     name: 'MainMap',
     data() {
       return {
-        zoom: 13,
-        dialogVisible: false,
-        map: undefined,
-        distanceTool: undefined,
-        drawingManager: undefined,
-        charPanel: undefined,
-        startTime: undefined,
-        endTime: undefined,
-        searchSource: undefined,
-        factorSource: [],
-        drawOverlay: [],
-        targetSource: [],
-        meanOptions: [
-          {
-            name: 'layer_gs',
-            fieldName: '国省控监测点',
-            visible: true,
-            checkedName: 'aqi',
-            childs: [{
-              text: 'AQI',
-              fieldName: 'aqi'
+          wachiVisible:false,
+          clokue:'',
+          zoom: 13,
+          dialogVisible: false,
+          map: undefined,
+          distanceTool: undefined,
+          drawingManager: undefined,
+          charPanel: undefined,
+          startTime: undefined,
+          endTime: undefined,
+          searchSource: undefined,
+          factorSource: [],
+          drawOverlay: [],
+          targetSource: [],
+          meanOptions: [
+            {
+              name: 'layer_gs',
+              fieldName: '国省控监测点',
+              visible: true,
+              checkedName: 'aqi',
+              childs: [{
+                text: 'AQI',
+                fieldName: 'aqi'
+              }, {
+                text: 'PM2.5',
+                fieldName: 'pm25'
+              }, {
+                text: 'PM10',
+                fieldName: 'pm10'
+              }, {
+                text: 'SO2',
+                fieldName: 'so2'
+              }, {
+                text: 'NO2',
+                fieldName: 'no2'
+              }, {
+                text: 'CO',
+                fieldName: 'co'
+              }, {
+                text: 'O3',
+                fieldName: 'o3'
+              }, {
+                text: '综指',
+                fieldName: 'complexindex'
+              }, {
+                text: '温度',
+                fieldName: 'temp'
+              }, {
+                text: '湿度',
+                fieldName: 'humi'
+              }, {
+                text: '风力',
+                fieldName: 'windspeed'
+              }, {
+                text: '风向',
+                fieldName: 'windangle'
+              }]
             }, {
-              text: 'PM2.5',
-              fieldName: 'pm25'
+              name: 'layer_cgq_lcs',
+              checkedName: 'aqi',
+              fieldName: '六参数传感器',
+              visible: false,
+              childs: [{
+                text: 'AQI',
+                fieldName: 'aqi'
+              }, {
+                text: 'PM2.5',
+                fieldName: 'pm25'
+              }, {
+                text: 'PM10',
+                fieldName: 'pm10'
+              }, {
+                text: 'SO2',
+                fieldName: 'so2'
+              }, {
+                text: 'NO2',
+                fieldName: 'no2'
+              }, {
+                text: 'CO',
+                fieldName: 'co'
+              }, {
+                text: 'O3',
+                fieldName: 'o3'
+              }]
             }, {
-              text: 'PM10',
-              fieldName: 'pm10'
+              name: 'layer_gd',
+              checkedName: 'pm25',
+              fieldName: '工地扬尘在线',
+              visible: false,
+              childs: [{
+                text: 'PM2.5',
+                fieldName: 'pm25'
+              }, {
+                text: 'PM10',
+                fieldName: 'pm10'
+              }]
             }, {
-              text: 'SO2',
-              fieldName: 'so2'
+              name: 'layer_qy',
+              checkedName: 'smoke',
+              fieldName: '企业污染源监测',
+              visible: false,
+              childs: [{
+                text: '烟尘',
+                fieldName: 'smoke'
+              }, {
+                text: 'NOX',
+                fieldName: 'nox'
+              }, {
+                text: 'SO2',
+                fieldName: 'so2'
+              }]
             }, {
-              text: 'NO2',
-              fieldName: 'no2'
+              name: 'layer_cx',
+              checkedName: 'pm25',
+              fieldName: '城乡',
+              visible: false,
+              childs: [{
+                text: 'PM2.5',
+                fieldName: 'pm25'
+              }, {
+                text: 'SO2',
+                fieldName: 'so2'
+              }]
             }, {
-              text: 'CO',
-              fieldName: 'co'
-            }, {
-              text: 'O3',
-              fieldName: 'o3'
-            }, {
-              text: '综指',
-              fieldName: 'complexindex'
-            }, {
-              text: '温度',
-              fieldName: 'temp'
-            }, {
-              text: '湿度',
-              fieldName: 'humi'
-            }, {
-              text: '风力',
-              fieldName: 'windspeed'
-            }, {
-              text: '风向',
-              fieldName: 'windangle'
+              name: 'layer_cgx_voc',
+              checkedName: 'tvoc',
+              fieldName: 'TVOC监测点',
+              visible: false,
+              childs: []
             }]
-          }, {
-            name: 'layer_cgq_lcs',
-            checkedName: 'aqi',
-            fieldName: '六参数传感器',
-            visible: false,
-            childs: [{
-              text: 'AQI',
-              fieldName: 'aqi'
-            }, {
-              text: 'PM2.5',
-              fieldName: 'pm25'
-            }, {
-              text: 'PM10',
-              fieldName: 'pm10'
-            }, {
-              text: 'SO2',
-              fieldName: 'so2'
-            }, {
-              text: 'NO2',
-              fieldName: 'no2'
-            }, {
-              text: 'CO',
-              fieldName: 'co'
-            }, {
-              text: 'O3',
-              fieldName: 'o3'
-            }]
-          }, {
-            name: 'layer_gd',
-            checkedName: 'pm25',
-            fieldName: '工地扬尘在线',
-            visible: false,
-            childs: [{
-              text: 'PM2.5',
-              fieldName: 'pm25'
-            }, {
-              text: 'PM10',
-              fieldName: 'pm10'
-            }]
-          }, {
-            name: 'layer_qy',
-            checkedName: 'smoke',
-            fieldName: '企业污染源监测',
-            visible: false,
-            childs: [{
-              text: '烟尘',
-              fieldName: 'smoke'
-            }, {
-              text: 'NOX',
-              fieldName: 'nox'
-            }, {
-              text: 'SO2',
-              fieldName: 'so2'
-            }]
-          }, {
-            name: 'layer_cx',
-            checkedName: 'pm25',
-            fieldName: '城乡',
-            visible: false,
-            childs: [{
-              text: 'PM2.5',
-              fieldName: 'pm25'
-            }, {
-              text: 'SO2',
-              fieldName: 'so2'
-            }]
-          }, {
-            name: 'layer_cgx_voc',
-            checkedName: 'tvoc',
-            fieldName: 'TVOC监测点',
-            visible: false,
-            childs: []
-          }]
       };
     },
     mounted() {
-      bus.$on('loadSearchChar', this.loadSearchChar);//加载空间查询图表
-      this.ready();
+        bus.$on('loadSearchChar', this.loadSearchChar);//加载空间查询图表
+        bus.$on('navactive',this.activechange);
+        this.ready();
     },
     methods: {
+        //
+        wachhandleClose(done) {
+            this.clokue = '';
+            done();
+        },
+        //被传递点击事件
+        activechange(dav){
+            //传递接受数据
+            console.log(dav);
+            this.clokue = dav;
+            this.wachiVisible = true;
+            //阻止冒泡
+            event.stopPropagation();
+        },
       ready() {
         let map = new BMap.Map('main_map', {enableMapClick: false});
         //map.centerAndZoom('廊坊', 10);
@@ -344,17 +380,23 @@
         MainLayerHandle,
         MapHandle,
         RevolvingMenu,
-        //HistoryHandle
+        Airstation,
+        largedata,
+        fixedscs,
+        meanratio
     }
   };
 </script>
 <style lang="scss" scoped>
-
+  .dianlode{
+    height: 760px;
+    overflow-y: auto;
+  }
   .left-bottom{
     width: 220px;
     height: 200px;
     position: fixed;
-    bottom:0px;
+    bottom:18px;
     left: 0;
   }
   .main-map-content {

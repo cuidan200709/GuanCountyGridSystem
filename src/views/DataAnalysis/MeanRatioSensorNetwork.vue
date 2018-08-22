@@ -1,7 +1,7 @@
 <template>
     <div class="Meanratiosensornetwork">
         <!--国省控均值比-->
-        <v-header></v-header>
+        <!--<v-header></v-header>-->
         <!---->
         <div class="warp6">
             <!---->

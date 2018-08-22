@@ -217,7 +217,7 @@
                 <div class="class-fx">
                   <weather></weather>
                 </div>
-                <router-link to="/">
+                <router-link to="/MonitoringPoint">
                     <el-button class="qjmap"
                                style="position: absolute;top: 5px;right: 5px;z-index: 20;color: #fff;background: #2494F2;border: none">
                         全局地图
@@ -228,8 +228,31 @@
             <div class="Window_Three htt-three" style="margin-left: 20px">
                 <!--综合指数与优良天数同比排名/县市区月考核-->
                 <el-tabs v-model="activeName_s" @tab-click="">
-                    <el-tab-pane label="综合指数与优良天数同比排名" name="first_s">
-                        <el-tabs v-model="activeName_a" @tab-click="">
+                    <el-tab-pane label="乡镇月考核" name="first_s">
+                    	<div class="CountyCheck">
+	                    	<el-radio-group v-model="CountySelectVal" @change="GetCountyCheckData">
+						      <el-radio-button label="全市"></el-radio-button>
+						      <el-radio-button label="中部县区组"></el-radio-button>
+						      <el-radio-button label="固安"></el-radio-button>
+						    </el-radio-group>
+					  	</div>
+					  	 <el-table
+					      :data="tableData"
+					      style="width: 80%">
+					      <el-table-column
+					        prop="date"
+					        label="乡镇">
+					      </el-table-column>
+					      <el-table-column
+					        prop="name"
+					        label="综合指数">
+					      </el-table-column>
+					      <el-table-column
+					        prop="address"
+					        label="月倒排">
+					      </el-table-column>
+					    </el-table>
+                        <!--<el-tabs v-model="activeName_a" @tab-click="">
                             <el-tab-pane label="月度累计" name="first_a">
                                 <div class="qxtable" style="margin-top: 10px;height:22px">
                                 	<i></i>
@@ -288,7 +311,7 @@
                                 <div id="airQuality" style="width: 470px;height:320px;"></div>
                                 <div class="right endTime">月(年)度截止日期：<span>3月7日</span></div>
                             </el-tab-pane>
-                        </el-tabs>
+                        </el-tabs>-->
                     </el-tab-pane>
                     <el-tab-pane label="县(市、区)月考核" name="second_s">
                         <el-tabs v-model="activeName_z" @tab-click="">
@@ -891,7 +914,26 @@
 				//年累计空气质量(重污染)
 				sevenYearBad:[],
 				eightYearBad:[],
-				year:'2018'
+				year:'2018',
+				//乡镇月考核
+				CountySelectVal:'全市',
+				tableData: [{
+		            date: '2016-05-02',
+		            name: '王小虎',
+		            address: '上海市普陀区金沙江路 1518 弄'
+		          }, {
+		            date: '2016-05-04',
+		            name: '王小虎',
+		            address: '上海市普陀区金沙江路 1517 弄'
+		          }, {
+		            date: '2016-05-01',
+		            name: '王小虎',
+		            address: '上海市普陀区金沙江路 1519 弄'
+		          }, {
+		            date: '2016-05-03',
+		            name: '王小虎',
+		            address: '上海市普陀区金沙江路 1516 弄'
+		          }]
             };
         },
         created() {
@@ -932,6 +974,8 @@
             this.GetWinterPrePollutionDaysYearPc();
             //冬防倒计时
             this.WinterCountDown();
+            //获取乡镇月考核数据
+            this.GetCountyCheckData();
             //
             this.intekqzlChange('aqi')
 			//reisze事件
@@ -967,7 +1011,10 @@
             }
         },
         methods: {
-            //
+            //获取乡镇月考核数据
+			GetCountyCheckData(){
+				
+			},
             backroundlicolor(shinum,shengnum){
                 let kcolor = ''
                 if(shinum > shengnum){
@@ -3054,6 +3101,11 @@
             float: left;
             overflow-x: hidden;
             overflow-y: auto;
+            .CountyCheck{
+            	float: right;
+            	margin-right: 10px;
+            	margin-top: 10px;
+            }
             .qxtable{
                 .left{
                     float: left;
