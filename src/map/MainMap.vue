@@ -351,10 +351,10 @@
 <style lang="scss" scoped>
 
   .left-bottom{
-    width: 70px;
-    height: 300px;
+    width: 220px;
+    height: 200px;
     position: fixed;
-    bottom:10px;
+    bottom:0px;
     left: 0;
   }
   .main-map-content {

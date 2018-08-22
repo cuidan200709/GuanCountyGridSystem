@@ -1,64 +1,18 @@
 <template>
-    <div class="">
-        <!---->
-        <div class="PathInner" id="PathMenu" style=" margin:250px auto;">
-            <div class="PathMain">
-                <div class="Tmain" @click="PathRun()">
-                    <div class="rotate" data-transform="rotate(0deg)"><span class="cover"></span></div>
-                </div>
-            </div>
-            <div class="PathItem">
-                <a class="link" href="#" title="污染物对比">
-                    <span class="item" style="background-image:url('../../static/imgs/xzcd/曲线对比图.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
-                </a>
-                <div class="metaicondetail shadow">
-                    <div class="inner">
-                        <p>这个是污染物对比模块</p>
-                    </div>
-                </div>
-            </div>
-            <div class="PathItem">
-                <a class="link" href="#" title="省控点均值比">
-                    <span class="item" style="background-image:url('../../static/imgs/xzcd/资料对比.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
-                </a>
-                <div class="metaicondetail shadow">
-                    <div class="inner">
-                        <p>这个是省控点均值比模块</p>
-                    </div>
-                </div>
-            </div>
-            <div class="PathItem">
-                <a class="link" href="#" title="固定源统计">
-                    <span class="item" style="background-image:url('../../static/imgs/xzcd/统计.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
-                </a>
-                <div class="metaicondetail shadow">
-                    <div class="inner">
-                        <p>这个是固定源统计</p>
-                    </div>
-                </div>
-            </div>
-            <div class="PathItem">
-                <a class="link" href="#" title="乡镇空气站">
-                    <span class="item" style="background-image:url('../../static/imgs/xzcd/圆心.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
-                </a>
-                <div class="metaicondetail shadow">
-                    <div class="inner">
-                        <p>这个是乡镇空气站</p>
-                    </div>
-                </div>
-            </div>
-            <div class="PathItem">
-                <a class="link" href="#" title="污染日历">
-                    <span class="item" style="background-image:url('../../static/imgs/xzcd/日历.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
-                </a>
-                <div class="metaicondetail shadow">
-                    <div class="inner">
-                        <p>这个是污染日历模块</p>
-                    </div>
-                </div>
+    <div class="revolvingmenu">
+        <div class="testfield">
+            <div class="flyout-wrap">
+                <a class="flyout-btn" href="#" title="Toggle"><span>Flyout Menu Toggle</span></a>
+                <ul class="flyout flyout-init">
+                    <li><a href="#"><span>Item</span></a></li>
+                    <li><a href="#"><span>Item</span></a></li>
+                    <li><a href="#"><span>Item</span></a></li>
+                    <li><a href="#"><span>Item</span></a></li>
+                    <li><a href="#"><span>Item</span></a></li>
+                    <li><a href="#"><span>Item</span></a></li>
+                </ul>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -71,288 +25,603 @@
         //
         data (){
             return {
-                 Radius: 160,
-                 Offset : 50,
-                 Path : 4,
-                 OutSpeed : 80,
-                 OutIncr : 50,
-                 OffsetSpeed : 200,
-                 InSpeed : 480,
-                 InIncr : -80,
-                 PathStatus : 0,
-                 angle: Math.PI / ((5 - 1) * 2),
-                 mainButton : [
-                     {
-                    'bg': '../../static/imgs/xzcd/bg-2x.png',
-                    'css': '',
-                    'cover': '../../static/imgs/xzcd/icon-2x.png',
-                    'html': '<span class="cover"></span>'
-                    },
-                     {
-                    'bg': '',
-                    'css': '',
-                    'cover': '',
-                    'html': '',
-                    'angle': -405,
-                    'speed': 200
-                }
-                ],
+
             }
         },
         //
         mounted (){
-            $(".PathItem").hover(function(){
-                //
-                $(this).find(".metaicondetail").show();
-            },function(){
-                //
-                $(this).find(".metaicondetail").hide();
-            });
+            (function() {
+                $(".flyout-btn").click(function() {
+                    $(".flyout-btn").toggleClass("btn-rotate");
+                    $(".flyout").find("a").removeClass();
+                    return $(".flyout").removeClass("flyout-init fade").toggleClass("expand");
+                });
+
+                $(".flyout").find("a").click(function() {
+                    $(".flyout-btn").toggleClass("btn-rotate");
+                    $(".flyout").removeClass("expand").addClass("fade");
+                    return $(this).addClass("clicked");
+                });
+
+            }).call(this);
         },
         //
         methods:{
-            PathRun() {
-                const _this = this;
-                let PathMenu = $('#PathMenu');
-                let PathItems = PathMenu.children('.PathItem').slice(0, 5);
-                if (_this.PathStatus == 0) {
-                    let Count = PathItems.size();
-                    PathItems.each(function (SP) {
-                        let ID = $(this).index();
-                        if (ID == 1) {
-                            var X =_this.Radius;
-                            var Y = 0;
-                            var X1 = X + _this.Offset;
-                            var Y1 = Y;
-                        } else if (ID == Count) {
-                            var X = 0;
-                            var Y = _this.Radius;
-                            var X1 = X;
-                            var Y1 = Y + _this.Offset;
-                        } else {
-                            var X = Math.cos(_this.angle * (ID - 1)) * _this.Radius;
-                            var Y = Math.sin(_this.angle * (ID - 1)) * _this.Radius;
-                            var X1 = X + _this.Offset;
-                            var Y1 = Y + _this.Offset;
-                        }
-                        if (_this.Path == 2) {
-                            Y = -Y;
-                            Y1 = -Y1;
-                        } else if (_this.Path == 3) {
-                            X = -X;
-                            Y = -Y;
-                            X1 = -X1;
-                            Y1 = -Y1;
-                        } else if (_this.Path == 4) {
-                            X = -X;
-                            X1 = -X1;
-                        }
-                        $(this).children().children().animate({
-                            rotate: 720
-                        }, 600);
-                        $(this).animate({
-                            right: X1,
-                            bottom: Y1
-                        }, _this.OutSpeed + SP * _this.OutIncr, function () {
-                            $(this).animate({
-                                right: X,
-                                bottom: Y
-                            }, _this.OffsetSpeed);
-                        });
-                    });
-                    if (_this.mainButton[1]['angle']) {
-                        $(PathMenu.children('.PathMain').find('.rotate')).animate({
-                            rotate: _this.mainButton[1]['angle']
-                        }, _this.mainButton[1]['speed']);
-                    }
-                    if (_this.mainButton[1]['bg'] != '') $(this).children().css('background-image', 'url(' + _this.mainButton[1]['bg'] + ')')
-                    if (_this.mainButton[1]['css'] != '') $(this).children().css(_this.mainButton[1]['css']);
-                    if (_this.mainButton[1]['cover'] != '') $(this).children().children().css('background-image', 'url(' + _this.mainButton[1][
-                        'cover'] + ')');
-                    if (_this.mainButton[1]['html'] != '') $(this).children().html(_this.mainButton[1]['html']);
-                    _this.PathStatus = 1;
-                } else if (_this.PathStatus == 1) {
-                    PathItems.each(function (SP) {
-                        if (parseInt($(this).css('right')) == 0) {
-                           var X1 = 0;
-                        } else {
-                            if (_this.Path <= 2) {
-                                X1 = parseInt($(this).css('right')) + _this.Offset;
-                            } else if (_this.Path >= 3) {
-                                X1 = parseInt($(this).css('right')) - _this.Offset;
-                            }
-                        }
-                        if (parseInt($(this).css('bottom')) == 0) {
-                           var Y1 = 0;
-                        } else {
-                            if (_this.Path == 3 || _this.Path == 2) {
-                                Y1 = parseInt($(this).css('bottom')) - _this.Offset;
-                            } else if (_this.Path == 1 || _this.Path == 4) {
-                                Y1 = parseInt($(this).css('bottom')) + _this.Offset;
-                            }
-                        }
-                        $(this).children().children().animate({
-                            rotate: 0
-                        }, 600);
-                        $(this).animate({
-                            right: X1,
-                            bottom: Y1
-                        }, _this.OffsetSpeed, function () {
-                            $(this).animate({
-                                right: 0,
-                                bottom: 0
-                            }, _this.InSpeed + SP * _this.InIncr);
-                        });
-                    });
-                    if (_this.mainButton[1]['angle']) {
-                        $(PathMenu.children('.PathMain').find('.rotate')).animate({
-                            rotate: 0
-                        }, _this.mainButton[1]['speed']);
-                    }
-                    if (_this.mainButton[0]['bg'] != '') $(this).children().css('background-image', 'url(' + _this.mainButton[0]['bg'] + ')')
-                    if (_this.mainButton[0]['css'] != '') $(this).children().css(_this.mainButton[0]['css']);
-                    if (_this.mainButton[0]['cover'] != '') $(this).children().children().css('background-image', 'url(' + _this.mainButton[0][
-                        'cover'] + ')');
-                    if (_this.mainButton[0]['html'] != '') $(this).children().html(_this.mainButton[0]['html']);
-                    _this.PathStatus = 0;
-                }
-            }
+
         }
     }
 </script>
 
 <style lang="scss" scoped>
 
-    .PathMenu {
-        position:absolute;
-        right:0;
-        bottom:0;
-        width:60px;
-        height:60px
-    }
-    .PathInner {
-        position:relative;
-        width:60px;
-        height:60px
+    .revolvingmenu{
+
+        :root {
+            padding: 60px;
+            font-family: Helvetica, 'Hiragino Sans GB', Arial, sans-serif;
+            font-smoothing: antialiased;
+            background: #f9f4f0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .testfield {
+            width: 210px;
+            margin: 0 auto;
+        }
+        h1 {
+            padding: 7px 10px;
+            margin: 20px 0 10px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: rgba(109, 73, 42, 0.8);
+            text-shadow: #fff 0 1px 1px;
+            background: #f1e7de;
+            border: 1px solid #d3bfae;
+            border-radius: 3px;
+            box-shadow: inset #fff 0 1px 0 0;
+        }
+        h1 a {
+            color: #6d492a;
+            text-decoration: none;
+            border-bottom: 1px dotted #d3bfae;
+        }
+        h1 a:hover {
+            border-color: #6d492a;
+        }
+        .flyout-wrap {
+            position: relative;
+            height: 191px;
+        }
+        .flyout-wrap .flyout {
+            position: relative;
+            margin: 0 0 1px 6px;
+            line-height: 0;
+        }
+        .flyout-wrap .flyout > li {
+            position: absolute;
+            display: block;
+            height: 170px;
+            background: yellow;
+            transform-origin: 12.5px bottom;
+        }
+        .flyout-wrap .flyout > li:nth-of-type( 1) {
+            transform: rotate(0deg);
+        }
+        .flyout-wrap .flyout > li:nth-of-type( 2) {
+            transform: rotate(18deg);
+        }
+        .flyout-wrap .flyout > li:nth-of-type( 3) {
+            transform: rotate(36deg);
+        }
+        .flyout-wrap .flyout > li:nth-of-type( 4) {
+            transform: rotate(54deg);
+        }
+        .flyout-wrap .flyout > li:nth-of-type( 5) {
+            transform: rotate(72deg);
+        }
+        .flyout-wrap .flyout > li:nth-of-type( 6) {
+            transform: rotate(90deg);
+        }
+        .flyout-wrap .flyout > li a {
+            position: absolute;
+            display: block;
+            width: 26px;
+            height: 26px;
+            overflow: hidden;
+            text-indent: -99999px;
+            background: #444;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0, rgba(0, 0, 0, 0.2) 0 0 0 1px, inset rgba(0, 0, 0, 0.5) 0 0 2px 0;
+        }
+        .flyout-wrap .flyout > li a:active {
+            background: #000;
+            border-color: #555;
+        }
+        .flyout-wrap .flyout > li a:active span {
+            opacity: .3;
+        }
+        .flyout-wrap .flyout > li a span {
+            display: block;
+            width: 26px;
+            height: 26px;
+            background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px'><path fill='#fff' d='M11.045,9.879l1.906,6.114l-4.949-3.791L3.059,16l1.9-6.117L0,6.114l6.123,0.013L7.998,0l1.879,6.12L16,6.104L11.045,9.879z'/></svg>") no-repeat center center;
+            background-size: 16px 16px;
+        }
+        .flyout-wrap .flyout-init li {
+            display: none;
+        }
+        .flyout-wrap .flyout li a {
+            top: 150px;
+            animation: contract 0.35s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li a {
+            top: 10px;
+            animation: expand .6s ease 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li a.clicked {
+            top: 10px;
+            animation: clicked 0.5s ease-out 1 forwards;
+        }
+        .flyout-wrap .flyout.fade li a:not(.clicked) {
+            top: 10px;
+            animation: fade 0.5s ease-out 1 forwards;
+        }
+        .flyout-wrap .flyout.fade li a:not(.clicked) span {
+            opacity: .1;
+            transition: opacity .5s ease;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 1) a {
+            animation-delay: 0.2s;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 1) a:not(.clicked) span {
+            animation: spin1-contract .9s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 1) a {
+            animation-delay: 0s;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 1) a span {
+            transform: rotate(0deg);
+            animation: spin1-expand .6s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li:nth-of-type( 1) a.clicked span {
+            transform: rotate(0deg);
+        }
+        .flyout-wrap .flyout li:nth-of-type( 2) a {
+            animation-delay: 0.16s;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 2) a:not(.clicked) span {
+            animation: spin2-contract .9s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 2) a {
+            animation-delay: 0.04s;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 2) a span {
+            transform: rotate(-18deg);
+            animation: spin2-expand .6s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li:nth-of-type( 2) a.clicked span {
+            transform: rotate(-18deg);
+        }
+        .flyout-wrap .flyout li:nth-of-type( 3) a {
+            animation-delay: 0.12s;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 3) a:not(.clicked) span {
+            animation: spin3-contract .9s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 3) a {
+            animation-delay: 0.08s;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 3) a span {
+            transform: rotate(-36deg);
+            animation: spin3-expand .6s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li:nth-of-type( 3) a.clicked span {
+            transform: rotate(-36deg);
+        }
+        .flyout-wrap .flyout li:nth-of-type( 4) a {
+            animation-delay: 0.08s;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 4) a:not(.clicked) span {
+            animation: spin4-contract .9s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 4) a {
+            animation-delay: 0.12s;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 4) a span {
+            transform: rotate(-54deg);
+            animation: spin4-expand .6s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li:nth-of-type( 4) a.clicked span {
+            transform: rotate(-54deg);
+        }
+        .flyout-wrap .flyout li:nth-of-type( 5) a {
+            animation-delay: 0.04s;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 5) a:not(.clicked) span {
+            animation: spin5-contract .9s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 5) a {
+            animation-delay: 0.16s;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 5) a span {
+            transform: rotate(-72deg);
+            animation: spin5-expand .6s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li:nth-of-type( 5) a.clicked span {
+            transform: rotate(-72deg);
+        }
+        .flyout-wrap .flyout li:nth-of-type( 6) a {
+            animation-delay: 0s;
+        }
+        .flyout-wrap .flyout li:nth-of-type( 6) a:not(.clicked) span {
+            animation: spin6-contract .9s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 6) a {
+            animation-delay: 0.2s;
+        }
+        .flyout-wrap .flyout.expand li:nth-of-type( 6) a span {
+            transform: rotate(-90deg);
+            animation: spin6-expand .6s ease-out 1 backwards;
+        }
+        .flyout-wrap .flyout.fade li:nth-of-type( 6) a.clicked span {
+            transform: rotate(-90deg);
+        }
+        .flyout-wrap .flyout-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
+            width: 36px;
+            height: 36px;
+            overflow: hidden;
+            text-indent: -99999px;
+            background: #f76f54;
+            background: linear-gradient(top, #f76f54 0, #dd3535 49%, #d32121 51%, #c61f1f 100%);
+            border: 4px solid #fff;
+            border-radius: 50%;
+            outline: none;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 3px 8px 0, rgba(0, 0, 0, 0.2) 0 0 0 1px, inset rgba(0, 0, 0, 0.3) 0 0 0 1px, inset rgba(255, 255, 255, 0.3) 0 1px 0 1px;
+        }
+        .flyout-wrap .flyout-btn span {
+            display: block;
+            width: 36px;
+            height: 36px;
+            background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20px' height='20px'><g><path fill='#fff' d='M20,11.402c0,0.453-0.367,0.82-0.822,0.82H0.82c-0.453,0-0.82-0.367-0.82-0.82V8.598 c0-0.454,0.367-0.821,0.82-0.821h18.357C19.633,7.776,20,8.144,20,8.598V11.402z'/><path fill='#fff' d='M8.598,20c-0.453,0-0.821-0.367-0.821-0.82V0.821c0-0.452,0.368-0.82,0.821-0.82h2.804 c0.453,0,0.82,0.368,0.82,0.82V19.18c0,0.453-0.367,0.82-0.82,0.82H8.598z'/></g></svg>") no-repeat center center;
+            transition: transform .4s ease;
+        }
+        .flyout-wrap .flyout-btn.btn-rotate span {
+            transform: rotate(-135deg);
+        }
+        .flyout-wrap .ani-expand 0% {
+                                     top: 150px;
+                                 }
+        .flyout-wrap .ani-expand 50% {
+                                     top: -10px;
+                                 }
+        .flyout-wrap .ani-expand 70% {
+                                     top: 15px;
+                                 }
+        .flyout-wrap .ani-expand 100% {
+                                     top: 10px;
+                                 }
+        .flyout-wrap .ani-contract 0% {
+                                       top: 10px;
+                                   }
+        .flyout-wrap .ani-contract 40% {
+                                       top: -25px;
+                                   }
+        .flyout-wrap .ani-contract 100% {
+                                       top: 150px;
+                                   }
+        .flyout-wrap .ani-clicked 0% {
+                                      opacity: 1;
+                                      transform: scale(1);
+                                  }
+        .flyout-wrap .ani-clicked 100% {
+                                      opacity: 0;
+                                      transform: scale(5);
+                                  }
+        @keyframes expand {
+            0% {
+                top: 150px;
+            }
+            50% {
+                top: -10px;
+            }
+            70% {
+                top: 15px;
+            }
+            100% {
+                top: 10px;
+            }
+        }
+        @keyframes contract {
+            0% {
+                top: 10px;
+            }
+            40% {
+                top: -25px;
+            }
+            100% {
+                top: 150px;
+            }
+        }
+        @keyframes clicked {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+                top: 10px;
+            }
+            90% {
+                top: 10px;
+            }
+            99% {
+                transform: scale(6);
+                opacity: 0;
+                top: 150px;
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+        @keyframes fade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+                top: 10px;
+            }
+            90% {
+                opacity: 0;
+                top: 10px;
+            }
+            99% {
+                transform: scale(0);
+                top: 150px;
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+        .flyout-wrap .ani-spin1-expand 0% {
+                                           transform: rotate(0deg);
+                                       }
+        .flyout-wrap .ani-spin1-expand 60% {
+                                           transform: rotate(-360deg);
+                                       }
+        .flyout-wrap .ani-spin1-expand 100% {
+                                           transform: rotate(-360deg);
+                                       }
+        .flyout-wrap .ani-spin2-expand 0% {
+                                           transform: rotate(-18deg);
+                                       }
+        .flyout-wrap .ani-spin2-expand 60% {
+                                           transform: rotate(-378deg);
+                                       }
+        .flyout-wrap .ani-spin2-expand 100% {
+                                           transform: rotate(-378deg);
+                                       }
+        .flyout-wrap .ani-spin3-expand 0% {
+                                           transform: rotate(-36deg);
+                                       }
+        .flyout-wrap .ani-spin3-expand 60% {
+                                           transform: rotate(-396deg);
+                                       }
+        .flyout-wrap .ani-spin3-expand 100% {
+                                           transform: rotate(-396deg);
+                                       }
+        .flyout-wrap .ani-spin4-expand 0% {
+                                           transform: rotate(-54deg);
+                                       }
+        .flyout-wrap .ani-spin4-expand 60% {
+                                           transform: rotate(-414deg);
+                                       }
+        .flyout-wrap .ani-spin4-expand 100% {
+                                           transform: rotate(-414deg);
+                                       }
+        .flyout-wrap .ani-spin5-expand 0% {
+                                           transform: rotate(-72deg);
+                                       }
+        .flyout-wrap .ani-spin5-expand 60% {
+                                           transform: rotate(-432deg);
+                                       }
+        .flyout-wrap .ani-spin5-expand 100% {
+                                           transform: rotate(-432deg);
+                                       }
+        .flyout-wrap .ani-spin6-expand 0% {
+                                           transform: rotate(-90deg);
+                                       }
+        .flyout-wrap .ani-spin6-expand 60% {
+                                           transform: rotate(-450deg);
+                                       }
+        .flyout-wrap .ani-spin6-expand 100% {
+                                           transform: rotate(-450deg);
+                                       }
+        .flyout-wrap .ani-spin1-contract 0% {
+                                             transform: rotate(0deg);
+                                         }
+        .flyout-wrap .ani-spin1-contract 50% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin1-contract 100% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin2-contract 0% {
+                                             transform: rotate(-18deg);
+                                         }
+        .flyout-wrap .ani-spin2-contract 50% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin2-contract 100% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin3-contract 0% {
+                                             transform: rotate(-36deg);
+                                         }
+        .flyout-wrap .ani-spin3-contract 50% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin3-contract 100% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin4-contract 0% {
+                                             transform: rotate(-54deg);
+                                         }
+        .flyout-wrap .ani-spin4-contract 50% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin4-contract 100% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin5-contract 0% {
+                                             transform: rotate(-72deg);
+                                         }
+        .flyout-wrap .ani-spin5-contract 50% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin5-contract 100% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin6-contract 0% {
+                                             transform: rotate(-90deg);
+                                         }
+        .flyout-wrap .ani-spin6-contract 50% {
+                                             transform: rotate(360deg);
+                                         }
+        .flyout-wrap .ani-spin6-contract 100% {
+                                             transform: rotate(360deg);
+                                         }
+        @keyframes spin1-expand {
+            0% {
+                transform: rotate(0deg);
+            }
+            60% {
+                transform: rotate(-360deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+        @keyframes spin2-expand {
+            0% {
+                transform: rotate(-18deg);
+            }
+            60% {
+                transform: rotate(-378deg);
+            }
+            100% {
+                transform: rotate(-378deg);
+            }
+        }
+        @keyframes spin3-expand {
+            0% {
+                transform: rotate(-36deg);
+            }
+            60% {
+                transform: rotate(-396deg);
+            }
+            100% {
+                transform: rotate(-396deg);
+            }
+        }
+        @keyframes spin4-expand {
+            0% {
+                transform: rotate(-54deg);
+            }
+            60% {
+                transform: rotate(-414deg);
+            }
+            100% {
+                transform: rotate(-414deg);
+            }
+        }
+        @keyframes spin5-expand {
+            0% {
+                transform: rotate(-72deg);
+            }
+            60% {
+                transform: rotate(-432deg);
+            }
+            100% {
+                transform: rotate(-432deg);
+            }
+        }
+        @keyframes spin6-expand {
+            0% {
+                transform: rotate(-90deg);
+            }
+            60% {
+                transform: rotate(-450deg);
+            }
+            100% {
+                transform: rotate(-450deg);
+            }
+        }
+        @keyframes spin1-contract {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes spin2-contract {
+            0% {
+                transform: rotate(-18deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes spin3-contract {
+            0% {
+                transform: rotate(-36deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes spin4-contract {
+            0% {
+                transform: rotate(-54deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes spin5-contract {
+            0% {
+                transform: rotate(-72deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes spin6-contract {
+            0% {
+                transform: rotate(-90deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     }
 
-    .PathInner .PathItem {
-        position:absolute;
-        right:0;
-        bottom:0
-    }
-    .PathInner a {
-        display:block;
-        background-position:center;
-        background-repeat:no-repeat;
-        z-index:999
-    }
-    .PathInner a .item, .rotate {
-        width:100%;
-        height:100%;
-        background-position:center;
-        background-repeat:no-repeat;
-        display:block;
-        overflow:hidden;
-        text-align:center;
-        vertical-align:middle;
-        position:absolute
-    }
-    .item{
-        border-radius: 50%;
-        box-shadow: 0 0 15px #666;
-    }
-    .PathInner .PathMain {
-        z-index:1000;
-        position:absolute;
-        display:block;
-        background-position:center;
-        background-repeat:no-repeat;
-        bottom:0;
-        right:0
-    }
-    .PathInner .PathMain .Tmain {
-        background-image:url("../../static/imgs/xzcd/bg-2x.png");
-        width:60px;
-        height:60px
-    }
-    .PathInner .PathMain .Tmain .rotate {
-        background-image:url(../../static/imgs/xzcd/icon-2x.png);
-        -moz-transform:rotate(0deg);
-        position:absolute;
-        bottom:0;
-        right:0
-    }
-    .PathInner .cover {
-        width:100%;
-        height:100%;
-        display:block;
-        background:url(../../static/imgs/xzcd/bg-hl-2x.png) center no-repeat;
-        cursor:pointer;
-        *filter:alpha(opacity=0);
-        filter:alpha(opacity=0)\0;
-        opacity:0;
-        -webkit-transition:opacity .2s ease-out;
-        -moz-transition:opacity .2s ease-out;
-        -ms-transition:opacity .2s ease-out;
-        -o-transition:opacity .2s ease-out
-    }
-    .PathInner .cover:hover {
-        opacity:.2;
-        *filter:alpha(opacity=20);
-        filter:alpha(opacity=20)\0
-    }
-    .PathItem .link {
-        position:absolute;
-        bottom:0;
-        right:0;
-        width:60px;
-        height:60px;
-
-    }
-    .PathItem .link .item {
-        bottom:0;
-        right:0
-    }
-    .metaicondetail {
-        background:#fff;
-        color:#fff;
-        border-radius:6px;
-        border:1px #333 solid;
-        min-width:100px;
-        max-width:300px;
-        z-index: 1001;
-        overflow:hidden;
-        text-align:center;
-        position:absolute;
-        display:none;
-        top:-105px;
-        right:-22px
-    }
-    .metaicondetail .inner {
-        border:2px #fff solid;
-        border-radius:6px;
-        background:#272727;
-        font-size:14px;
-        padding:5px
-    }
-    .metaicondetail span {
-        font-family:candara, arail;
-        font-size:18px
-    }
-    .metaicondetail s {
-        border-color:#333 transparent transparent;
-        border-style:solid dashed dashed;
-        border-width:5px;
-        clear:both;
-        display:inline-block;
-        font-size:0;
-        height:0;
-        margin-right:3px;
-        overflow:hidden;
-        position:absolute;
-        right:50%;
-        top:44px;
-        width:0
-    }
 </style>
