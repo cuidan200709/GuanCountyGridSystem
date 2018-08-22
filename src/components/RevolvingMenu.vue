@@ -7,35 +7,50 @@
                     <div class="rotate" data-transform="rotate(0deg)"><span class="cover"></span></div>
                 </div>
             </div>
-            <div class="PathItem"> <a class="link" href="#" title="污染物对比"> <span class="item" style="background-image:url('../../static/imgs/xzcd/曲线对比图.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span> </a>
+            <div class="PathItem">
+                <a class="link" href="#" title="污染物对比">
+                    <span class="item" style="background-image:url('../../static/imgs/xzcd/曲线对比图.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
+                </a>
                 <div class="metaicondetail shadow">
                     <div class="inner">
                         <p>这个是污染物对比模块</p>
                     </div>
                 </div>
             </div>
-            <div class="PathItem"> <a class="link" href="#" title="省控点均值比"> <span class="item" style="background-image:url('../../static/imgs/xzcd/资料对比.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span> </a>
+            <div class="PathItem">
+                <a class="link" href="#" title="省控点均值比">
+                    <span class="item" style="background-image:url('../../static/imgs/xzcd/资料对比.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
+                </a>
                 <div class="metaicondetail shadow">
                     <div class="inner">
                         <p>这个是省控点均值比模块</p>
                     </div>
                 </div>
             </div>
-            <div class="PathItem"> <a class="link" href="#" title="固定源统计"> <span class="item" style="background-image:url('../../static/imgs/xzcd/统计.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span> </a>
+            <div class="PathItem">
+                <a class="link" href="#" title="固定源统计">
+                    <span class="item" style="background-image:url('../../static/imgs/xzcd/统计.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
+                </a>
                 <div class="metaicondetail shadow">
                     <div class="inner">
                         <p>这个是固定源统计</p>
                     </div>
                 </div>
             </div>
-            <div class="PathItem"> <a class="link" href="#" title="乡镇空气站"> <span class="item" style="background-image:url('../../static/imgs/xzcd/圆心.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span> </a>
+            <div class="PathItem">
+                <a class="link" href="#" title="乡镇空气站">
+                    <span class="item" style="background-image:url('../../static/imgs/xzcd/圆心.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
+                </a>
                 <div class="metaicondetail shadow">
                     <div class="inner">
                         <p>这个是乡镇空气站</p>
                     </div>
                 </div>
             </div>
-            <div class="PathItem"> <a class="link" href="#" title="污染日历"> <span class="item" style="background-image:url('../../static/imgs/xzcd/日历.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span> </a>
+            <div class="PathItem">
+                <a class="link" href="#" title="污染日历">
+                    <span class="item" style="background-image:url('../../static/imgs/xzcd/日历.png'); -moz-transform: rotate(0deg);" data-transform="rotate(0deg)"></span>
+                </a>
                 <div class="metaicondetail shadow">
                     <div class="inner">
                         <p>这个是污染日历模块</p>
@@ -56,7 +71,7 @@
         //
         data (){
             return {
-                Radius: 160,
+                 Radius: 160,
                  Offset : 50,
                  Path : 4,
                  OutSpeed : 80,
