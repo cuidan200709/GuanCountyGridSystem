@@ -4,12 +4,12 @@
             <div class="flyout-wrap">
                 <a class="flyout-btn" href="#" title="Toggle"><span>Flyout Menu Toggle</span></a>
                 <ul class="flyout flyout-init">
-                    <li><a href="#/likewinter" title="首页"><span class="icon-shouye">Item</span></a></li>
-                    <li><a href="#" title="污染物对比"><span class="icon-wrwdb">Item</span></a></li>
-                    <li><a href="#" title="省控点均值比"><span class="icon-sjzb">Item</span></a></li>
-                    <li><a href="#" title="固定源统计"><span class="icon-gdytj">Item</span></a></li>
-                    <li><a href="#" title="乡镇空气站"><span class="icon-xzkqz">Item</span></a></li>
-                    <li><a href="#" title="污染日历"><span class="icon-wrrl">Item</span></a></li>
+                    <li><a href="#/likewinter" title="首页"><span class="icon-shouye"></span></a></li>
+                    <li><a @click="chuandiclick('WRWDB')" title="污染物对比"><span class="icon-wrwdb"></span></a></li>
+                    <li><a @click="chuandiclick('SKJZB')" title="省控点均值比"><span class="icon-sjzb"></span></a></li>
+                    <li><a @click="chuandiclick('GDYTJ')" title="固定源统计"><span class="icon-gdytj"></span></a></li>
+                    <li><a @click="chuandiclick('XZKQZ')" title="乡镇空气站"><span class="icon-xzkqz"></span></a></li>
+                    <li><a href="#/pollution" title="污染日历"><span class="icon-wrrl"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -18,7 +18,7 @@
 
 <script>
 
-
+    import {bus} from '@/js/bus.js'
     export default {
         //
         name: "RevolvingMenu",
@@ -44,10 +44,17 @@
                 });
 
             }).call(this);
+
         },
         //
         methods:{
-
+            chuandiclick(data){
+               let dav = data;
+               console.log(dav);
+               bus.$emit('navactive',dav);
+                //阻止冒泡
+                return false;
+            }
         }
     }
 </script>
@@ -128,13 +135,13 @@
             height: 42px;
             overflow: hidden;
             text-indent: -99999px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0);
             border: 3px solid #fff;
             border-radius: 50%;
             box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0, rgba(0, 0, 0, 0.2) 0 0 0 1px, inset rgba(0, 0, 0, 0.5) 0 0 2px 0;
         }
         .flyout-wrap .flyout > li a:active {
-            background: #000;
+            background:  rgba(0,0,10,0.3);
             border-color: #555;
         }
         .flyout-wrap .flyout > li a:active span {

@@ -1,7 +1,7 @@
 <template>
     <div class="Fixedsourcestatistics">
         <!--固定源统计-->
-        <v-header></v-header>
+        <!--<v-header></v-header>-->
         <!---->
         <div class="warp4">
             <el-tabs v-model="TitleName">

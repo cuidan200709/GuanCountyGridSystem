@@ -1,7 +1,7 @@
 <template>
     <div class="AirStation">
         <!--乡镇空气站统计-->
-        <v-header></v-header>
+        <!--<v-header></v-header>-->
         <!---->
         <div class="warp3">
             <el-tabs v-model="TitleName" @tab-click="">

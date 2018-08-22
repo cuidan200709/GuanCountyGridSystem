@@ -1,7 +1,7 @@
 <template>
     <div class="LargeDataResources">
         <!--大数据资源-->
-        <v-header></v-header>
+        <!--<v-header></v-header>-->
         <!---->
         <div class="warp_conters">
             <el-tabs v-model="activeName" >
