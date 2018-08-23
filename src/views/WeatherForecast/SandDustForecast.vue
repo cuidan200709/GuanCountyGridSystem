@@ -1,19 +1,17 @@
 <template>
-    <div class="GridPrediction">
-        <!--网格预报-->
+    <div class="sanddustforecast">
+        <!--沙尘预报-->
         <v-header></v-header>
-        <!--右侧面板-->
-        <v-Paneldagrid></v-Paneldagrid>
-        <!--地图部分-->
-        <grid-map></grid-map>
+       <!---->
+        <h1>沙尘预报正在开发中</h1>
     </div>
 </template>
 
 <script>
-    import GridMap from '@/map/GridMapMain'
+    //import GridMap from '@/map/GridMapMain'
 
     export default {
-        name: 'GridPrediction',
+        name: 'sanddustforecast',
         data() {
             return {
                 fullscreenLoading: false
@@ -33,14 +31,14 @@
             }
         },
         components: {
-            GridMap
+
         }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-    .GridPrediction {
+    .sanddustforecast {
         width: 100%;
         height: 100%;
     }
