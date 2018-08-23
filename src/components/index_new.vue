@@ -9,17 +9,17 @@
                         <map-handle slot="toors"></map-handle>
                     </toolbar>
                     <!---->
-                    <div class="fengxiang" v-show="true">
-                      <weather></weather>
-                    </div>
+                    <!--<div class="fengxiang" v-show="true">-->
+                      <!--<weather></weather>-->
+                    <!--</div>-->
                 </div>
                 <div class="line_bottom" v-show="Legendswtch">
-                    <div class="fd-tuli">
-                        <img v-show="imgtuli" src="../../static/imgs/indeximgs/tuli/litu-001.png">
-                    </div>
-                    <div class="fd-off">
-                        <img :src="imgkey" @click="changeimggengai()">
-                    </div>
+                    <!--<div class="fd-tuli">-->
+                        <!--<img v-show="imgtuli" src="../../static/imgs/indeximgs/tuli/litu-001.png">-->
+                    <!--</div>-->
+                    <!--<div class="fd-off">-->
+                        <!--<img :src="imgkey" @click="changeimggengai()">-->
+                    <!--</div>-->
                     <tone-color></tone-color>
                 </div>
             </div>
@@ -186,7 +186,8 @@
                 $('#list')[0].style.WebkitTransform = "translate(467px)";
                 $('#list')[0].style.transform = "translate(467px)";
                 $('.meun_right')[0].style.right = '467px';
-                $('.line_bottom')[0].style.left = '-342px'
+                $('.line_bottom')[0].style.left = '-342px';
+                $('.line_top')[0].style.left = '-480px';
             },
             //动画002收回
             shouhui(){
@@ -194,6 +195,7 @@
                 $('#list')[0].style.transform = "translate(0)";
                 $('.meun_right')[0].style.right = '0px';
                 $('.line_bottom')[0].style.left = '-309px';
+                $('.line_top')[0].style.left = '-455px';
             },
             //table点击事件
             RowCurrentChange(val) {
@@ -349,7 +351,7 @@
 
                 .line_top {
                     position: absolute;
-                    left: -515px;
+                    left: -455px;
                     top: 48px;
                     height: 46px;
                     background: #fff;
