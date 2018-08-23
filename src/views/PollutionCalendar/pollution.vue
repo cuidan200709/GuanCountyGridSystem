@@ -4,16 +4,26 @@
         <v-header></v-header>
         <!--日历-->
         <div class="warp-content">
-            <div class="" style="margin-top: 20px">
-                <el-checkbox-group v-model="checkboxGroup1">
-                    <el-checkbox-button v-for="city in topcities" :label="city" :key="city">{{city}}</el-checkbox-button>
-                </el-checkbox-group>
+            <div class="con-cont">
+                <div class="warp-coter" style="margin-top: 20px">
+                    <el-radio-group v-model="valueOne" size="medium">
+                        <el-radio-button label="环比" ></el-radio-button>
+                        <el-radio-button label="同比"></el-radio-button>
+                    </el-radio-group>
+                </div>
+                <div class="warp-float">
+                    <el-radio-group v-model="valueTwo" size="small">
+                        <el-radio-button label="AQI"></el-radio-button>
+                        <el-radio-button label="PM2.5"></el-radio-button>
+                        <el-radio-button label="PM10"></el-radio-button>
+                        <el-radio-button label="SO2"></el-radio-button>
+                        <el-radio-button label="NO2"></el-radio-button>
+                        <el-radio-button label="CO"></el-radio-button>
+                        <el-radio-button label="O3"></el-radio-button>
+                    </el-radio-group>
+                </div>
             </div>
-            <div class="">
-                <el-checkbox-group v-model="checkboxGroup3" size="small">
-                    <el-checkbox-button v-for="city in cities" :label="city" :disabled="city === '北京'" :key="city">{{city}}</el-checkbox-button>
-                </el-checkbox-group>
-            </div>
+                <!---->
             <div class="warp-calendar">
                 <div id="calendar"></div>
             </div>
@@ -23,19 +33,13 @@
 
 <script>
 
-    const cityOptions = ['上海', '北京', '广州', '深圳'];
-    const topOptions = ['环比','同比'];
     export default {
         name: "pollution",
         data(){
             return{
-                checkboxGroup1: ['环比'],
+                valueOne: '环比',
                 //
-                checkboxGroup3: ['上海'],
-                //
-                cities: cityOptions,
-                //
-                topcities: topOptions
+                valueTwo: 'AQI'
             }
         },
         methods:{
@@ -240,9 +244,24 @@
     .pollution{
         width: 100%;
         height: auto;
+
         .warp-content{
             width: 95%;
             height: auto;
+            margin: 0 auto;
+            .con-cont{
+                width: 95%;
+                height: 100px;
+                .warp-coter{
+                    
+                }
+                .warp-float{
+                    float: right;
+                    margin-right: 10px;
+                }
+            }
+
         }
+
     }
 </style>
