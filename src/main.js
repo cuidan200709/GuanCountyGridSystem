@@ -28,6 +28,8 @@ Vue.use(ElementUI)
 Vue.use(vueCookie)
 //inconfont字体css
 import './assets/font/iconfont.css'
+import '../static/calendpoll/bootstrap-year-calendar.css'
+import '../static/calendpoll/bootstrap-year-calendar'
 //公共组件全局注册
 Vue.component('v-header', Header);
 Vue.component('v-Paneldagrid', PaneldataGrid);
