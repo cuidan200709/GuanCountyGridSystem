@@ -129,14 +129,14 @@
             //
             bus.$on('menuative', this.selectRightNavData);//
             //
-            bus.$emit('menuative', '国省');
+            this.shengchu();
         },
         updated(){
             //跟新数据后调用功能
             if(this.RightNavData == false){
                // console.log('我现在没有东西了')
-                this.$router.push('/MonitoringPoint');
-                this.isSelect = '国省';
+                this.$router.push('/');
+                this.isSelect = '统计';
                 this.shengchu();
                 this.StatisticsSwitch = true;
             }
@@ -168,7 +168,7 @@
             isTabChange(){
                 //当返回实时监控页面时候监控路由情况
                 if(this.$route.path==='/'){
-                    this.isSelect = '国省';
+                    this.isSelect = '统计';
                     this.StatisticsSwitch = true;
                 }
             },
