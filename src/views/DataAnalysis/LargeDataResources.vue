@@ -628,7 +628,7 @@
         width: 100%;
         min-height: 800px;
         height: 100%;
-        background: rgb(250, 250, 250);
+        background: #fff;
         .warp_conters{
             width: 1330px;
             margin: 0 auto;

@@ -6,10 +6,11 @@ import Index from '@/views/Index'//实时监测页面
 import HighVideos from '@/views/HighVideo'//高点视频监测
 //气象预报组页面
 import Dynamicwindfield from '@/views/WeatherForecast/DynamicWindField'//动态风场
-import SuperStation from '@/views/WeatherForecast/SuperStation'//超级站
-import WeatherStation from '@/views/WeatherForecast/WeatherStation'//气象站
+// import SuperStation from '@/views/WeatherForecast/SuperStation'//超级站
+// import WeatherStation from '@/views/WeatherForecast/WeatherStation'//气象站
 import Weather from '@/views/WeatherForecast/Weather'//天气预报
-import GridPrediction from '@/views/WeatherForecast/GridPrediction'//网格预报
+import SandDustForecast from '@/views/WeatherForecast/SandDustForecast'//沙尘预报
+import FogHazeForecast from '@/views/WeatherForecast/FogHazeForecast'//雾霾预报
 //大数据模块组页面
 import pollution from '@/views/PollutionCalendar/pollution'//污染日历
 //import LargeDataResources from '@/views/DataAnalysis/LargeDataResources'//污染物对比
@@ -255,19 +256,19 @@ export default new Router({
             component: Dynamicwindfield
         },
         //气象站
-        {
-            path: '/weatherstation',
-            name: 'weatherstation',
-            meta: { keepAlive: false },
-            component: WeatherStation
-        },
+        // {
+        //     path: '/weatherstation',
+        //     name: 'weatherstation',
+        //     meta: { keepAlive: false },
+        //     component: WeatherStation
+        // },
         //超级站
-        {
-            path: '/superstation',
-            name: 'superstation',
-            meta: { keepAlive: false },
-            component: SuperStation
-        },
+        // {
+        //     path: '/superstation',
+        //     name: 'superstation',
+        //     meta: { keepAlive: false },
+        //     component: SuperStation
+        // },
         //天气预报
         {
             path: '/Weather',
@@ -436,12 +437,19 @@ export default new Router({
             
             ]
         },
-        //网格预报
+        //雾霾预报
         {
-            path: '/GridPrediction',
-            name: 'GridPrediction',
+            path: '/FogHazeForecast',
+            name: 'foghazeforecast',
             meta: { keepAlive: false },
-            component: GridPrediction
+            component: FogHazeForecast
+        },
+        //沙尘预报
+        {
+            path: '/SandDustForecast',
+            name: 'sanddustforecast',
+            meta: { keepAlive: false },
+            component: SandDustForecast
         }
 
     ]

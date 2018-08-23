@@ -9,5 +9,5 @@ const ifreamApi =[
     }
 ];
 /*如果测试环境注释掉正式反之。。。。*/
-const testurl = ifreamApi[0];////测试
-//const testurl = ifreamApi[1];////正式
+//const testurl = ifreamApi[0];////测试
+const testurl = ifreamApi[1];////正式

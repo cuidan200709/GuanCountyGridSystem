@@ -210,11 +210,17 @@ html .Window_Three table, body .Window_Three table{
 .ql-editor{
   min-height: 150px!important;
 }
+.float001{
+  .el-select{
+    width: 33% !important ;
+  }
+}
 //媒体查询
 @media only screen and (min-width: 1400px) {
   .ql-editor{
     min-height: 360px!important;
   }
+
 }
 //
 .repdetail{

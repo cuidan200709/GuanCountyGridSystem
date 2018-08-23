@@ -20,8 +20,8 @@
                     <div class="Fouritem submenu same">
                         <a href="#/dynamicweather">动态风场</a><br/>
                         <a href="#/Weather">天气预报</a><br/>
-                        <a >沙尘预报</a><br/>
-                        <a >雾霾预报</a>
+                        <a href="#/SandDustForecast">沙尘预报</a><br/>
+                        <a href="#/FogHazeForecast">雾霾预报</a>
                     </div>
                 </li>
 
