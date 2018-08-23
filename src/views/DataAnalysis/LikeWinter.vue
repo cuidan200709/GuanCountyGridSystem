@@ -238,7 +238,7 @@
 					  	</div>
 					  	 <el-table
 					      :data="tableData"
-					      style="width: 80%">
+					      style="width: 100%">
 					      <el-table-column
 					        prop="date"
 					        label="乡镇">
