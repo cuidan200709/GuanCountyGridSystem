@@ -15,7 +15,7 @@
                 </el-checkbox-group>
             </div>
             <div class="warp-calendar">
-                <div data-provide="calendar"></div>
+                <div id="calendar"></div>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
 
         },
         mounted (){
-            $('#element').data('calendar').setLanguage('zh-CN');
+//          $('#element').data('calendar').setLanguage('zh-CN');
             $(function() {
                 let _this = this;
             var currentYear = new Date().getFullYear();
@@ -136,7 +136,6 @@
                                 + '<div class="event-location">' + e.events[i].location + '</div>'
                                 + '</div>';
                         }
-
                         $(e.element).popover({
                             trigger: 'manual',
                             container: 'body',
