@@ -79,17 +79,17 @@
                         <el-table :data="GetListtableData" show-summary :summary-method="getSummaries" border style="width: 100%">
                             <el-table-column label="监测时间">
                                 <template scope="scope">
-                                    <span>{{scope.row.time}}</span>
+                                    <span class="dg-class":title="scope.row.time">{{scope.row.time}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column label="企业名称">
                                 <template scope="scope">
-                                    <span>{{scope.row.psname}}</span>
+                                    <span  class="dg-class":title="scope.row.psname">{{scope.row.psname}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column label="排气口名称">
                                 <template scope="scope">
-                                    <span>{{scope.row.outputname}}</span>
+                                    <span class="dg-class" :title="scope.row.outputname">{{scope.row.outputname}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column label="烟尘(毫克/立方米)">
@@ -750,6 +750,12 @@
             width: 98%;
             height: auto;
             margin: 0 auto;
+            .dg-class{
+                display: inline-block;
+                width: 150px;
+                text-align: center;
+            }
+
             .neirong {
                 width: 96%;
                 height: 600px;
@@ -809,7 +815,7 @@
             }
             .kass {
                 width: 100%;
-                height: auto;
+                height: 40px;
                 .wbiaoti {
                     a {
                         display: inline-block;
@@ -867,18 +873,21 @@
             }
             .chaxuntiaojian {
                 width: 100%;
-                height: 50px;
+                height: 60px;
+                margin-top: 15px;
                 .float001 {
+                    text-align: left;
+                    width: 35%;
                     float: left;
-                    margin-left: 30px;
+                    margin-left: 10px;
                 }
                 .float3 {
                     float: left;
-                    margin-left: 16%;
+                    margin-left: 6%;
                 }
                 .float5{
                     float: left;
-                    margin-left: 20px;
+                    margin-left: 1%;
                 }
             }
 
@@ -886,7 +895,7 @@
         //媒体查询
         @media only screen and (min-width: 1400px) {
             .float3 {
-                margin-left: 40%!important;
+                margin-left: 20%!important;
             }
             .tuxing{
                 width: 1700px!important;

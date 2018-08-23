@@ -21,7 +21,7 @@
       <div id="search_char"></div>
     </el-dialog>
     <!--弹出框面板-->
-    <el-dialog :visible.sync="wachiVisible" top="40px" width="80%" :before-close="wachhandleClose">
+    <el-dialog :visible.sync="wachiVisible" top="6vh" width="90%" :before-close="wachhandleClose">
       <div class="dianlode">
         <!---->
         <largedata v-show="clokue === 'WRWDB'"></largedata>
