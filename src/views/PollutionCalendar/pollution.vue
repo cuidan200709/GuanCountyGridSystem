@@ -115,6 +115,7 @@
             var currentYear = new Date().getFullYear();
 
             $('#calendar').calendar({
+                style:'background',
                 enableContextMenu: true,
                 enableRangeSelection: true,
                 contextMenuItems:[
@@ -158,6 +159,7 @@
                 dayContextMenu: function(e) {
                     $(e.element).popover('hide');
                 },
+                //需要的数据格式
                 dataSource: [
                     {
                         id: 0,
@@ -184,8 +186,8 @@
                         id: 3,
                         name: 'Apple Special Event',
                         location: 'San Francisco, CA',
-                        startDate: new Date(currentYear, 8, 1),
-                        endDate: new Date(currentYear, 8, 1)
+                        startDate: new Date(currentYear-1, 8, 1),
+                        endDate: new Date(currentYear-1, 8, 1)
                     },
                     {
                         id: 4,
@@ -198,8 +200,8 @@
                         id: 5,
                         name: 'Chrome Developer Summit',
                         location: 'Mountain View, CA',
-                        startDate: new Date(currentYear, 10, 17),
-                        endDate: new Date(currentYear, 10, 18)
+                        startDate: new Date(currentYear-1, 10, 17),
+                        endDate: new Date(currentYear-1, 10, 18)
                     },
                     {
                         id: 6,
@@ -228,7 +230,15 @@
                         location: 'Los Angeles, CA',
                         startDate: new Date(currentYear, 10, 17),
                         endDate: new Date(currentYear, 10, 17)
-                    }
+                    },
+                    {
+                        id: 10,
+                        name: 'shen fangda',
+                        location: 'Los Angeles, CA',
+                        //color:'',
+                        startDate: new Date(currentYear, 1, 17),
+                        endDate: new Date(currentYear, 1, 20)
+                    },
                 ]
             });
 
@@ -253,7 +263,7 @@
                 width: 95%;
                 height: 100px;
                 .warp-coter{
-                    
+
                 }
                 .warp-float{
                     float: right;
