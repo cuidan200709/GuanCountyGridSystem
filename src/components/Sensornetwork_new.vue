@@ -191,10 +191,9 @@
             },
             //初始数据
             InitializationDataMethod(data, type) {
-                console.log(data);
+                //console.log(data);
                 this.type = type;
-               // this.HistoryData = data;
-               // let sudata = data;
+               //
                 this.SetDataList(data, type)
                 this.totalCount = this.allData.length;
                 this.setPageTable(10, 1);
@@ -385,7 +384,7 @@
             //渲染部分
             switchRender(type) {
                 this.type = type;
-                this.setdata(this.data, this.type)
+
             },
             //数据筛选
             getPointByType(type) {

@@ -117,8 +117,8 @@
                 //初始化数据
                 let sudata = data;
                 this.SetDataList(sudata)
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
             },
             //排序
@@ -179,7 +179,7 @@
             //设置分页所需要数据
             SetDataList(data) {
                 this.data = data;
-                this.ALLdata = [];
+                this.allData = [];
                 let i = 1;
                 this.data.forEach(item => {
                     const tableData = {};
@@ -188,7 +188,7 @@
                     tableData.citygid = item.id;//城市id
                     tableData.latitude = item.point_lat;//纬度
                     tableData.longitude = item.point_lng;//经度
-                    this.ALLdata.push(tableData);
+                    this.allData.push(tableData);
                 })
             },
             //

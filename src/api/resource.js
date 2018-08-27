@@ -91,7 +91,7 @@ const apilangfangTDK = {
     GetQxHourRank: apiconfig[icode].devn + '/api/LfAir/GetQxHourRank',//区县小时排行列表
     GetXhHbPointsVoc: apiconfig[icode].devn + '/api/XhHb/GetXhHbPointsVoc',//VOC面板数据列表
     GetVideoInfoByType: apiconfig[icode].devn + '/api/Video/GetVideoInfoByType',//获取高空视频监控列表
-    GetTownListData: apiconfig[icode].devn + '/api/Town/GetTownList?region=',//乡镇企业列表展示
+    GetTownListData: apiconfig[icode].devn + '/api/Town/GetTownList?region=',//乡镇企业列表展示（固安县）
     EmergencyInfoInsert: apiconfig[icode].devn + '/api/EmergencyBulletin/Insert',//新增应急消息
     GetEmergencyInfo: apiconfig[icode].devn + '/api/EmergencyBulletin/GetNotice?',//获取应急消息
     GetCaseList: apiconfig[icode].devc + '/servicePlatform/admin/caseData/selectCasePage?',//获取案件审核列表

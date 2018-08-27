@@ -138,8 +138,6 @@
                 so2Name:'----',
                 //lable类型
                 labelType: 'so2',
-                //存放数据
-                ALLdata: [],
                 //输入框
                 filters: {name: ''},
                 //列表数据

@@ -68,8 +68,6 @@
                 //
                 activeNamexz:'first3',
                 //
-                ALLdata: [],
-                //
                 tableData: [],
                 //
                 HistoryData: [],
@@ -113,16 +111,16 @@
                 this.HistoryData = data;
                 let sudata = data;
                 this.SetDataList(sudata)
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+               //
                 this.setPageTable(10, 1);
             },
             //type更改
             refreshTable(type) {
                 this.type = type;
                 this.SetDataList(this.data, type);
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
             },
             //切换展示表格数据
@@ -149,7 +147,7 @@
             //设置分页所需要数据
             SetDataList(data) {
                 this.data = data;
-                this.ALLdata = [];
+                this.allData = [];
                 console.log(data);
                 let i = 1;
                 this.data.forEach(item => {
@@ -162,7 +160,7 @@
                         tableData.latitude = item.latitude;//纬度
                         tableData.longitude = item.longitude;//经度
                        // tableData.pianQu = item.pianQu;//片区
-                        this.ALLdata.push(tableData);
+                        this.allData.push(tableData);
                     })
 
             },
@@ -191,7 +189,7 @@
             //渲染部分
             switchRender(type) {
                 this.type = type;
-                this.setdata(this.data, this.type);
+
             },
             //分页部分功能
             getPointByType(type) {

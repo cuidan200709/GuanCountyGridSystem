@@ -131,6 +131,7 @@
                 selectRange: function(e) {
                     _this.editEvent({ startDate: e.startDate, endDate: e.endDate });
                 },
+                //鼠标滑过弹窗设置
                 mouseOnDay: function(e) {
                     if(e.events.length > 0) {
                         var content = '';

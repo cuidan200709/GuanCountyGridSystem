@@ -67,8 +67,6 @@
                 //
                 activeNametoc: 'first2',
                 //
-                ALLdata: [],
-                //
                 tableData: [],
                 //
                 HistoryData: [],
@@ -118,8 +116,8 @@
                 this.HistoryData = data;
                 let sudata = data;
                 this.SetDataList(sudata, type)
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
 
             },
@@ -127,14 +125,14 @@
             refreshTable(type) {
                 this.type = type;
                 this.SetDataList(this.data, type);
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
             },
             //设置分页所需要数据
             SetDataList(data, type) {
                 this.data = data;
-                this.ALLdata = [];
+                this.allData = [];
                 let i = 1;
                 if(this.type == '全市'){
                     let dt1 = data;
@@ -149,7 +147,7 @@
                         tableData.latitude = item.latitude;//纬度
                         tableData.longitude = item.longitude;//经度
                         tableData.pianQu = item.pianQu;//片区
-                        this.ALLdata.push(tableData);
+                        this.allData.push(tableData);
                     })
                     //地图传送线
                     bus.$emit('loadCumulative', dt1, 'layer_cgq_voc', 'tVOC_V', 'pointName');
@@ -165,7 +163,7 @@
                         tableData.latitude = item.latitude;//纬度
                         tableData.longitude = item.longitude;//经度
                         tableData.pianQu = item.pianQu;//片区
-                        this.ALLdata.push(tableData);
+                        this.allData.push(tableData);
                     });
                     //地图传送线
                     bus.$emit('loadCumulative', dt1, 'layer_cgq_voc', 'tVOC_V', 'pointName');
@@ -195,7 +193,7 @@
             //渲染部分
             switchRender(type) {
                 this.type = type;
-                this.setdata(this.data, this.type);
+                ///
             },
             //数据筛选
             getPointByType(type) {

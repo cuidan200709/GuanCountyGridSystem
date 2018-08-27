@@ -165,8 +165,8 @@
                 let sudata = data;
                 this.styresdata = sudata;
                 this.SetDataList(sudata)
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
             },
             //排序
@@ -407,7 +407,7 @@
             //设置分页所需要数据
             SetDataList(data) {
                 this.data = this.filterTimeConversion(this.getPointByType(this.type, data));
-                this.ALLdata = [];
+                this.allData = [];
                 let i = 1;
                 this.data.forEach(item => {
                     const tableData = {};
@@ -418,13 +418,13 @@
                     tableData.latitude = item.Latitude;//纬度
                     tableData.longitude = item.Longitude;//经度
                     tableData.Grid = item.Area ? item.Area : '----';//网格
-                    this.ALLdata.push(tableData);
+                    this.allData.push(tableData);
                 })
             },
             //搜索过滤数据
             filterTimeConversion(data) {
                 const t = this;
-                this.ALLdata = [];
+                this.allData = [];
                 let rtValue = [];
                 let dt = data;
                 if (dt) {

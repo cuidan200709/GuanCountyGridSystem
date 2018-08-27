@@ -229,8 +229,8 @@
                 //console.log(data.ExtraData)
                 let sudata = data;
                 this.SetDataList(sudata)
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
                 //地图传送线
                 bus.$emit('loadCumulative', sudata, 'layer_yj','','companyname');
@@ -394,7 +394,7 @@
             //设置分页所需要数据
             SetDataList(data) {
                 this.data = this.filterTimeConversion(this.getPointByType(data));
-                this.ALLdata = [];
+                this.allData = [];
                 let i = 1;
                 this.data.forEach(item => {
                     const tableData = {};
@@ -406,7 +406,7 @@
                     tableData.WanggeName = item.threeGridName ? item.threeGridName : '----';//网格名称item.WanggeName
                     tableData.latitude = item.latitude;//纬度
                     tableData.longitude = item.longitude;//经度
-                    this.ALLdata.push(tableData);
+                    this.allData.push(tableData);
                 })
             },
             //数据
@@ -421,7 +421,7 @@
             //搜索过滤数据
             filterTimeConversion(data) {
                 const t = this;
-                this.ALLdata = [];
+                this.allData = [];
                 let rtValue = [];
                 let dt = data;
                 if (dt) {
