@@ -126,7 +126,7 @@ const apilangfangTDK = {
     AddOperatorInfo: apiconfig[icode].devn + '/api/Operator/AddOperatorInfo',//添加运维记录
     DeleteOperatorInfo: apiconfig[icode].devn + '/api/Operator/DeleteOperatorInfo',//删除运维记录
     UpdateOperatorInfo: apiconfig[icode].devn + '/api/Operator/UpdateOperatorInfo',//编辑运维记录
-    GetAssessment: apiconfig[icode].devn + '/api/Town/GetAssessment?',//乡镇考核
+    GetAssessment: apiconfig[icode].devn + '/api/Town/GetAssessment?',//乡镇月考核(固安县)
     GetMonitoringRank: apiconfig[icode].devn + '/api/Monitoring/GetMonitoringRank?',//国省控点排名
     GetDustRank: apiconfig[icode].devn + '/api/Dust/GetDustRank?',//工地扬尘排名
     GetSixParamDayRank: apiconfig[icode].devn + '/api/SixParamAir/GetSixParamDayRank?',//六参数排名

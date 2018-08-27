@@ -36,7 +36,7 @@
                         <div class="float001">
                             <el-radio-group v-model="TownshipScreeningName" @change='clickChangeData'>
                                 <el-radio-button label="全市"></el-radio-button>
-                                <el-radio-button label="区县"></el-radio-button>
+                                <el-radio-button label="中部县区组"></el-radio-button>
                                 <el-radio-button label="固安"></el-radio-button>
                             </el-radio-group>
                         </div>
@@ -116,80 +116,7 @@
                             <!--<div class="genduo"  @click="GetAssessment">更多</div>-->
                         </div>
                     </div>
-                    <div class="shituquxian" v-show="TownshipScreeningName=='区县'?true:false">
-                        <div class="kass">
-	                        <div class="wbiaoti">
-	                        	<i class="el-icon-caret-right"></i>
-	                            <a>北部县区</a>
-	                            <div class="legend">
-	                            	<span class="circleRed"></span>连续进入倒排第三
-                    				<span class="circleOrange"></span>单次进入倒排第三
-	                            </div>
-	                        </div>
-	                    </div>
-                        <div class="tubiao001">
-                            <el-table
-                                    :data="NorTableData"
-                                    style="width: 100%">
-                                <el-table-column
-                                        prop="Range"
-                                        label="倒排"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="Name"
-                                        label="乡镇"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="Com_Index"
-                                        label="综合指数"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="Waring_Num"
-                                        label="累计进入倒排第三次数"
-                                >
-                                </el-table-column>
-                                <el-table-column align="center" label="预警状态" width="">
-								    <template scope="scope">
-								      <span v-if="scope.row.Waring_Num>'1'" class="circleRed"></span>
-								      <span v-if="scope.row.Waring_Num=='1'" class="circleOrange"></span>
-								    </template>
-								</el-table-column>
-                                <el-table-column
-							      	label="操作"
-							      	width="100">
-							      	<template scope="scope">
-							      		<el-popover
-							      			:disabled="!scope.row.Waring_Num"
-											placement="right"
-											width="100%"
-											trigger="click">
-											<el-table :data="gridData">
-											    <el-table-column width="150" property="Name" label="乡镇"></el-table-column>
-											    <el-table-column width="100" property="Rank_Num" label="倒排详情"></el-table-column>
-											    <el-table-column width="300" property="Com_Index" label="综合指数"></el-table-column>
-											</el-table>
-											<el-button @click="handleClick(scope.row)" :class="{hasColor:!scope.row.Waring_Num}" type="text" size="small" slot="reference">详情</el-button>
-										</el-popover>
-			      					</template>
-								</el-table-column>
-                            </el-table>
-                            <!--分页-->
-	                        <div class="block">
-	                            <el-pagination
-									background
-									@size-change=""
-                                   	@current-change="handleCurrentChangeNor"
-                                  	:current-page="currentPage"
-                                   	:page-size="pagesize"
-                                   	layout="total, prev, pager, next, jumper"
-                                   	:total="totalCountNor">
-	                            </el-pagination>
-	                        </div>
-                            <!--<div class="genduo">更多</div>-->
-                        </div>
+                    <div class="shituquxian" v-show="TownshipScreeningName=='中部县区组'?true:false">
                     	<div class="kass">
 	                        <div class="wbiaoti">
 	                        	<i class="el-icon-caret-right"></i>
@@ -259,10 +186,12 @@
 	                        </div>
                             <!--<div class="genduo">更多</div>-->
                         </div>
+                    </div>
+                     <div class="shituquxian" v-show="TownshipScreeningName=='固安'?true:false">
                     	<div class="kass">
 	                        <div class="wbiaoti">
 	                        	<i class="el-icon-caret-right"></i>
-	                            <a>南部县区</a>
+	                            <a>固安县</a>
 	                        </div>
 	                    </div>
                         <div class="tubiao001">
@@ -314,7 +243,7 @@
 			      					</template>
 								</el-table-column>
                             </el-table>
-                             <!--分页-->
+                            <!--分页-->
 	                        <div class="block">
 	                            <el-pagination
 									background
@@ -523,7 +452,8 @@
                 MidTableData:[],//中部县区列表数据
                 //南部县区
                 SouthData:[],
-                SouTableData:[],//南部县区列表数据
+                SouTableData:[],//南部县区列表数据，
+                area:''
             }
         },
         created() {
@@ -537,19 +467,23 @@
         	GetAssessment(){
         		switch (this.TownshipScreeningName){
         			case '全市':
-        				this.isQuarter = true;
+        				this.area = '';
         			break;
-        			case '区县':
-        				this.isQuarter = false;
+        			case '中部县区组':
+        				this.area = '中';
+        			break;
+        			case '固安':
+        				this.area = '固';
         			break;
         			default:
         			break;
         		}
         		let t = this;
         		let Time = $('.el-input__inner').val();
-        		let isQuarter = this.isQuarter;
+        		let isQuarter = true;
         		t.WholeCityData = [];
-        		api.GetAssessment(Time,isQuarter).then(res=>{
+        		let area = this.area;
+        		api.GetAssessment(Time,area,isQuarter).then(res=>{
         			let i = 1;
         			if(res&&isQuarter){
         				let allData = res.data.Data;
@@ -566,7 +500,8 @@
         				})
         			}
         			this.setPageTable(10, 1);
-        			if(res&&!isQuarter){
+        			
+        			if(res&&isQuarter){
         				let allData = res.data.Data;
         				t.NorthData = [];
 	           			t.MiddleData = [];
@@ -577,9 +512,6 @@
 	           			let i = 1;
 	           			let j = 1;
 	           			let k = 1;
-//      				this.totalCount = allData.length;
-//                  	this.totalCounts = allData.length;
-//						console.log(allData)
         				allData.forEach(item=>{
         					if(item.Region == '北部县区'){
 								NData.push(item)
@@ -587,7 +519,7 @@
            					if(item.Region == '中部县区'){
 								MData.push(item)
            					}
-           					if(item.Region == '南部县区'){
+           					if(item.Region == '固安县'){
 								SData.push(item)
            					}
 //	           				item.group == '市区组'&&t.shiQuData.push(item);

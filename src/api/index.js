@@ -912,8 +912,8 @@ export default {
         )
     },
     //乡镇考核数据
-    GetAssessment(Time,isQuarter) {
-        return axios.get(GetAssessmentResource+'Time='+Time + '&isQuarter=' + isQuarter, {}
+    GetAssessment(Time,area,isQuarter) {
+        return axios.get(GetAssessmentResource+'Time='+Time+ '&area=' + area + '&isQuarter=' + isQuarter, {}
         )
     },
     //乡镇区县列表
