@@ -237,21 +237,32 @@
 						    </el-radio-group>
 					  	</div>
 					  	 <el-table
-					      :data="tableData"
+					      :data="CityTableData"
 					      style="width: 100%">
 					      <el-table-column
-					        prop="date"
+					        prop="Name"
 					        label="乡镇">
 					      </el-table-column>
 					      <el-table-column
-					        prop="name"
+					        prop="Com_Index"
 					        label="综合指数">
 					      </el-table-column>
 					      <el-table-column
-					        prop="address"
+					        prop="Waring_Num"
 					        label="月倒排">
 					      </el-table-column>
 					    </el-table>
+					    <div class="block">
+                            <el-pagination
+									background
+									@size-change="handleSizeChange"
+                                   @current-change="handleCurrentChange"
+                                   :current-page="currentPage"
+                                   :page-size="pagesize"
+                                   layout="total, prev, pager, next, jumper"
+                                   :total="totalCount">
+                            </el-pagination>
+                        </div>
                         <!--<el-tabs v-model="activeName_a" @tab-click="">
                             <el-tab-pane label="月度累计" name="first_a">
                                 <div class="qxtable" style="margin-top: 10px;height:22px">
@@ -707,7 +718,7 @@
                 //暂时无用
                 currentRow: null,
                 //
-                pagesize: 5,
+                pagesize: 10,
                 //
                 currentPage: 1,
                 //
@@ -917,23 +928,9 @@
 				year:'2018',
 				//乡镇月考核
 				CountySelectVal:'全市',
-				tableData: [{
-		            date: '2016-05-02',
-		            name: '王小虎',
-		            address: '上海市普陀区金沙江路 1518 弄'
-		          }, {
-		            date: '2016-05-04',
-		            name: '王小虎',
-		            address: '上海市普陀区金沙江路 1517 弄'
-		          }, {
-		            date: '2016-05-01',
-		            name: '王小虎',
-		            address: '上海市普陀区金沙江路 1519 弄'
-		          }, {
-		            date: '2016-05-03',
-		            name: '王小虎',
-		            address: '上海市普陀区金沙江路 1516 弄'
-		          }]
+		        area:'',
+		        WholeCityData:[],
+		        CityTableData:[]
             };
         },
         created() {
@@ -1013,8 +1010,61 @@
         methods: {
             //获取乡镇月考核数据
 			GetCountyCheckData(){
-				
+				switch (this.CountySelectVal){
+        			case '全市':
+        				this.area = '';
+        			break;
+        			case '中部县区组':
+        				this.area = '中';
+        			break;
+        			case '固安':
+        				this.area = '固';
+        			break;
+        			default:
+        			break;
+        		}
+        		let t = this;
+        		let Time = '';
+        		let isQuarter = true;
+        		t.WholeCityData = [];
+        		let area = this.area;
+        		api.GetAssessment(Time,area,isQuarter).then(res=>{
+        			let i = 1;
+        			if(res&&isQuarter){
+        				let allData = res.data.Data;
+        				this.totalCount = allData.length;
+        				allData.forEach(item=>{
+        					let table = {};
+        					table.Range = i++;
+        					table.Com_Index = item.Com_Index;
+   							table.list = item.list;
+   							table.Name = item.Name;
+   							table.Waring_Num = item.Waring_Num;
+   							t.WholeCityData.push(table);
+        				})
+        			}
+        			this.setPageTable(10, 1);
+        		})
 			},
+			 //每页显示数据量变更
+            handleSizeChange(val) {
+            },
+            //点击页码换页
+            handleCurrentChange(val) {
+                this.setPageTable(10, val);
+            },
+			 //分页数据
+            setPageTable(pageSize, pageNum) {
+                let i = 1;
+                let rtValue = [];
+                let startNum = pageSize * (pageNum - 1);
+                for (let i = 0; i < pageSize; i++) {
+                    if ((startNum + i + 1) > this.WholeCityData.length)
+                        break;
+                    rtValue.push(this.WholeCityData[startNum + i]);
+                }
+                this.CityTableData = rtValue;
+            },
             backroundlicolor(shinum,shengnum){
                 let kcolor = ''
                 if(shinum > shengnum){
@@ -2119,8 +2169,8 @@
             },
             // 案件处理率同比
              ElectricityConsumption() {
-                let seriesData = this.Diandata.seriesData;
-                let xAxisData = this.Diandata.xAxisData;
+//              let seriesData = this.Diandata.seriesData;
+//              let xAxisData = this.Diandata.xAxisData;
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('CaseDeal'));
 				let option = {
@@ -2189,11 +2239,11 @@
             },
             // 案件类型占比
             DataConsumption(data) {
-                let value = data.data;
-                let yvalue = data.ydata;
-                let min = data.ymin;
-                let max = data.ymax;
-                let vd = data.vd;
+//              let value = data.data;
+//              let yvalue = data.ydata;
+//              let min = data.ymin;
+//              let max = data.ymax;
+//              let vd = data.vd;
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('CaseType'));
                 // 指定图表的配置项和数据
