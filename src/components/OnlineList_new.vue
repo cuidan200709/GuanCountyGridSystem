@@ -84,8 +84,6 @@
                 //
                 labelType: 'PM2.5',
                 //
-                ALLdata: [],
-                //
                 tableData: [],
                 //
                 allData: [],
@@ -151,8 +149,8 @@
                     let data = res.data.Data;
                     //
                     this.SetDataList(data, this.type);
-                    this.totalCount = this.ALLdata.length;
-                    this.allData = this.ALLdata;
+                    this.totalCount = this.allData.length;
+                    //
                     this.setPageTable(10, 1);
                 })
 
@@ -217,7 +215,7 @@
                 //console.log(data)
                 let ptype = type;
                 this.data = data;
-                this.ALLdata = [];
+                this.allData = [];
                 let i = 1;
                 let dt1 = this.getPointByType(this.ptType);
                 let dt2 = dt1.sort(this.compare(this.getPollution(type)));
@@ -232,7 +230,7 @@
                     tableData.Grid = item.gridname || item.gridName ||item.firstgridname|| '----';//网格
                     tableData.aqi = item[this.getPollution(ptype)] || '--';//数值
                    // console.log(this.getPollution(ptype))
-                    this.ALLdata.push(tableData);
+                    this.allData.push(tableData);
                 })
             },
             //每页显示数据量变更
@@ -279,8 +277,8 @@
                     data = typeof data === 'string' ? JSON.parse(data) : data;
                     //
                     this.SetDataList(data, this.type)
-                    this.totalCount = this.ALLdata.length;
-                    this.allData = this.ALLdata;
+                    this.totalCount = this.allData.length;
+                   //
                     this.setPageTable(10, 1);
                     //
                     bus.$emit('loadCumulative', data, 'layer_gd', t.type,'name');
@@ -291,8 +289,8 @@
                 this.type = type;
                 this.labelType = this.Tochangelabeltype(type);
                 this.SetDataList(this.data, type);
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
             },
             //转列表显示值

@@ -207,6 +207,9 @@
             console.log(dav);
             this.clokue = dav;
             this.wachiVisible = true;
+            if(dav === ''){
+
+            }
             //阻止冒泡
             event.stopPropagation();
         },

@@ -23,7 +23,7 @@
       </li>
     </ol>
     <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*11+6 : 38*4+6) : (kongqi ? 38*10+6 : 38*3+6))+'px'">
-      <li style="width: 136px;" v-for="(item,index) in ZHtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OVDClick">
+      <li style="width: 136px;" v-for="(item,index) in ZHtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OJKClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
       </li>
@@ -277,14 +277,15 @@
         let parentIndex = childElement.getAttribute('data-parent-index');
         let targets = this.$data.JCtargets;
         let item = targets[index];
-
+        //console.log(`数量:${item.childs.length}`);
+        //
         let hasChecked = false;
         item.childs.length && (item.checked = !item.checked);
         imgElement.getAttribute('src') !== item.src ? (imgElement.src = item.src, childElement.style.backgroundColor = 'rgba(0, 0, 0, 0.6)') : (imgElement.src = item.checkedSrc, childElement.style.backgroundColor = '#2494F2', hasChecked = true);
-
+        //
         let hasParentChecked = this.hasCheckedChildElement('KQ') || false;
         this.setParentStates(parentIndex, hasParentChecked, parentName);
-
+        //
         bus.$emit('targetMainLayer', type, hasChecked);
         this.rightPanel(hasChecked,type);
       },
@@ -298,19 +299,38 @@
         let type = childElement.getAttribute('data-type');
         let parentName = childElement.getAttribute('data-parent');
         let parentIndex = childElement.getAttribute('data-parent-index');
-        let targets = this.$data.VDtargets;
+        let targets = this.$data.JKtargets;
         let item = targets[index];
         let hasChecked = false;
         let from = item.from;
-        if (parseInt(index) === 0 || parseInt(index) === 1) {
-              t.aclink = !t.aclink;
-        }
+        // console.log(`数量:${item.childs.length}`);
+        //item.childs.length && (item.checked = !item.checked);
         imgElement.getAttribute('src') !== item.src ? (imgElement.src = item.src, childElement.style.backgroundColor = 'rgba(0, 0, 0, 0.6)') : (imgElement.src = item.checkedSrc, childElement.style.backgroundColor = '#2494F2', hasChecked = true);
         let hasParentChecked = this.hasCheckedChildElement('SP') || false;
         this.setParentStates(parentIndex, hasParentChecked, parentName);
         bus.$emit('targetMainLayer', type, hasChecked,from);
         this.rightPanel(hasChecked,type);
       },
+        //指标切换点击事件
+        OJKClick(e){
+            let t = this;
+            let childElement = e.currentTarget;
+            let imgElement = childElement.querySelector('img');
+            let index = childElement.getAttribute('data-index');
+            let type = childElement.getAttribute('data-type');
+            let parentName = childElement.getAttribute('data-parent');
+            let parentIndex = childElement.getAttribute('data-parent-index');
+            let targets = this.$data.ZHtargets;
+            let item = targets[index];
+            let hasChecked = false;
+            console.log(item);
+            //item.childs.length && (item.checked = !item.checked);
+            imgElement.getAttribute('src') !== item.src ? (imgElement.src = item.src, childElement.style.backgroundColor = 'rgba(0, 0, 0, 0.6)') : (imgElement.src = item.checkedSrc, childElement.style.backgroundColor = '#2494F2', hasChecked = true);
+            let hasParentChecked = this.hasCheckedChildElement('JK') || false;
+            this.setParentStates(parentIndex, hasParentChecked, parentName);
+            bus.$emit('targetMainLayer', type, hasChecked);
+            this.rightPanel(hasChecked,type);
+        },
         //删除指定对象
         removeObjWithArr(_arr, _obj) {
             let length = _arr.length;
@@ -333,6 +353,7 @@
         },
       //设置父节点状态
       setParentStates(index, hasChecked, name){
+          console.log('名称：'+ name)
         let item = this.$data.targets[index];
         let element = document.querySelectorAll('ul>li[data-type="' + name + '"]');
         if (element && element.length) {
@@ -355,8 +376,9 @@
       },
       //判断父节点是否选中
       hasCheckedChildElement(type){
-        let childTarget = (type.toUpperCase() === 'KQ' ? this.$data.JCtargets : this.$data.JKtargets) || [];
-        let childElement = (type.toUpperCase() === 'KQ' ? $('ol[class="kqworp"] li') : $('ol[class="vdworp"] li')) || [];
+        let childTarget = (type.toUpperCase() === 'KQ' ? this.$data.JCtargets : ( type.toUpperCase()==='SP'? this.$data.JKtargets :  this.$data.ZHtargets)) || [];
+        console.log(childTarget);
+        let childElement = (type.toUpperCase() === 'KQ' ? $('ol[class="kqworp"] li') : (type.toUpperCase()==='SP' ? $('ol[class="vdworp"] li') : $('ol[class="jkworp"] li'))) || [];
         for (let i = 0, length = childElement.length; i < length; i++) {
           let childItem = childTarget[i];
           let elementItem = childElement[i];
@@ -368,6 +390,7 @@
         return false;
       },
       rightPanel(hasChecked,type){
+          console.log('类型：' + type)
         ///动态添加右侧菜单
         if (hasChecked && type != 'layer_lk' && type != 'layer_zt' && type != 'layer_hw' && type != 'layer_jy') {
           //添加对应右侧菜单
@@ -382,7 +405,7 @@
               });
               bus.$emit('menuative', '国省');
               break;
-            case 'layer_cgq_lcs':
+            case 'layer_lcs':
               this.$store.state.menuData.unshift({
                 title: '六参',
                 title_tx: '六参数',
@@ -392,7 +415,7 @@
               });
               bus.$emit('menuative', '六参');
               break;
-            case 'layer_cgq_voc':
+            case 'layer_tvoc':
               this.$store.state.menuData.unshift({
                 title: 'VOC',
                 title_tx: 'VOC监测',

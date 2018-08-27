@@ -162,8 +162,8 @@
                 this.Aalllist = data;
                 let sudata = data;
                 this.SetDataList(sudata);
-                this.totalCount = this.ALLdata.length;
-                this.allData = this.ALLdata;
+                this.totalCount = this.allData.length;
+                //
                 this.setPageTable(10, 1);
             },
             //排序
@@ -405,7 +405,7 @@
             SetDataList(data) {
                 // console.log(data)
                 this.data = this.filterTimeConversion(this.getPointByType(this.type, data));
-                this.ALLdata = [];
+                this.allData = [];
                 let i = 1;
                 this.data.forEach(item => {
                     const tableData = {};
@@ -416,13 +416,13 @@
                     tableData.latitude = item.Latitude;//纬度
                     tableData.longitude = item.Longitude;//经度
                     tableData.Grid = item.Area ? item.Area : '----';//网格
-                    this.ALLdata.push(tableData);
+                    this.allData.push(tableData);
                 })
             },
             //搜索过滤数据
             filterTimeConversion(data) {
                 const t = this;
-                this.ALLdata = [];
+                this.allData = [];
                 let rtValue = [];
                 let dt = data;
                 if (dt) {
