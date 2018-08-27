@@ -1116,7 +1116,9 @@
               displayName = 'name';
               charUrl = RequestHandle.getRequestUrl('TOWNCHART');
               fieldName = ckItem.fieldName;
-              pms = {StationId: attributes.deviceid || attributes.id, type: fieldName};
+              //
+              pms ={name:encodeURI(attributes.name), Type: fieldName};
+              //pms = {StationId: attributes.deviceid || attributes.id, type: fieldName};
               break;
             case 'LAYER_QM':
               charUrl = RequestHandle.getRequestUrl('ALLREPORTCHAR');

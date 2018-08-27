@@ -29,7 +29,7 @@ export default {
     let a = 1;
     console.log(process.env.API_ROOT);
     let apiConfig = this.release;
-    (process.env.API_ROOT === 'DEV' || process.env.API_ROOT === 'TEST') && (apiConfig = this.release);
+    (process.env.API_ROOT === 'DEV' || process.env.API_ROOT === 'TEST') && (apiConfig = this.development);
     let url = undefined;
     let cf = undefined;
     switch (type.toUpperCase()) {

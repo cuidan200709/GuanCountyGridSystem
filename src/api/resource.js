@@ -24,8 +24,8 @@ console.log(process.env.API_ROOT);
 * icode === 0为测试  1为正式
 * */
 if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
-    icode = 1;
-    //icode = 0;
+    //icode = 1;
+    icode = 0;
 }else {
     icode = 1;
 };
