@@ -34,6 +34,6 @@
 <style lang="scss" scoped>
 .management{
 	width: 100%;
-	height: 100%;
+    height: calc(100% - 64px);
 }
 </style>
