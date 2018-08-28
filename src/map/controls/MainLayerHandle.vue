@@ -196,7 +196,7 @@
             name: 'layer_cy',
             parentName: 'layer_jc',
             value: '餐饮油烟监测',
-            src: 'static/imgs/main/cyyy_c.png',
+            src: 'static/imgs/main/cyyy.png',
             checkedSrc: 'static/imgs/main/cyyy_c.png',
             checked:false,
             childs: []
@@ -209,7 +209,7 @@
             value: '案件',
             parentName: 'layer_zh',
             parentIndex: '2',
-            src: 'static/imgs/main/anjian_c.png',
+            src: 'static/imgs/main/anjian.png',
             checkedSrc: 'static/imgs/main/anjian_c.png'
           },
           {
@@ -217,7 +217,7 @@
             value: '巡查员',
             parentName: 'layer_zh',
             parentIndex: '2',
-            src: 'static/imgs/main/xuncha_c.png',
+            src: 'static/imgs/main/xuncha.png',
             checkedSrc: 'static/imgs/main/xuncha_c.png'
           }
         ],
@@ -226,7 +226,7 @@
           {
             name: 'layer_sp_slw',
             value: '散乱污企业',
-            parentName: 'layer_sp',
+            parentName: 'layer_jk',
             from:'4',
             parentIndex: '1',
             src: 'static/imgs/mues/video/slw.png',
@@ -235,7 +235,7 @@
           {
             name: 'layer_sp_voc',
             value: 'VOCs企业',
-            parentName: 'layer_sp',
+            parentName: 'layer_jk',
             from:'3',
             parentIndex: '1',
             src: 'static/imgs/mues/video/voc.png',
