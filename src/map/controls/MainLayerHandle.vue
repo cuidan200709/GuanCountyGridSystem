@@ -196,8 +196,8 @@
             name: 'layer_cy',
             parentName: 'layer_jc',
             value: '餐饮油烟监测',
-            src: 'static/imgs/main/m_cx.png',
-            checkedSrc: 'static/imgs/main/cx_c.png',
+            src: 'static/imgs/main/cyyy_c.png',
+            checkedSrc: 'static/imgs/main/cyyy_c.png',
             checked:false,
             childs: []
           },
@@ -209,16 +209,16 @@
             value: '案件',
             parentName: 'layer_zh',
             parentIndex: '2',
-            src: 'static/imgs/main/cg.png',
-            checkedSrc: 'static/imgs/main/cg_c.png'
+            src: 'static/imgs/main/anjian_c.png',
+            checkedSrc: 'static/imgs/main/anjian_c.png'
           },
           {
             name: 'layer_xcy',
             value: '巡查员',
             parentName: 'layer_zh',
             parentIndex: '2',
-            src: 'static/imgs/mues/sixzb/vocw.png',
-            checkedSrc: 'static/imgs/mues/sixzb/vocw_c.png'
+            src: 'static/imgs/main/xuncha_c.png',
+            checkedSrc: 'static/imgs/main/xuncha_c.png'
           }
         ],
         //视频监控

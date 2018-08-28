@@ -4,7 +4,7 @@
             <div class="flyout-wrap">
                 <!---->
                 <ul class="flyout flyout-init">
-                    <li style="z-index: 1000"><a class="fly-btn"><span class=""></span></a></li>
+                    <li style="z-index: 1000"><a class="fly-btn"><span class="icon-btn"></span></a></li>
                     <li style="z-index: 998"><a @click="chuandiclick('WRWDB')" title="污染物对比"><span class="icon-wrwdb"></span></a></li>
                     <li style="z-index: 996"><a @click="chuandiclick('SKJZB')" title="省控点均值比"><span class="icon-sjzb"></span></a></li>
                     <li style="z-index: 994"><a @click="chuandiclick('GDYTJ')" title="固定源统计"><span class="icon-gdytj"></span></a></li>
@@ -38,7 +38,7 @@
         methods:{
             chuandiclick(data){
                let dav = data;
-               console.log(dav);
+               //console.log(dav);
                bus.$emit('navactive',dav);
                 //阻止冒泡
                 return false;
@@ -70,20 +70,45 @@
 
                     li{
                         transition: all 500ms;
+                        cursor: pointer;
                         width: 40px;
                         height: 40px;
                         float: left;
                         margin-left: 15px;
                         border-radius: 10px;
                         list-style: none;
-                        background: #1080cc;
+                        background: #2494F2;
+                        box-shadow: 0 0 10px #1080cc;
                         a{
+                            display: inline-block;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        span{
                             display: inline-block;
                             width: 100%;
                             height: 100%;
                         }
                     }
 
+                    .icon-btn{
+                        background: url("../../static/imgs/revolving/xiangyou.png") no-repeat center;
+                    }
+                    .icon-wrwdb{
+                        background: url("../../static/imgs/revolving/wrduibi.png") no-repeat center;
+                    }
+                    .icon-sjzb{
+                        background: url("../../static/imgs/revolving/biaoge.png") no-repeat center;
+                    }
+                    .icon-gdytj{
+                        background: url("../../static/imgs/revolving/tongji.png") no-repeat center;
+                    }
+                    .icon-xzkqz{
+                        background: url("../../static/imgs/revolving/cxss.png") no-repeat center;
+                    }
+                    .icon-wrrl{
+                        background: url("../../static/imgs/revolving/rili.png") no-repeat center;
+                    }
                 }
             }
         }
