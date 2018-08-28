@@ -397,7 +397,7 @@
   }
   .left-bottom{
     width: 220px;
-    height: 200px;
+    height: 40px;
     position: fixed;
     bottom:18px;
     left: 0;
