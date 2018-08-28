@@ -196,8 +196,8 @@
             name: 'layer_cy',
             parentName: 'layer_jc',
             value: '餐饮油烟监测',
-            src: 'static/imgs/main/m_cx.png',
-            checkedSrc: 'static/imgs/main/cx_c.png',
+            src: 'static/imgs/main/cyyy_c.png',
+            checkedSrc: 'static/imgs/main/cyyy_c.png',
             checked:false,
             childs: []
           },
@@ -209,16 +209,16 @@
             value: '案件',
             parentName: 'layer_zh',
             parentIndex: '2',
-            src: 'static/imgs/main/cg.png',
-            checkedSrc: 'static/imgs/main/cg_c.png'
+            src: 'static/imgs/main/anjian_c.png',
+            checkedSrc: 'static/imgs/main/anjian_c.png'
           },
           {
             name: 'layer_xcy',
             value: '巡查员',
             parentName: 'layer_zh',
             parentIndex: '2',
-            src: 'static/imgs/mues/sixzb/vocw.png',
-            checkedSrc: 'static/imgs/mues/sixzb/vocw_c.png'
+            src: 'static/imgs/main/xuncha_c.png',
+            checkedSrc: 'static/imgs/main/xuncha_c.png'
           }
         ],
         //视频监控
@@ -591,12 +591,13 @@
           margin-right: 5px;
           margin-top: 1px;
           border-radius: 18px;
-          box-shadow: 0 0 5px #1080cc;
+          border: 0.5px solid #fff;
+          box-shadow: 0 0 15px #1080cc;
           span{
             text-align: center;
             font-weight: bold;
             font-size: 16px;
-            color: yellow;
+            color: #fff;
           }
 
           img{
@@ -619,6 +620,9 @@
     top: 38px;
     left: 150px;
     color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #1080cc;
+
   }
   .ACvideo{
       position: fixed;
@@ -634,6 +638,9 @@
     top: 342px;
     left: 150px;
     color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #1080cc;
+
   }
 
   .jkworp {
@@ -641,6 +648,9 @@
     top: 456px;
     left: 150px;
     color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #1080cc;
+
   }
 
   .main-layer-handle {
