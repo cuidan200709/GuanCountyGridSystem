@@ -135,7 +135,7 @@
             //跟新数据后调用功能
             if(this.RightNavData == false){
                // console.log('我现在没有东西了')
-                this.$router.push('/');
+               //  this.$router.push('/');
                 this.isSelect = '统计';
                 this.shengchu();
                 this.StatisticsSwitch = true;
