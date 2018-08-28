@@ -145,7 +145,6 @@
     .header {
         width: 100%;
         height: 56px;
-        border-bottom: 1px solid #fff;
         background: #2494F2;
 
         .logo {
@@ -163,7 +162,7 @@
         }
 
         .bnav {
-            width: 602px;
+            width: 850px;
             float: right;
             height: 56px;
 
@@ -178,7 +177,7 @@
                 list-style: none;
                 line-height: 56px;
                 position: relative;
-                margin-right: 15px;
+                margin-right: 76px;
                 padding: 0 10px;
                 .activehov {
                     transition: all 2s;

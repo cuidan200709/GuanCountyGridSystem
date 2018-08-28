@@ -396,8 +396,8 @@
     overflow-y: auto;
   }
   .left-bottom{
-    width: 420px;
-    height: 40px;
+    width: 220px;
+    height: 200px;
     position: fixed;
     bottom:18px;
     left: 0;
