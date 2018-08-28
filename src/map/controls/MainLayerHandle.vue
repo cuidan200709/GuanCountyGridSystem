@@ -591,12 +591,13 @@
           margin-right: 5px;
           margin-top: 1px;
           border-radius: 18px;
-          box-shadow: 0 0 5px #1080cc;
+          border: 0.5px solid #fff;
+          box-shadow: 0 0 20px #1080cc;
           span{
             text-align: center;
             font-weight: bold;
             font-size: 16px;
-            color: yellow;
+            color: #fff;
           }
 
           img{
@@ -619,6 +620,10 @@
     top: 38px;
     left: 150px;
     color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #1080cc;
+    overflow: hidden;
+    /*border: 0.5px solid #fff;*/
   }
   .ACvideo{
       position: fixed;
@@ -634,6 +639,10 @@
     top: 342px;
     left: 150px;
     color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #1080cc;
+    overflow: hidden;
+    /*border: 0.5px solid #fff;*/
   }
 
   .jkworp {
@@ -641,6 +650,10 @@
     top: 456px;
     left: 150px;
     color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #1080cc;
+    overflow: hidden;
+    /*border: 0.5px solid #fff;*/
   }
 
   .main-layer-handle {
