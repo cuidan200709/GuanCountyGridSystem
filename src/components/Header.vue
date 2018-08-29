@@ -33,19 +33,19 @@
                             <h3>排名</h3>
                             <!--<a href="#/CityRankings">城市排名</a>-->
                             <!--<div class="line"></div>-->
-                            <a href="#/StateControl">国省控排名</a>
+                            <a href="#/StateControl">省控排名</a>
                             <div class="line"></div>
-                            <a href="#/DustRange">工地扬尘排名</a>
+                            <!--<a href="#/DustRange">工地扬尘排名</a>
                             <div class="line"></div>
                             <a href="#/SixParamRange">六参数排名</a>
-                            <div class="line"></div>
+                            <div class="line"></div>-->
                             <a href="#/TvocRange">TVOC排名</a>
                         </div>
 						<div>
                             <h3>考核</h3>
-                            <a href="#/CountyCheck">区县</a>
+                            <a href="#/CountyCheck">区县考核</a>
                             <div class="line"></div>
-                            <a href="#/CityCheck">乡镇</a>
+                            <a href="#/CityCheck">乡镇考核</a>
                         </div>
                         <div style="margin-top: 10px;">
                             <a href="#/TodayData">今日数据</a>
