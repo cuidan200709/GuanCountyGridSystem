@@ -27,6 +27,7 @@ import DustRange from '@/views/DataAnalysis/DustRange'//工地扬尘排名页面
 import SixParamRange from '@/views/DataAnalysis/SixParamRange'//六参数排名页面
 import TvocRange from '@/views/DataAnalysis/TvocRange'//Tvoc排名页面
 import CityRankings from '@/views/DataAnalysis/CityRankings'//城市排名测试页面
+import TodayData from '@/views/DataAnalysis/TodayData'//今日数据页面
 import OfficialReport from '@/views/DataAnalysis/OfficialReport'//官方报告
 //解决缓存以及详情页面
 import ScavengingCached from '@/views/ScavengingCached/index'//不需要缓存集合页面
@@ -189,6 +190,13 @@ export default new Router({
             name: 'CityRankings',
             meta: { keepAlive: false },
             component: CityRankings,
+        },
+         //城市排名
+        {
+            path: '/TodayData',
+            name: 'TodayData',
+            meta: { keepAlive: false },
+            component: TodayData,
         },
         //传感网均值比
         // {

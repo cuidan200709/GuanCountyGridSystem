@@ -47,6 +47,9 @@
                             <div class="line"></div>
                             <a href="#/CityCheck">乡镇</a>
                         </div>
+                        <div style="margin-top: 10px;">
+                            <a href="#/TodayData">今日数据</a>
+                        </div>
                     </div>
                 </li>
 
