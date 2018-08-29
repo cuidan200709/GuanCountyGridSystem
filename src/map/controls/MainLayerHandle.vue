@@ -8,7 +8,7 @@
       </li>
     </ul>
     <ol class="kqworp" v-show="kongqi">
-      <li style="width: 136px;" v-for="(item,index) in JCtargets" :style="'background:'+(item.checked ? '#2494F2' : 'rgba(0, 0, 0, 0.6)')" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OKQClick">
+      <li style="width: 136px;" v-for="(item,index) in JCtargets" v-show="item.visible" :style="'background:'+(item.checked ? '#2494F2' : 'rgba(0, 0, 0, 0.6)')" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OKQClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
         <select v-show="item.checked" title="" @change="targetChanged" :data-index="index" :style="'display:'+ (item.childs.length ? 'line-block' : 'none')">
@@ -16,13 +16,13 @@
         </select>
       </li>
     </ol>
-    <ol class="vdworp" v-show="shiping" :style="'top:'+(kongqi ? 38*9+3 : 38*2+3)+'px'">
+    <ol class="vdworp" v-show="shiping" :style="'top:'+(kongqi ? 38*(mlength+1)+3 : 38*2+3)+'px'">
       <li style="width: 136px;" v-for="(item,index) in JKtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OVDClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
       </li>
     </ol>
-    <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*11+6 : 38*4+6) : (kongqi ? 38*10+6 : 38*3+6))+'px'">
+    <ol class="jkworp" v-show="jiankong" :style="'top:'+(shiping ? (kongqi ? 38*(mlength+3)+6 : 38*4+6) : (kongqi ? 38*(mlength+2)+6 : 38*3+6))+'px'">
       <li style="width: 136px;" v-for="(item,index) in ZHtargets" :data-parent-index="item.parentIndex" :data-parent="item.parentName" :data-index="index" :data-type="item.name" @click="OKQClick">
         <img :src="item.src" title=""/>
         <span>{{item.value}}</span>
@@ -45,6 +45,7 @@
         jiankong:true,
         shiping: true,
         aclink:false,
+        mlength:4,
         defaultType:'LAYER_GS',
         clicksrc:'static/imgs/main/left.png',
         clickchesrc:'static/imgs/main/right.png',
@@ -81,6 +82,7 @@
             src: 'static/imgs/main/gs.png',
             checkedSrc: 'static/imgs/main/gs_c.png',
             checked:false,
+            visible:true,
             displayName: 'pointname',
             childs:[{
               text: 'AQI',
@@ -126,6 +128,7 @@
             src: 'static/imgs/main/cg.png',
             checkedSrc: 'static/imgs/main/cg_c.png',
             checked:false,
+            visible:false,
             childs: [{
               text: 'AQI',
               fieldName: 'aqi'
@@ -156,6 +159,7 @@
             src: 'static/imgs/main/m_cx.png',
             checkedSrc: 'static/imgs/main/cx_c.png',
             checked:false,
+            visible:true,
             childs: []
           },
           {
@@ -165,6 +169,7 @@
             src: 'static/imgs/main/gd.png',
             checkedSrc: 'static/imgs/main/gd_c.png',
             checked:false,
+            visible:false,
             childs:[]
           },
           {
@@ -174,6 +179,7 @@
             src: 'static/imgs/main/qy.png',
             checkedSrc: 'static/imgs/main/qy_c.png',
             checked:false,
+            visible:true,
             childs:[]
           },
           {
@@ -183,6 +189,7 @@
             src: 'static/imgs/main/zt.png',
             checkedSrc: 'static/imgs/main/zt_c.png',
             checked:false,
+            visible:false,
             childs:[]
           },{
             name: 'layer_cgq_voc',
@@ -191,6 +198,7 @@
             src: 'static/imgs/mues/sixzb/vocw.png',
             checkedSrc: 'static/imgs/mues/sixzb/vocw_c.png',
             checked:false,
+            visible:true,
             childs: []
           },{
             name: 'layer_cy',
@@ -199,6 +207,7 @@
             src: 'static/imgs/main/cyyy.png',
             checkedSrc: 'static/imgs/main/cyyy_c.png',
             checked:false,
+            visible:false,
             childs: []
           },
         ],
@@ -266,7 +275,7 @@
         if (parseInt(index) === 0) {
           t.kongqi = !t.kongqi;
           t.getParentStyle(index);
-          mt = t.kongqi ? 38*7+3 : 0;
+          mt = t.kongqi ? 38*(this.mlength - 1)+3 : 0;
         }
         else if (parseInt(index) === 1) {
           t.shiping = !t.shiping;
@@ -607,7 +616,7 @@
           }
         }
         li:nth-child(1){
-          margin-bottom:266px;
+          margin-bottom:114px;
         }
         li:nth-child(2){
           margin-bottom: 38px;
