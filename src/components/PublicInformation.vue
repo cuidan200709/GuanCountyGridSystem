@@ -5,7 +5,7 @@
   		<li>
   			<img src="../assets/img/icon_yj.png"/>
   		</li>
-  		<!--<li><i>|</i>预警级别：{{warningLevel}}</li>-->
+  		<li style="padding-right: 10px;">预警级别：{{warningLevel}}</li>
   		<li class="content">
   			<!--<i>|</i>-->
   			<marquee direction=left>{{content}}</marquee>
@@ -77,13 +77,14 @@ export default {
    		li{
    			list-style: none;
    			float: left;
-   			margin-right: 20px;
+   			/*margin-right: 20px;*/
    			color: red;
+   			font-size: 14px;
    			i{
    				float: left;
    				font-style: normal;
    				color: #005BEA;
-   				padding-right: 10px;
+   				/*padding-right: 10px;*/
    			}
    		}
    		.content{
