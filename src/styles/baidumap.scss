@@ -9,10 +9,6 @@
 
 }
 
-.BMapLib_SearchInfoWindow {
-  border-radius: 2px;
-}
-
 .BMapLib_SearchInfoWindow .BMapLib_bubble_tools div {
   background-color: rgba(0, 0, 0, 0);
 }
@@ -24,7 +20,7 @@
 
 .BMapLib_SearchInfoWindow {
   border: none !important;
-  box-shadow: 0 0 10px #666;
+  box-shadow: 0 0 20px #1080cc;
   border-radius: 6px;
 }
 
@@ -32,7 +28,7 @@
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   overflow: hidden;
-  //position: relative;
+
 }
 
 .BMapLib_SearchInfoWindow .BMapLib_sendToPhone {
@@ -67,13 +63,6 @@
     overflow: inherit !important;
     position: relative;
   }
-  .BMapLib_SearchInfoWindow {
-    border: none !important;
-    box-shadow: 0 0 10px #666;
-    border-radius: 2px !important;
-  }
+
 }
-//
-//.BMap_noprint{
-//  position: static!important;
-//}
+
