@@ -100,6 +100,7 @@
         width: 100%;
         height: 100%;
         font-size: 14px;
+        box-shadow: 0px 0px 20px #1080cc;
         .lein_1 {
             margin-left: 4px;
             float: left;

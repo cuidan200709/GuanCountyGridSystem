@@ -1,11 +1,15 @@
 <template>
     <div class="login">
         <!---->
-        <img src="../assets/img/logo.png" alt="" style="position: absolute;top: 40px;left: 40px;">
+        <!--<img src="../assets/img/logo.png" alt="" style="position: absolute;top: 40px;left: 40px;">-->
         <!--登录页面-->
         <div class="form">
             <div class="input">
-                <h1 style="text-align: left;padding-left: 80px;margin-top: 45px">欢迎登录</h1>
+                <div class="warp-dl-tu">
+                    <img src="../assets/img/logo1.png" alt="">
+                    <p>固安县环境保护网格化管理平台</p>
+                </div>
+                <!--<h1 style="text-align: left;padding-left: 80px;margin-top: 45px">欢迎登录</h1>-->
                 <div class="user">
                     <strong>用户名</strong><input class="us" v-model="userName" type="text" placeholder="请输入用户名">
                 </div>
@@ -214,6 +218,23 @@
             background: rgba(0, 0, 0, 0.5);
             .input {
                 color: #fff;
+                .warp-dl-tu{
+                    width: 100%;
+                    height: 90px;
+                    img {
+                        display: block;
+                        width: 60px;
+                        margin:25px 0 0 40px;
+                        float: left;
+                    }
+                    p{
+                        float: left;
+                        font-size: 24px;
+                        line-height: 90px;
+                        padding-top: 10px;
+                        padding-left: 10px;
+                    }
+                }
                 input {
                     width: 240px;
                     height: 28px;

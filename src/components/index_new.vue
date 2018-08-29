@@ -346,7 +346,7 @@
             right: 0;
             z-index: 9;
             transition: all 500ms;
-            box-shadow: 0px 5px 15px #333333;
+            box-shadow: 0px 0px 25px #1080cc;
             .gensui {
 
                 .line_top {

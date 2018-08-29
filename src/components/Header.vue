@@ -148,243 +148,247 @@
     .header {
         width: 100%;
         height: 56px;
-        border-bottom: 1px solid #fff;
-        background: #2494F2;
-
-        .logo {
-            float: left;
-            width: auto;
-
-            img {
-                width: 40px;
-                height: 40px;
-                margin-top: -9px;
-                margin-left: 20px;
-                margin-right: 2px;
-            }
-
-        }
-
-        .bnav {
-            width: 602px;
-            float: right;
+        .navbox{
+            width: 100%;
             height: 56px;
-
-            h3:hover {
-                cursor: alias;
-            }
-
-            li {
+            background: #2494F2;
+            border-bottom: 1px solid #fff;
+            box-shadow: 0px 0px 20px #1080cc;
+            .logo {
                 float: left;
                 width: auto;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    margin-top: -9px;
+                    margin-left: 20px;
+                    margin-right: 2px;
+                }
+
+            }
+
+            .bnav {
+                width: 602px;
+                float: right;
                 height: 56px;
-                list-style: none;
-                line-height: 56px;
-                position: relative;
-                margin-right: 15px;
-                padding: 0 10px;
-                .activehov {
-                    transition: all 2s;
+
+                h3:hover {
+                    cursor: alias;
                 }
 
-                .activehov:hover {
-                    transform: rotate(3600deg);
-                }
+                li {
+                    float: left;
+                    width: auto;
+                    height: 56px;
+                    list-style: none;
+                    line-height: 56px;
+                    position: relative;
+                    margin-right: 15px;
+                    padding: 0 10px;
+                    .activehov {
+                        transition: all 2s;
+                    }
 
-                p {
-                    margin: 0;
-                }
+                    .activehov:hover {
+                        transform: rotate(3600deg);
+                    }
 
-                i {
-                    color: #fff;
-                    padding: 0 15px;
-                }
-
-                :active {
-                    color: #0070CE;
-                }
-
-                a {
-                    color: #dee9f5;
-                    padding: 0 20px;
-                    font-size: 16px;
-                    font-family: '微软雅黑';
-                    cursor: pointer;
+                    p {
+                        margin: 0;
+                    }
 
                     i {
-                        display: inline-block;
-                        width: 9px;
-                        height: 6px;
-                        margin-left: 2px;
-                        background: url("../assets/img/icon_sanjiao.png") no-repeat;
+                        color: #fff;
+                        padding: 0 15px;
                     }
 
-                }
-                :hover {
-                    text-decoration: none;
-                }
-
-                .line {
-                    height: 10px;
-                    width: 1px;
-                    background: #DDDDDD;
-                    margin: 0 13px;
-                    display: inline-block;
-                }
-
-                .same {
-                    z-index: 100;
-                    display: none;
-                    background: #fff;
-                    box-shadow: 0 0 5px #ccc;
-                    //border: 1px solid #ccc;
-                    border-radius: 0 0 4px 4px;
-                    padding: 4px 20px 20px 20px;
-                    text-align: left;
-                    line-height: 20px;
-
-                    div {
-                        text-align: left;
-                        padding: 0;
-                    }
-
-                    a {
-                        color: #666;
-                        font-size: 14px;
-                        padding: 0;
-                        font-family: "Microsoft YaHei";
-                        cursor: pointer;
-                        font-weight: normal;
-                    }
-
-                    h3 {
-                        margin: 16px 0 8px 0;
-                        color: #333333;
-                        font-size: 14px;
-                        font-weight: bold;
-                    }
-
-                    :hover:not(h3) {
+                    :active {
                         color: #0070CE;
                     }
 
-                }
-                .Twoitem {
-                    position: absolute;
-                    top: 56px;
-                    left: 0;
-                    width: 126px;
-                }
-
-                .Threeitem {
-                    position: absolute;
-                    top: 56px;
-                    left: 0;
-                    width: 277px;
-                }
-
-                .Fouritem {
-                    text-align: left;
-                    display: none;
-                    z-index: 100;
-                    width: 126px;
-                    position: absolute;
-                    top: 56px;
-                    left: 0;
-                    background: #fff;
-                    line-height: 30px;
-                    box-shadow: 0 0 5px #ccc;
-                    padding: 10px 20px 10px;
-
                     a {
-                        padding-left: 10px;
-                        color: #666;
-                        font-size: 14px;
-                        font-family: "Microsoft YaHei";
+                        color: #dee9f5;
+                        padding: 0 20px;
+                        font-size: 16px;
+                        font-family: '微软雅黑';
                         cursor: pointer;
 
-                    }
-
-                    :hover {
-                        color: #0070CE;
-                    }
-
-                }
-                .Fiveitem {
-                    width: 460px;
-                    position: absolute;
-                    top: 56px;
-                    right: 0px;
-                    box-shadow: 0 0 5px #ccc;
-                }
-
-                .Sixitem {
-                    display: none;
-                    z-index: 100;
-                    width: 100px;
-                    position: absolute;
-                    top: 56px;
-                    right: 0;
-                    background: #fff;
-                    line-height: 25px;
-                    padding: 10px 0;
-                    box-shadow: 0 0 5px #ccc;
-
-                    a {
-                        color: #666;
-                        font-size: 12px;
-                        padding: 0 10px;
-                        font-family: "Microsoft YaHei";
-                        margin-left: -17px;
-                        cursor: pointer;
-
-                        img {
-                            vertical-align: middle;
-                            padding-right: 6px;
-                            padding-left: 18px;
-                            margin-top: -2px;
+                        i {
+                            display: inline-block;
+                            width: 9px;
+                            height: 6px;
+                            margin-left: 2px;
+                            background: url("../assets/img/icon_sanjiao.png") no-repeat;
                         }
 
                     }
                     :hover {
-                        cursor: pointer;
-                        color: #1080cc;
+                        text-decoration: none;
+                    }
+
+                    .line {
+                        height: 10px;
+                        width: 1px;
+                        background: #DDDDDD;
+                        margin: 0 13px;
+                        display: inline-block;
+                    }
+
+                    .same {
+                        z-index: 100;
+                        display: none;
+                        background: #fff;
+                        box-shadow: 0 0 5px #ccc;
+                        //border: 1px solid #ccc;
+                        border-radius: 0 0 4px 4px;
+                        padding: 4px 20px 20px 20px;
+                        text-align: left;
+                        line-height: 20px;
+
+                        div {
+                            text-align: left;
+                            padding: 0;
+                        }
+
+                        a {
+                            color: #666;
+                            font-size: 14px;
+                            padding: 0;
+                            font-family: "Microsoft YaHei";
+                            cursor: pointer;
+                            font-weight: normal;
+                        }
+
+                        h3 {
+                            margin: 16px 0 8px 0;
+                            color: #333333;
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+
+                        :hover:not(h3) {
+                            color: #0070CE;
+                        }
+
+                    }
+                    .Twoitem {
+                        position: absolute;
+                        top: 56px;
+                        left: 0;
+                        width: 126px;
+                    }
+
+                    .Threeitem {
+                        position: absolute;
+                        top: 56px;
+                        left: 0;
+                        width: 277px;
+                    }
+
+                    .Fouritem {
+                        text-align: left;
+                        display: none;
+                        z-index: 100;
+                        width: 126px;
+                        position: absolute;
+                        top: 56px;
+                        left: 0;
+                        background: #fff;
+                        line-height: 30px;
+                        box-shadow: 0 0 5px #ccc;
+                        padding: 10px 20px 10px;
+
+                        a {
+                            padding-left: 10px;
+                            color: #666;
+                            font-size: 14px;
+                            font-family: "Microsoft YaHei";
+                            cursor: pointer;
+
+                        }
+
+                        :hover {
+                            color: #0070CE;
+                        }
+
+                    }
+                    .Fiveitem {
+                        width: 460px;
+                        position: absolute;
+                        top: 56px;
+                        right: 0px;
+                        box-shadow: 0 0 5px #ccc;
+                    }
+
+                    .Sixitem {
+                        display: none;
+                        z-index: 100;
+                        width: 100px;
+                        position: absolute;
+                        top: 56px;
+                        right: 0;
+                        background: #fff;
+                        line-height: 25px;
+                        padding: 10px 0;
+                        box-shadow: 0 0 5px #ccc;
+
+                        a {
+                            color: #666;
+                            font-size: 12px;
+                            padding: 0 10px;
+                            font-family: "Microsoft YaHei";
+                            margin-left: -17px;
+                            cursor: pointer;
+
+                            img {
+                                vertical-align: middle;
+                                padding-right: 6px;
+                                padding-left: 18px;
+                                margin-top: -2px;
+                            }
+
+                        }
+                        :hover {
+                            cursor: pointer;
+                            color: #1080cc;
+                        }
+
+                    }
+                    .none {
+                        display: none;
                     }
 
                 }
-                .none {
-                    display: none;
+                >
+                :hover {
+
+                    a {
+                        color: #fff;
+                        font-weight: bold;
+                    }
+
+                    i {
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+
+                    cursor: pointer;
+                    background: #0070CE;
                 }
+                .active {
 
-            }
-            >
-            :hover {
+                    a {
+                        color: #FFFFFF;
+                        font-weight: bold;
+                    }
 
-                a {
-                    color: #fff;
-                    font-weight: bold;
+                    i {
+                        color: #fff;
+                        font-weight: bold;
+                    }
+
                 }
-
-                i {
-                    font-size: 18px;
-                    font-weight: bold;
-                }
-
-                cursor: pointer;
-                background: #0070CE;
-            }
-            .active {
-
-                a {
-                    color: #FFFFFF;
-                    font-weight: bold;
-                }
-
-                i {
-                    color: #fff;
-                    font-weight: bold;
-                }
-
             }
         }
     }
