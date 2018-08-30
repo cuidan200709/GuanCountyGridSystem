@@ -152,8 +152,10 @@
             width: 100%;
             height: 56px;
             background: #2494F2;
-            border-bottom: 1px solid #fff;
-            box-shadow: 0px 0px 20px #1080cc;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow:9px 0px 18px rgba(36,148,242,0.53);
             .logo {
                 float: left;
                 width: auto;

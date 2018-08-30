@@ -477,55 +477,45 @@
               });
               bus.$emit('menuative', '静态');
               break;
-            case 'layer_yj':
+            case 'layer_aj':
               this.$store.state.menuData.unshift({
-                title: '应急',
-                title_tx: '应急清单',
-                show_xs: 'layer_yj',
-                url: 'static/imgs/indeximgs/morenimg/icon_huanwei.png',
-                url_one: 'static/imgs/indeximgs/morenimg/icon_huanwei.png'
+                title: '案件',
+                title_tx: '案件',
+                show_xs: 'layer_aj',
+                url: 'static/imgs/indeximgs/morenimg/anjian.png',
+                url_one: 'static/imgs/indeximgs/morenimg/anjian.png'
               });
-              bus.$emit('menuative', '应急');
+              bus.$emit('menuative', '案件');
               break;
             case 'layer_sp_slw':
               this.$store.state.menuData.unshift({
                 title: '散乱视频',
-                title_tx: '散乱污视频监控',
+                title_tx: '散乱污视频',
                 show_xs: 'layer_sp_slw',
                 url: 'static/imgs/indeximgs/morenimg/slw.png',
                 url_one: 'static/imgs/indeximgs/morenimg/slw.png'
               });
               bus.$emit('menuative', '散乱视频');
               break;
-            case 'layer_sp_voc':
+            case 'layer_sp_jg':
               this.$store.state.menuData.unshift({
-                title: 'VOC视频',
-                title_tx: 'VOC视频监控',
-                show_xs: 'layer_sp_voc',
-                url: 'static/imgs/indeximgs/morenimg/voc.png',
-                url_one: 'static/imgs/indeximgs/morenimg/voc.png'
+                title: '秸秆焚烧',
+                title_tx: '秸秆焚烧',
+                show_xs: 'layer_sp_js',
+                url: 'static/imgs/mues/video/jg.png',
+                url_one: 'static/imgs/mues/video/jg_c.png'
               });
-              bus.$emit('menuative', 'VOC视频');
+              bus.$emit('menuative', '秸秆焚烧');
               break;
-            case 'layer_sp_gkw':
+            case 'layer_xcy':
               this.$store.state.menuData.unshift({
-                title: '高空视频',
-                title_tx: '高空五公里视频监控',
-                show_xs: 'layer_sp_gkw',
-                url: 'static/imgs/indeximgs/morenimg/gkw.png',
-                url_one: 'static/imgs/indeximgs/morenimg/gkw.png'
+                title: '巡查员',
+                title_tx: '巡查员',
+                show_xs: 'layer_xcy',
+                url: 'static/imgs/indeximgs/morenimg/xcy.png',
+                url_one: 'static/imgs/indeximgs/morenimg/xcy.png'
               });
-              bus.$emit('menuative', '高空视频');
-              break;
-            case 'layer_qm':
-              this.$store.state.menuData.unshift({
-                title: '全民举报',
-                title_tx: '全民举报',
-                show_xs: 'layer_qm',
-                url: 'static/imgs/indeximgs/morenimg/quanmin.png',
-                url_one: 'static/imgs/indeximgs/morenimg/quanmin.png'
-              });
-              bus.$emit('menuative', '全民举报');
+              bus.$emit('menuative', '巡查员');
               break;
             default:
               bus.$emit('menuative', '统计');
@@ -599,9 +589,8 @@
           width: 135px;
           margin-right: 5px;
           margin-top: 1px;
-          border-radius: 18px;
-          border: 0.5px solid #fff;
-          box-shadow: 0 0 15px #1080cc;
+          border-radius: 19px;
+          box-shadow:9px 0px 18px rgba(36,148,242,0.53);
           span{
             text-align: center;
             font-weight: bold;
@@ -629,8 +618,9 @@
     top: 38px;
     left: 150px;
     color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #1080cc;
+
+    border-radius:10px;
+    box-shadow:9px 0px 18px rgba(36,148,242,0.53);
 
   }
   .ACvideo{
@@ -647,8 +637,8 @@
     top: 342px;
     left: 150px;
     color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #1080cc;
+    border-radius:10px;
+    box-shadow:9px 0px 18px rgba(36,148,242,0.53);
 
   }
 
@@ -657,8 +647,8 @@
     top: 456px;
     left: 150px;
     color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #1080cc;
+    border-radius:10px;
+    box-shadow:9px 0px 18px rgba(36,148,242,0.53);
 
   }
 
