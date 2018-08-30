@@ -25,7 +25,49 @@
             </div>
                 <!---->
             <div class="warp-calendar">
+                <!--日历-->
                 <div id="calendar"></div>
+                <!--地下-->
+                <div class="posi-1ceng">
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                </div>
+                <div class="posi-2ceng">
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                    <div class="let-01">
+                        <h4>{{dqgetYear}}</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +81,9 @@
             return{
                 valueOne: '环比',
                 //
-                valueTwo: 'AQI'
+                valueTwo: 'AQI',
+                //
+                dqgetYear:''
             }
         },
         methods:{
@@ -109,10 +153,10 @@
 
         },
         mounted (){
-//          $('#element').data('calendar').setLanguage('zh-CN');
+            const _contthis = this;
             $(function() {
-                let _this = this;
-            var currentYear = new Date().getFullYear();
+               //
+            let currentYear = new Date().getFullYear();
 
             $('#calendar').calendar({
                 style:'background',
@@ -121,15 +165,20 @@
                 contextMenuItems:[
                     {
                         text: 'Update',
-                        click: _this.editEvent
+                        click: _contthis.editEvent
                     },
                     {
                         text: 'Delete',
-                        click: _this.deleteEvent
+                        click: _contthis.deleteEvent
                     }
                 ],
+                //选择年份
+                renderEnd:function (e) {
+                    console.log(e.currentYear);
+                    _contthis.dqgetYear = e.currentYear;
+                },
                 selectRange: function(e) {
-                    _this.editEvent({ startDate: e.startDate, endDate: e.endDate });
+                    _contthis.editEvent({ startDate: e.startDate, endDate: e.endDate });
                 },
                 //鼠标滑过弹窗设置
                 mouseOnDay: function(e) {
@@ -244,7 +293,7 @@
             });
 
             $('#save-event').click(function() {
-                _this.saveEvent();
+                _contthis.saveEvent();
             });
           })
         }
@@ -271,7 +320,36 @@
                     margin-right: 10px;
                 }
             }
-
+            .warp-calendar{
+                position: relative;
+                width: 95%;
+                .posi-1ceng{
+                    position: absolute;
+                    top: 290px;
+                    width: 100%;
+                    height: 80px;
+                    border: yellow solid 1px;
+                    .let-01{
+                        width: 16.6666666%;
+                        height: 80px;
+                        background: #1ce405;
+                        float: left;
+                    }
+                }
+                .posi-2ceng{
+                    position: absolute;
+                    top: 600px;
+                    width: 100%;
+                    height: 80px;
+                    border: yellow solid 1px;
+                    .let-01{
+                        width: 16.6666666%;
+                        height: 80px;
+                        background: #1ce405;
+                        float: left;
+                    }
+                }
+            }
         }
 
     }
