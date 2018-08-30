@@ -242,13 +242,13 @@
             checkedSrc: 'static/imgs/mues/video/slw_c.png'
           },
           {
-            name: 'layer_sp_voc',
-            value: 'VOCs企业',
+            name: 'layer_sp_jg',
+            value: '秸秆焚烧',
             parentName: 'layer_jk',
             from:'3',
             parentIndex: '1',
-            src: 'static/imgs/mues/video/voc.png',
-            checkedSrc: 'static/imgs/mues/video/voc_c.png'
+            src: 'static/imgs/mues/video/jg.png',
+            checkedSrc: 'static/imgs/mues/video/jg_c.png'
           }
         ]
       }
