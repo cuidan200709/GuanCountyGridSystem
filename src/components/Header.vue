@@ -55,6 +55,7 @@
 
                 <!--系统后台-退出系统-->
                 <li style="margin-right: 0;">
+                    <span class="position-p"></span>
                     <img style="padding: 0 20px" src="../assets/img/btn_intercalate.png" class="activehov">
                     <div class="Sixitem submenu" v-if="isShow">
                         <a href="#/Management/BusinessManagement/Case-Review" class="houtai"><img src="../assets/img/btn_Backstage1.png" alt="">进入后台</a><br/>
@@ -156,6 +157,15 @@
             top: 0;
             left: 0;
             box-shadow:9px 0px 18px rgba(36,148,242,0.53);
+            .position-p{
+                position: absolute;
+                display: inline-block;
+                width: 25px;
+                height: 25px;
+                border: 1px solid #e5e5dd;
+                top: 16px;
+                left: 26px;
+            }
             .logo {
                 float: left;
                 width: auto;
