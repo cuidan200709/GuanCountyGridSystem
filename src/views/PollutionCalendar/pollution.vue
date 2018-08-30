@@ -30,7 +30,16 @@
                 <!--地下-->
                 <div class="posi-1ceng">
                     <div class="let-01">
-                        <h4>{{dqgetYear}}</h4>
+                        <div class="l-001">
+                            <div class="ll1"><a>文字:</a> <span>11</span></div>
+                            <div class="ll1"><a>文字:</a> <span>11</span></div>
+                            <div class="ll1"><a>文字:</a> <span>11</span></div>
+                        </div>
+                        <div class="l-001">
+                            <div class="ll1"><a>文字:</a> <span>11</span></div>
+                            <div class="ll1"><a>文字:</a> <span>11</span></div>
+                            <div class="ll1"><a>文字:</a> <span>11</span></div>
+                        </div>
                     </div>
                     <div class="let-01">
                         <h4>{{dqgetYear}}</h4>
@@ -309,6 +318,7 @@
             width: 95%;
             height: auto;
             margin: 0 auto;
+            overflow: hidden;
             .con-cont{
                 width: 95%;
                 height: 100px;
@@ -330,10 +340,31 @@
                     height: 80px;
                     border: yellow solid 1px;
                     .let-01{
-                        width: 16.6666666%;
+                        width: calc(16.6666666% - 3px);
+                        margin-left: 3px;
                         height: 80px;
                         background: #1ce405;
                         float: left;
+                        .l-001{
+                            width: 100%;
+                            height: 40px;
+                            line-height: 40px;
+                            .ll1{
+                                float: left;
+                                width: 33%;
+                                height: auto;
+                                a{}
+                                span{
+                                    display: inline-block;
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    background: yellow;
+                                    line-height: 30px;
+                                    text-align: center;
+                                }
+                            }
+                        }
                     }
                 }
                 .posi-2ceng{
@@ -343,7 +374,8 @@
                     height: 80px;
                     border: yellow solid 1px;
                     .let-01{
-                        width: 16.6666666%;
+                        width: calc(16.6666666% - 3px);
+                        margin-left: 3px;
                         height: 80px;
                         background: #1ce405;
                         float: left;
