@@ -501,7 +501,7 @@
               this.$store.state.menuData.unshift({
                 title: '秸秆焚烧',
                 title_tx: '秸秆焚烧',
-                show_xs: 'layer_sp_js',
+                show_xs: 'layer_sp_jg',
                 url: 'static/imgs/mues/video/jg.png',
                 url_one: 'static/imgs/mues/video/jg_c.png'
               });
