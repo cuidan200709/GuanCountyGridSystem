@@ -214,7 +214,7 @@
         //指挥调度
         ZHtargets: [
           {
-            name: 'layer_aj',
+            name: 'layer_qm',
             value: '案件',
             parentName: 'layer_zh',
             parentIndex: '2',
