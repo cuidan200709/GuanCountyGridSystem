@@ -445,7 +445,8 @@
             fieldName = 'casecode';
             displayName = '';
             pms = {
-              uname: '', status: '', pollutiontype: '', departmenttype: '', starttime: '', endtime: ''
+              pageSize:10000,
+              pageNo:1
             };
             break;
         }
@@ -465,7 +466,15 @@
           RequestHandle.request(params, function (result) {
             if (result.status) {
               let rtValue = [];
-              let dt = result.obj;
+              let dt = undefined;
+              switch(uppercaseType) {
+                case 'LAYER_QM':
+                  dt = result.obj.rows;
+                  break;
+                default:
+                  dt = result.obj;
+                  break;
+              }
               if (dt) {
                 for (let k = 0, length = dt.length; k < length; k++) {
                   let item = dt[k];
