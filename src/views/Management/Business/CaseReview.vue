@@ -810,12 +810,8 @@
 	display:inline-block;
 	width:200px;
 	height:200px;
-	/*padding:5px;*/
-	/*margin:5px 20px 20px 0;*/
 	border:1px solid #d1dbe5;
-	/*border-radius:4px;*/
-	/*transition:all .3s;*/
-	/*box-shadow:0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);*/
+
 }
 .img-list .img-upload{
 	float:left;
@@ -893,7 +889,7 @@
 #right{
 	width: calc(100% - 200px);
 	overflow: hidden;
-	padding: 20px;
+	padding: 0 20px;
 	background-color: #f6fbff;
 	.left{
 		float: left;
