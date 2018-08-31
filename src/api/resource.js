@@ -138,7 +138,9 @@ const apilangfangTDK = {
     GetSixParamAirList: apiconfig[icode].devn + '/api/SixParamAir/GetSixParamAirList?typeName=',//六参数列表
     GetSixParamTypeList: apiconfig[icode].devn + '/api/SixParamair/GetSixParamTypeList',//六参数获取类型
     GetTotalCount: apiconfig[icode].devn + '/api/Dust/GetTotalCount',//获取视频设备接入数据统计
-    GetpeortpleselectCases: apiconfig[icode].devc + '/servicePlatform/mobile/selectCases?',//全民举报统计列表
+    GetpeortpleselectCases: apiconfig[icode].devc + '/servicePlatform/mobile/selectCases?',//案件列表
+    GetCaseNum: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByDepartment?',//案件数量占比
+    GetCaseType: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByPollution?',//案件类型占比
     GetLfAirAlert: apiconfig[icode].devn + '/api/LfAir/GetLfAirAlert',//今日控制目标，预警 ，保优保良
     GetBaoYouLiang: apiconfig[icode].devn + '/api/LfAir/GetBaoYouLiang?qualityCode=',//今日战报 保优保良
     GetAirQuality: apiconfig[icode].devn + '/api/LfAir/GetAirQuality',//今日战报获取空气质量等级及编码
@@ -324,3 +326,5 @@ export const GetVocsVideoInfoResource = API_ROOT.concat(apilangfangTDK.GetVocsVi
 export const GetElectricityIndexChartResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChart);
 export const GetElectricityChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityChartForDay);
 export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChartForDay);
+export const GetCaseNumResource = API_ROOT.concat(apilangfangTDK.GetCaseNum);
+export const GetCaseTypeResource = API_ROOT.concat(apilangfangTDK.GetCaseType);

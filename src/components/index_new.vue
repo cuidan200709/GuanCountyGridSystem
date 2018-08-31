@@ -274,7 +274,7 @@
                         break
                     case '案件':
                         this.StatisticsSwitch = false;
-                        this.$router.push('/EmergencylistPanel');
+                        this.$router.push('/ZH_Case');
                         this.shouhui();
                         this.Legendswtch = false;
                         break

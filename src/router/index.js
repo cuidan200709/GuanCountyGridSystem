@@ -119,6 +119,12 @@ export default new Router({
                     meta: { keepAlive: true },
                     component:resolve => require(['@/components/ReportWholePeople_new'], resolve)
                 },
+                //指挥 案件
+                {
+                    path:'ZH_Case',
+                    meta: { keepAlive: true },
+                    component:resolve => require(['@/components/ZH_Case'], resolve)
+                },
             ]
         },
         //乡镇统计

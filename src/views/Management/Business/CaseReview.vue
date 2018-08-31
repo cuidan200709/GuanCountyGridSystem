@@ -676,12 +676,12 @@
 				let fkDepartmenttype = this.DutyMainVal?this.DutyMainVal:-1;
 				let location = this.cityName;
 				let fkPollutiontype = this.PollutionClassVal?this.PollutionClassVal:-1;
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
+				let startTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
 				let pageNo = this.pageNo;
       			this.ListData = [];
-      			api.GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo).then(result=>{
+      			api.GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo).then(result=>{
       				console.log(result)
       				if(result){
       					let InfoData = result.data.data.rows;

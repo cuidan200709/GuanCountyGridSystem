@@ -148,6 +148,8 @@ import {
     GetElectricityIndexChartResource,//大数据对比
     GetElectricityChartForDayResource,//大数据
     GetElectricityIndexChartForDayResource,//大数据对比
+    GetCaseNumResource,//案件数量
+    GetCaseTypeResource,//案件类型
 } from './resource'
 
 export default {
@@ -723,13 +725,41 @@ export default {
             }
         )
     },
+    //案件数量占比
+    GetCaseNum(ids,startTime,endTime) {
+    	var startTimestr="";
+    	if(startTime){
+    		startTimestr="&startTime="+startTime
+    	}
+    	var endTimestr="";
+    	if(endTime){
+    		endTimestr="&endTime="+endTime
+    	}
+    	
+        return axios.get(GetCaseNumResource+"ids=" + ids+ startTimestr+endTimestr, {}
+        )
+    },
+    //案件类型占比
+    GetCaseType(ids,startTime,endTime) {
+    	var startTimestr="";
+    	if(startTime){
+    		startTimestr="&startTime="+startTime
+    	}
+    	var endTimestr="";
+    	if(endTime){
+    		endTimestr="&endTime="+endTime
+    	}
+    	
+        return axios.get(GetCaseTypeResource+"ids=" + ids+ startTimestr+endTimestr, {}
+        )
+    },
      //获取案件审核列表
-    GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo) {
-        return axios.get(GetCaseListResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
+    GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo) {
+        return axios.get(GetCaseListResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&startTime=" + startTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
         )
     },
      //导出案件
-    GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo) {
+    GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo) {
         window.open(GetExportCaseResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
         )
     },
