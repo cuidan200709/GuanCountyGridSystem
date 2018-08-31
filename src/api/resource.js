@@ -55,7 +55,7 @@ const apilangfangTDK = {
     GetWeatherWinterPre: apiconfig[icode].devn + '/api/Weather/GetWeatherWinterPre',//冬防战报模块六天气排名
     GetsourcetypeAllInfo: apiconfig[icode].devc +'/servicePlatform/enterprise/allInfo?',//静态原清单1
     GetallInfoBySourceType: apiconfig[icode].devc + '/servicePlatform/enterprise/allInfoBySourceType?',//静态原清单2
-    GetUserLogin: apiconfig[1].devn +'/api/login/UserLogin',//登录接口
+    GetUserLogin: apiconfig[icode].devn +'/api/login/UserLogin',//登录接口
     GetCompanyStatistics: apiconfig[icode].devn + '/api/Company/GetCompanyStatistics',//企业污染统计
     GetEmergencyList: apiconfig[icode].devn + '/api/EmergencyPlan/GetEmergencyList',//应急清单....
     GetElectricityChart: apiconfig[icode].devn + '/api/Winter/GetElectricityChart',//用电量
