@@ -13,7 +13,7 @@
                     </div>
 
                     <!--详细天气-->
-                    <div class="tqbiaoti">廊坊市空气质量</div>
+                    <div class="tqbiaoti">固安县空气质量</div>
                     <strong v-if="tianqiyuji" class="strong">今日空气质量预计为：{{Datalist.qulity}}</strong>
                     <div class="Second">
                         <div class="tianqi">
@@ -123,120 +123,154 @@
                     </div>
                     <!--table表格-->
                     <div class="table">
-                        <el-tabs v-model="activeName" @tab-click="handleClick">
-                            <el-tab-pane label="国省控点" name="guokongdian">
-                                <el-table
-                                        :data="tableData"
-                                        border
-                                        @current-change="RowCurrentChange"
-                                        style="width: 100%">
-                                    <el-table-column
-                                            prop="ranking"
-                                            label="排名"
-                                            width="52">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="pointname"
-                                            label="国省控点"
-                                            width="150"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="AirQualityGrade"
-                                            label="空气质量等级"
-                                            width="75"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="aqi"
-                                            :label="labelType"
-                                            width="60"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="PrimaryPollutant"
-                                            label="首要污染物"
-                                    >
-                                    </el-table-column>
-                                </el-table>
-                            </el-tab-pane>
+                        <el-table
+                                :data="tableData"
+                                border
+                                @current-change="RowCurrentChange"
+                                style="width: 100%">
+                            <el-table-column
+                                    prop="ranking"
+                                    label="排名"
+                                    width="52">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="pointname"
+                                    label="国省控点"
+                                    width="150"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="AirQualityGrade"
+                                    label="空气质量等级"
+                                    width="75"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="aqi"
+                                    :label="labelType"
+                                    width="60"
+                            >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="PrimaryPollutant"
+                                    label="首要污染物"
+                            >
+                            </el-table-column>
+                        </el-table>
+                        <!--<el-tabs v-model="activeName" @tab-click="handleClick">-->
+                            <!--&lt;!&ndash;<el-tab-pane label="国省控点" name="guokongdian">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<el-table&ndash;&gt;-->
+                                        <!--&lt;!&ndash;:data="tableData"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;border&ndash;&gt;-->
+                                        <!--&lt;!&ndash;@current-change="RowCurrentChange"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;style="width: 100%">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="ranking"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="排名"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="52">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="pointname"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="国省控点"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="150"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="AirQualityGrade"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="空气质量等级"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="75"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="aqi"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;:label="labelType"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="60"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="PrimaryPollutant"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="首要污染物"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</el-table>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</el-tab-pane>&ndash;&gt;-->
 
-                            <el-tab-pane label="京津冀城市排名" name="daoshuqianshi">
-                                <el-table
-                                        :data="tableCityData"
-                                        border
-                                        @current-change=""
-                                        style="width: 100%">
-                                    <el-table-column
-                                            prop="ranking"
-                                            label="排名"
-                                            width="52">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="City"
-                                            label="城市"
-                                            width="120"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="AirQualityGrade"
-                                            label="空气质量等级"
-                                            width="105"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="aqi"
-                                            :label="ClabelType"
-                                            width="60"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="PrimaryPollutant"
-                                            label="首要污染物"
-                                    >
-                                    </el-table-column>
-                                </el-table>
-                            </el-tab-pane>
+                            <!--&lt;!&ndash;<el-tab-pane label="京津冀城市排名" name="daoshuqianshi">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<el-table&ndash;&gt;-->
+                                        <!--&lt;!&ndash;:data="tableCityData"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;border&ndash;&gt;-->
+                                        <!--&lt;!&ndash;@current-change=""&ndash;&gt;-->
+                                        <!--&lt;!&ndash;style="width: 100%">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="ranking"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="排名"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="52">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="City"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="城市"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="120"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="AirQualityGrade"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="空气质量等级"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="105"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="aqi"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;:label="ClabelType"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="60"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="PrimaryPollutant"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="首要污染物"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</el-table>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</el-tab-pane>&ndash;&gt;-->
 
-                             <el-tab-pane label="区县排名" name="quxianRange">
-                                <el-table
-                                        :data=" DistrictCountyData"
-                                        border
-                                        :header-row-style="headercolor"
-                                        @current-change="RowCurrentChange"
-                                        style="width: 100%">
-                                    <el-table-column
-                                            prop="ranking"
-                                            label="排名"
-                                            width="52">
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="GridName"
-                                            label="县区名称"
-                                            width="150"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="AirQualityGrade"
-                                            label="空气质量"
-                                            width="75"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="aqi"
-                                            label="AQI"
-                                            width="60"
-                                    >
-                                    </el-table-column>
-                                    <el-table-column
-                                            prop="PrimaryPollutant"
-                                            label="首要污染物"
-                                    >
-                                    </el-table-column>
-                                </el-table>
-                            </el-tab-pane>
+                             <!--&lt;!&ndash;<el-tab-pane label="区县排名" name="quxianRange">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<el-table&ndash;&gt;-->
+                                        <!--&lt;!&ndash;:data=" DistrictCountyData"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;border&ndash;&gt;-->
+                                        <!--&lt;!&ndash;:header-row-style="headercolor"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;@current-change="RowCurrentChange"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;style="width: 100%">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="ranking"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="排名"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="52">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="GridName"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="县区名称"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="150"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="AirQualityGrade"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="空气质量"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="75"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="aqi"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="AQI"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;width="60"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<el-table-column&ndash;&gt;-->
+                                            <!--&lt;!&ndash;prop="PrimaryPollutant"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;label="首要污染物"&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</el-table-column>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</el-table>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</el-tab-pane>&ndash;&gt;-->
 
-                        </el-tabs>
+                        <!--</el-tabs>-->
                     </div>
                 </div>
 </template>
@@ -862,12 +896,14 @@
                 }
       .first {
                     width: 100%;
-                    height: 90px;
+                    //height: 90px;
+                    height: 50px;
                     margin-top: 10px;
                     .tables {
                         float: left;
                         margin-left: 14px;
-                        margin-top: 44px;
+                        //margin-top: 44px;
+                        margin-top: 0px;
                         width: 100%;
                         border-bottom: solid 1px #ccc;
                         .bai {

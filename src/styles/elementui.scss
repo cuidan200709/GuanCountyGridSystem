@@ -220,7 +220,13 @@ html .Window_Three table, body .Window_Three table{
   .ql-editor{
     min-height: 360px!important;
   }
-
+  ///
+  .pollution{
+    .calendar .month-container{
+      height: 310px!important;
+    }
+  }
+  ///
 }
 //
 .repdetail{
@@ -277,4 +283,9 @@ html .Window_Three table, body .Window_Three table{
          background-color: #d3dce6;
       }
 }
-           
+//
+.pollution{
+  .calendar .month-container{
+    height: 310px!important;
+  }
+}

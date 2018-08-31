@@ -5,24 +5,9 @@
                     <!--选项查询-->
                     <div class="first">
                         <div class="shijian time-qm">
-                            <!--时间选择-->
-                            <div class="block"  style="float: left;margin-left: 10px">
-                                <el-date-picker
-                                        v-model="starttime"
-                                        type="date"
-                                        placeholder="选择日期"
-                                        :picker-options="pickerOptions0">
-                                </el-date-picker>
-                            </div>
-                            <div style="float: left;line-height: 34px;padding: 0 3px">-</div>
-                            <div class="block"  style="float: left">
-                                <el-date-picker
-                                        v-model="endtime"
-                                        type="date"
-                                        placeholder="选择日期"
-                                        :picker-options="pickerOptions1">
-                                </el-date-picker>
-                            </div>
+
+                            <el-input v-model="inputName" placeholder="请输入内容"></el-input>
+
                         </div>
                         <div class="btnns">
                             <button @click="btnClickEvent">查询</button>
@@ -104,6 +89,7 @@
         name: 'Reportpeople',
         data() {
             return {
+                inputName:'',
                 //列表数据
                 tableData: [],
                 //存储分页数据
@@ -255,12 +241,12 @@
             },
             //案件数量占比
             NumberCasesChars(data){
-                let showData = data.map(function (v) {
-                    return {value: (v.percent).replace('%',''), name: v.name}
-                }) || [];
-                let lenData = data.map(function (v) {
-                    return {name: v.name}
-                }) || [];
+                // let showData = data.map(function (v) {
+                //     return {value: (v.percent).replace('%',''), name: v.name}
+                // }) || [];
+                // let lenData = data.map(function (v) {
+                //     return {name: v.name}
+                // }) || [];
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('bing_item_1p'));
                 // 指定图表的配置项和数据
@@ -270,8 +256,8 @@
                         orient: 'right',
                         y:'center',
                         left:160,
-                       // data: ['广阳区','安次区','开发区']
-                        data:lenData
+                        data: ['广阳区','安次区','开发区']
+                       // data:lenData
                     },
                     series: [
                         {
@@ -293,12 +279,12 @@
                                     }
                                 }
                             },
-                            // data: [
-                            //     {value: 335, name: '广阳区'},
-                            //     {value: 310, name: '安次区'},
-                            //     {value: 234, name: '开发区'},
-                            //
-                            // ],
+                            data: [
+                                {value: 335, name: '广阳区'},
+                                {value: 310, name: '安次区'},
+                                {value: 234, name: '开发区'},
+
+                            ],
 
                         }
                     ]
@@ -308,27 +294,27 @@
                 //动态设置参数
                 myChart.setOption({
                     series: [{
-                       data: showData,
+                       // data: showData,
                         color: [
-                            // '#08a1ed',
-                            // '#a2c73b',
-                            // '#f2cd49',
-                            // '#85dbce',
-                            // '#ce93e3',
-                            // '#6c68e1',
-                            // '#e5763f'
+                            '#08a1ed',
+                            '#a2c73b',
+                            '#f2cd49',
+                            '#85dbce',
+                            '#ce93e3',
+                            '#6c68e1',
+                            '#e5763f'
                         ]
                     }]
                 })
             },
             //案件类型占比
             TypeCasesChars(data){
-                let showData = data.map(function (v) {
-                    return {value: (v.percent).replace('%',''), name: v.name}
-                }) || [];
-                let lenData = data.map(function (v) {
-                    return {name: v.name}
-                }) || [];
+                // let showData = data.map(function (v) {
+                //     return {value: (v.percent).replace('%',''), name: v.name}
+                // }) || [];
+                // let lenData = data.map(function (v) {
+                //     return {name: v.name}
+                // }) || [];
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('bing_item_2p'));
                 // 指定图表的配置项和数据
@@ -338,8 +324,8 @@
                         orient: 'right',
                         y:'center',
                         left: 'right',
-                        // data: ['垃圾堆放','土壤裸露','露天烧烤','垃圾焚烧','餐饮油烟','建筑扬尘','废气排放','汽车尾气']
-                        data:lenData
+                        data: ['垃圾堆放','土壤裸露','露天烧烤','垃圾焚烧','餐饮油烟','建筑扬尘','废气排放','汽车尾气']
+                        //data:lenData
                     },
                     series: [
                         {
@@ -380,15 +366,15 @@
                 //动态设置参数
                 myChart.setOption({
                     series: [{
-                       data: showData,
+                       // data: showData,
                         color: [
-                            // '#08a1ed',
-                            // '#a2c73b',
-                            // '#f2cd49',
-                            // '#85dbce',
-                            // '#ce93e3',
-                            // '#6c68e1',
-                            // '#e5763f'
+                            '#08a1ed',
+                            '#a2c73b',
+                            '#f2cd49',
+                            '#85dbce',
+                            '#ce93e3',
+                            '#6c68e1',
+                            '#e5763f'
                         ]
                     }]
                 })

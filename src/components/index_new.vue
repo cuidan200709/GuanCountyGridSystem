@@ -272,7 +272,7 @@
                         this.shouhui();
                         this.Legendswtch = false;
                         break
-                    case '应急':
+                    case '案件':
                         this.StatisticsSwitch = false;
                         this.$router.push('/EmergencylistPanel');
                         this.shouhui();
@@ -290,13 +290,13 @@
                         this.shouhui();
                         this.Legendswtch = true;
                         break
-                    case 'VOC视频':
+                    case '秸秆焚烧':
                         this.StatisticsSwitch = false;
                         this.$router.push('/VocsVideoData');
                         this.shouhui();
                         this.Legendswtch = true;
                         break;
-                    case '全民举报':
+                    case '巡查员':
                         this.StatisticsSwitch = false;
                         this.$router.push('/ReportWholePeople');
                         this.shouhui();
@@ -346,7 +346,7 @@
             right: 0;
             z-index: 9;
             transition: all 500ms;
-            box-shadow: 0px 5px 15px #333333;
+            box-shadow: -10px 0px 10px rgba(36,148,242,0.43);
             .gensui {
 
                 .line_top {
@@ -578,9 +578,10 @@
                     }
                     img{
                         display: inline-block;
-                        width: 24px;
-                        height: 24px;
+                        width: 20px;
+                        height: 20px;
                         position: static;
+
                     }
                     .active{
                         color: #0d0d0d;

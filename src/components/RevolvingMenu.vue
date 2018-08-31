@@ -77,8 +77,8 @@
                         margin-left: 15px;
                         border-radius: 10px;
                         list-style: none;
-                        background: #2494F2;
-                        box-shadow: 0 0 10px #1080cc;
+                        background:rgba(23,146,245,1);
+                        box-shadow:0px 0px 18px rgba(36,148,242,0.63);
                         a{
                             display: inline-block;
                             width: 100%;
