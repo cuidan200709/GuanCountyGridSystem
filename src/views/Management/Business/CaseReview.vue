@@ -189,10 +189,7 @@
 								<span class="left">案件照片</span>
 							    <el-carousel height="200px">
 							        <el-carousel-item v-for="(item,index) in tupian" :key="index">
-						        <!--<img src="../../../assets/img/bj_denglu.jpg"/>-->
-						        <!--<img :src="'http://gkpt.zq12369.com:8013/servicePlatform/'+item.attachment" />-->
-						        <img :src="imgUrl+item.attachment" />
-						      </el-carousel-item>
+						        <img :src="imgUrl+item.attachment" />						      </el-carousel-item>
 							    </el-carousel>
 							</div>
 							<span class="left" style="margin-left: 50px;">案后照片</span>
@@ -208,15 +205,12 @@
 											
 										</div>
 									</div>
-									<!--<div v-if="!pass && progress !== 0" class="img-content img-progress">
-										<el-progress type="circle" :percentage="progress" :status="proStatus"></el-progress>
-									</div>-->
 									<div class="img-upload" v-if="!imagelist.length">
 										<el-upload class="uploader"
 										  ref="upload"
 										  list-type="picture-card"
 										  :show-file-list="false"
-										  :action="imgUrl+'admin/caseData/uploadAnalysisFile'"
+										  :action="imgUrl+'uploadAnalysisFile'"
 										  :data="params.data"
 										  name='uploadFile'
 										  :before-upload="beforeAvatarUpload"
@@ -230,24 +224,6 @@
 									</div>
 									
 								</div>
-								<!--<div v-if="!dialogVisible">
-								    <el-upload
-								        class="upload-demo"
-								        action="https://jsonplaceholder.typicode.com/posts/"
-									  	list-type="picture-card"
-									  	:on-preview="handlePictureCardPreview"
-									  	:on-remove="handleRemove"
-									  	:on-success='success'
-									  	accept=".jpg, .png"
-									  	:before-upload='beforeAvatarUpload'
-									  	:limit=1>
-								        <img src="../../../../static/imgs/main/点击添加图片.png" />
-								        <div class="el-upload__text">点击选择图片<br>支持jpg/png格式<br>不超过5M</div>
-								    </el-upload>
-							   </div>
-							   	<div v-else>
-							   		<img style="width: 200px;height: 200px;"  :src="dialogImageUrl" alt="">
-							   	</div>-->
 							</div>
 						</div>
 						<div class="block">
@@ -304,8 +280,6 @@
 							<span>案件照片</span>
 						    <el-carousel height="200px">
 						      <el-carousel-item v-for="(item,index) in tupian" :key="index">
-						        <!--<img src="../../../assets/img/bj_denglu.jpg"/>-->
-						        <!--<img :src="'http://gkpt.zq12369.com:8013/servicePlatform/'+item.attachment" />-->
 						        <img v-if='item.attachment' :src="imgUrl+item.attachment" />
 						      </el-carousel-item>
 						    </el-carousel>
@@ -314,8 +288,6 @@
 							<span>案后照片</span>
 						    <el-carousel height="200px">
 						      <el-carousel-item>
-						        <!--<img src="../../../assets/img/bj_denglu.jpg"/>-->
-						        <!--<img :src="'http://gkpt.zq12369.com:8013/servicePlatform/'+afterCaseImg" />-->
 						        <img v-if='afterCaseImg' :src="imgUrl+afterCaseImg" />
 						      </el-carousel-item>
 						    </el-carousel>
@@ -473,23 +445,27 @@
 	         afterCaseImg:'',
 	         imgUrl:'',
 	         //案件来源
-	         optionsCaseOrigin:[{
-		          value: '0',
-		          label: '领导督办'
-		        }, {
-		          value: '1',
+	         optionsCaseOrigin:[
+//	         	{
+//		          value: '1',
+//		          label: '领导督办'
+//		        }, 
+		        {
+		          value: '2',
 		          label: '巡查'
 		        },
-	         	{
-		          value: '2',
-		          label: '市民投诉'
-		        },
-	         	{
-		          value: '3',
-		          label: '信访'
-		        }],
+//	         	{
+//		          value: '3',
+//		          label: '市民投诉'
+//		        },
+//	         	{
+//		          value: '4',
+//		          label: '信访'
+//		        }
+	         	],
 		     CaseOriginVal:'',
-		     origin:''
+		     origin:'',
+		     cityName:''
             }
         },
         created(){
@@ -500,7 +476,7 @@
         	this.GetCaseAll();//责任主体
         	this.GetPollutionType();//污染类别
         	this.imgUrl = api.CaseImgUp();
-        	console.log(this.imgUrl)
+//      	console.log(this.imgUrl)
         },
         computed: {
             proStatus(){//上传状态
@@ -648,59 +624,8 @@
 //      		this.GetMonitoringDay(10,val);
       		},
       		handleCurrentChange(val) {
-      			let t = this;
-				let status;
-				if(this.CaseStatusVal){
-					status = this.status;
-				}else{
-					status = -1;
-				}
-				let departmenttype;
-				if(this.DutyMainVal){
-					departmenttype = this.departmenttype;
-				}else{
-					departmenttype = -1;
-				}
-				let pollutiontype;
-				if(this.PollutionClassVal){
-					pollutiontype = this.pollutiontype;
-				}else{
-					pollutiontype = -1;
-				}
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
-				let endTime = this.CaseEndTime?this.CaseEndTime:'';
-				let pageSize = 10;
-				let pageNo = val;
-      			this.ListData = [];
-      			api.GetCaseList(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo).then(result=>{
-      				console.log(result)
-      				if(result){
-      					let InfoData = result.data.list;
-      					t.totalCount = result.data.count;
-      					console.log(InfoData)
-      					console.log('11')
-      					if(InfoData){
-      						InfoData.forEach(item=>{
-								let tableData = {};
-								tableData.casecode = item.casecode;
-		                        tableData.createtime = item.createtime.replace('T',' ');//案发时间
-		                        tableData.description = item.description;
-		                        tableData.departmenttype = item.departmenttype;//责任主体
-		                        tableData.location = item.location;//位置
-		                        tableData.pollutiontype = item.pollutiontype;//污染类型
-		                        tableData.status = item.status?'处理完毕':'未处理';//处理状态
-		                        tableData.tupian = item.tupian;//图片
-		                        tableData.afterCaseImg = item.afterCaseImg;//安后图片
-		                        tableData.username = item.username;
-		                        tableData.id = item.id;
-		                        tableData.handlingResult = item.handlingResult;//处理结果
-		                        t.ListData.push(tableData);
-							})
-      					}
-						
-//						this.setPageTable(10000, 1);
-      				}
-				});
+      			this.pageNo = val;
+      			this.GetMonitoringDay();
       		},
       		//关闭分配提示
       		closeWin(){
@@ -726,65 +651,51 @@
       		selectChangePollution(val){
       			this.pollutiontype = val;
       		},
-      		//获取污染类型
+      		//获取责任主体
       		GetCaseAll(){
       			let t = this;
       			api.GetCaseAll().then(result=>{
-      				t.optionsPollution = result.data.polltion_type;
+      				t.optionsDuty = result.data.data;
+      				t.optionsDistributePop = result.data.data;
       			})
       		},
-      		//获取责任主体
+      		//获取污染类型
       		GetPollutionType(){
       			api.GetPollutionType().then(result=>{
       				let t = this;
       				console.log(result)
-      				t.optionsDuty = result.data.depart_type;
-      				t.optionsDistributePop = result.data.depart_type;
+      				t.optionsPollution = result.data.data;
+//    				t.optionsDistributePop = result.data.data;
       			})
       		},
       		//获取列表
       		GetMonitoringDay(){
       			let t = this;
-				let status;
-				if(this.CaseStatusVal){
-					status = this.status;
-				}else{
-					status = -1;
-				}
-				let departmenttype;
-				if(this.DutyMainVal){
-					departmenttype = this.departmenttype;
-				}else{
-					departmenttype = -1;
-				}
-				let pollutiontype;
-				if(this.PollutionClassVal){
-					pollutiontype = this.pollutiontype;
-				}else{
-					pollutiontype = -1;
-				}
+				let status = this.CaseStatusVal?this.CaseStatusVal:-1;
+				let datasource = this.origin;//案件来源
+				let fkDepartmenttype = this.DutyMainVal?this.DutyMainVal:-1;
+				let location = this.cityName;
+				let fkPollutiontype = this.PollutionClassVal?this.PollutionClassVal:-1;
 				let starTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
 				let pageNo = this.pageNo;
       			this.ListData = [];
-      			api.GetCaseList(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo).then(result=>{
+      			api.GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo).then(result=>{
       				console.log(result)
       				if(result){
-      					let InfoData = result.data.list;
-      					t.totalCount = result.data.count;
-      					console.log(InfoData)
-      					console.log('11')
+      					let InfoData = result.data.data.rows;
+      					t.totalCount = result.data.data.total;
       					if(InfoData){
       						InfoData.forEach(item=>{
 								let tableData = {};
-								tableData.casecode = item.casecode;
-		                        tableData.createtime = item.createtime.replace('T',' ');//案发时间
-		                        tableData.description = item.description;
+								tableData.casecode = item.casecode;//案件编码
+		                        tableData.createtime = t.Format(item.createtime);//案发时间
+		                        tableData.description = item.description;//案件内容
 		                        tableData.departmenttype = item.departmenttype;//责任主体
 		                        tableData.location = item.location;//位置
 		                        tableData.pollutiontype = item.pollutiontype;//污染类型
-		                        tableData.status = item.status?'处理完毕':'未处理';//处理状态
+		                        tableData.status = this.StatusDeal(item.status);//处理状态
 		                        tableData.tupian = item.tupian;//图片
 		                        tableData.afterCaseImg = item.afterCaseImg;//安后图片
 		                        tableData.username = item.username;
@@ -793,8 +704,6 @@
 		                        t.ListData.push(tableData);
 							})
       					}
-						
-//						this.setPageTable(10000, 1);
       				}
 				});
       		},
@@ -811,29 +720,16 @@
       		//导出
       		GetExportCase(){
       			let t = this;
-      			let status;
-				if(this.CaseStatusVal){
-					status = this.status;
-				}else{
-					status = -1;
-				}
-				let departmenttype;
-				if(this.DutyMainVal){
-					departmenttype = this.departmenttype;
-				}else{
-					departmenttype = -1;
-				}
-				let pollutiontype;
-				if(this.PollutionClassVal){
-					pollutiontype = this.pollutiontype;
-				}else{
-					pollutiontype = -1;
-				}
+				let status = this.CaseStatusVal?this.CaseStatusVal:-1;
+				let datasource = this.origin;//案件来源
+				let fkDepartmenttype = this.DutyMainVal?this.DutyMainVal:-1;
+				let location = this.cityName;
+				let fkPollutiontype = this.PollutionClassVal?this.PollutionClassVal:-1;
 				let starTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
-				let pageNo = 1;
-      			api.GetExportCase(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo);
+				let pageNo = this.pageNo;
+      			api.GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo);
       		},
       		 //分页数据
             setPageTable(pageSize, pageNum) {
@@ -860,7 +756,40 @@
 	        	api.GetFirstGridDropDown().then(res=>{
 	        		t.options = res.data.Data;
 	        	})
-	        }
+	        },
+	        //将时间戳转化为时间格式
+	        Format(timestamp){
+				var time = new Date(timestamp);
+				var year = time.getFullYear();
+				var month = time.getMonth()+1;
+				var day = time.getDate();
+				if(month<10){
+					month = "0" + month;
+				}
+				if(day<10){
+					day = "0" + day;
+				}
+				return year+'-'+month+'-'+day;
+			},
+			//案件状态判断
+			StatusDeal(val){
+				switch (val){
+					case 0:
+					return '未处理'
+						break;
+						case 1:
+					return '已派发'
+						break;
+						case 2:
+					return '待审核'
+						break;
+						case 3:
+					return '处理完毕'
+						break;
+					default:
+						break;
+				}
+			},
         }, 
     }
 </script>

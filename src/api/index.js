@@ -724,13 +724,13 @@ export default {
         )
     },
      //获取案件审核列表
-    GetCaseList(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo) {
-        return axios.get(GetCaseListResource+"status=" + status+"&departmenttype=" + departmenttype+"&pollutiontype=" + pollutiontype+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
+    GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo) {
+        return axios.get(GetCaseListResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
         )
     },
      //导出案件
-    GetExportCase(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo) {
-        window.open(GetExportCaseResource+"status=" + status+"&departmenttype=" + departmenttype+"&pollutiontype=" + pollutiontype+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
+    GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo) {
+        window.open(GetExportCaseResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
         )
     },
      //分配责任主体
@@ -753,7 +753,7 @@ export default {
         return axios.get(GetUploadImgResource, {}
         )
     },
-    //获取污染类别
+    //获取责任主体
     GetPollutionType() {
         return axios.get(GetPollutionTypeResource, {}
         )

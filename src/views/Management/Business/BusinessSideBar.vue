@@ -89,7 +89,7 @@
         
         mounted() {
         	this.isDuty = this.getlocal('userInfo').isDuty;
-        	console.log(this.isDuty)
+//      	console.log(this.isDuty)
         },
         computed: {
             

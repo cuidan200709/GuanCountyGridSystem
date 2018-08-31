@@ -94,12 +94,12 @@ const apilangfangTDK = {
     GetTownListData: apiconfig[icode].devn + '/api/Town/GetTownList?region=',//乡镇企业列表展示（固安县）
     EmergencyInfoInsert: apiconfig[icode].devn + '/api/EmergencyBulletin/Insert',//新增应急消息
     GetEmergencyInfo: apiconfig[icode].devn + '/api/EmergencyBulletin/GetNotice?',//获取应急消息
-    GetCaseList: apiconfig[icode].devc + '/servicePlatform/admin/caseData/selectCasePage?',//获取案件审核列表
-    GetCaseAll: apiconfig[icode].devc + '/servicePlatform/mobile/list/anjian?type=1',//获取责任主体
+    GetCaseList: apiconfig[icode].devc + '/guan/mobile/selectHjwfBusCaseinfoPage?',//获取案件审核列表
+    GetCaseAll: apiconfig[icode].devc + '/guan/mobile/getAllDepartmenttype',//获取责任主体(固安)
     GetUploadImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/uploadAnalysisFile',//上传案件图片
-    GetPollutionType: apiconfig[icode].devc + '/servicePlatform/mobile/list/anjian?type=2',//获取污染类别
-    GetEditCase: apiconfig[icode].devc + '/servicePlatform/admin/caseData/editCaseZrzt?',//分配责任主体
-    GetExportCase: apiconfig[icode].devc + '/servicePlatform/admin/caseData/export?',//导出案件
+    GetPollutionType: apiconfig[icode].devc + '/guan/mobile/getPollutiontype',//获取污染类别(固安)
+    GetEditCase: apiconfig[icode].devc + '/guan/mobile/editCaseZrzt?',//分配责任主体
+    GetExportCase: apiconfig[icode].devc + '/guan/mobile/export?',//导出案件(固安)
     GetEditResult: apiconfig[icode].devc + '/servicePlatform/admin/caseData/editCasehandlingResult',//案件处理结果
     GetCaseImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/getImgByCaseCode?',//获取案件图片
     GetEmergencyInfoList: apiconfig[icode].devn + '/api/EmergencyBulletin/Notices?',//获取预警信息列表
@@ -172,7 +172,7 @@ const apilangfangTDK = {
     GetSixParamAirExcelOutPut: apiconfig[icode].devn + '/api/SixParamAir/ExcelOutPut?',//六参数排名导出
     GetTVOCExcelOutPut: apiconfig[icode].devn + '/api/XhHb/ExcelOutPut?',//TVOC排名导出
     DayDataUrl: apiconfig[icode].devn + '/api/Monitoring/UploadFile',//日数据上传
-    CaseImgUp: apiconfig[icode].devc + '/servicePlatform/',//案件上传图片
+    CaseImgUp: apiconfig[icode].devc + '/guan/mobile/',//案件上传图片
     UploadAnalysisFile: apiconfig[icode].devc + '/servicePlatform/admin/economicData/uploadAnalysisFile',//经济数据上传
     DianUploadFile: apiconfig[icode].devn + '/api/Winter/UploadFile',//用电量上传
     GetTownExcelOutPut: apiconfig[icode].devn + '/api/Town/ExcelOutPut?',//乡镇空气站导出
