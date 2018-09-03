@@ -112,7 +112,7 @@ const apilangfangTDK = {
     TVOCAlarmValueSetting: apiconfig[icode].devn + '/api/AlarmValueSetting/TVOCAlarmValueSetting',//TVOC预警值设置
     GetTVOCLevleValue: apiconfig[icode].devn + '/api/AlarmValueSetting/GetTVOCLevleValue',//获取TVOC颜色值
     TVOCLevelValueSetting: apiconfig[icode].devn + '/api/AlarmValueSetting/TVOCLevelValueSetting',//TVOC颜色值设置
-    GetMonthCheck: apiconfig[icode].devn + '/api/CheckCounty/GetMonthCheck?',//获取月考核
+    GetMonthCheck: apiconfig[icode].devm + '/api/CheckCounty/GetMonthCheck?',//获取区县月考核
     GetWinterPreComIndexMonthPc: apiconfig[icode].devn + '/api/WinterPre/GetWinterPreComIndexMonthPc?',//月度累计综指排名
     GetWinterPrePollutionDaysMonthPc: apiconfig[icode].devn + '/api/WinterPre/GetWinterPrePollutionDaysMonthPc?',//月度累计空气质量
     GetWinterPreComIndexYearPc: apiconfig[icode].devn + '/api/WinterPre/GetWinterPreComIndexYearPc?',//年度累计综指排名
