@@ -261,8 +261,9 @@
             //table点击事件
             RowCurrentChange(val) {
                 this.currentRow = val;
+                console.log(val)
                 //地图联动
-                //bus.$emit('locationClick', 'layer_gd', this.currentRow ,this.type);
+                  bus.$emit('locationClick', 'layer_qm', this.currentRow ,this.type);
             },
             //每页显示数据量变更
             handleSizeChange(val) {
