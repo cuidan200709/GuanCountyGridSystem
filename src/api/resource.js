@@ -81,8 +81,8 @@ const apilangfangTDK = {
     GetTownAnalysisListForCustom: apiconfig[icode].devn + '/api/Town/GetTownAnalysisListForCustom?',//乡镇统计自定义数据
     GetTownAnalysisListForMonth: apiconfig[icode].devn + '/api/Town/GetTownAnalysisListForMonth?',//乡镇统计月报数据
     GetTownRegion: apiconfig[icode].devn + '/api/Town/GetTownRegion',//乡镇区县列表
-    GetHourConcentration: apiconfig[icode].devn + '/api/MeanRatio/GetHourConcentration',//国省控获取小时浓度及均值比
-    GetDayConcentration: apiconfig[icode].devn + '/api/MeanRatio/GetDayConcentration',//国省控获取日浓度及均值比
+    GetHourConcentration: apiconfig[icode].devm + '/api/MeanRatio/GetHourConcentration',//国省控获取小时浓度及均值比
+    GetDayConcentration: apiconfig[icode].devm + '/api/MeanRatio/GetDayConcentration',//国省控获取日浓度及均值比
     GetPointInfoName: apiconfig[icode].devn + '/api/MeanRatio/GetPointInfo',//国省控点信息
     GetCompanyHistoryData: apiconfig[icode].devn + '/api/Company/GetCompanyHistoryData?',//获取一段时间内企业监测数据，包含正常、超标、异常、离线停炉标识
     ExcelHistoryData: apiconfig[icode].devn + '/api/Company/ExcelHistoryData?',//导出一段时间内企业监测数据，包含正常、超标、异常、离线停炉标识
