@@ -477,7 +477,7 @@
               });
               bus.$emit('menuative', '静态');
               break;
-            case 'layer_aj':
+            case 'layer_qm':
               this.$store.state.menuData.unshift({
                 title: '案件',
                 title_tx: '案件',
