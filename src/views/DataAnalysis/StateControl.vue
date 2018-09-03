@@ -262,7 +262,7 @@
         			if(allData){
         				if(t.SelectVal=='固安'){
         					allData.forEach(item=>{
-	        					if(item.pointlevel=='省控点'){
+	        					if(item.pointlevel=='省控点'&&item.pointname.indexOf('固安')!==-1){
 	        						stateData.push(item)
 	        					}
         					})
