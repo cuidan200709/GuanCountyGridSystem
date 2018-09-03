@@ -481,7 +481,7 @@
               this.$store.state.menuData.unshift({
                 title: '案件',
                 title_tx: '案件',
-                show_xs: 'layer_aj',
+                show_xs: 'layer_qm',
                 url: 'static/imgs/indeximgs/morenimg/anjian.png',
                 url_one: 'static/imgs/indeximgs/morenimg/anjian.png'
               });
