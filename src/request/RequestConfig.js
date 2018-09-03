@@ -8,7 +8,7 @@ export default {
     port: ':8073',
     path: '/'
   },{
-    site: 'http://117.119.97.150',//'http://117.119.97.150',//
+    site: 'http://10.6.80.93',//'http://117.119.97.150',//
     port: ':8061',//':8061',//
     path: '/'
   }],
@@ -170,11 +170,11 @@ export default {
         break;
       case 'ALLREPORT':
         cf = apiConfig[2];
-        url = cf.site + cf.port + cf.path + 'servicePlatform/mobile/selectCases';
+        url = cf.site + cf.port + cf.path + 'guan/mobile/selectHjwfBusCaseinfoPage';
         break;
       case 'ALLREPORTCHAR':
         cf = apiConfig[2];
-        url = cf.site + cf.port + cf.path + 'servicePlatform/mobile/caseInfo';
+        url = cf.site + cf.port + cf.path + 'guan/mobile/caseInfo';
         break;
       case 'MAPGEOSEARCH':
         cf = apiConfig[0];
