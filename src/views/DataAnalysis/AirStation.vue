@@ -10,9 +10,9 @@
                     <div class="kass">
                         <div class="wbiaoti">
                             <a>查询条件</a>
-                            <div class="ExportBtn" v-show="StatisticalRankingsName=='自定义选择'?true:false">
-                            <el-button v-show="$store.state.responsibility===false" type="primary" @click='isExport=true'>导出</el-button>
-                        	</div>
+                            <!--<div class="ExportBtn" v-show="StatisticalRankingsName=='自定义选择'?true:false">-->
+                            <!--<el-button v-show="$store.state.responsibility===false" type="primary" @click='isExport=true'>导出</el-button>-->
+                        	<!--</div>-->
                         </div>
                     </div>
                     <!--查询条件-->
@@ -570,7 +570,7 @@
                 timevalue: '',
                 timevalueM:'',
                 //区县选项值
-                Tjvalue: '',
+                Tjvalue: '固安县',
                 //片区选项值
                 Pqvalue:'北部县区',
                 //
@@ -761,15 +761,15 @@
         created() {
             let t = this;
             //乡镇企业列表展示
-            api.GetTownList().then(res => {
-//              console.log('乡镇企业列表展示')
-//              console.log(res.data.Data)
-            })
-            //乡镇企业想洗数据展示
-            api.GetSingleTown("9705040020021").then(res => {
-//              console.log('乡镇企业详细数据展示')
-//              console.log(res.data.Data)
-            })
+//          api.GetTownList().then(res => {
+////              console.log('乡镇企业列表展示')
+////              console.log(res.data.Data)
+//          })
+//          //乡镇企业想洗数据展示
+//          api.GetSingleTown("9705040020021").then(res => {
+////              console.log('乡镇企业详细数据展示')
+////              console.log(res.data.Data)
+//          })
             //获取实时数据
             api.GetTownAnalysisList('').then(res => {
 //              let i = 1;
@@ -790,7 +790,7 @@
                     let tableData = {};//实时数据
                     tableData.Ranking = item.Ranking;//排名
                     tableData.Name = item.Name;//乡镇名称
-                    tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ');//更新时间
+                    tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ').replace('Z', ' ');//更新时间
                     tableData.Com_Index = item.Com_Index;//综合指数
                     tableData.Pm25 = item.Pm25;//Pm25
                     tableData.SO2 = item.SO2;//SO2
@@ -855,10 +855,10 @@
         			endtime = this.timeHourEnd;
         			fl = this.Tjvalue;
         		}
-        		console.log(ranktype);
-        		console.log(starttime);
-        		console.log(endtime);
-        		console.log(fl);
+//      		console.log(ranktype);
+//      		console.log(starttime);
+//      		console.log(endtime);
+//      		console.log(fl);
         		api.GetTownExcelOutPut(ranktype,starttime,endtime,fl);
         		this.isExport = false;
         	},
@@ -1253,7 +1253,7 @@
 	                this.deadListData = yearData.map((v,i)=>{
 	                	v['Ranking']=i+1;
 	                	v['Name']=v.Name;
-	                	v['AnalysisTime']=v.AnalysisYear;
+	                	v['AnalysisTime']=v.AnalysisTime;
 	                	v['Com_Index']=v.Com_Index;
 	                	v['PM25']=v.Pm25;
 	                	v['SO2']=v.SO2;
@@ -1262,7 +1262,8 @@
                         let tableData = {};//实时数据
                         tableData.Ranking = item.Ranking;//排名
                         tableData.Name = item.Name;//乡镇名称
-                        tableData.AnalysisTime = item.AnalysisYear;//更新时间
+                        let dateStr = item.AnalysisTime.replace("T",' ');
+                        tableData.AnalysisTime = dateStr.slice(0,dateStr.indexOf("."));
                         tableData.Com_Index = item.Com_Index;//综合指数
                         tableData.Pm25 = item.Pm25;//Pm25
                         tableData.SO2 = item.SO2;//SO2
@@ -1326,7 +1327,7 @@
                         let tableData = {};//实时数据
                         tableData.Ranking = item.Ranking;//排名
                         tableData.Name = item.Name;//乡镇名称
-                        tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ');//更新时间
+                        tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ').replace('Z', ' ');//更新时间
                         tableData.Com_Index = item.Com_Index;//综合指数
                         tableData.Pm25 = item.Pm25;//Pm25
                         tableData.SO2 = item.SO2;//SO2
@@ -1358,7 +1359,7 @@
                         let tableData = {};//实时数据
                         tableData.Ranking = item.Ranking;//排名
                         tableData.Name = item.Name;//乡镇名称
-                        tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ');//更新时间
+                        tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ').replace('Z', ' ');//更新时间
                         tableData.Com_Index = item.Com_Index;//综合指数
                         tableData.Pm25 = item.Pm25;//Pm25
                         tableData.SO2 = item.SO2;//SO2
@@ -1390,7 +1391,7 @@
                             let tableData = {};//实时数据
                             tableData.Ranking = item.Ranking;//排名
                             tableData.Name = item.Name;//乡镇名称
-                            tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ');//更新时间
+                            tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ').replace('Z', ' ');//更新时间
                             tableData.Com_Index = item.Com_Index;//综合指数
                             tableData.Pm25 = item.Pm25;//Pm25
                             tableData.SO2 = item.SO2;//SO2
@@ -1424,7 +1425,7 @@
                         let tableData = {};//实时数据
                         tableData.Ranking = item.Ranking;//排名
                         tableData.Name = item.Name;//乡镇名称
-                        tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ');//更新时间
+                        tableData.AnalysisTime = item.AnalysisTime.replace('T', ' ').replace('Z', ' ');//更新时间
                         tableData.Com_Index = item.Com_Index;//综合指数
                         tableData.Pm25 = item.Pm25;//Pm25
                         tableData.SO2 = item.SO2;//SO2

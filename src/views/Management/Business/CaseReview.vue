@@ -188,8 +188,9 @@
 							<div class="block imgBox left" style="margin:0;">
 								<span class="left">案件照片</span>
 							    <el-carousel height="200px">
-							        <el-carousel-item v-for="(item,index) in tupian" :key="index">
-						        <img :src="imgUrl+item.attachment" />						      </el-carousel-item>
+							        <el-carousel-item v-for="(item,index) in hjwfBusCaseattachList" :key="index">
+						        		<img :src="imgUrl+item.attachment" />						      
+							        </el-carousel-item>
 							    </el-carousel>
 							</div>
 							<span class="left" style="margin-left: 50px;">案后照片</span>
@@ -210,7 +211,7 @@
 										  ref="upload"
 										  list-type="picture-card"
 										  :show-file-list="false"
-										  :action="imgUrl+'uploadAnalysisFile'"
+										  :action="imgUrl"
 										  :data="params.data"
 										  name='uploadFile'
 										  :before-upload="beforeAvatarUpload"
@@ -279,8 +280,8 @@
 						<div class="block imgBox">
 							<span>案件照片</span>
 						    <el-carousel height="200px">
-						      <el-carousel-item v-for="(item,index) in tupian" :key="index">
-						        <img v-if='item.attachment' :src="imgUrl+item.attachment" />
+						      <el-carousel-item v-for="(item,index) in hjwfBusCaseattachList" :key="index">
+						        <img v-if='item.attachment' :src="item.attachment" />
 						      </el-carousel-item>
 						    </el-carousel>
 						</div>
@@ -288,7 +289,7 @@
 							<span>案后照片</span>
 						    <el-carousel height="200px">
 						      <el-carousel-item>
-						        <img v-if='afterCaseImg' :src="imgUrl+afterCaseImg" />
+						        <img v-if='afterCaseImg' :src="afterCaseImg" />
 						      </el-carousel-item>
 						    </el-carousel>
 						</div>
@@ -436,7 +437,7 @@
 	         CaseDutyPopExamine:'',//责任主体
 	         textareaExamine:'',//内容
 	         CaseDealPopExamine:'',//处理结果
-	         tupian:[],
+	         hjwfBusCaseattachList:[],
 	         status:'',
 	         departmenttype:'',
 	         pollutiontype:'',
@@ -591,7 +592,7 @@
 		        this.CaseStatusPop = row.status;//案件状态
 		        this.CaseDutyPop = row.departmenttype;//责任主体
 		        this.textarea = row.description;//内容
-		        this.tupian = row.tupian;
+		        this.hjwfBusCaseattachList = row.hjwfBusCaseattachList;
 		        this.id = row.id;
         	},
         	//点击查看
@@ -606,9 +607,9 @@
 		        this.CaseDutyPopExamine = row.departmenttype;//责任主体
 		        this.textareaExamine = row.description;//内容
 		        this.CaseDealPopExamine = row.handlingResult;//处理结果
-		        this.tupian = row.tupian;
+		        this.hjwfBusCaseattachList = row.hjwfBusCaseattachList;
 		        this.afterCaseImg = row.afterCaseImg;
-		        console.log(this.tupian)
+		        console.log(this.hjwfBusCaseattachList)
         	},
             //开始时间选择
         	startChange(val){
@@ -696,8 +697,8 @@
 		                        tableData.location = item.location;//位置
 		                        tableData.pollutiontype = item.pollutiontype;//污染类型
 		                        tableData.status = this.StatusDeal(item.status);//处理状态
-		                        tableData.tupian = item.tupian;//图片
-		                        tableData.afterCaseImg = item.afterCaseImg;//安后图片
+		                        tableData.hjwfBusCaseattachList = item.hjwfBusCaseattachList;//图片
+		                        tableData.afterCaseImg = item.aftercaseimg;//安后图片
 		                        tableData.username = item.username;
 		                        tableData.id = item.id;
 		                        tableData.handlingResult = item.handlingResult;//处理结果
@@ -775,16 +776,16 @@
 			StatusDeal(val){
 				switch (val){
 					case 0:
-					return '未处理'
+						return '未处理'
 						break;
-						case 1:
-					return '已派发'
+					case 1:
+						return '已派发'
 						break;
-						case 2:
-					return '待审核'
+					case 2:
+						return '待审核'
 						break;
-						case 3:
-					return '处理完毕'
+					case 3:
+						return '处理完毕'
 						break;
 					default:
 						break;

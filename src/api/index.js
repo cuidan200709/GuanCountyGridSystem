@@ -712,7 +712,7 @@ export default {
         return axios.get(GetMonitoringDayResource+ "start=" + start + '&end=' + end+ '&gridCode=' + gridCode, {}
         )
     },
-    //处理
+     // 处理
     GetEditResult(id,handlingResult,afterPath){
     	 let params = {
     	 	'id':id,
@@ -725,6 +725,10 @@ export default {
             }
         )
     },
+//  GetEditResult(id,handlingResult,afterPath) {
+//      return axios.get(GetEditResultResource+ "id=" + id + '&handlingResult=' + handlingResult+ '&afterPath=' + afterPath, {}
+//      )
+//  },
     //案件数量占比
     GetCaseNum(ids,startTime,endTime) {
     	var startTimestr="";
