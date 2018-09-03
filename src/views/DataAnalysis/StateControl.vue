@@ -1,261 +1,136 @@
 <template>
     <div class="StateControl">
-        <!--国省控排名-->
+        <!--省控排名-->
         <v-header></v-header>
         <!---->
         <div class="warp3">
-            <el-tabs v-model="TitleName" @tab-click="handleClick">
-                <el-tab-pane label="国控点" name="first">
-                    <!---->
-                    <div class="kass">
-                        <div class="wbiaoti">
-                            <a>查询条件</a>
-                        </div>
+            <div class="kass">
+                <div class="wbiaoti borderNO">
+                    <div class="float001">
+                        <el-radio-group v-model="SelectVal" @change='GetMonitoringRank'>
+                            <el-radio-button label="固安"></el-radio-button>
+                            <el-radio-button label="全市"></el-radio-button>
+                        </el-radio-group>
+                	</div>
+                </div>
+            </div>
+            <!--查询条件-->
+            <div class="chaxuntiaojian">
+                <div class="float001">
+                    <el-radio-group v-model="StatisticalRankingsName" @change='GetMonitoringRank'>
+                        <el-radio-button label="日报"></el-radio-button>
+                        <el-radio-button label="月报"></el-radio-button>
+                        <el-radio-button label="年报"></el-radio-button>
+                        <el-radio-button label="自定义"></el-radio-button>
+                    </el-radio-group>
+                </div>
+                <div class="float002">
+                    <!--日月年选择-->
+                    <div class="day01" v-show="StatisticalRankingsName!=='自定义'?true:false">
+                    	<span class="demonstration">选择日期</span>
+                        <el-date-picker
+                                v-model="timevalue"
+                                type="date"
+                                placeholder="选择日期"
+                                :picker-options="pickerOptions0">
+                        </el-date-picker>
                     </div>
-                    <!--查询条件-->
-                    <div class="chaxuntiaojian">
-                        <div class="float001">
-                            <el-radio-group v-model="StatisticalRankingsName" @change='GetMonitoringRank'>
-                                <el-radio-button label="日报"></el-radio-button>
-                                <el-radio-button label="月报"></el-radio-button>
-                                <el-radio-button label="年报"></el-radio-button>
-                                <el-radio-button label="自定义"></el-radio-button>
-                            </el-radio-group>
-                        </div>
-                        <div class="float002">
-                            <!--日月年选择-->
-                            <div class="day01" v-show="StatisticalRankingsName!=='自定义'?true:false">
-                            	<span class="demonstration">选择日期</span>
-                                <el-date-picker
-                                        v-model="timevalue"
-                                        type="date"
-                                        placeholder="选择日期"
-                                        :picker-options="pickerOptions0">
-                                </el-date-picker>
-                            </div>
-                            <!--自定义-->
-                            <div class="" v-show="StatisticalRankingsName=='自定义'?true:false">					
-                            	<span class="day02">
-	                            	<el-date-picker
-	                                    v-model="timevalue1"
-	                                    type="date"
-	                                    placeholder="选择日期"
-	                                    :picker-options="pickerOptions0">
-	                               </el-date-picker>-
-                                </span>
-                               <span class="day03">
-	                            	<el-date-picker
-	                                    v-model="timevalue2"
-	                                    type="date"
-	                                    placeholder="选择日期"
-	                                    :picker-options="pickerOptions0">
-	                               </el-date-picker>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="float003">
-                            <el-button type="primary" @click='GetMonitoringRank'>查询</el-button>
-                        </div>
+                    <!--自定义-->
+                    <div class="" v-show="StatisticalRankingsName=='自定义'?true:false">					
+                    	<span class="day02">
+                        	<el-date-picker
+                                v-model="timevalue1"
+                                type="date"
+                                placeholder="选择日期"
+                                :picker-options="pickerOptions0">
+                           </el-date-picker>-
+                        </span>
+                       <span class="day03">
+                        	<el-date-picker
+                                v-model="timevalue2"
+                                type="date"
+                                placeholder="选择日期"
+                                :picker-options="pickerOptions0">
+                           </el-date-picker>
+                        </span>
                     </div>
-                    <!---->
-                    <div class="kass">
-                        <div class="wbiaoti">
-                            <a>筛选区域</a>
-                        </div>
-                    </div>
-                    <!--表格-->
-                    <div class="xuanxiantable">
-                        <el-table
-                                :data="tableStateData"
-                                border
-                                ref="singleTable"
-                                @sort-change='StatesortChange'
-                                style="width: 100%">
-                            <el-table-column
-                                    prop="Ranking"
-                                    label="排名"
-                                    width="160">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="Name"
-                                    label="名称">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="PM25"
-                                    sortable='custom'
-                                    label="PM2.5">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="PM10"
-                                    sortable='custom'
-                                    label="PM10">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="SO2"
-                                    sortable='custom'
-                                    label="SO2">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="NO2"
-                                    sortable='custom'
-                                    label="NO2">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="CO"
-                                    sortable='custom'
-                                    label="CO">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="O3"
-                                    sortable='custom'
-                                    label="O3">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="Com_Index"
-                                    sortable='custom'
-                                    label="综合指数">
-                            </el-table-column>
-                        </el-table>
-                        <!--分页-->
-                        <div class="block">
-                            <el-pagination
-                                    background
-                                    @size-change="handleSizeChange"
-                                           @current-change="handleCurrentChangeState"
-                                           :current-page="currentPage"
-                                           :page-size="pagesize"
-                                           layout="total, prev, pager, next, jumper"
-                                           :total="totalCountState">
-                            </el-pagination>
-                        </div>
-                    </div>
-                
-                </el-tab-pane>
-               	<!--省控点-->
-                <el-tab-pane label="省控点" name="second">
-                    <div class="kass">
-                        <div class="wbiaoti">
-                            <a>查询条件</a>
-                        </div>
-                    </div>
-                    <!--查询条件-->
-                    <div class="chaxuntiaojian">
-                        <div class="float001">
-                            <el-radio-group v-model="ProStatisticalRankingsName" @change='GetMonitoringRankPro'>
-                                <el-radio-button label="日报"></el-radio-button>
-                                <el-radio-button label="月报"></el-radio-button>
-                                <el-radio-button label="年报"></el-radio-button>
-                                <el-radio-button label="自定义"></el-radio-button>
-                            </el-radio-group>
-                        </div>
-                        <div class="float002">
-                            <!--日选择-->
-                            <div class="day01" v-show="ProStatisticalRankingsName!=='自定义'?true:false">
-                            	<span class="demonstration">选择日期</span>
-                                <el-date-picker
-                                        v-model="timevalue"
-                                        type="date"
-                                        placeholder="选择日期"
-                                        :picker-options="pickerOptions0">
-                                </el-date-picker>
-                            </div>
-                             <!--自定义-->
-                            <div class="" v-show="ProStatisticalRankingsName=='自定义'?true:false">					
-                            	<span class="day02">
-	                            	<el-date-picker
-	                                    v-model="timevalue1"
-	                                    type="date"
-	                                    placeholder="选择日期"
-	                                    :picker-options="pickerOptions0">
-	                               </el-date-picker>-
-                                </span>
-                               <span class="day03">
-	                            	<el-date-picker
-	                                    v-model="timevalue2"
-	                                    type="date"
-	                                    placeholder="选择日期"
-	                                    :picker-options="pickerOptions0">
-	                               </el-date-picker>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="float003">
-                            <el-button type="primary" @click='GetMonitoringRankPro'>查询</el-button>
-                        </div>
-                    </div>
-                    <!---->
-                    <div class="kass">
-                        <div class="wbiaoti">
-                            <a>筛选区域</a>
-                        </div>
-                    </div>
-                    <!--表格-->
-                    <div class="xuanxiantable">
-                        <el-table
-                                :data="tableData"
-                                border
-                                @sort-change='sortChange'
-                                style="width: 100%">
-                            <el-table-column
-                                    prop="Ranking"
-                                    label="排名"
-                                    width="160">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="Name"
-                                    label="名称">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="PM25"
-                                     sortable='custom'
-                                    label="PM2.5">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="PM10"
-                                    sortable='custom'
-                                    label="PM10">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="SO2"
-                                    sortable='custom'
-                                    label="SO2">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="NO2"
-                                    sortable='custom'
-                                    label="NO2">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="CO"
-                                    sortable='custom'
-                                    label="CO">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="O3"
-                                    sortable='custom'
-                                    label="O3">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="Com_Index"
-                                    sortable='custom'
-                                    label="综合指数">
-                            </el-table-column>
-                        </el-table>
-                        <!--分页-->
-                        <div class="block">
-                            <el-pagination
-                                    background
-                                    @size-change="handleSizeChange"
-                                           @current-change="handleCurrentChange"
-                                           :current-page="currentPage"
-                                           :page-size="pagesize"
-                                           layout="total, prev, pager, next, jumper"
-                                           :total="totalCount">
-                            </el-pagination>
-                        </div>
-                    </div>
-                </el-tab-pane>
-            </el-tabs>
+                </div>
+                <div class="float003">
+                    <el-button type="primary" @click='GetMonitoringRank'>查询</el-button>
+                </div>
+            </div>
+            <!---->
+            <div class="kass">
+                <div class="wbiaoti">
+                    <a>筛选区域</a>
+                </div>
+            </div>
+            <!--表格-->
+            <div class="xuanxiantable">
+                <el-table
+                        :data="tableStateData"
+                        border
+                        ref="singleTable"
+                        @sort-change='StatesortChange'
+                        style="width: 100%">
+                    <el-table-column
+                            prop="Ranking"
+                            label="排名"
+                            width="160">
+                    </el-table-column>
+                    <el-table-column
+                            prop="Name"
+                            label="名称">
+                    </el-table-column>
+                    <el-table-column
+                            prop="PM25"
+                            sortable='custom'
+                            label="PM2.5">
+                    </el-table-column>
+                    <el-table-column
+                            prop="PM10"
+                            sortable='custom'
+                            label="PM10">
+                    </el-table-column>
+                    <el-table-column
+                            prop="SO2"
+                            sortable='custom'
+                            label="SO2">
+                    </el-table-column>
+                    <el-table-column
+                            prop="NO2"
+                            sortable='custom'
+                            label="NO2">
+                    </el-table-column>
+                    <el-table-column
+                            prop="CO"
+                            sortable='custom'
+                            label="CO">
+                    </el-table-column>
+                    <el-table-column
+                            prop="O3"
+                            sortable='custom'
+                            label="O3">
+                    </el-table-column>
+                    <el-table-column
+                            prop="Com_Index"
+                            sortable='custom'
+                            label="综合指数">
+                    </el-table-column>
+                </el-table>
+                <!--分页-->
+                <div class="block">
+                    <el-pagination
+                            background
+                            @size-change="handleSizeChange"
+                                   @current-change="handleCurrentChangeState"
+                                   :current-page="currentPage"
+                                   :page-size="pagesize"
+                                   layout="total, prev, pager, next, jumper"
+                                   :total="totalCountState">
+                    </el-pagination>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -326,7 +201,9 @@
 		        //国控点
 		        page:1,
 		        tableStateData:[],
-		        timevalue2:''
+		        timevalue2:'',
+		        //固安 全市切换
+		        SelectVal:'固安'
             }
         },
         created() {
@@ -336,7 +213,7 @@
         	//国控点数据
 			this.GetMonitoringRank();
 			//省控点数据
-			this.GetMonitoringRankPro();
+//			this.GetMonitoringRankPro();
         },
         methods: {
         	handleClick(){
@@ -379,15 +256,19 @@
         		api.GetMonitoringRank(ranktype,starttime,endtime).then(res=>{
         			console.log(res)
         			let t = this;
+        			let stateData=[];
+        			let proData=[];
         			let allData = res.data.Data;
         			if(allData){
-        				let stateData=[];
-        				let proData=[];
-        				allData.forEach(item=>{
-        					if(item.pointlevel=='国控点'){
-        						stateData.push(item)
-        					}
-        				})
+        				if(t.SelectVal=='固安'){
+        					allData.forEach(item=>{
+	        					if(item.pointlevel=='省控点'){
+	        						stateData.push(item)
+	        					}
+        					})
+        				}else{
+        					stateData = allData;
+        				}
         				t.statePageData = [];
         				this.totalCountState = stateData.length;
 		                stateData.sort(this.compare('Com_Index'));
@@ -914,6 +795,9 @@
                     margin-top: 10px;
                     margin-bottom: 20px;
                     margin-left: 10px;
+                }
+                .borderNO{
+                	border: none;
                 }
             }
             .chaxuntiaojian {

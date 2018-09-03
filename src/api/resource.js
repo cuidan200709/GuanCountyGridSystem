@@ -10,6 +10,7 @@ const apiconfig = [
             devn:'http://117.119.97.150:8063',//测试001
             devc:'http://117.119.97.150:8061',//测试002
             devy:'http://117.119.97.150:8073',//测试003
+            devm:'http://gkpt.zq12369.com:8016',//正式001
         },
         {
             devn:'http://gkpt.zq12369.com:8016',//正式001
@@ -24,7 +25,7 @@ console.log(process.env.API_ROOT);
 * icode === 0为测试  1为正式
 * */
 if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
-    //icode = 1;
+//    icode = 1;
     icode = 0;
 }else {
     icode = 1;
@@ -127,7 +128,7 @@ const apilangfangTDK = {
     DeleteOperatorInfo: apiconfig[icode].devn + '/api/Operator/DeleteOperatorInfo',//删除运维记录
     UpdateOperatorInfo: apiconfig[icode].devn + '/api/Operator/UpdateOperatorInfo',//编辑运维记录
     GetAssessment: apiconfig[icode].devn + '/api/Town/GetAssessment?',//乡镇月考核(固安县)
-    GetMonitoringRank: apiconfig[icode].devn + '/api/Monitoring/GetMonitoringRank?',//国省控点排名
+    GetMonitoringRank: apiconfig[icode].devm + '/api/Monitoring/GetMonitoringRank?',//国省控点排名
     GetDustRank: apiconfig[icode].devn + '/api/Dust/GetDustRank?',//工地扬尘排名
     GetSixParamDayRank: apiconfig[icode].devn + '/api/SixParamAir/GetSixParamDayRank?',//六参数排名
     GetTVOCRank: apiconfig[icode].devn + '/api/XhHb/GetTVOCRank?',//tvoc排名
