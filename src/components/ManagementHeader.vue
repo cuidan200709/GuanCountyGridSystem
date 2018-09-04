@@ -43,48 +43,57 @@
     .header {
         width: 100%;
         height: 56px;
-        background: #2494F2;
-        .logo {
-            float: left;
-            width: auto;
 
-            img {
-                width: 40px;
-                height: 40px;
-                margin-top: -9px;
-                margin-left: 20px;
-                margin-right: 2px;
-            }
-
-        }
-        .bnav {
-            float: right;
+        .navbox{
+            width: 100%;
             height: 56px;
-            margin-right: 20px;
-            div {
+            background: #2494F2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow:9px 0px 28px rgba(36,148,242,0.53);
+            .logo {
                 float: left;
                 width: auto;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    margin-top: -9px;
+                    margin-left: 20px;
+                    margin-right: 2px;
+                }
+
+            }
+            .bnav {
+                float: right;
                 height: 56px;
-                list-style: none;
-                line-height: 56px;
-                position: relative;
-                margin-left:20px;
-                text-align: left;
-                img{
-                    display: inline-block;
-                    vertical-align: middle;
-                }
-                a {
-                    color: #dee9f5;
-                    font-size: 16px;
-                    font-family: '微软雅黑';
-                    cursor: pointer;
-                    padding: 0;
-                }
-                :hover {
-                    text-decoration: none;
-                }
-           }
+                margin-right: 20px;
+                div {
+                    float: left;
+                    width: auto;
+                    height: 56px;
+                    list-style: none;
+                    line-height: 56px;
+                    position: relative;
+                    margin-left:20px;
+                    text-align: left;
+                    img{
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                    a {
+                        color: #dee9f5;
+                        font-size: 16px;
+                        font-family: '微软雅黑';
+                        cursor: pointer;
+                        padding: 0;
+                    }
+                    :hover {
+                        text-decoration: none;
+                    }
+               }
+            }
         }
     }
 

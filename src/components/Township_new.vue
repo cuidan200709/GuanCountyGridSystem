@@ -177,6 +177,8 @@
             },
             //数据筛选
             setPageTable(pageSize, pageNum) {
+                console.log(pageSize);
+                console.log(pageNum);
                 let rtValue = [];
                 let startNum = pageSize * (pageNum - 1);
                 for (let i = 0; i < pageSize; i++) {
