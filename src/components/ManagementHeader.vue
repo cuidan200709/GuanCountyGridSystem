@@ -9,12 +9,22 @@
             <!--<div style="color: #fff;float: left;height: 56px;line-height: 66px;margin-left: 4px">2018版</div>-->
             <ul class="bnav">
             	<div>
-                    <img src="../assets/img/sy-z.png" alt="">
+                    <!--<img src="../assets/img/sy-z.png" alt="">-->
                     <a href="#/likewinter">首页</a>
                 </div>
                 <div>
-                    <img src="../assets/img/tc-z.png" alt="">
-                    <a style="padding: 0 10px" href="#/">退出</a>
+                    <!--系统后台-退出系统-->
+                    <!--<li style="margin-right: 0;">-->
+                        <span class="position-p"></span>
+                        <img style="padding: 0 20px" src="../assets/img/btn_intercalate.png" class="activehov">
+                        <div class="Sixitem submenu" v-if="isShow">
+                            <a href="#/Management/BusinessManagement/Case-Review" class="houtai"><img src="../assets/img/btn_Backstage1.png" alt="">进入后台</a><br/>
+                            <a class="tuichu" v-on:click="exit"><img src="../assets/img/btn_quit1.png" alt="">退出系统</a>
+                        </div>
+                        <div class="Sixitem submenu" v-else>
+                            <a class="tuichu" v-on:click="exit"><img src="../assets/img/btn_quit1.png" alt="">退出系统</a>
+                        </div>
+                    <!--</li>-->
                 </div>
             </ul>
         </div>
@@ -26,11 +36,36 @@
         name: 'header',
         data () {
             return {
-
+                houtaiSrc: '../../static/imgs/mues/header/btn_Backstage2.png',
+                houtaiChesSrc: '../../static/imgs/mues/header/btn_Backstage1.png',
+                tuichuSrc: '../../static/imgs/mues/header/btn_quit2.png',
+                tuichuChesSrc: '../../static/imgs/mues/header/btn_quit1.png',
+                userMess:'',
             }
         },
         mounted(){
-
+            //右侧伸缩栏模块
+            $(".bnav div").hover(function () {
+                //console.log($(this).find('div'))
+                $(this).find('div').eq(0).css('display',"block")
+            }, function () {
+                $(this).find('div').eq(0).css('display',"none");
+            });
+            const t = this;
+            //
+            $(".houtai").hover(function () {
+                $(".houtai img").attr('src', t.houtaiSrc);
+                // event.stopPropagation();
+            }, function () {
+                $(".houtai img").attr('src', t.houtaiChesSrc);
+            });
+            //
+            $(".tuichu").hover(function () {
+                $(".tuichu img").attr('src', t.tuichuSrc);
+                // event.stopPropagation();
+            }, function () {
+                $(".tuichu img").attr('src', t.tuichuChesSrc);
+            });
         },
         methods: {
 
@@ -52,6 +87,15 @@
             top: 0;
             left: 0;
             box-shadow:9px 0px 28px rgba(36,148,242,0.53);
+            .position-p{
+                position: absolute;
+                display: inline-block;
+                width: 25px;
+                height: 25px;
+                border: 1px solid #e5e5dd;
+                top: 16px;
+                left: 17px;
+            }
             .logo {
                 float: left;
                 width: auto;
@@ -68,7 +112,7 @@
             .bnav {
                 float: right;
                 height: 56px;
-                margin-right: 20px;
+                margin-right: 2px;
                 div {
                     float: left;
                     width: auto;
@@ -91,6 +135,41 @@
                     }
                     :hover {
                         text-decoration: none;
+                    }
+                    .Sixitem {
+                        display: none;
+                        z-index: 100;
+                        width: 100px;
+                        position: absolute;
+                        overflow: hidden;
+                        top: 56px;
+                        right: 0;
+                        background: #fff;
+                        line-height: 25px;
+                        padding: 16px 0;
+                        box-shadow: 0 0 5px #ccc;
+
+                        a {
+                            color: #666;
+                            font-size: 12px;
+                            padding: 0 10px;
+                            font-family: "Microsoft YaHei";
+                            margin-left: -17px;
+                            cursor: pointer;
+
+                            img {
+                                vertical-align: middle;
+                                padding-right: 6px;
+                                padding-left: 18px;
+                                margin-top: -2px;
+                            }
+
+                        }
+                        :hover {
+                            cursor: pointer;
+                            color: #1080cc;
+                        }
+
                     }
                }
             }

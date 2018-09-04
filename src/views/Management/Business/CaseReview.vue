@@ -889,6 +889,7 @@
 }
 #right{
 	width: calc(100% - 200px);
+	height: calc(100% - 64px);;
 	overflow: hidden;
 	padding: 0 20px;
 	background-color: #f6fbff;
