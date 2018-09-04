@@ -174,7 +174,7 @@ export default {
         break;
       case 'ALLREPORTCHAR':
         cf = apiConfig[2];
-        url = cf.site + cf.port + cf.path + 'guan/mobile/caseInfo';
+        url = cf.site + cf.port + cf.path + 'guan/mobile/selectHjwfBusCaseinfoDetail';
         break;
       case 'MAPGEOSEARCH':
         cf = apiConfig[0];
