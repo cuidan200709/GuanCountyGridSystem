@@ -509,7 +509,7 @@
 			uploadOnSuccess(e,file){//上传附件
 				console.log("——————————success——————————")
 				console.log(file)
-				this.fileUrl = file.response;
+				this.fileUrl = file.response.data;
 				this.pass = true;
 				this.$message.success("上传成功")
 				this.imagelist.push({
