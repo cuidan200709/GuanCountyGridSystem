@@ -109,7 +109,10 @@
                         // console.log($elmt)
                         $($elmt).find('.el-submenu__title').css('color','#2494F2');
                         $('.icon-aj').css('background','url("../../../../static/imgs/main/ico-aj-z.png") no-repeat center');
-                        $('.icon-aj').css('background-size','18px 18px')
+                        $('.icon-aj').css('background-size','18px 18px');
+                        this.handleClose('active3');
+                        this.handleClose('active4');
+                        this.handleClose('active1');
                         break;
                     case 'active3':
                         var $elmt = $('.left .el-menu-vertical-demo li')[4];
@@ -117,6 +120,9 @@
 						$($elmt).find('.el-submenu__title').css('color','#2494F2');
                         $('.icon-zhdd').css('background','url("../../../../static/imgs/main/ico-zhdd-z.png") no-repeat center');
                         $('.icon-zhdd').css('background-size','18px 18px')
+                        this.handleClose('active2');
+                        this.handleClose('active4');
+                        this.handleClose('active1');
                         break;
                     case 'active4':
                         var $elmt = $('.left .el-menu-vertical-demo li')[6];
@@ -124,6 +130,9 @@
                         $($elmt).find('.el-submenu__title').css('color','#2494F2')
                         $('.icon-jxkh').css('background','url("../../../../static/imgs/main/ico-jxkh-z.png") no-repeat center');
                         $('.icon-jxkh').css('background-size','18px 18px')
+                        this.handleClose('active3');
+                        this.handleClose('active2');
+                        this.handleClose('active1');
                         break;
                     case 'active1':
                         var $elmt = $('.left .el-menu-vertical-demo li')[11];
@@ -131,6 +140,9 @@
                         $($elmt).find('.el-submenu__title').css('color','#2494F2')
                         $('.icon-ywsj').css('background','url("../../../../static/imgs/main/ico-ywsj-z.png") no-repeat center');
                         $('.icon-ywsj').css('background-size','18px 18px')
+                        this.handleClose('active3');
+                        this.handleClose('active4');
+                        this.handleClose('active2');
                         break;
 					default:
                         var $elmt = $('.left .el-menu-vertical-demo li')[0];
