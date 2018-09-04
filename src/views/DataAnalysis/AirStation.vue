@@ -245,277 +245,6 @@
 			        </div>
                     <!---->
                 </el-tab-pane>
-                <!--<el-tab-pane label="乡镇考核" name="second">
-                    <div class="kass">
-                        <div class="wbiaoti">
-                            <a>查询条件</a>
-                        </div>
-                    </div>
-                    <div class="chaxuntiaojian">
-                        <div class="float001">
-                            <el-select v-model="Xcvalue1" placeholder="请选择">
-                                <el-option
-                                        v-for="item in Optionvaluebox"
-                                        :key="item.value"
-                                        :label="item.label"
-                                        :value="item.value">
-                                </el-option>
-                            </el-select>
-                        </div>-->
-                        <!--月度-->
-                        <!--<div class="float002" v-show="Xcvalue1=='月度'?true:false">
-                            <el-select v-model="Xcvalue2" placeholder="请选择">
-                                <el-option
-                                        v-for="item in Optionvalue2"
-                                        :key="item.value"
-                                        :label="item.label"
-                                        :value="item.value">
-                                </el-option>
-                            </el-select>
-                        </div>-->
-                        <!--季度-->
-                        <!--<div class="float002" v-show="Xcvalue1=='季度'?true:false">
-                            <el-select v-model="Xcvalue3" placeholder="请选择">
-                                <el-option
-                                        v-for="item in Optionvalue1"
-                                        :key="item.value"
-                                        :label="item.label"
-                                        :value="item.value">
-                                </el-option>
-                            </el-select>
-                        </div>
-                    </div>-->
-                    <!---->
-                    <!--<div class="kass">
-                        <div class="wbiaoti">
-                            <a>筛选区域</a>
-                        </div>
-                    </div>-->
-                    <!---->
-                    <!--<div class="chaxuntiaojian">
-                        <div class="float001">
-                            <el-radio-group v-model="TownshipScreeningName">
-                                <el-radio-button label="全市"></el-radio-button>
-                                <el-radio-button label="区县"></el-radio-button>
-                            </el-radio-group>
-                        </div>
-                        <div class="float000">
-                            图例
-                        </div>
-                    </div>-->
-                    <!--视图切换-->
-                    <!--<div class="shituquanshi" v-show="TownshipScreeningName=='全市'?true:false">
-                        <div class="tubiao001">
-                            <el-table
-                                    :data="WholeCityData"
-                                    style="width: 100%">
-                                <el-table-column
-                                        prop="Inverted"
-                                        label="倒排"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="Township"
-                                        label="乡镇"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="PM25"
-                                        label="PM2.5"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="SO2"
-                                        label="SO2"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="CompositeIndex"
-                                        label="综合指数"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="InvertedNumber"
-                                        label="进入倒排次数"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="EarlyWarning"
-                                        label="处罚预警"
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                        prop="Operation"
-                                        label="操作">
-                                </el-table-column>
-                            </el-table>
-
-                            <div class="genduo">
-                                更多
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shituquxian" v-show="TownshipScreeningName=='区县'?true:false">-->
-
-                        <!---->
-                        <!--<el-tabs :tab-position="tabPosition" style="height:auto;">
-                            <el-tab-pane label="北部县区">
-                                <div class="tubiao001">
-                                    <el-table
-                                            :data="WholeCityData"
-                                            style="width: 100%">
-                                        <el-table-column
-                                                prop="Inverted"
-                                                label="倒排"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="Township"
-                                                label="乡镇"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="PM25"
-                                                label="PM2.5"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="SO2"
-                                                label="SO2"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="CompositeIndex"
-                                                label="综合指数"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="InvertedNumber"
-                                                label="进入倒排次数"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="EarlyWarning"
-                                                label="处罚预警"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="Operation"
-                                                label="操作">
-                                        </el-table-column>
-                                    </el-table>
-
-                                    <div class="genduo">
-                                        更多
-                                    </div>
-                                </div>
-                            </el-tab-pane>
-                            <el-tab-pane label="中部县区">
-                                <div class="tubiao001">
-                                    <el-table
-                                            :data="WholeCityData"
-                                            style="width: 100%">
-                                        <el-table-column
-                                                prop="Inverted"
-                                                label="倒排"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="Township"
-                                                label="乡镇"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="PM25"
-                                                label="PM2.5"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="SO2"
-                                                label="SO2"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="CompositeIndex"
-                                                label="综合指数"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="InvertedNumber"
-                                                label="进入倒排次数"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="EarlyWarning"
-                                                label="处罚预警"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="Operation"
-                                                label="操作">
-                                        </el-table-column>
-                                    </el-table>
-
-                                    <div class="genduo">
-                                        更多
-                                    </div>
-                                </div>
-                            </el-tab-pane>
-                            <el-tab-pane label="南部县区">
-                                <div class="tubiao001">
-                                    <el-table
-                                            :data="WholeCityData"
-                                            style="width: 100%">
-                                        <el-table-column
-                                                prop="Inverted"
-                                                label="倒排"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="Township"
-                                                label="乡镇"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="PM25"
-                                                label="PM2.5"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="SO2"
-                                                label="SO2"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="CompositeIndex"
-                                                label="综合指数"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="InvertedNumber"
-                                                label="进入倒排次数"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="EarlyWarning"
-                                                label="处罚预警"
-                                        >
-                                        </el-table-column>
-                                        <el-table-column
-                                                prop="Operation"
-                                                label="操作">
-                                        </el-table-column>
-                                    </el-table>
-
-                                    <div class="genduo">
-                                        更多
-                                    </div>
-                                </div>
-                            </el-tab-pane>-->
-                        <!--</el-tabs>-->
-
-                    <!--</div>-->
-                    <!---->
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -855,11 +584,7 @@
         			endtime = this.timeHourEnd;
         			fl = this.Tjvalue;
         		}
-//      		console.log(ranktype);
-//      		console.log(starttime);
-//      		console.log(endtime);
-//      		console.log(fl);
-        		api.GetTownExcelOutPut(ranktype,starttime,endtime,fl);
+        		api.GetTownExcelOutPut(ranktype,starttime,endtime,encodeURI(fl));
         		this.isExport = false;
         	},
         	//排序
@@ -957,25 +682,25 @@
                //实时
                 if (this.StatisticalRankingsName == '实时' && this.StatisticalScreeningName == '全市') {
                     let region = '';
-                    this.getAllCityData(region);
+                    this.getAllCityData(encodeURI(region));
                 } else if (this.StatisticalRankingsName == '实时' && this.StatisticalScreeningName == '区县' && this.Tjvalue) {
                     let region = this.Tjvalue;
-                    this.getAllCityData(region);
+                    this.getAllCityData(encodeURI(region));
                 }else if (this.StatisticalRankingsName == '实时' && this.StatisticalScreeningName == '片区' && this.Pqvalue) {
                     let region = this.Pqvalue;
                     console.log(region)
-                    this.getAllCityData(region);
+                    this.getAllCityData(encodeURI(region));
                 }
                 //
                 if (this.StatisticalRankingsName == '日累计' && this.StatisticalScreeningName == '全市') {
                     let region = '';
-                    this.GetTownAnalysisListForDay(region);
+                    this.GetTownAnalysisListForDay(encodeURI(region));
                 } else if (this.StatisticalRankingsName == '日累计' && this.StatisticalScreeningName == '区县' && this.Tjvalue) {
                     let region = this.Tjvalue;
-                    this.GetTownAnalysisListForDay(region);
+                    this.GetTownAnalysisListForDay(encodeURI(region));
                 }else if (this.StatisticalRankingsName == '日累计' && this.StatisticalScreeningName == '片区' && this.Pqvalue) {
                     let region = this.Pqvalue;
-                    this.GetTownAnalysisListForDay(region);
+                    this.GetTownAnalysisListForDay(encodeURI(region));
                 }
                 //
                 if (this.StatisticalRankingsName == '日报' && this.StatisticalScreeningName == '全市' && !Time) {
@@ -989,49 +714,49 @@
                 } else if (this.StatisticalRankingsName == '日报' && this.StatisticalScreeningName == '区县' && !Time && this.Tjvalue) {
                     let region = this.Tjvalue;
                     let Time = '';
-                    this.getDayData(Time, region);
+                    this.getDayData(Time, encodeURI(region));
                 } else if (this.StatisticalRankingsName == '日报' && this.StatisticalScreeningName == '区县' && Time && this.Tjvalue) {
                     let region = this.Tjvalue;
-                    this.getDayData(Time, region);
+                    this.getDayData(Time, encodeURI(region));
                 }else if (this.StatisticalRankingsName == '日报' && this.StatisticalScreeningName == '片区' && !Time && this.Pqvalue) {
                     let region = this.Pqvalue;
                     let Time = '';
-                    this.getDayData(Time, region);
+                    this.getDayData(Time, encodeURI(region));
                 } else if (this.StatisticalRankingsName == '日报' && this.StatisticalScreeningName == '片区' && Time && this.Pqvalue) {
                     let region = this.Pqvalue;
-                    this.getDayData(Time, region);
+                    this.getDayData(Time, encodeURI(region));
                 }
                 //月报
                 if (this.StatisticalRankingsName == '月报' && this.StatisticalScreeningName == '全市' && !time) {
                     let region = '';
                     let time = this.getCurrentMonth();
-                    this.getForMonthData(time, region);
+                    this.getForMonthData(time, encodeURI(region));
                 } else if (this.StatisticalRankingsName == '月报' && this.StatisticalScreeningName == '全市' && time) {
                 	time = $('.day02 input').val()+'-01';
                     let region = '';
 //                  time = time+'-01';
-                    this.getForMonthData(time, region);
+                    this.getForMonthData(time, encodeURI(region));
                 } else if (this.StatisticalRankingsName == '月报' && this.StatisticalScreeningName == '区县' && !time && this.Tjvalue) {
                     let region = this.Tjvalue;
                     let time = '';
-                    this.getForMonthData(time, region);
+                    this.getForMonthData(time, encodeURI(region));
                 } else if (this.StatisticalRankingsName == '月报' && this.StatisticalScreeningName == '区县' && time && this.Tjvalue) {
                     let region = this.Tjvalue;
                     time = $('.day02 input').val()+'-01';
-                    this.getForMonthData(time, region);
+                    this.getForMonthData(time, encodeURI(region));
                 }else if (this.StatisticalRankingsName == '月报' && this.StatisticalScreeningName == '片区' && !time && this.Pqvalue) {
                     let region = this.Pqvalue;
                     let time = '';
-                    this.getForMonthData(time, region);
+                    this.getForMonthData(time, encodeURI(region));
                 } else if (this.StatisticalRankingsName == '月报' && this.StatisticalScreeningName == '片区' && time && this.Pqvalue) {
                     let region = this.Pqvalue;
                     time = $('.day02 input').val()+'-01';
-                    this.getForMonthData(time, region);
+                    this.getForMonthData(time, encodeURI(region));
                 }else if (this.StatisticalRankingsName == '季报' && this.StatisticalScreeningName == '全市' && !quarter) {
                 	let year = '';
                 	let quarter = '';
                     let region = '';
-                    this.GetTownAnalysisListForQuarter(year, quarter,region);
+                    this.GetTownAnalysisListForQuarter(year, quarter,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '季报' && this.StatisticalScreeningName == '全市' && quarter) {
                 	let year = '';
                     let region = '';
@@ -1057,34 +782,34 @@
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '全市' && !year) {
                 	let year = '';
                     let region = '';
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '全市' && year) {
                     let region = '';
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '片区' && year && this.Pqvalue) {
                     let region = this.Pqvalue;
                     this.GetTownAnalysisListForYear(year,region);
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '片区' && !year && this.Pqvalue) {
                 	let year = '';
                     let region = this.Pqvalue;
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '区县' && year && this.Tjvalue) {
                     let region = this.Tjvalue;
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '区县' && !year && this.Tjvalue) {
                 	let year = '';
                     let region = this.Tjvalue;
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 } 
                 if (this.StatisticalRankingsName == '自定义选择' && this.StatisticalScreeningName == '全市' && beginTime && endTime) {
                     let region = ''; 
-                    this.GetTownAnalysisListForCustom(beginTime,endTime,region);
+                    this.GetTownAnalysisListForCustom(beginTime,endTime,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '自定义选择' && this.StatisticalScreeningName == '片区' && beginTime && endTime && this.Pqvalue) {
                     let region = this.Pqvalue; 
-                    this.GetTownAnalysisListForCustom(beginTime,endTime,region);
+                    this.GetTownAnalysisListForCustom(beginTime,endTime,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '自定义选择' && this.StatisticalScreeningName == '区县' && beginTime && endTime && this.Tjvalue) {
                     let region = this.Tjvalue; 
-                    this.GetTownAnalysisListForCustom(beginTime,endTime,region);
+                    this.GetTownAnalysisListForCustom(beginTime,endTime,encodeURI(region));
                 }
             },
             getYesterday() {
@@ -1141,10 +866,10 @@
                             t.getDayData(Time, '');
                         } else if (t.StatisticalRankingsName == '日报' && t.StatisticalScreeningName == '区县' && Time && t.Tjvalue) {
                             let region = t.Tjvalue;
-                            t.getDayData(Time, region);
+                            t.getDayData(Time, encodeURI(region));
                         }else if (this.StatisticalRankingsName == '日报' && t.StatisticalScreeningName == '片区' && Time && t.Pqvalue) {
                             let region = t.Pqvalue;
-                            t.getDayData(Time, region);
+                            t.getDayData(Time, encodeURI(region));
                         }
                         break;
                     case '月报':
@@ -1155,11 +880,11 @@
                         } else if (t.StatisticalRankingsName == '月报' && t.StatisticalScreeningName == '区县' && time && t.Tjvalue) {
                         	time = time + '-01';
                             let region = t.Tjvalue;
-                            t.getForMonthData(time, region);
+                            t.getForMonthData(time, encodeURI(region));
                         }else if (this.StatisticalRankingsName == '月报' && t.StatisticalScreeningName == '片区' && time && t.Pqvalue) {
                         	time = time + '-01';
                             let region = t.Pqvalue;
-                            t.getForMonthData(time, region);
+                            t.getForMonthData(time, encodeURI(region));
                         }
                         break;
                     case '季报':
@@ -1180,24 +905,24 @@
                     case '年报':
                         if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '全市' && year) {
                     let region = ''; 
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '片区' && year && this.Pqvalue) {
                     let region = this.Pqvalue; 
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '年报' && this.StatisticalScreeningName == '区县' && year && this.Tjvalue) {
                     let region = this.Tjvalue; 
-                    this.GetTownAnalysisListForYear(year,region);
+                    this.GetTownAnalysisListForYear(year,encodeURI(region));
                 } 
                 	case '自定义选择':
                 		if (this.StatisticalRankingsName == '自定义选择' && this.StatisticalScreeningName == '全市' && beginTime && endTime) {
                     let region = ''; 
-                    this.GetTownAnalysisListForCustom(beginTime,endTime,region);
+                    this.GetTownAnalysisListForCustom(beginTime,endTime,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '自定义选择' && this.StatisticalScreeningName == '片区' && beginTime && endTime && this.Pqvalue) {
                     let region = this.Pqvalue; 
-                    this.GetTownAnalysisListForCustom(beginTime,endTime,region);
+                    this.GetTownAnalysisListForCustom(beginTime,endTime,encodeURI(region));
                 }else if (this.StatisticalRankingsName == '自定义选择' && this.StatisticalScreeningName == '区县' && beginTime && endTime && this.Tjvalue) {
                     let region = this.Tjvalue; 
-                    this.GetTownAnalysisListForCustom(beginTime,endTime,region);
+                    this.GetTownAnalysisListForCustom(beginTime,endTime,encodeURI(region));
                 }else if(this.StatisticalRankingsName == '自定义选择' && !beginTime && !endTime){
                 	this.$message({
 			          message: '请输入查询时间',

@@ -189,7 +189,7 @@
 								<span class="left">案件照片</span>
 							    <el-carousel height="200px">
 							        <el-carousel-item v-for="(item,index) in hjwfBusCaseattachList" :key="index">
-						        		<img :src="imgUrl+item.attachment" />						      
+						        		<img :src="item.attachment" />						      
 							        </el-carousel-item>
 							    </el-carousel>
 							</div>
