@@ -1027,7 +1027,7 @@
         		let Time = '';
         		let isQuarter = true;
         		t.WholeCityData = [];
-        		let area = this.area;
+        		let area = encodeURL(this.area);
         		api.GetAssessment(Time,area,isQuarter).then(res=>{
         			let i = 1;
         			if(res&&isQuarter){
@@ -2481,13 +2481,13 @@
             },
             //获取月考核数据
            	GetMonthCheck(){
-           		let date = new Date();
+//         		let date = new Date();
 //         		let month = date.getMonth()+1;
-				let month = '5';
-           		let year = date.getFullYear();
+				let time = '';
+//         		let year = date.getFullYear();
            		let t = this;
 //         		console.log(month,year)
-           		api.GetMonthCheck(month,year).then(res => {
+           		api.GetMonthCheck(time).then(res => {
            			let allData = res.data.Data;
            			console.log(allData);
            			allData.forEach(item=>{

@@ -189,7 +189,7 @@
 								<span class="left">案件照片</span>
 							    <el-carousel height="200px">
 							        <el-carousel-item v-for="(item,index) in hjwfBusCaseattachList" :key="index">
-						        		<img :src="imgUrl+item.attachment" />						      
+						        		<img :src="item.attachment" />						      
 							        </el-carousel-item>
 							    </el-carousel>
 							</div>
@@ -509,7 +509,7 @@
 			uploadOnSuccess(e,file){//上传附件
 				console.log("——————————success——————————")
 				console.log(file)
-				this.fileUrl = file.response;
+				this.fileUrl = file.response.data;
 				this.pass = true;
 				this.$message.success("上传成功")
 				this.imagelist.push({
