@@ -924,7 +924,7 @@
 	width: 100px;
 }
 #right{
-	width: calc(100% - 200px);
+	width:100%;
 	overflow: hidden;
 	padding: 20px;
 	background-color: #f6fbff;

@@ -888,8 +888,8 @@
 	width: 100px;
 }
 #right{
-	width: calc(100% - 200px);
-	height: calc(100% - 64px);;
+	width: 100%;
+	height: auto;
 	overflow: hidden;
 	padding: 0 20px;
 	background-color: #f6fbff;
