@@ -826,7 +826,7 @@
 <style lang="scss" scoped>
     .electricity{
         //
-        width: calc(100% - 200px);
+        width: 100%;
         overflow: hidden;
         padding: 20px;
         background-color: #f6fbff;

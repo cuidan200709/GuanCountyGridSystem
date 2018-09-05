@@ -1,10 +1,14 @@
 <!--后台管理-业务数据管理-->
 <template>
     <div class="businessmanagement">
-  		<business-side-bar></business-side-bar>
-   		<keep-alive>
+        <!---->
+        <div style="float:left;width:200px;height:calc(100% - 64px);overflow-x: hidden;overflow-y: auto">
+            <business-side-bar></business-side-bar>
+        </div>
+  		<!---->
+   		<div style="float:left;width:calc(100% - 200px);height:calc(100% - 64px);overflow-x: hidden;">
             <router-view></router-view>
-        </keep-alive>
+        </div>
     </div>
 </template>
 

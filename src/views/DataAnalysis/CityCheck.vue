@@ -482,7 +482,7 @@
         		let Time = $('.el-input__inner').val();
         		let isQuarter = true;
         		t.WholeCityData = [];
-        		let area = this.area;
+        		let area = encodeURI(this.area);
         		api.GetAssessment(Time,area,isQuarter).then(res=>{
         			let i = 1;
         			if(res&&isQuarter){

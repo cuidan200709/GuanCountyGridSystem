@@ -150,6 +150,9 @@ import {
     GetElectricityIndexChartForDayResource,//大数据对比
     GetCaseNumResource,//案件数量
     GetCaseTypeResource,//案件类型
+    GetCaseTypeListResource,//案件类型占比
+    GetCaseTypeExcelResource,//案件类型占比导出
+    GetStaffResource,//签到统计
 } from './resource'
 
 export default {
@@ -564,6 +567,22 @@ export default {
             }
         )
     },
+    //签到统计
+     GetStaff(Name,BeginTime,EndTime,PageIndex,PageSize) {
+        let params = {
+            'Name':Name,
+            'BeginTime':BeginTime,
+            'EndTime':EndTime,
+            'PageIndex':PageIndex,
+            'PageSize':PageSize
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(GetStaffResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+
+    },
     //新增预警信息
     EmergencyInfoInsert(Content,WarningStatus,BeginTime,EndTime) {
 		let params = {
@@ -762,9 +781,19 @@ export default {
         return axios.get(GetCaseListResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&startTime=" + startTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
         )
     },
+     //获取案件类型占比列表
+    GetCaseTypeList(startTime,endTime,depcode) {
+        return axios.get(GetCaseTypeListResource+"startTime=" + startTime+"&endTime=" + endTime+"&depcode=" + depcode, {}
+        )
+    },
      //导出案件
     GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo) {
-        window.open(GetExportCaseResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
+        window.open(GetExportCaseResource+"status=" + status+"&datasource=" + datasource+"&fkDepartmenttype=" + fkDepartmenttype+"&fkPollutiontype=" + fkPollutiontype+"&location="+location+"&startTime=" + startTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
+        )
+    },
+    //导出案件类型占比
+    GetCaseTypeExcel(startTime,endTime,depcode) {
+        window.open(GetCaseTypeExcelResource+"startTime=" + startTime+"&endTime=" + endTime+"&depcode=" + depcode, {}
         )
     },
      //分配责任主体

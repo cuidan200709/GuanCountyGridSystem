@@ -1,7 +1,6 @@
 <!--后台管理-案件类型占比-->
 <template>
     <div class="CaseReview">
-		<!--------------案件类型占比右侧数据展示------>
 		<div id="right">
 			<!----------案件类型占比-->
 			<div class="box">
@@ -29,6 +28,17 @@
 				      placeholder="选择日期时间"
 				      @change='endChange'>
 				    </el-date-picker>
+				    <div class="searchBox">
+					    <span>责任部门</span>
+					    <el-select v-model="DutyMainVal" @change="selectChangeDuty" clearable placeholder="请选择">
+					        <el-option
+					          v-for="item in optionsDuty"
+					          :key="item.value"
+					      	  :label="item.name"
+					          :value="item.code">
+					        </el-option>
+					    </el-select>
+					</div>
 				    <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
 				    <div class="InsertOrOut">
 						<span>
@@ -48,63 +58,96 @@
 			    :data="ListData"
 			    style="width: 100%">
 			    <el-table-column
-			      prop="pollutiontype"
+			      prop="pname"
 			      label="责任部门"
-			      width="100">
+			      width="50">
 			    </el-table-column>
 			    <el-table-column
-			      prop="status"
+			      prop="sum"
 			      label="案件数量"
-			      width="100">
+			      width="50">
 			    </el-table-column>
 			    <el-table-column
-			      prop="createtime"
-			      label="露天烧烤"
-			      width="100">
+			      prop="Percent1"
+			      label='工地扬尘'
+			      width="">
 			    </el-table-column>
 			    <el-table-column
-			      prop="location"
-			      label="车辆限行">
+			      prop="Percent2"
+			      label="裸土堆放">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
-			      label="道路扬尘">
+			      prop="Percent3"
+			      label="汽车黑烟">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
+			      prop="Percent4"
+			      label="道路拥堵">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent5"
+			      label="大车禁行">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent6"
+			      label="祭祀品贩卖">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent7"
+			      label="爆竹贩卖">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent8"
+			      label="爆竹燃放">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent9"
+			      label="渣土车带泥上路">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent10"
+			      label="渣土车运输未苫盖">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent11"
+			      label="露天烧烤">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent12"
 			      label="餐饮油烟">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
-			      label="垃圾焚烧">
+			      prop="Percent13"
+			      label='露天喷漆'
+			      width="100">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
-			      label="裸露土地">
+			      prop="Percent14"
+			      label="露天电气焊">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
-			      label="企业废气">
-			    </el-table-column>
-			    <el-table-column
-			      prop="departmenttype"
-			      label="汽车尾气">
-			    </el-table-column>
-			    <el-table-column
-			      prop="departmenttype"
+			      prop="Percent15"
 			      label="垃圾堆放">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
-			      label="建筑扬尘">
+			      prop="Percent16"
+			      label="企业废气排放">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
+			      prop="Percent17"
 			      label="锅炉黑烟">
 			    </el-table-column>
 			    <el-table-column
-			      prop="departmenttype"
-			      label="其他">
+			      prop="Percent18"
+			      label="祭祀品焚烧">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent19"
+			      label="秸秆焚烧">
+			    </el-table-column>
+			    <el-table-column
+			      prop="Percent20"
+			      label="散煤及生物质焚烧">
 			    </el-table-column>
 			</el-table>
 		   	<div class="page">
@@ -437,7 +480,9 @@
 	         id:'',
 	         zrxtCode:'',
 	         afterCaseImg:'',
-	         imgUrl:''
+	         imgUrl:'',
+	         caseKindsNumRespList:[],
+	         perData:[]
             }
         },
         created(){
@@ -543,49 +588,6 @@
 		   			
 		   		})
 		   },
-        	//上传图片
-//      	handleRemove(file, fileList) {
-//		        console.log(file, fileList);
-//		    },
-//		    handlePictureCardPreview(file) {
-//		        this.dialogImageUrl = file.url;
-//		        this.dialogVisible = true;
-//		    },
-//		    success(response, file, fileList){
-//		    	 this.dialogVisible = true;
-//		    },
-		     // 上传前对文件的大小的判断
-//		    beforeAvatarUpload (file) {
-//			    const extension = file.name.split('.')[1] === 'jpg'
-//			    const extension2 = file.name.split('.')[1] === 'png'
-//			    const isLt2M = file.size / 1024 / 1024 < 5
-//			    if (!extension && !extension2) {
-//			        console.log('上传模板只能是jpg/png 格式!')
-//			    }
-//			    if (!isLt2M) {
-//			        console.log('上传模板大小不能超过 10MB!')
-//			    }
-//			    return extension || extension2 && isLt2M
-//		    },
-		     // 文件上传前
-//			beforeImgUpload (file) {
-//			    const self = this;  //这个很重要！
-//			    var reader = new FileReader();
-//			    reader.readAsDataURL(file);
-//			    reader.onloadend = function() {
-//			        self.form.upLoadData.img_base64 = this.result;
-//			        console.log(self.form.upLoadData.img_base64);
-//			    };
-//			},
-//			// 上传成功后的回调
-//			uploadSuccess (response, file, fileList) {
-//			    console.log('上传文件', response)
-//			    this.$alert(response.retData.msg);
-//			    console.log(this.form.upLoadData.img_base64);
-//			},
-//			uploadError(){
-//				
-//			},
 			GetUploadImg(){
 				
 			},
@@ -643,25 +645,7 @@
       		},
       		handleCurrentChange(val) {
       			let t = this;
-				let status;
-				if(this.CaseStatusVal){
-					status = this.status;
-				}else{
-					status = -1;
-				}
-				let departmenttype;
-				if(this.DutyMainVal){
-					departmenttype = this.departmenttype;
-				}else{
-					departmenttype = -1;
-				}
-				let pollutiontype;
-				if(this.PollutionClassVal){
-					pollutiontype = this.pollutiontype;
-				}else{
-					pollutiontype = -1;
-				}
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
+				let startTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
 				let pageNo = val;
@@ -724,66 +708,104 @@
       			})
       		},
       		//获取责任主体
-      		GetPollutionType(){
-      			api.GetPollutionType().then(result=>{
-      				let t = this;
-      				console.log(result)
-      				t.optionsDuty = result.data.depart_type;
-      				t.optionsDistributePop = result.data.depart_type;
+      		GetCaseAll(){
+      			let t = this;
+      			api.GetCaseAll().then(result=>{
+      				t.optionsDuty = result.data.data;
+      				t.optionsDistributePop = result.data.data;
       			})
       		},
       		//获取列表
       		GetMonitoringDay(){
       			let t = this;
-				let status;
-				if(this.CaseStatusVal){
-					status = this.status;
-				}else{
-					status = -1;
-				}
-				let departmenttype;
-				if(this.DutyMainVal){
-					departmenttype = this.departmenttype;
-				}else{
-					departmenttype = -1;
-				}
-				let pollutiontype;
-				if(this.PollutionClassVal){
-					pollutiontype = this.pollutiontype;
-				}else{
-					pollutiontype = -1;
-				}
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
+				let startTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
 				let pageNo = this.pageNo;
+				let depcode = this.DutyMainVal;
       			this.ListData = [];
-      			api.GetCaseList(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo).then(result=>{
+      			api.GetCaseTypeList(startTime,endTime,depcode).then(result=>{
       				console.log(result)
       				if(result){
-      					let InfoData = result.data.list;
-      					t.totalCount = result.data.count;
+      					let InfoData = result.data.data;
+      					t.totalCount = result.data.data.count;
       					console.log(InfoData)
-      					console.log('11')
+      					console.log('11');
+//    					let CaseData = [];
       					if(InfoData){
       						InfoData.forEach(item=>{
-								let tableData = {};
-								tableData.casecode = item.casecode;
-		                        tableData.createtime = item.createtime.replace('T',' ');//案发时间
-		                        tableData.description = item.description;
-		                        tableData.departmenttype = item.departmenttype;//责任主体
-		                        tableData.location = item.location;//位置
-		                        tableData.pollutiontype = item.pollutiontype;//污染类型
-		                        tableData.status = item.status?'处理完毕':'未处理';//处理状态
-		                        tableData.tupian = item.tupian;//图片
-		                        tableData.afterCaseImg = item.afterCaseImg;//安后图片
-		                        tableData.username = item.username;
-		                        tableData.id = item.id;
-		                        tableData.handlingResult = item.handlingResult;//处理结果
+								let tableData = [];
+								tableData.pname = item.pname;
+								tableData.sum = item.sum;
+								item.caseKindsNumRespList.forEach(item=>{
+									switch (item.dcode){
+										case '1':
+										tableData.Percent1 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '2':
+										tableData.Percent2 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '3':
+										tableData.Percent3 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '4':
+										tableData.Percent4 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '5':
+										tableData.Percent5 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '6':
+										tableData.Percent6 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '7':
+										tableData.Percent7 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '8':
+										tableData.Percent8 =Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '9':
+										tableData.Percent9 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '10':
+										tableData.Percent10 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '11':
+										tableData.Percent11 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '12':
+										tableData.Percent12 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '13':
+										tableData.Percent13 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '14':
+										tableData.Percent14 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '15':
+										tableData.Percent15 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '16':
+										tableData.Percent16 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '17':
+										tableData.Percent17 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '18':
+										tableData.Percent18 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '19':
+										tableData.Percent19 = Number(item.percent*100).toFixed(2)+"%";
+											break;
+											case '20':
+										tableData.Percent20 = Number(item.percent*100).toFixed(2)+"%";
+											break;	
+										default:
+											break;
+									}
+								});
 		                        t.ListData.push(tableData);
 							})
       					}
-						
 //						this.setPageTable(10000, 1);
       				}
 				});
@@ -801,29 +823,10 @@
       		//导出
       		GetExportCase(){
       			let t = this;
-      			let status;
-				if(this.CaseStatusVal){
-					status = this.status;
-				}else{
-					status = -1;
-				}
-				let departmenttype;
-				if(this.DutyMainVal){
-					departmenttype = this.departmenttype;
-				}else{
-					departmenttype = -1;
-				}
-				let pollutiontype;
-				if(this.PollutionClassVal){
-					pollutiontype = this.pollutiontype;
-				}else{
-					pollutiontype = -1;
-				}
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
+      			let startTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
-				let pageSize = 10;
-				let pageNo = 1;
-      			api.GetExportCase(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo);
+				let depcode = this.DutyMainVal;
+      			api.GetCaseTypeExcel(startTime,endTime,depcode);
       		},
       		 //分页数据
             setPageTable(pageSize, pageNum) {
@@ -952,7 +955,7 @@
 	width: 100px;
 }
 #right{
-	width: calc(100% - 200px);
+	width: 100%;
 	overflow: hidden;
 	padding: 20px;
 	background-color: #f6fbff;

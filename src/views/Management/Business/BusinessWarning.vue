@@ -420,7 +420,7 @@ margin-left: 26px;"><span style="color: red;margin-right: 5px;">*</span>预警�
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 #right{
-	width: calc(100% - 220px);
+	width:100%;
 	overflow: hidden;
 	padding: 0 20px;
 	background-color: #f6fbff;

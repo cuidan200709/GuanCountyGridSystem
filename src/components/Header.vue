@@ -181,7 +181,7 @@
             }
 
             .bnav {
-                width: 602px;
+                width: 604px;
                 float: right;
                 height: 56px;
 

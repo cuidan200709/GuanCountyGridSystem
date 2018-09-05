@@ -189,7 +189,7 @@
 								<span class="left">案件照片</span>
 							    <el-carousel height="200px">
 							        <el-carousel-item v-for="(item,index) in hjwfBusCaseattachList" :key="index">
-						        		<img :src="imgUrl+item.attachment" />						      
+						        		<img :src="item.attachment" />						      
 							        </el-carousel-item>
 							    </el-carousel>
 							</div>
@@ -726,11 +726,11 @@
 				let fkDepartmenttype = this.DutyMainVal?this.DutyMainVal:-1;
 				let location = this.cityName;
 				let fkPollutiontype = this.PollutionClassVal?this.PollutionClassVal:-1;
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
+				let startTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
 				let pageNo = this.pageNo;
-      			api.GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo);
+      			api.GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo);
       		},
       		 //分页数据
             setPageTable(pageSize, pageNum) {
@@ -888,7 +888,8 @@
 	width: 100px;
 }
 #right{
-	width: calc(100% - 200px);
+	width: 100%;
+	height: auto;
 	overflow: hidden;
 	padding: 0 20px;
 	background-color: #f6fbff;
