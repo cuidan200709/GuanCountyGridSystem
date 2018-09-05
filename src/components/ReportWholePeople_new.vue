@@ -4,7 +4,7 @@
        <div class="main">
                     <!--选项查询-->
                     <div class="first">
-                        <div class="shijian time-qm">
+                        <div class="shijian">
 
                             <el-input v-model="inputName" placeholder="请输入内容"></el-input>
 
@@ -19,7 +19,7 @@
                         <div class="title-daqi">
                             <div class="shuxian"></div>
                             <div class="title-text">
-                                <div class="bing_text">案件数量占比</div>
+                                <div class="bing_text">状态</div>
                             </div>
                         </div>
                         <div class="">
@@ -29,7 +29,7 @@
                         <div class="title-daqi">
                             <div class="shuxian"></div>
                             <div class="title-text">
-                                <div class="bing_text">案件类型占比</div>
+                                <div class="bing_text">乡镇名称</div>
                             </div>
                         </div>
                         <!--案件类型占比-->
@@ -75,6 +75,9 @@
                                     layout="total, prev, pager, next"
                                     :total="totalCount">
                             </el-pagination>
+                        </div>
+                        <div class="pan-anniu">
+                            <el-button type="primary">一键调度</el-button>
                         </div>
                     </div>
                 </div>
@@ -239,7 +242,7 @@
                         fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
                 return fmt;
             },
-            //案件数量占比
+            //状态
             NumberCasesChars(data){
                 // let showData = data.map(function (v) {
                 //     return {value: (v.percent).replace('%',''), name: v.name}
@@ -307,7 +310,7 @@
                     }]
                 })
             },
-            //案件类型占比
+            //乡镇名称
             TypeCasesChars(data){
                 // let showData = data.map(function (v) {
                 //     return {value: (v.percent).replace('%',''), name: v.name}
@@ -427,7 +430,12 @@
             }
         .main {
                 height: auto;
-
+                .pan-anniu{
+                    width: 100%;
+                    height: 40px;
+                    text-align: right;
+                    padding: 10px 20px;
+                }
                 .kbiaoti {
                     padding: 10px 0px;
                 }
@@ -465,7 +473,8 @@
                     }
                     .shijian {
                         float: left;
-                        margin-left: 6px;
+                        margin-left: 10px;
+                        margin-right: 20px;
                     }
 
                     .btnns {
