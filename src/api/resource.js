@@ -96,6 +96,8 @@ const apilangfangTDK = {
     EmergencyInfoInsert: apiconfig[icode].devn + '/api/EmergencyBulletin/Insert',//新增应急消息
     GetEmergencyInfo: apiconfig[icode].devn + '/api/EmergencyBulletin/GetNotice?',//获取应急消息
     GetCaseList: apiconfig[icode].devc + '/guan/mobile/selectHjwfBusCaseinfoPage?',//获取案件审核列表
+    GetCaseTypeList: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByDepartmentAndPollution?',//案件类型占比
+    GetCaseTypeExcel: apiconfig[icode].devc + '/guan/mobile/createCaseNumGroupByDepartmentAndPollutionExcel?',//案件类型占比导出
     GetCaseAll: apiconfig[icode].devc + '/guan/mobile/getAllDepartmenttype',//获取责任主体(固安)
     GetUploadImg: apiconfig[icode].devc + '/guan/mobile/uploadAnalysisFile/',//上传案件图片
     GetPollutionType: apiconfig[icode].devc + '/guan/mobile/getPollutiontype',//获取污染类别(固安)
@@ -183,6 +185,7 @@ const apilangfangTDK = {
     GetVocsVideoInfo: apiconfig[icode].devn +'/api/Video/GetVocsVideoInfo?name=',//vocvideo
     GetElectricityChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityChartForDay?',//大数据天
     GetElectricityIndexChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityIndexChartForDay?',//大数据天
+    GetStaff: apiconfig[icode].devn +'/api/Staff/GetStaff',//签到统计
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -329,3 +332,6 @@ export const GetElectricityChartForDayResource = API_ROOT.concat(apilangfangTDK.
 export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChartForDay);
 export const GetCaseNumResource = API_ROOT.concat(apilangfangTDK.GetCaseNum);
 export const GetCaseTypeResource = API_ROOT.concat(apilangfangTDK.GetCaseType);
+export const GetCaseTypeListResource = API_ROOT.concat(apilangfangTDK.GetCaseTypeList);
+export const GetStaffResource = API_ROOT.concat(apilangfangTDK.GetStaff);
+export const GetCaseTypeExcelResource = API_ROOT.concat(apilangfangTDK.GetCaseTypeExcel);

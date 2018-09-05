@@ -726,11 +726,11 @@
 				let fkDepartmenttype = this.DutyMainVal?this.DutyMainVal:-1;
 				let location = this.cityName;
 				let fkPollutiontype = this.PollutionClassVal?this.PollutionClassVal:-1;
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
+				let startTime = this.CaseStartTime?this.CaseStartTime:'';
 				let endTime = this.CaseEndTime?this.CaseEndTime:'';
 				let pageSize = 10;
 				let pageNo = this.pageNo;
-      			api.GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,starTime,endTime,pageSize,pageNo);
+      			api.GetExportCase(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo);
       		},
       		 //分页数据
             setPageTable(pageSize, pageNum) {
