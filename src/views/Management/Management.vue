@@ -34,6 +34,7 @@
 <style lang="scss" scoped>
 .management{
 	width: 100%;
-    height: calc(100% - 64px);
+    height: calc(100% - 1px);
+    overflow: hidden;
 }
 </style>
