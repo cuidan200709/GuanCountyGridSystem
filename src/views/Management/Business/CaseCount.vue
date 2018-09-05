@@ -424,7 +424,7 @@
         	
         },
         mounted() {
-        	this.GetMonitoringDay();
+//      	this.GetMonitoringDay();
         	this.GetCaseAll();//责任主体
         	this.GetPollutionType();//污染类别
         	this.imgUrl = api.CaseImgUp();

@@ -17,11 +17,11 @@
                     <!--<li style="margin-right: 0;">-->
                         <span class="position-p"></span>
                         <img style="padding: 0 20px" src="../assets/img/btn_intercalate.png" class="activehov">
-                        <div class="Sixitem submenu" v-if="isShow">
+                        <!--<div class="Sixitem submenu" v-if="isShow">
                             <a href="#/Management/BusinessManagement/Case-Review" class="houtai"><img src="../assets/img/btn_Backstage1.png" alt="">进入后台</a><br/>
                             <a class="tuichu" v-on:click="exit"><img src="../assets/img/btn_quit1.png" alt="">退出系统</a>
-                        </div>
-                        <div class="Sixitem submenu" v-else>
+                        </div>-->
+                        <div class="Sixitem submenu">
                             <a class="tuichu" v-on:click="exit"><img src="../assets/img/btn_quit1.png" alt="">退出系统</a>
                         </div>
                     <!--</li>-->
@@ -68,7 +68,13 @@
             });
         },
         methods: {
-
+			exit(){
+                this.$cookies.remove('auth')
+                setTimeout(() => {
+                    //
+                    this.$router.push('/login')
+                })
+            },
         }
     }
 </script>

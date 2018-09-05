@@ -82,12 +82,12 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">添加明星网格员</a>
+	                    <a id="newCreate">明星巡查员</a>
 	                    <div class="el-icon-close" @click="isAdd=false"></div>
 	                </div>
 	                <div class="content">
 						<div class="block">
-						    <span>网格员名称</span>
+						    <span>巡查员名称</span>
 						    <el-select v-model="AddGriderName" placeholder="请选择">
 							    <el-option
 							      v-for="item in AddGriderOptions"
@@ -124,7 +124,7 @@
 							</el-input>
 						</div>
 						<el-row style='position: absolute;bottom: 30px;right: 30px;'>
-							<el-button type="primary" @click='GetEditResult'>确定</el-button>
+							<el-button type="primary" @click='AddOver'>确定</el-button>
 							<el-button plain @click='isAdd=false'>取消</el-button>
 						</el-row>
 	               </div>
@@ -135,13 +135,13 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">明星网格员</a>
+	                    <a id="newCreate">明星巡查员</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">
 						<div class="block">
 						    <span>巡查员名称</span>
-						    <el-select v-model="EditGriderName" placeholder="请选择">
+						    <el-select v-model="EditGriderName" clearable placeholder="请选择">
 							    <el-option
 							      v-for="item in EditGriderOptions"
 							      :key="item.value"
@@ -153,7 +153,7 @@
 					  	</div>
 					  	<div class="block">
 						    <span>奖金</span>
-						    <el-input v-model="EditMoney" placeholder=""></el-input>
+						    <el-input v-model="EditMoney" clearable placeholder=""></el-input>
 						    <i>*</i>
 					  	</div>
 					  	<div class="block">
@@ -177,7 +177,7 @@
 							</el-input>
 						</div>
 						<el-row style='position: absolute;bottom: 30px;right: 30px;'>
-							<el-button type="primary" @click=''>确定</el-button>
+							<el-button type="primary" @click='EditOver'>确定</el-button>
 							<el-button plain @click='isEdit=false'>取消</el-button>
 						</el-row>
 	               </div>
@@ -194,103 +194,14 @@
         name: 'CaseReview',
         data() {
             return {
-            		progress: 0,//上传进度
-					pass: null,//是否上传成功
-					isEnlargeImage: false,//放大图片
-		//			enlargeImage: '',//放大图片地址
-					imagelist: [
-					],
-					params: {
-//						action: 
-//						'http://gkpt.zq12369.com:8013/servicePlatform/admin/caseData/uploadAnalysisFile',
-						data: {}
-					},
-            	//上传图片
-            	dialogImageUrl: '',
-        		dialogVisible: false,
-            	//案件状态
-            	optionsCase: [{
-		          value: '0',
-		          label: '未处理'
-		        }, {
-		          value: '1',
-		          label: '处理完毕'
-		        }],
-		        //责任主体
-            	optionsDuty: [],
-		        //污染类别
-            	optionsPollution: [],
-		        //分配弹框责任主体选择
-		        optionsDistributePop: [],
-            	//县市区选择
-               	options: [],
-               	gridCode:'',
-		        value1: '',//县(市、区)
-		        value2: '',//开始时间
-		        value3: '',//结束时间
-		        value4: '',
-		        value5: '',
-		        value6: '',
+            		
 		        tableData:[],
 			    currentPage: 1,
 			    pagesize:10,
-			    isConfirm: false,
-			    Upload: false,
-				//查询
-				startTime:'',
-				endTime:'',
-				TotalRowsCount:null,
 				totalCount:'',
 				InfoData:[],
 				ListData:[{Name:'成龙',time:'2018-09-09',story:'哈哈哈',money:200}],
-				Id:'',
-				fileList: [],
-				isEdit:false,
-				SO2:'',
-				NO2:'',
-				PM10:'',
-				CO:'',
-				O3:'',
-				PM25:'',
 				pageNo:1,
-	         //案件状态
-	         CaseStatusVal:'',
-	         //责任主体
-	         DutyMainVal:'',
-	         //污染类别
-	         PollutionClassVal:'',
-	         //案件时间
-	         CaseStartTime:'',
-	         CaseEndTime:'',
-	         //回复提交弹框
-	         isUpdate:false,
-	         PollutionClassPop:'',//污染类别
-	         CaseTimePop:'',//案发时间
-	         CasePositionPop:'',//位置
-	         CaseStatusPop:'',//案件状态
-	         CaseDutyPop:'',//责任主体
-	         textarea:'',//内容
-	         CaseDealPop:'',//处理结果
-	         //分配弹框
-	         isDistribute:false,
-	         distributePopVal: '',
-	         //查看
-	         Examine:false,
-	         PollutionClassPopExamine:'',//污染类别
-	         CaseTimePopExamine:'',//案发时间
-	         CasePositionPopExamine:'',//位置
-	         CaseStatusPopExamine:'',//案件状态
-	         CaseDutyPopExamine:'',//责任主体
-	         textareaExamine:'',//内容
-	         CaseDealPopExamine:'',//处理结果
-	         tupian:[],
-	         status:'',
-	         departmenttype:'',
-	         pollutiontype:'',
-	         id:'',
-	         zrxtCode:'',
-	         afterCaseImg:'',
-	         imgUrl:'',
 	         //网格
 	         gridName:'',
 	         //添加
@@ -361,8 +272,12 @@
             
         },
         methods: {
+        	//点击编辑
         	handleExamineClick(val){
         		this.isEdit = true;
+        		this.EditGriderName = val.Name;
+        		this.EditMoney = val.money;
+        		this.EditStory = val.story;
         		console.log(val);
         	},
       		//分页
@@ -377,23 +292,41 @@
       		//获取列表
       		GetMonitoringDay(){
       			let t = this;
-      			api.GetCaseList().then(result=>{
-      				console.log(result)
-      				if(result){
-      					let InfoData = result.data.list;
-      					t.totalCount = result.data.count;
-      					console.log(InfoData)
-      					console.log('11')
-      					if(InfoData){
-      						InfoData.forEach(item=>{
-								let tableData = {};
-		                        t.ListData.push(tableData);
-							})
-      					}
-						
-//						this.setPageTable(10000, 1);
-      				}
-				});
+//    			api.GetCaseList().then(result=>{
+//    				console.log(result)
+//    				if(result){
+//    					let InfoData = result.data.list;
+//    					t.totalCount = result.data.count;
+//    					console.log(InfoData)
+//    					console.log('11')
+//    					if(InfoData){
+//    						InfoData.forEach(item=>{
+//								let tableData = {};
+//		                        t.ListData.push(tableData);
+//							})
+//    					}
+//						
+////						this.setPageTable(10000, 1);
+//    				}
+//				});
+      		},
+      		//添加确定
+      		AddOver(){
+      			if(!this.AddGriderName||!this.AddMoney){
+      				 this.$message({
+				          message: '必填项不可为空',
+				          type: 'warning'
+				    });
+      			}
+      		},
+      		//编辑确定
+      		EditOver(){
+      			if(!this.EditGriderName||!this.EditMoney){
+      				 this.$message({
+				          message: '必填项不可为空',
+				          type: 'warning'
+				    });
+      			}
       		},
       		//导出
       		GetExportCase(){
