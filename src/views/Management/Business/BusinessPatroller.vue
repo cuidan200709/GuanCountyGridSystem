@@ -11,7 +11,7 @@
             </div>
 			<div class="search">
 				<span>巡查员名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
-				<el-button type="primary" class='btns' @click="">查询</el-button>
+				<el-button type="primary" class='btns' @click="QueryNeedsData">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加巡查员</el-button>
 				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
@@ -230,7 +230,10 @@
             
         },
         methods: {
-
+            QueryNeedsData(){
+                let condata = this.departmentVal;
+                this.getNotice(condata);
+			},
             //列表删除
             DeleteOperatorInfo(row) {
                 const _this = this;
@@ -341,10 +344,11 @@
 				});
       		},
       		//获取运维记录列表
-      		getNotice(){
+      		getNotice(name = ''){
+                let nm =name;
       			const _this = this;
       			this.ListData = [];
-      			api.GetsysUserlistdt('').then(result=>{
+      			api.GetsysUserlistdt(nm).then(result=>{
       			    console.log(result);
 					let InfoData = result.data.data;
                     _this.totalCount = InfoData.length;

@@ -181,13 +181,11 @@ export default {
         return GetUserLoginResource
     },
     //获取企业列表
-    PosthtcompanyListRt(userId,username,status,role,name) {
+    PosthtcompanyListRt(name,PageIndex) {
         let params = {
-            'userId':userId,//部门ID,
-            'username':username,//部门编码
-            'status':status,//部门名称
-            'role':role,//主管领导
-            'name':name//联系方式
+            'name':name,//
+            'PageIndex':PageIndex,//
+            'PageSize':10,//
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PosthtcompanyListResource ,FormatParams, {
