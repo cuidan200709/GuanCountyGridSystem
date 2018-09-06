@@ -188,7 +188,10 @@ const apilangfangTDK = {
     GetStaff: apiconfig[icode].devn +'/api/Staff/GetStaff',//签到统计
     GetCaseCountList: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPer?',//案件处理率统计
     GetCaseCountListExcel: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPerExcel?',//案件处理率统计导出
-    GetStarList: apiconfig[icode].devn +'/guan/sysUserEvent/starList',//明星巡查员
+    GetStarList: apiconfig[icode].devc +'/guan/sysUserEvent/starList?',//明星巡查员
+    AddStarEvent: apiconfig[icode].devc +'/guan/sysUserEvent/addStarEvent',//添加明星巡查员
+    GetStarGridName: apiconfig[icode].devc +'/guan/sysUserEvent/getSysUserNameList',//明星巡查员姓名
+    EditStarEvent: apiconfig[icode].devc +'/guan/sysUserEvent/update',//明星/通报巡查员编辑
     GetcodeDepartmentlist: apiconfig[icode].devc +'/guan/codeDepartment/list',//责任部门管理列表接口
     GetcodeDepartmentlistadd: apiconfig[icode].devc +'/guan/codeDepartment/add',//责任部门添加接口
     GetcodeDepartmentlistdel: apiconfig[icode].devc +'/guan/codeDepartment/delete',//责任部门删除接口
@@ -357,4 +360,6 @@ export const GetsysUserlist = API_ROOT.concat(apilangfangTDK.GetsysUserlist);
 export const POSTsysUseradd = API_ROOT.concat(apilangfangTDK.GetsysUseradd);
 export const POSTsysUserdelete = API_ROOT.concat(apilangfangTDK.GetsysUserdelete);
 export const POSTsysUserupdate = API_ROOT.concat(apilangfangTDK.GetsysUserupdate);
-
+export const GetStarGridNameResource = API_ROOT.concat(apilangfangTDK.GetStarGridName);
+export const AddStarEventResource = API_ROOT.concat(apilangfangTDK.AddStarEvent);
+export const EditStarEventResource = API_ROOT.concat(apilangfangTDK.EditStarEvent);
