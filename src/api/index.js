@@ -153,6 +153,14 @@ import {
     GetCaseTypeListResource,//案件类型占比
     GetCaseTypeExcelResource,//案件类型占比导出
     GetStaffResource,//签到统计
+    GetcodeDepartmentlist,//责任部门列表
+    POSTcodeDepartmentlistadd,//责任部门添加
+    POSTcodeDepartmentlistdel,//责任部门删除
+    POSTcodeDepartmentlistup,//责任部门添加修改
+    GetsysUserlist,//巡查员管理列表接口
+    POSTsysUseradd,//巡查员添加接口
+    POSTsysUserdelete,//巡查员删除接口
+    POSTsysUserupdate,//巡查员编辑接口
 } from './resource'
 
 export default {
@@ -160,6 +168,104 @@ export default {
     //登录地址
     GetUserLoginRes() {
         return GetUserLoginResource
+    },
+    //巡查员管理列表接口
+    GetsysUserlistdt() {
+        return axios.get(GetsysUserlist , {})
+    },
+    //巡查员添加接口
+    POSTsysUseraddt(id,code,name,leader,contacts) {
+        let params = {
+            'id':id,//部门ID,
+            'code':code,//部门编码
+            'name':name,//部门名称
+            'leader':leader,//主管领导
+            'contacts':contacts//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(POSTsysUseradd ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //巡查员删除接口
+    POSTsysUserdeletet(id,code,name,leader,contacts) {
+        let params = {
+            'id':id,//部门ID,
+            'code':code,//部门编码
+            'name':name,//部门名称
+            'leader':leader,//主管领导
+            'contacts':contacts//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(POSTsysUserdelete ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //巡查员编辑接口
+    POSTsysUserupdatet(id,code,name,leader,contacts) {
+        let params = {
+            'id':id,//部门ID,
+            'code':code,//部门编码
+            'name':name,//部门名称
+            'leader':leader,//主管领导
+            'contacts':contacts//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(POSTsysUserupdate ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //责任部门列表
+    GetcodeDepartmentlistdt() {
+        return axios.get(GetcodeDepartmentlist , {})
+    },
+    //责任部门添加接口
+    POSTcodeDepartmentlistaddt(id,code,name,leader,contacts) {
+        let params = {
+            'id':id,//部门ID,
+            'code':code,//部门编码
+            'name':name,//部门名称
+            'leader':leader,//主管领导
+            'contacts':contacts//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(POSTcodeDepartmentlistadd ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //责任部门删除接口
+    POSTcodeDepartmentlistdelt(id,code,name,leader,contacts) {
+        let params = {
+            'id':id,//部门ID,
+            'code':code,//部门编码
+            'name':name,//部门名称
+            'leader':leader,//主管领导
+            'contacts':contacts//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(POSTcodeDepartmentlistdel ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //责任部门编辑接口
+    POSTcodeDepartmentlistupt(id,code,name,leader,contacts) {
+        let params = {
+            'id':id,//部门ID,
+            'code':code,//部门编码
+            'name':name,//部门名称
+            'leader':leader,//主管领导
+            'contacts':contacts//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(POSTcodeDepartmentlistup ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
     },
     //slw视频企业信息
     GetVideoScatterInfoRes() {
