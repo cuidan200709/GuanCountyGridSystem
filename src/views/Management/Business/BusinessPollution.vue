@@ -106,7 +106,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">添加</a>
+	                    <a>添加</a>
 	                    <div class="el-icon-close" @click="isNew=false"></div>
 	                </div>
 	                <div class="content">
@@ -171,7 +171,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">编辑</a>
+	                    <a>编辑</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">
@@ -507,105 +507,7 @@
 	    	margin-left: 170px;
 	    	padding-bottom: 90px;
 	    }
-	    /*************弹出框**********/
-	    .popUp {
-	        /*灰色遮罩层*/
-	        .mask {
-	            width: 100%;
-	            height: 100%;
-	            background: rgba(0, 0, 0, 0.8);
-	            position: fixed;
-	            left: 0;
-	            top: 0;
-	            z-index: 998;
-	        }
-	        /*****弹出框内容********/
-	        .succ-pop {
-	            width: 515px;
-	            height: 640px;
-	            background: #fff;
-	            position: fixed;
-	            left: 50%;
-	            top: 50%;
-	            margin-left: -257px;
-	            margin-top: -320px;
-	            z-index: 999;
-	            border-radius: 10px;
-	            .title {
-	                width: 100%;
-	                height: 50px;
-	                line-height: 50px;
-	                text-align: left;
-	                border-bottom: 2px solid #3a90b3;
-	                a {
-	                    color: #3a90b3;
-	                    font-size: 18px;
-	                    padding-left: 20px;
-	                }
-	                div {
-	                    margin-top: 15px;
-	                    float: right;
-	                    width: 24px;
-	                    height: 24px;
-	                    color: #363636;
-	                    margin-right: 6px;
-	                }
-	
-	            }
-	            .content{
-	            	width: 400px;
-	            	margin: 0 auto;
-	            	background: #fff;
-	            	span{
-	            		display: inline-block;
-	            		width: 120px;
-	            		height: 40px;
-	            		line-height: 40px;
-	            		text-align: right;
-	            		float: left;
-	            	}
-					.block{
-						margin-top: 20px;
-						span{
-							margin-right: 10px;
-						}
-						.autoGet{
-							/*display: inline-block;*/
-							/*float: left;*/
-							width: 215px;
-							height: 40px;
-							border: 1px solid #d1dbe4;
-							border-radius: 4px;
-							line-height: 40px;
-							text-align: left;
-							padding-left: 10px;
-							background: #eef1f6;
-							color: #7e807f;
-							overflow: hidden;
-							text-overflow:ellipsis;
-							white-space: nowrap;
-						}
-						.discribe{
-							height: 80px;
-							padding: 15px 0;
-							width: 215px;
-							border: 1px solid #d1dbe4;
-							border-radius: 4px;
-							text-align: left;
-							padding-left: 10px;
-							background: #eef1f6;
-							color: #7e807f;
-							line-height: 18px;
-							display: -webkit-box;
-							-webkit-box-orient: vertical;
-							-webkit-line-clamp: 3;
-							overflow: hidden;
-						}
-					}
-	            }
-	            
-	        }
-	    }    
+
 	}
 }
 </style>
