@@ -83,7 +83,26 @@
 			      :total="totalCount">
 			    </el-pagination>
 			</div>
+			<!---->
+			<el-dialog title="企业污染源管理" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+				<!---->
+				<el-tabs v-model="activeName" @tab-click="handleClick">
+					<el-tab-pane label="排放口编辑" name="first">
 
+					<!---->
+					</el-tab-pane>
+					<el-tab-pane label="企业信息编辑" name="second">
+					<!---->
+
+					</el-tab-pane>
+
+				</el-tabs>
+				<!---->
+				<span slot="footer" class="dialog-footer">
+					<el-button @click="dialogVisible = false">取 消</el-button>
+					<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+			  	</span>
+			</el-dialog>
 		</div>
     </div>
 </template>
@@ -95,10 +114,11 @@
         name: 'businessOperation',
         data() {
             return {
-
+                dialogVisible:false,
 		        tableData:[{DeviceName:'0000'}],
 			    currentPage: 1,
 			    pagesize:10,
+                activeName:'first',
 			    isNew: false,
 			    textarea: '',
 			    title:'添加',
@@ -142,16 +162,32 @@
                 let condata = this.componyName;
                 this.getNotice(condata);
             },
-        	//列表删除
-        	DeleteOperatorInfo(row) {
-        		let t = this;
-        		console.log(row)
-        		let id = row.Id;
-        		api.DeleteOperatorInfo(id).then(res=>{
-      				console.log(res)
-      			})
-        		this.getNotice();
-		    },
+            //列表删除
+            DeleteOperatorInfo(row) {
+                const _this = this;
+                console.log(row)
+                let id = row.pscode;
+                this.$confirm('确认要删除本条数据吗？')
+                    .then(_ => {
+                        // done();
+                        console.log('删除成功')
+                        api.GetdeleteCompanyRt(id).then(res=>{
+                            console.log(res)
+                            if(res.data.Status === 1){
+                                _this.$message({showClose: true, message: '删除成功', type: 'success'});
+                            }else {
+                                _this.$message({showClose: true, message: '删除失败', type: 'error'});
+                            }
+                        })
+                        //
+                        setTimeout(()=>{
+                            _this.getNotice();
+                        },200)
+                    })
+                    .catch(_ => {
+                        console.log('删除失败')
+                    });
+            },
         	///新建预警信息发布
         	publish(){
         		this.Insert();
@@ -159,13 +195,13 @@
         		this.getNotice();
         	},
         	closeWin(){
-      			this.isNew = false;
+      			this.dialogVisible = false;
       		},
 			//编辑
 	        handleClick(row) {
-	        	this.isEdit = true;
+	        	this.dialogVisible = true;
 	        	console.log(row)
-	        	if(this.isEdit){
+	        	if(this.dialogVisible){
 	        		this.Id = row.Id;
 	        		this.equipmentEditName = row.DeviceName;
 	      			this.defualtData.DeviceParam = row.DeviceParam;
@@ -176,7 +212,7 @@
 					this.equipmentEditTime = row.CreateTime;
 					this.equipmentEditChenge = row.DeviceChangeInfo;
 	        	}
-	        	this.isNew = false;
+	        	this.dialogVisible = false;
       		},
       		//编辑发布
       		EditUpdate(){
@@ -194,7 +230,7 @@
       			api.UpdateOperatorInfo(id,DeviceId,DeviceName,DeviceParam,DeviceVersion,CheckCycle,Description,ChargeMan,CreateTime,DeviceChangeInfo).then(result=>{
 					t.getNotice();
 				});
-				this.isEdit = false;
+				this.dialogVisible = false;
       		},
       		//分页
       		 handleSizeChange(val) {
@@ -206,7 +242,7 @@
       		},
       		openWin(){
       			this.isEdit = false;
-      			this.isNew = true;
+      			this.dialogVisible = true;
       			this.equipmentName = '';
       			this.defualtData = '';
       			this.equipmentPerson = '';
