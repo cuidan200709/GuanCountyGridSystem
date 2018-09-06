@@ -200,6 +200,11 @@ const apilangfangTDK = {
     GetsysUseradd: apiconfig[icode].devc +'/guan/sysUser/add',//巡查员添加接口
     GetsysUserdelete: apiconfig[icode].devc +'/guan/sysUser/delete',//巡查员删除接口
     GetsysUserupdate: apiconfig[icode].devc +'/guan/sysUser/update',//巡查员编辑接口
+    PosthtcompanyList: apiconfig[icode].devn + '/api/Company/GetcompanyList',//获取企业列表（后台）
+    PostAddCompany: apiconfig[icode].devn + '/api/Company/AddCompany',//增加企业信息
+    PostupdateCompany: apiconfig[icode].devn + '/api/Company/updateCompany',//修改企业信息
+    GetdeleteCompany: apiconfig[icode].devn + '/api/Company/deleteCompany?',//删除企业信息
+    GetSingleCompany: apiconfig[icode].devn + '/api/Company/getSingleCompany?',//获取单独企业信息
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -363,3 +368,8 @@ export const POSTsysUserupdate = API_ROOT.concat(apilangfangTDK.GetsysUserupdate
 export const GetStarGridNameResource = API_ROOT.concat(apilangfangTDK.GetStarGridName);
 export const AddStarEventResource = API_ROOT.concat(apilangfangTDK.AddStarEvent);
 export const EditStarEventResource = API_ROOT.concat(apilangfangTDK.EditStarEvent);
+export const PosthtcompanyListResource = API_ROOT.concat(apilangfangTDK.PosthtcompanyList);
+export const PostAddCompanyResource = API_ROOT.concat(apilangfangTDK.PostAddCompany);
+export const PostupdateCompanyResource = API_ROOT.concat(apilangfangTDK.PostupdateCompany);
+export const GetdeleteCompanyResource = API_ROOT.concat(apilangfangTDK.GetdeleteCompany);
+export const GetSingleCompanyResource = API_ROOT.concat(apilangfangTDK.GetSingleCompany);

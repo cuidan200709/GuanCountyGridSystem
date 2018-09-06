@@ -167,6 +167,11 @@ import {
     GetStarGridNameResource,//明星巡查员姓名
     AddStarEventResource,//明星巡查员添加接口
     EditStarEventResource,//明星和通报巡查员编辑接口
+    PosthtcompanyListResource,//获取企业列表（后台）
+    PostAddCompanyResource,//增加企业信息
+    PostupdateCompanyResource,//修改企业信息
+    GetdeleteCompanyResource,//删除企业信息
+    GetSingleCompanyResource,//获取单独企业信息
 } from './resource'
 
 export default {
@@ -174,6 +179,59 @@ export default {
     //登录地址
     GetUserLoginRes() {
         return GetUserLoginResource
+    },
+    //获取企业列表
+    PosthtcompanyListRt(userId,username,status,role,name) {
+        let params = {
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PosthtcompanyListResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //增加企业信息
+    PostAddCompanyRt(userId,username,status,role,name) {
+        let params = {
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostAddCompanyResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //修改企业信息
+    PostupdateCompanyRt(userId,username,status,role,name) {
+        let params = {
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostupdateCompanyResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //删除企业信息
+    GetdeleteCompanyRt(id) {
+        return axios.get(GetdeleteCompanyResource  +'id='+id, {})
+    },
+    //获取单独企业信息
+    GetSingleCompanyRt(id) {
+        return axios.get(GetSingleCompanyResource  +'id='+id, {})
     },
     //巡查员管理列表接口
     GetsysUserlistdt(name) {
