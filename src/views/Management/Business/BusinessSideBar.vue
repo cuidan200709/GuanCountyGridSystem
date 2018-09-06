@@ -12,7 +12,7 @@
 							<template slot="title"><i class="icon-aj"></i>案件</template>
 							<el-menu-item index="Case-Review">案件处理</el-menu-item>
 							<el-menu-item index="Case-Type">案件类型占比</el-menu-item>
-							<el-menu-item index="Case-Count">案件统计</el-menu-item>
+							<el-menu-item index="Case-Count">案件处理率统计</el-menu-item>
 						</el-submenu>
 						<el-submenu index="active3" >
 							<template slot="title"><i class="icon-zhdd"></i>指挥调度</template>

@@ -153,6 +153,9 @@ import {
     GetCaseTypeListResource,//案件类型占比
     GetCaseTypeExcelResource,//案件类型占比导出
     GetStaffResource,//签到统计
+    GetCaseCountListResource,//案件处理率统计
+    GetCaseCountListExcelResource,//案件率统计导出
+    GetStarListResource,//明星巡查员列表
 } from './resource'
 
 export default {
@@ -774,6 +777,16 @@ export default {
     	}
     	
         return axios.get(GetCaseTypeResource+"ids=" + ids+ startTimestr+endTimestr, {}
+        )
+    },
+    //案件处理率统计
+    GetCaseCountList(startTime,endTime,depcode){
+    	return axios.get(GetCaseCountListResource+"startTime=" + startTime+"&endTime=" + endTime+"&depcode=" + depcode, {}
+        )
+    },
+    //案件处理率统计导出
+    GetCaseCountListExcel(startTime,endTime,depcode){
+    	window.open(GetCaseCountListExcelResource+"startTime=" + startTime+"&endTime=" + endTime+"&depcode=" + depcode, {}
         )
     },
      //获取案件审核列表

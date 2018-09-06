@@ -186,6 +186,9 @@ const apilangfangTDK = {
     GetElectricityChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityChartForDay?',//大数据天
     GetElectricityIndexChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityIndexChartForDay?',//大数据天
     GetStaff: apiconfig[icode].devn +'/api/Staff/GetStaff',//签到统计
+    GetCaseCountList: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPer?',//案件处理率统计
+    GetCaseCountListExcel: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPerExcel?',//案件处理率统计导出
+    GetStarList: apiconfig[icode].devn +'/guan/sysUserEvent/starList',//明星巡查员
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -335,3 +338,6 @@ export const GetCaseTypeResource = API_ROOT.concat(apilangfangTDK.GetCaseType);
 export const GetCaseTypeListResource = API_ROOT.concat(apilangfangTDK.GetCaseTypeList);
 export const GetStaffResource = API_ROOT.concat(apilangfangTDK.GetStaff);
 export const GetCaseTypeExcelResource = API_ROOT.concat(apilangfangTDK.GetCaseTypeExcel);
+export const GetStarListResource = API_ROOT.concat(apilangfangTDK.GetStarList);
+export const GetCaseCountListResource = API_ROOT.concat(apilangfangTDK.GetCaseCountList);
+export const GetCaseCountListExcelResource = API_ROOT.concat(apilangfangTDK.GetCaseCountListExcel);

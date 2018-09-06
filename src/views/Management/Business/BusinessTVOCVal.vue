@@ -65,7 +65,7 @@
 	            	</div>
             	</div>
             </div>
-            <div class="warningValSet" style=''>
+            <!--<div class="warningValSet" style=''>
             	<div class="blueBox" style="">• TVOC预警值设置</div>		
             	<div class="ValueSet" style="">
             		<div class="PM25">
@@ -89,7 +89,7 @@
 	            		<el-button class='btn' type="primary" @click='TVOCAlarmValueSetting'>更改</el-button>
 	            	</div>
             	</div>
-           	</div>
+           	</div>-->
 		</div>
 	<!--------------弹框部分--------------->
 		<div class="popUp" v-if="isShow">
