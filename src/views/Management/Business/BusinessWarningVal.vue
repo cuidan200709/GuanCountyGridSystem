@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="warningValSet">
-            	<div class="blueBox" style="">• 控制进度预警值设置</div>		
+            	<!--<div class="blueBox" style="">• 控制进度预警值设置</div>-->		
             	<div class="ValueSet" style="">
 	            	<div class="PM25">
 	            		<span class="demonstration">PM2.5</span>

@@ -150,7 +150,7 @@
 			      label="散煤及生物质焚烧">
 			    </el-table-column>
 			</el-table>
-		   	<div class="page">
+		   	<!--<div class="page">
 			    <span class="demonstration">共找到{{totalCount}}条记录</span>
 			    <el-pagination
 				  background
@@ -161,7 +161,7 @@
 			      layout="prev, pager, next, jumper"
 			      :total="totalCount">
 			    </el-pagination>
-			</div>
+			</div>-->
 			<!--------------回复弹框部分--------------->
 			<div class="popUp" v-if="isUpdate">
 	            <div class="mask"></div>
