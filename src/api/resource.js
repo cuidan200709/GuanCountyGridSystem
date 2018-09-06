@@ -189,6 +189,14 @@ const apilangfangTDK = {
     GetCaseCountList: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPer?',//案件处理率统计
     GetCaseCountListExcel: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPerExcel?',//案件处理率统计导出
     GetStarList: apiconfig[icode].devn +'/guan/sysUserEvent/starList',//明星巡查员
+    GetcodeDepartmentlist: apiconfig[icode].devc +'/guan/codeDepartment/list',//责任部门管理列表接口
+    GetcodeDepartmentlistadd: apiconfig[icode].devc +'/guan/codeDepartment/add',//责任部门添加接口
+    GetcodeDepartmentlistdel: apiconfig[icode].devc +'/guan/codeDepartment/delete',//责任部门删除接口
+    GetcodeDepartmentlistup: apiconfig[icode].devc +'/guan/codeDepartment/update',//责任部门编辑接口
+    GetsysUserlist: apiconfig[icode].devc +'/guan/sysUser/list',//巡查员管理列表接口
+    GetsysUseradd: apiconfig[icode].devc +'/guan/sysUser/add',//巡查员添加接口
+    GetsysUserdelete: apiconfig[icode].devc +'/guan/sysUser/delete',//巡查员删除接口
+    GetsysUserupdate: apiconfig[icode].devc +'/guan/sysUser/update',//巡查员编辑接口
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -341,3 +349,12 @@ export const GetCaseTypeExcelResource = API_ROOT.concat(apilangfangTDK.GetCaseTy
 export const GetStarListResource = API_ROOT.concat(apilangfangTDK.GetStarList);
 export const GetCaseCountListResource = API_ROOT.concat(apilangfangTDK.GetCaseCountList);
 export const GetCaseCountListExcelResource = API_ROOT.concat(apilangfangTDK.GetCaseCountListExcel);
+export const GetcodeDepartmentlist = API_ROOT.concat(apilangfangTDK.GetcodeDepartmentlist);
+export const POSTcodeDepartmentlistadd = API_ROOT.concat(apilangfangTDK.GetcodeDepartmentlistadd);
+export const POSTcodeDepartmentlistdel = API_ROOT.concat(apilangfangTDK.GetcodeDepartmentlistdel);
+export const POSTcodeDepartmentlistup = API_ROOT.concat(apilangfangTDK.GetcodeDepartmentlistup);
+export const GetsysUserlist = API_ROOT.concat(apilangfangTDK.GetsysUserlist);
+export const POSTsysUseradd = API_ROOT.concat(apilangfangTDK.GetsysUseradd);
+export const POSTsysUserdelete = API_ROOT.concat(apilangfangTDK.GetsysUserdelete);
+export const POSTsysUserupdate = API_ROOT.concat(apilangfangTDK.GetsysUserupdate);
+
