@@ -187,7 +187,7 @@
         },
         mounted() {
             this.getNotice();
-        	this.GetOperDeviceInfo()
+
         },
         computed: {
             
@@ -226,10 +226,6 @@
                 this.openWin();
                 this.isNew = false;
 			},
-			//
-        	closeWin(){
-      			this.isNew = false;
-      		},
 			//编辑
 	        handleClick(row) {
 	        	this.isEdit = true;
@@ -291,7 +287,7 @@
       		getNotice(){
       			const _this = this;
       			this.ListData = [];
-      			api.GetcodeDepartmentlistdt().then(result=>{
+      			api.GetcodeDepartmentlistdt('').then(result=>{
       			    console.log(result);
 					let InfoData = result.data.data;
                     _this.totalCount = InfoData.length;

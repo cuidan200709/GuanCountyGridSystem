@@ -9,45 +9,13 @@
                     <a>巡查员管理</a>
                 </div>
             </div>
-            <!-----------查询部分------->
 			<div class="search">
-				<span>网格员名称</span><el-input v-model="input" placeholder="请输入内容"></el-input>
-				<span>级别</span>
-				<el-select v-model="levelVal" placeholder="请选择">
-				    <el-option
-				      v-for="item in optionsLevelVal"
-				      :key="item.value"
-				      :label="item.label"
-				      :value="item.value">
-				    </el-option>
-				</el-select>
+				<span>巡查员名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
 				<el-button type="primary" class='btns' @click="">查询</el-button>
-				<el-button type="primary" class='btns' @click="openWin">添加网格员</el-button>
-				
-			</div>
-			<div class="search">
-				<span>组织</span>
-				<el-select v-model="organizeVal" placeholder="请选择">
-				    <el-option
-				      v-for="item in optionsOrganizeVal"
-				      :key="item.value"
-				      :label="item.label"
-				      :value="item.value">
-				    </el-option>
-				</el-select>
-				<span>岗位</span>
-				<el-select v-model="stationVal" placeholder="请选择">
-				    <el-option
-				      v-for="item in optionsStationVal"
-				      :key="item.value"
-				      :label="item.label"
-				      :value="item.value">
-				    </el-option>
-				</el-select>
+				<el-button type="primary" class='btns' @click="openWin">添加巡查员</el-button>
 				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
-			
-			<!--------------列表部分---------->
+			<!--list-->
 			<div class="box">
                 <div class="warning">
                     <a>列表</a>
@@ -55,51 +23,47 @@
             </div>
             <el-table
 			    :data="tableData"
+				border
 			    style="width: 100%">
 			    <el-table-column
-			      prop="DeviceName"
-			      label="登录名"
-			      width="100">
-			    </el-table-column>
-			    <el-table-column
-			      prop="CreateTime"
+			      prop="name"
 			      label="姓名"
-			      width="100">
+			      >
 			    </el-table-column>
 			    <el-table-column
-			      prop="CreateTime"
-			      label="组织"
-			      width="200">
+			      prop="username"
+			      label="登录名"
+			      >
 			    </el-table-column>
 			    <el-table-column
-			      prop="CreateTime"
+			      prop="role"
 			      label="岗位"
-			      width="200">
+			     >
 			    </el-table-column>
 			    <el-table-column
-			      prop="CreateTime"
+			      prop="lastLoginTime"
 			      label="登录APP"
-			      width="200">
+			      >
 			    </el-table-column>
 			    <el-table-column
-			      prop="CreateTime"
+			      prop="status"
 			      label="处理案件"
-			      width="200">
+			      >
 			    </el-table-column>
+				<!--<el-table-column-->
+						<!--prop="mobile"-->
+						<!--label="联系方式"-->
+				<!--&gt;-->
+				<!--</el-table-column>-->
 			    <el-table-column
 			      label="操作"
-			      width="">
+			      width="180">
 			      <template scope="scope">
 			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>编辑</el-button>
-			        <span style="color: #000;">|</span>
-			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>重置密码</el-button>
-			        <span style="color: #000;">|</span>
+			        <span style="color: #e0e0e0;">|</span>
 			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>修改密码</el-button>
-			        <span style="color: #000;">|</span>
-			        <span class="OverBox">
-			        	<el-button @click="DeleteOperatorInfo(scope.row)" type="text" size="small" class='eidt'>删除</el-button>
-			        </span>
-			     
+			        <span style="color: #e0e0e0;">|</span>
+			        <el-button @click="DeleteOperatorInfo(scope.row)" type="text" size="small" class='eidt'>删除</el-button>
 			      </template>
 			    </el-table-column>
 			</el-table>
@@ -108,6 +72,7 @@
 			    <el-pagination
 			      @size-change="handleSizeChange"
 			      @current-change="handleCurrentChange"
+				  background
 			      :current-page="currentPage"
 			      :page-size="pagesize"
 			      layout="prev, pager, next, jumper"
@@ -115,62 +80,45 @@
 			    </el-pagination>
 			</div>
 			<!--------------添加弹框部分--------------->
-			<div class="popUp" v-if="isNew">
+			<div class="popUp" v-show="isNew">
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">添加</a>
+	                    <a>添加</a>
 	                    <div class="el-icon-close" @click="isNew=false"></div>
 	                </div>
 	                <div class="content">
+						<div class="block">
+							<span>姓名</span>
+							<el-input v-model="equipmentPerson1" placeholder="请输入内容"></el-input>
+						</div>
+						<div class="block">
+							<span>登录名</span>
+							<el-input v-model="equipmentPerson2" placeholder="请输入内容"></el-input>
+						</div>
+						<div class="block">
+							<span>岗位</span>
+							<el-input v-model="equipmentPerson3" placeholder="请输入内容"></el-input>
+						</div>
                 		<div class="block" style="overflow: hidden;">
-						    <span>设备名称</span>
-						    <el-select v-model="equipmentName" 
+						    <span>登录权限</span>
+						    <el-select v-model="equipmentName1"
 						    	clearable 
 						    	placeholder="请选择"
-						    	@change='DeviceNameChange'>
-						        <el-option
-						          v-for="item in options"
-						          :key="item.value"
-						          :label="item.DeviceName"
-						          :value="item.DeviceName">
-						    	</el-option>
+						    	@change='DeviceNameChange1'>
+						        <el-option key="禁止" label="禁止" value="0"></el-option>
+								<el-option key="允许" label="允许" value="1"></el-option>
 						    </el-select>
 						</div>
-					  	<div class="block">
-						    <span>设备参数</span>
-						  	<div class="autoGet">{{defualtData.DeviceParam}}</div>
-						</div>
-						<div class="block">
-						    <span>设备型号</span>
-						   <div class="autoGet">{{defualtData.DeviceVersion}}</div>
-						</div>
-						<div class="block">
-						    <span>巡查周期</span>
-						    <div class="autoGet">{{defualtData.CheckCycle}}</div>
-						</div>
-					  	<div class="block">
-					  		<span>用途描述</span>
-						  	<div class="discribe">{{defualtData.Description}}</div>
-						</div>
-						<div class="block">
-						    <span>负责人</span>
-						    <el-input v-model="equipmentPerson" placeholder="请输入内容"></el-input>
-						</div>
-						<div class="block time">
-						    <span>最近运维时间</span>
-						    <el-date-picker
-						      v-model="equipmentTime"
-						      type="date"
-						      placeholder="选择日期"
-						      @change='getAddTime'
-						      format="yyyy-MM-dd"
-						      value-format="yyyy-MM-dd">
-						    </el-date-picker>
-						</div>
-						    <div class="block">
-						    <span>备品备件更换情况</span>
-						    <el-input v-model="equipmentChenge" placeholder="请输入内容"></el-input>
+						<div class="block" style="overflow: hidden;">
+							<span>处理权限</span>
+							<el-select v-model="equipmentName2"
+									   clearable
+									   placeholder="请选择"
+									   @change='DeviceNameChange2'>
+								<el-option key="禁止" label="禁止" value="0"></el-option>
+								<el-option key="允许" label="允许" value="1"></el-option>
+							</el-select>
 						</div>
 						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
 							<el-button type="primary" @click='publish'>确定</el-button>
@@ -180,62 +128,45 @@
 	            </div>
 	        </div>
 	        <!--------------编辑弹框部分--------------->
-			<div class="popUp" v-if="isEdit">
+			<div class="popUp" v-show="isEdit">
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">编辑</a>
+	                    <a>编辑</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">
-                		<div class="block" style="overflow: hidden;">
-						    <span>设备名称</span>
-						    <el-select v-model="equipmentEditName" 
-						    	clearable 
-						    	placeholder="请选择"
-						    	@change='DeviceNameChange'>
-						        <el-option
-						          v-for="item in options"
-						          :key="item.value"
-						          :label="item.DeviceName"
-						          :value="item.DeviceName">
-						    	</el-option>
-						    </el-select>
-						</div>
-					  	<div class="block">
-						    <span>设备参数</span>
-						  	<div class="autoGet">{{defualtData.DeviceParam}}</div>
+						<div class="block">
+							<span>姓名</span>
+							<el-input v-model="equipmentPerson1b" placeholder="请输入内容"></el-input>
 						</div>
 						<div class="block">
-						    <span>设备型号</span>
-						   <div class="autoGet">{{defualtData.DeviceVersion}}</div>
+							<span>登录名</span>
+							<el-input v-model="equipmentPerson2b" placeholder="请输入内容"></el-input>
 						</div>
 						<div class="block">
-						    <span>巡查周期</span>
-						    <div class="autoGet">{{defualtData.CheckCycle}}</div>
+							<span>岗位</span>
+							<el-input v-model="equipmentPerson3b" placeholder="请输入内容"></el-input>
 						</div>
-					  	<div class="block">
-					  		<span>用途描述</span>
-						  	<div class="discribe">{{defualtData.Description}}</div>
+						<div class="block" style="overflow: hidden;">
+							<span>登录权限</span>
+							<el-select v-model="equipmentName1b"
+									   clearable
+									   placeholder="请选择"
+									   @change='DeviceNameChange3'>
+								<el-option key="禁止" label="禁止" value="0"></el-option>
+								<el-option key="允许" label="允许" value="1"></el-option>
+							</el-select>
 						</div>
-						<div class="block">
-						    <span>负责人</span>
-						    <el-input v-model="equipmentEditPerson" placeholder="请输入内容"></el-input>
-						</div>
-						<div class="block time">
-						    <span>最近运维时间</span>
-						    <el-date-picker
-						      v-model="equipmentEditTime"
-						      type="date"
-						      placeholder="选择日期"
-						      @change='getEditTime'
-						      format="yyyy-MM-dd"
-						      value-format="yyyy-MM-dd">
-						    </el-date-picker>
-						</div>
-						    <div class="block">
-						    <span>备品备件更换情况</span>
-						    <el-input v-model="equipmentEditChenge" placeholder="请输入内容"></el-input>
+						<div class="block" style="overflow: hidden;">
+							<span>处理权限</span>
+							<el-select v-model="equipmentName2b"
+									   clearable
+									   placeholder="请选择"
+									   @change='DeviceNameChange4'>
+								<el-option key="禁止" label="禁止" value="0"></el-option>
+								<el-option key="允许" label="允许" value="1"></el-option>
+							</el-select>
 						</div>
 						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
 							<el-button type="primary" @click='EditUpdate'>确定</el-button>
@@ -255,130 +186,110 @@
         name: 'businessOperation',
         data() {
             return {
-            	//预警状态
-               options: [],
-		        value1: '',
-		        value2: '',
-		        value3: '',
-		        value4: '',
-		        value5: '',
-		        value6: '',
-		        tableData:[],
+                //
+                departmentVal:'',
+				//
+		        tableData:[{DeviceName:'00000'}],
 			    currentPage: 1,
+                totalCount:1,
 			    pagesize:10,
 			    isNew: false,
-			    textarea: '',
+			   	//
 			    title:'添加',
-				//新建预警信息
-				startTime:'',
-				endTime:'',
+				//
 				TotalRowsCount:null,
-				totalCount:'',
 				InfoData:[],
 				ListData:[],
-				Id:'',
 				isend:false,
 				//添加
-				equipmentName:'',
-				equipmentPerson:'',
-				equipmentTime:'',
-				equipmentChenge:'',
+                equipmentPerson1:'',
+                equipmentPerson2:'',
+                equipmentPerson3:'',
+                equipmentPersonid:'',
+                equipmentName1:'',
+                equipmentName2:'',
 				//编辑
-				equipmentEditName:'',
-				equipmentEditPerson:'',
-				equipmentEditTime:'',
-				equipmentEditChenge:'',
-				defualtData:{},
+                equipmentPerson1b:'',
+                equipmentPerson2b:'',
+                equipmentPerson3b:'',
+                equipmentPersonidb:'',
+                equipmentName1b:'',
+                equipmentName2b:'',
 				isEdit:false,
-				//级别
-				optionsLevelVal:[{label:1,value:1},{label:2,value:2},{label:3,value:3}],
-				levelVal:'',
-				//组织
-				optionsOrganizeVal:[{label:'环保局',value:'环保局'},
-									{label:'大气办',value:'大气办'},
-									{label:'建设局',value:'建设局'},
-									{label:'综合执法队',value:'综合执法队'},
-									{label:'固安镇',value:'固安镇'},
-									{label:'牛驼镇',value:'牛驼镇'},
-									{label:'马庄镇',value:'马庄镇'}
-									],
-				organizeVal:'',
-				//岗位
-				optionsStationVal:[{label:'二级网格员',value:'环保局'},
-									{label:'二级网格长',value:'大气办'},
-									{label:'分包领导',value:'建设局'},
-									{label:'二级网格长个人账户',value:'综合执法队'}
-									],
-				stationVal:''
+
             }
         },
         created(){
-        	this.getNotice();
+
         },
         mounted() {
-        	this.GetOperDeviceInfo()
+        	//
+            this.getNotice();
         },
         computed: {
             
         },
         methods: {
-        	getAddTime(val){
-        		this.equipmentTime = val;
-        	},
-        	getEditTime(val){
-        		this.equipmentEditTime = val;
-        	},
-        	//列表删除
-        	DeleteOperatorInfo(row) {
-        		let t = this;
-        		console.log(row)
-        		let id = row.Id;
-        		api.DeleteOperatorInfo(id).then(res=>{
-      				console.log(res)
-      			})
-        		this.getNotice();
-		    },
+
+            //列表删除
+            DeleteOperatorInfo(row) {
+                const _this = this;
+                console.log(row)
+                let id = row.userId;
+                this.$confirm('确认要删除本条数据吗？')
+                    .then(_ => {
+                        // done();
+                        console.log('删除成功')
+                        api.POSTsysUserdeletet(id).then(res=>{
+                            console.log(res)
+                            if(res.data.message === 'true'){
+                                _this.$message({showClose: true, message: '删除成功', type: 'success'});
+                            }else {
+                                _this.$message({showClose: true, message: '删除失败', type: 'error'});
+                            }
+                        })
+                        //
+                        setTimeout(()=>{
+                            _this.getNotice();
+                        },200)
+                    })
+                    .catch(_ => {
+                        console.log('删除失败')
+                    });
+            },
         	///新建预警信息发布
         	publish(){
         		this.Insert();
-        		this.closeWin();
-        		this.getNotice();
+                this.isNew = false;
+
         	},
-        	closeWin(){
-      			this.isNew = false;
-      		},
+
 			//编辑
 	        handleClick(row) {
 	        	this.isEdit = true;
-	        	console.log(row)
+	        	//console.log(row)
 	        	if(this.isEdit){
-	        		this.Id = row.Id;
-	        		this.equipmentEditName = row.DeviceName;
-	      			this.defualtData.DeviceParam = row.DeviceParam;
-	      			this.defualtData.DeviceVersion = row.DeviceVersion;
-	      			this.defualtData.CheckCycle = row.CheckCycle;
-	      			this.defualtData.Description = row.Description;
-	      			this.equipmentEditPerson = row.ChargeMan;
-					this.equipmentEditTime = row.CreateTime;
-					this.equipmentEditChenge = row.DeviceChangeInfo;
+	        		this.equipmentPersonidb = row.userId;
+	        		this.equipmentPerson1b = row.name;
+	      			this.equipmentPerson2b = row.username;
+	      			this.equipmentPerson3b = row.role;
+	      			this.equipmentName1 = row.status;
+	      			this.equipmentName2 = row.role;
+
 	        	}
 	        	this.isNew = false;
       		},
       		//编辑发布
       		EditUpdate(){
-      			let t = this;
-      			let id = this.Id;
-      			let DeviceName = '';
-      			let DeviceParam = '';
-      			let DeviceVersion = '';
-      			let CheckCycle = '';
-      			let Description = '';
-      			let DeviceId = t.defualtData.Id;
-      			let ChargeMan = t.equipmentEditPerson;
-      			let CreateTime = t.equipmentEditTime;
-      			let DeviceChangeInfo = t.equipmentEditChange		
-      			api.UpdateOperatorInfo(id,DeviceId,DeviceName,DeviceParam,DeviceVersion,CheckCycle,Description,ChargeMan,CreateTime,DeviceChangeInfo).then(result=>{
-					t.getNotice();
+      			let _this = this;
+      			let userId = _this.equipmentPersonidb;
+      			let username = _this.equipmentPerson2b;
+      			let name = _this.equipmentPerson1b;
+      			let role = _this.equipmentName2;
+      			let status = _this.equipmentName1
+      			api.POSTsysUserupdatet(userId,username,status,role,name).then(result=>{
+      			    console.log(result);
+                    _this.getNotice();
 				});
 				this.isEdit = false;
       		},
@@ -386,73 +297,77 @@
       		 handleSizeChange(val) {
         		console.log(`每页 ${val} 条`);
       		},
+			//
       		handleCurrentChange(val) {
         		this.setPageTable(10, val);
       		},
       		openWin(){
       			this.isEdit = false;
       			this.isNew = true;
-      			this.equipmentName = '';
-      			this.defualtData = '';
-      			this.equipmentPerson = '';
-				this.equipmentTime = '';
-				this.equipmentChenge = '';
+      			this.equipmentPersonid ='';
+      			this.equipmentPerson1 = '';
+      			this.equipmentPerson2 = '';
+      			this.equipmentPerson3 = '';
+				this.equipmentName1 = '';
+				this.equipmentName2 = '';
+
       		},
-      		//添加设备名称选择
-      		DeviceNameChange(val){
-      			this.defualtData = this.options.find((item)=>{
-      				return item.DeviceName === val;
-      			})
-      		},
+      		//
+      		DeviceNameChange1(val){
+                this.equipmentName1 = val;
+			},
+            //
+            DeviceNameChange2(val){
+                this.equipmentName2 = val;
+			},
+            //
+            DeviceNameChange3(val){
+                this.equipmentName1b = val;
+			},
+            //
+            DeviceNameChange4(val){
+                this.equipmentName2b = val;
+			},
       		//添加运维记录确定
       		Insert(){
-      			let t = this;
-      			let id = '';
-      			let DeviceName = '';
-      			let DeviceParam = '';
-      			let DeviceVersion = '';
-      			let CheckCycle = '';
-      			let Description = '';
-      			let DeviceId = t.defualtData.Id;
-      			let ChargeMan = t.equipmentPerson;
-      			let CreateTime = t.equipmentTime;
-      			let DeviceChangeInfo = t.equipmentChenge;
-				api.AddOperatorInfo(id,DeviceId,DeviceName,DeviceParam,DeviceVersion,CheckCycle,Description,ChargeMan,CreateTime,DeviceChangeInfo).then(result=>{
-					
+      			const _this = this;
+      			let userId = _this.equipmentPersonid ||'';
+      			let username = _this.equipmentPerson2;
+      			let status = _this.equipmentName1;
+      			let role = _this.equipmentName2;
+      			let name = _this.equipmentPerson1;
+				api.POSTsysUseraddt(userId,username,status,role,name).then(result=>{
+                    _this.getNotice();
 				});
       		},
       		//获取运维记录列表
       		getNotice(){
-      			let t = this;
+      			const _this = this;
       			this.ListData = [];
-      			api.GetOperatorInfo().then(result=>{
-					let InfoData = result.data.Data;
-					t.totalCount = InfoData.length;
+      			api.GetsysUserlistdt('').then(result=>{
+      			    console.log(result);
+					let InfoData = result.data.data;
+                    _this.totalCount = InfoData.length;
 					InfoData.forEach(item=>{
 						let tableData = {};
-                        tableData.DeviceName = item.DeviceName;//设备名称
-                        tableData.CreateTime = item.CreateTime.replace('T',' ');//运维时间
-                        tableData.CheckCycle = item.CheckCycle;//巡查周期
-                        tableData.Description = item.Description;//用途描述
-                        tableData.DeviceId = item.DeviceId;//设备id
-                        tableData.Id = item.Id;//设备id
-                        tableData.DeviceChangeInfo = item.DeviceChangeInfo;//设备更换情况
-                        tableData.DeviceParam = item.DeviceParam;//设备参数
-                        tableData.DeviceVersion = item.DeviceVersion;//设备型号
-                        tableData.ChargeMan = item.ChargeMan;//负责人
-                        t.ListData.push(tableData);
+                        tableData.status = item.status;//
+                        tableData.username = item.username;//
+                        tableData.sex = item.sex;//
+                        tableData.role = item.role?'责任主体人员':'巡查员';//
+                        tableData.password = item.password;//
+                        tableData.name = item.name;//
+                        tableData.mobile = item.mobile;//
+                        tableData.lastLoginTime = item.lastLoginTime;//
+                        tableData.lastLoginIp = item.lastLoginIp;//
+                        tableData.email = item.email;//
+                        tableData.createTime = item.createTime;//
+                        tableData.userId = item.userId;//
+                        _this.ListData.push(tableData);
 					})
-					this.setPageTable(10, 1);
+                    _this.setPageTable(10, 1);
 				});
       		},
-      		//运维设备列表
-      		GetOperDeviceInfo(){
-      			let t = this;
-      			api.GetOperDeviceInfo().then(res=>{
-      				console.log(res);
-      				t.options = res.data.Data;
-      			})
-      		},
+
       		 //分页数据
             setPageTable(pageSize, pageNum) {
                 let i = 1;
@@ -471,6 +386,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+	@import "../../../styles/houtaitanchuang";
 .businessOperation{
 	.el-input{
 		width: 215px;
@@ -538,105 +454,7 @@
 	    	margin-left: 170px;
 	    	padding-bottom: 90px;
 	    }
-	    /*************弹出框**********/
-	    .popUp {
-	        /*灰色遮罩层*/
-	        .mask {
-	            width: 100%;
-	            height: 100%;
-	            background: rgba(0, 0, 0, 0.8);
-	            position: fixed;
-	            left: 0;
-	            top: 0;
-	            z-index: 998;
-	        }
-	        /*****弹出框内容********/
-	        .succ-pop {
-	            width: 515px;
-	            height: 640px;
-	            background: #fff;
-	            position: fixed;
-	            left: 50%;
-	            top: 50%;
-	            margin-left: -257px;
-	            margin-top: -320px;
-	            z-index: 999;
-	            border-radius: 10px;
-	            .title {
-	                width: 100%;
-	                height: 50px;
-	                line-height: 50px;
-	                text-align: left;
-	                border-bottom: 2px solid #3a90b3;
-	                a {
-	                    color: #3a90b3;
-	                    font-size: 18px;
-	                    padding-left: 20px;
-	                }
-	                div {
-	                    margin-top: 15px;
-	                    float: right;
-	                    width: 24px;
-	                    height: 24px;
-	                    color: #363636;
-	                    margin-right: 6px;
-	                }
-	
-	            }
-	            .content{
-	            	width: 400px;
-	            	margin: 0 auto;
-	            	background: #fff;
-	            	span{
-	            		display: inline-block;
-	            		width: 120px;
-	            		height: 40px;
-	            		line-height: 40px;
-	            		text-align: right;
-	            		float: left;
-	            	}
-					.block{
-						margin-top: 20px;
-						span{
-							margin-right: 10px;
-						}
-						.autoGet{
-							/*display: inline-block;*/
-							/*float: left;*/
-							width: 215px;
-							height: 40px;
-							border: 1px solid #d1dbe4;
-							border-radius: 4px;
-							line-height: 40px;
-							text-align: left;
-							padding-left: 10px;
-							background: #eef1f6;
-							color: #7e807f;
-							overflow: hidden;
-							text-overflow:ellipsis;
-							white-space: nowrap;
-						}
-						.discribe{
-							height: 80px;
-							padding: 15px 0;
-							width: 215px;
-							border: 1px solid #d1dbe4;
-							border-radius: 4px;
-							text-align: left;
-							padding-left: 10px;
-							background: #eef1f6;
-							color: #7e807f;
-							line-height: 18px;
-							display: -webkit-box;
-							-webkit-box-orient: vertical;
-							-webkit-line-clamp: 3;
-							overflow: hidden;
-						}
-					}
-	            }
-	            
-	        }
-	    }    
+
 	}
 }
 </style>
