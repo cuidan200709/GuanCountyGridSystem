@@ -164,6 +164,9 @@ import {
     POSTsysUseradd,//巡查员添加接口
     POSTsysUserdelete,//巡查员删除接口
     POSTsysUserupdate,//巡查员编辑接口
+    GetStarGridNameResource,//明星巡查员姓名
+    AddStarEventResource,//明星巡查员添加接口
+    EditStarEventResource,//明星和通报巡查员编辑接口
 } from './resource'
 
 export default {
@@ -1281,6 +1284,49 @@ export default {
     //传感网数据查询
     GetDustHourRanking(requestTime) {
         return axios.get(GetDustHourRankingResource + 'requestTime=' + requestTime, {}
+        )
+    },
+    //明星巡查员列表
+    GetStarList(userId,pageSize,pageNo){
+    	return axios.get(GetStarListResource + 'userId=' + userId+"&pageSize="+pageSize+"&pageNo="+pageNo, {}
+        )
+    },
+     //明星巡查员姓名
+ 	GetStarGridName(){
+ 		let params = {};
+    	 let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(GetStarGridNameResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    AddStarEvent(userId,userName,money,event,comment){
+    	let params = {
+    		'userId':userId,
+    		'userName':userName,
+    		'event':event,
+    		'comment':comment,
+    		'money':money
+    	};
+    	 let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(AddStarEventResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    EditStarEvent(id,userId,userName,money,event,comment){
+    	let params = {
+    		'id':id,
+    		'userId':userId,
+    		'userName':userName,
+    		'event':event,
+    		'comment':comment,
+    		'money':money
+    	};
+    	 let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(EditStarEventResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
         )
     },
 }
