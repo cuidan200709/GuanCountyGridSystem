@@ -84,16 +84,53 @@
 			    </el-pagination>
 			</div>
 			<!---->
-			<el-dialog title="企业污染源管理" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+			<el-dialog title="企业污染源管理" :visible.sync="dialogVisible" width="30%">
 				<!---->
-				<el-tabs v-model="activeName" @tab-click="handleClick">
+				<el-tabs v-model="activeName">
 					<el-tab-pane label="排放口编辑" name="first">
-
+						<div class="addpaiqikou">
+							<ul>
+								<li style="margin-top: 10px" v-for="(Vent, index) in todos">
+									<div class="block">
+										<span>排放口名称：</span>
+										<el-input v-model="Vent.name" placeholder="请输入排气口名称"></el-input>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="add-pqbtn" style="margin-top: 10px">
+							<el-button type="primary" @click="addVent">添加排气口</el-button>
+							<el-button type="primary" @click="">保存排气口</el-button>
+						</div>
 					<!---->
 					</el-tab-pane>
 					<el-tab-pane label="企业信息编辑" name="second">
-					<!---->
-
+						<!---->
+						<div class="qiye-table" style="margin: 25px 55px">
+							<!---->
+							<table border="1" class="table-up">
+								<!---->
+								<tr><th bgcolor="#f6f6f6">污染源名称</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">法人代码</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">法定代表人</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">污染源地址</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">行政区域</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">污染源规模</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">行政类型</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">污染源类别</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">单位类型</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">投产日期</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">占地面积(平方米)</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">地区名称</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">是否30千瓦电力企业</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">启用状态</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">关注程度</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">运行状态</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">流域</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">在线状态</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">通讯地址</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">通讯地址</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">联系人</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">移动电话</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">办公电话</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">污染源网址</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">中心经度</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">中心纬度</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">污染源环保部门</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">专职环保人员数</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">环保负责人</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6">备注</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
+								<!---->
+							</table>
+						</div>
+						<!---->
 					</el-tab-pane>
 
 				</el-tabs>
@@ -114,10 +151,15 @@
         name: 'businessOperation',
         data() {
             return {
+                //
                 dialogVisible:false,
+				//
 		        tableData:[{DeviceName:'0000'}],
+				//
 			    currentPage: 1,
+				//
 			    pagesize:10,
+				//
                 activeName:'first',
 			    isNew: false,
 			    textarea: '',
@@ -129,6 +171,9 @@
 				totalCount:'',
 				InfoData:[],
 				ListData:[],
+				//排气口添加数组
+                todos:[{name:'刘强东'},{name:'马云'}],
+				//
 				Id:'',
 				isend:false,
 				//添加
@@ -151,13 +196,22 @@
 
         },
         mounted() {
-
+            $(".el-dialog").css("width","700px");
             this.getNotice();
         },
         computed: {
             
         },
         methods: {
+            //
+            addVent(){
+                let kname = '';
+				//
+				this.todos.push({name:kname});
+				//
+				console.log(this.todos);
+			},
+			//
             QueryNeedsData(){
                 let condata = this.componyName;
                 this.getNotice(condata);
