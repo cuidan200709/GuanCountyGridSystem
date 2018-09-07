@@ -94,7 +94,7 @@
         data() {
             return {
             	//
-		        tableData:[],
+		        tableData:[{CameraResourceName:'摄像头'}],
 			    currentPage: 1,
 			    pagesize:10,
                 dialogVisible: false,

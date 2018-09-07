@@ -50,11 +50,7 @@
 			      label="处理案件"
 			      >
 			    </el-table-column>
-				<!--<el-table-column-->
-						<!--prop="mobile"-->
-						<!--label="联系方式"-->
-				<!--&gt;-->
-				<!--</el-table-column>-->
+
 			    <el-table-column
 			      label="操作"
 			      width="180">
@@ -289,16 +285,12 @@
 			//编辑
 	        handleClick(row) {
 	        	this.isEdit = true;
-	        	console.log(row)
-	        	if(this.isEdit){
-	        		this.equipmentPersonidb = row.userId;
-	        		this.equipmentPerson1b = row.name;
-	      			this.equipmentPerson2b = row.username;
-	      			this.equipmentPerson3b = row.role;
-	      			this.equipmentName1 = (row.status ? 1 : 0);
-	      			this.equipmentName2 = (row.role === '巡查员' ? 0 : 1);
-
-	        	}
+	        	this.equipmentPersonidb = row.userId;
+	        	this.equipmentPerson1b = row.name;
+	      		this.equipmentPerson2b = row.username;
+	      		this.equipmentPerson3b = row.role;
+	      		this.equipmentName1b = (row.status ? '允许' : '禁止');
+	      		this.equipmentName2b = (row.role === '巡查员' ? '禁止' : '允许');
 	        	this.isNew = false;
       		},
       		//编辑发布
@@ -307,8 +299,8 @@
       			let userId = _this.equipmentPersonidb;
       			let username = _this.equipmentPerson2b;
       			let name = _this.equipmentPerson1b;
-      			let role = _this.equipmentName2;
-      			let status = _this.equipmentName1
+      			let role = _this.equipmentName2b;
+      			let status = _this.equipmentName1b;
       			api.POSTsysUserupdatet(userId,username,status,role,name).then(result=>{
       			    console.log(result);
                     _this.getNotice();

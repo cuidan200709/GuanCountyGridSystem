@@ -2,20 +2,20 @@
 <!--后台管理-监测点管理-->
 <template>
     <div class="businessOperation">
-		<!--------------监测点管理右侧数据展示------>
+		<!--监测点管理右侧数据展示-->
 		<div id="right">
-			<!----------监测点管理-->
+			<!--监测点管理-->
 			<div class="box">
                 <div class="warning">
                     <a>监测点管理</a>
                 </div>
             </div>
-            <!-----------查询部分------->
+            <!--查询部分-->
 			<div class="search">
 				<el-button type="primary" class='btns' @click="openWin">添加监测点</el-button>
 			</div>
 			
-			<!--------------列表部分---------->
+			<!--列表部分-->
 			<div class="box">
                 <div class="warning">
                     <a>列表</a>
@@ -23,31 +23,30 @@
             </div>
             <el-table
 			    :data="tableData"
+				border
 			    style="width: 100%">
 			    <el-table-column
 			      prop="DeviceName"
 			      label="监测点名称"
-			      width="200">
+			      >
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
 			      label="监测点类别"
-			      width="350">
+			      >
 			    </el-table-column>
 			    <el-table-column
 			      prop="CreateTime"
 			      label="说明"
-			      width="">
+			      >
 			    </el-table-column>
 			    <el-table-column
 			      label="操作"
-			      width="200">
+			      width="180">
 			      <template scope="scope">
 			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>编辑</el-button>
 			        <span style="color: #eee;">|</span>
-			        <span class="OverBox">
-			        	<el-button @click="DeleteOperatorInfo(scope.row)" type="text" size="small" class='eidt'>删除</el-button>
-			        </span>
+			        <el-button @click="DeleteOperatorInfo(scope.row)" type="text" size="small" class='eidt'>删除</el-button>
 			      </template>
 			    </el-table-column>
 			</el-table>
@@ -56,79 +55,29 @@
 			    <el-pagination
 			      @size-change="handleSizeChange"
 			      @current-change="handleCurrentChange"
+				  background
 			      :current-page="currentPage"
 			      :page-size="pagesize"
 			      layout="prev, pager, next, jumper"
 			      :total="totalCount">
 			    </el-pagination>
 			</div>
-			<!--------------添加弹框部分--------------->
-			<div class="popUp" v-if="isNew">
+			<!--添加弹框部分-->
+			<div class="popUp" v-show="isNew">
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">添加</a>
+	                    <a>添加</a>
 	                    <div class="el-icon-close" @click="isNew=false"></div>
 	                </div>
 	                <div class="content">
-                		<div class="block" style="overflow: hidden;">
-						    <span>设备名称</span>
-						    <el-select v-model="equipmentName" 
-						    	clearable 
-						    	placeholder="请选择"
-						    	@change='DeviceNameChange'>
-						        <el-option
-						          v-for="item in options"
-						          :key="item.value"
-						          :label="item.DeviceName"
-						          :value="item.DeviceName">
-						    	</el-option>
-						    </el-select>
-						</div>
-					  	<div class="block">
-						    <span>设备参数</span>
-						  	<div class="autoGet">{{defualtData.DeviceParam}}</div>
-						</div>
-						<div class="block">
-						    <span>设备型号</span>
-						   <div class="autoGet">{{defualtData.DeviceVersion}}</div>
-						</div>
-						<div class="block">
-						    <span>巡查周期</span>
-						    <div class="autoGet">{{defualtData.CheckCycle}}</div>
-						</div>
-					  	<div class="block">
-					  		<span>用途描述</span>
-						  	<div class="discribe">{{defualtData.Description}}</div>
-						</div>
-						<div class="block">
-						    <span>负责人</span>
-						    <el-input v-model="equipmentPerson" placeholder="请输入内容"></el-input>
-						</div>
-						<div class="block time">
-						    <span>最近运维时间</span>
-						    <el-date-picker
-						      v-model="equipmentTime"
-						      type="date"
-						      placeholder="选择日期"
-						      @change='getAddTime'
-						      format="yyyy-MM-dd"
-						      value-format="yyyy-MM-dd">
-						    </el-date-picker>
-						</div>
-						    <div class="block">
-						    <span>备品备件更换情况</span>
-						    <el-input v-model="equipmentChenge" placeholder="请输入内容"></el-input>
-						</div>
-						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
-							<el-button type="primary" @click='publish'>确定</el-button>
-							<el-button plain @click='isNew=false'>取消</el-button>
-						</el-row>
+
+
 	               </div>
 	            </div>
 	        </div>
-	        <!--------------编辑弹框部分--------------->
-			<div class="popUp" v-if="isEdit">
+	        <!--编辑弹框部分-->
+			<div class="popUp" v-show="isEdit">
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
@@ -136,59 +85,7 @@
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">
-                		<div class="block" style="overflow: hidden;">
-						    <span>设备名称</span>
-						    <el-select v-model="equipmentEditName" 
-						    	clearable 
-						    	placeholder="请选择"
-						    	@change='DeviceNameChange'>
-						        <el-option
-						          v-for="item in options"
-						          :key="item.value"
-						          :label="item.DeviceName"
-						          :value="item.DeviceName">
-						    	</el-option>
-						    </el-select>
-						</div>
-					  	<div class="block">
-						    <span>设备参数</span>
-						  	<div class="autoGet">{{defualtData.DeviceParam}}</div>
-						</div>
-						<div class="block">
-						    <span>设备型号</span>
-						   <div class="autoGet">{{defualtData.DeviceVersion}}</div>
-						</div>
-						<div class="block">
-						    <span>巡查周期</span>
-						    <div class="autoGet">{{defualtData.CheckCycle}}</div>
-						</div>
-					  	<div class="block">
-					  		<span>用途描述</span>
-						  	<div class="discribe">{{defualtData.Description}}</div>
-						</div>
-						<div class="block">
-						    <span>负责人</span>
-						    <el-input v-model="equipmentEditPerson" placeholder="请输入内容"></el-input>
-						</div>
-						<div class="block time">
-						    <span>最近运维时间</span>
-						    <el-date-picker
-						      v-model="equipmentEditTime"
-						      type="date"
-						      placeholder="选择日期"
-						      @change='getEditTime'
-						      format="yyyy-MM-dd"
-						      value-format="yyyy-MM-dd">
-						    </el-date-picker>
-						</div>
-						    <div class="block">
-						    <span>备品备件更换情况</span>
-						    <el-input v-model="equipmentEditChenge" placeholder="请输入内容"></el-input>
-						</div>
-						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
-							<el-button type="primary" @click='EditUpdate'>确定</el-button>
-							<el-button plain @click='isEdit=false'>取消</el-button>
-						</el-row>
+
 	               </div>
 	            </div>
 	        </div>
@@ -203,14 +100,7 @@
         name: 'businessOperation',
         data() {
             return {
-            	//预警状态
-               options: [],
-		        value1: '',
-		        value2: '',
-		        value3: '',
-		        value4: '',
-		        value5: '',
-		        value6: '',
+
 		        tableData:[],
 			    currentPage: 1,
 			    pagesize:10,
@@ -241,10 +131,11 @@
             }
         },
         created(){
-        	this.getNotice();
+
         },
         mounted() {
-        	this.GetOperDeviceInfo()
+            this.getNotice();
+        	//this.GetOperDeviceInfo()
         },
         computed: {
             
@@ -399,6 +290,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+	@import "../../../styles/houtaitanchuang";
 .businessOperation{
 	.el-input{
 		width: 215px;
@@ -466,105 +358,7 @@
 	    	margin-left: 170px;
 	    	padding-bottom: 90px;
 	    }
-	    /*************弹出框**********/
-	    .popUp {
-	        /*灰色遮罩层*/
-	        .mask {
-	            width: 100%;
-	            height: 100%;
-	            background: rgba(0, 0, 0, 0.8);
-	            position: fixed;
-	            left: 0;
-	            top: 0;
-	            z-index: 998;
-	        }
-	        /*****弹出框内容********/
-	        .succ-pop {
-	            width: 515px;
-	            height: 640px;
-	            background: #fff;
-	            position: fixed;
-	            left: 50%;
-	            top: 50%;
-	            margin-left: -257px;
-	            margin-top: -320px;
-	            z-index: 999;
-	            border-radius: 10px;
-	            .title {
-	                width: 100%;
-	                height: 50px;
-	                line-height: 50px;
-	                text-align: left;
-	                border-bottom: 2px solid #3a90b3;
-	                a {
-	                    color: #3a90b3;
-	                    font-size: 18px;
-	                    padding-left: 20px;
-	                }
-	                div {
-	                    margin-top: 15px;
-	                    float: right;
-	                    width: 24px;
-	                    height: 24px;
-	                    color: #363636;
-	                    margin-right: 6px;
-	                }
-	
-	            }
-	            .content{
-	            	width: 400px;
-	            	margin: 0 auto;
-	            	background: #fff;
-	            	span{
-	            		display: inline-block;
-	            		width: 120px;
-	            		height: 40px;
-	            		line-height: 40px;
-	            		text-align: right;
-	            		float: left;
-	            	}
-					.block{
-						margin-top: 20px;
-						span{
-							margin-right: 10px;
-						}
-						.autoGet{
-							/*display: inline-block;*/
-							/*float: left;*/
-							width: 215px;
-							height: 40px;
-							border: 1px solid #d1dbe4;
-							border-radius: 4px;
-							line-height: 40px;
-							text-align: left;
-							padding-left: 10px;
-							background: #eef1f6;
-							color: #7e807f;
-							overflow: hidden;
-							text-overflow:ellipsis;
-							white-space: nowrap;
-						}
-						.discribe{
-							height: 80px;
-							padding: 15px 0;
-							width: 215px;
-							border: 1px solid #d1dbe4;
-							border-radius: 4px;
-							text-align: left;
-							padding-left: 10px;
-							background: #eef1f6;
-							color: #7e807f;
-							line-height: 18px;
-							display: -webkit-box;
-							-webkit-box-orient: vertical;
-							-webkit-line-clamp: 3;
-							overflow: hidden;
-						}
-					}
-	            }
-	            
-	        }
-	    }    
+
 	}
 }
 </style>
