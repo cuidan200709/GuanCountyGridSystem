@@ -384,17 +384,29 @@
 		    },
 		    Format(timestamp){
 				//时间戳是整数，否则要parseInt转换
-				var time = new Date(timestamp);
+				var time = new Date(timestamp*1000);
 				var year = time.getFullYear();
 				var month = time.getMonth()+1;
-				var day = time.getDate();
+				var day = time.getDate()+' ';
+				var h = time.getHours() + ':';
+		        var m = time.getMinutes() + ':';
+		        var s = time.getSeconds();
 				if(month<10){
 					month = "0" + month;
 				}
 				if(day<10){
 					day = "0" + day;
 				}
-				return year+'-'+month+'-'+day;
+				if(h<10){
+					h = "0" + h;
+				}
+				if(m<10){
+					m = "0" + m;
+				}
+				if(s<10){
+					s = "0" + s
+				}
+				return year+'-'+month+'-'+day +h+m+s;
 			},
         }, 
     }
