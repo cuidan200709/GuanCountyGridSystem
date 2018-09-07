@@ -41,17 +41,8 @@
 				    </el-select>
 				</div>
 				<el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
-				<div class="InsertOrOut">
-					<span>
-						<img src="../../../../static/imgs/main/In.png"/>
-						<a @click="OpenInsert">批量导入</a>
-					</span>
-					<span>
-						<img src="../../../../static/imgs/main/Out.png"/>
-						<a @click="ImportExel">Excel导出</a>
-					</span>
-				
-				</div>
+				<el-button type="primary" class='btns' @click='OpenInsert'>导入</el-button>
+				<el-button type="primary" class='btns' @click='ImportExel'>导出</el-button>
 			</div>
 			
 			<!--------------列表部分---------->

@@ -19,7 +19,7 @@
 					    <el-option
 					      v-for="item in griderOptions"
 					      :key="item.value"
-					      :label="item.username"
+					      :label="item.name"
 					      :value="item.userId">
 					    </el-option>
 					</el-select>
@@ -92,7 +92,7 @@
 							    <el-option
 							      v-for="item in AddGriderOptions"
 							      :key="item.value"
-							      :label="item.username"
+							      :label="item.name"
 							      :value="item.userId">
 							    </el-option>
 							</el-select>
@@ -145,7 +145,7 @@
 							    <el-option
 							      v-for="item in EditGriderOptions"
 							      :key="item.value"
-							      :label="item.username"
+							      :label="item.name"
 							      :value="item.userId">
 							    </el-option>
 							</el-select>
@@ -254,7 +254,8 @@
 //      		this.GetMonitoringDay(10,val);
       		},
       		handleCurrentChange(val) {
-      			
+				this.pageNo = val;
+				this.GetMonitoringDay();
       		},
       		//获取巡查员姓名
       		GetGridName(){
@@ -277,9 +278,9 @@
       				console.log(result)
       				if(result){
       					let InfoData = result.data.data;
-      					t.totalCount = result.data.data.length;
-      					console.log(InfoData)
-      					console.log('11')
+      					t.totalCount = 100;
+//    					console.log(InfoData)
+//    					console.log('11')
       					if(InfoData){
       						InfoData.forEach(item=>{
 								let tableData = {};
@@ -302,7 +303,6 @@
 			    this.AddObj = this.AddGriderOptions.find((item)=>{//this.ruleForm  
 			    return item.userId === val;//筛选出匹配数据  
 			    });  
-//			    console.log(AddObj.username);//我这边的name就是对应label的 
       		},
       		//编辑下拉选择
       		EditSelect(val){
@@ -311,17 +311,16 @@
 			    this.EditObj = this.EditGriderOptions.find((item)=>{//this.ruleForm  
 			    return item.userId === val;//筛选出匹配数据  
 			    });  
-			    console.log(EditObj.username);//我这边的name就是对应label的 
       		},
       		//添加确定
       		AddOver(){
       			let t = this;
-      			let userId = this.AddGriderName;
-      			let userName = this.AddObj.username;
+      			let userId = this.AddObj.userId;
+      			let userName = this.AddObj.name;
       			let money = this.AddMoney;
       			let event = this.AddStory;
       			let comment = this.AddDescribe;
-      			if(!this.AddGriderName||!this.AddMoney){
+      			if(!this.AddGriderName||this.AddMoney==''){
       				 this.$message({
 				          message: '必填项不可为空',
 				          type: 'warning'
@@ -337,12 +336,13 @@
       		EditOver(){
       			let t = this;
       			let id = this.id;
-      			let userName = this.EditObj.username;
-      			let userId = this.userId;
+      			let userName = this.EditObj.name;
+      			let userId = this.EditGriderName;
       			let money = this.EditMoney;
       			let event = this.EditStory;
       			let comment = this.EditDescribe;
-      			if(!this.EditGriderName||!this.EditMoney){
+      			console.log(userId)
+      			if(!this.EditGriderName||this.EditMoney==''){
       				 this.$message({
 				          message: '必填项不可为空',
 				          type: 'warning'
@@ -382,7 +382,7 @@
 		    handlePreview(file) {
 		        console.log(file);
 		    },
-		    Format:function(timestamp){
+		    Format(timestamp){
 				//时间戳是整数，否则要parseInt转换
 				var time = new Date(timestamp);
 				var year = time.getFullYear();
