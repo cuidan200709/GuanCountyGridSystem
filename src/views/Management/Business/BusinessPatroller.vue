@@ -350,7 +350,7 @@
             DeviceNameChange4(val){
                 this.equipmentName2b = val;
 			},
-      		//添加运维记录确定
+      		//添加
       		Insert(){
       			const _this = this;
       			let userId = _this.equipmentPersonid ||'';
