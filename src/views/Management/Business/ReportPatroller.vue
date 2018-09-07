@@ -1,8 +1,8 @@
-<!--后台管理-通报巡查员-->
+<!--后台管理-明星巡查员-->
 <template>
     <div class="CaseReview">
 		<div id="right">
-			<!----------通报巡查员-->
+			<!----------明星巡查员-->
 			<div class="box">
                 <div class="warning">
                     <a>通报巡查员</a>
@@ -11,21 +11,21 @@
             <!-----------查询部分------->
 			<div class="search">
 				<div class="block" style="margin-top: 20px;">
-				    <!--<span class="demonstration">网格姓名</span>
+				    <!--<span class="demonstration">网格名称</span>
 				    <el-input v-model="gridName" placeholder="请输入内容"></el-input>-->
 				    <span class="demonstration">巡查员姓名</span>
 				    <!--<el-input v-model="griderName" placeholder="请输入内容"></el-input>-->
-				    <el-select v-model="griderName" placeholder="请选择">
+				    <el-select v-model="griderName" clearable placeholder="请选择">
 					    <el-option
 					      v-for="item in griderOptions"
 					      :key="item.value"
-					      :label="item.label"
-					      :value="item.value">
+					      :label="item.name"
+					      :value="item.userId">
 					    </el-option>
 					</el-select>
 				    <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
 				    <el-button type="primary" class='btns' @click=''>导出</el-button>
-				    <el-button type="primary" class='btns' @click='isAdd=true'>添加</el-button>
+				    <el-button type="primary" class='btns' @click='handleAdd'>添加</el-button>
 				</div>
 			</div>
 			
@@ -39,16 +39,16 @@
 			    :data="ListData"
 			    style="width: 100%">
 			    <el-table-column
-			      prop="Name"
+			      prop="userName"
 			      label="巡查员姓名"
 			      width="">
 			    </el-table-column>
 			    <el-table-column
-			      prop="time"
+			      prop="createTime"
 			      label="日期">
 			    </el-table-column>
 			    <el-table-column
-			      prop="story"
+			      prop="event"
 			      label="原因">
 			    </el-table-column>
 			    <el-table-column
@@ -72,7 +72,7 @@
 			      @size-change="handleSizeChange"
 			      @current-change="handleCurrentChange"
 			      :current-page="currentPage"
-			      :page-size="pagesize"
+			      :page-size="pageSize"
 			      layout="prev, pager, next, jumper"
 			      :total="totalCount">
 			    </el-pagination>
@@ -88,12 +88,12 @@
 	                <div class="content">
 						<div class="block">
 						    <span>巡查员姓名</span>
-						    <el-select v-model="AddGriderName" placeholder="请选择">
+						    <el-select v-model="AddGriderName" @change="AddSelect" placeholder="请选择">
 							    <el-option
 							      v-for="item in AddGriderOptions"
 							      :key="item.value"
-							      :label="item.label"
-							      :value="item.value">
+							      :label="item.name"
+							      :value="item.userId">
 							    </el-option>
 							</el-select>
 						    <i>*</i>
@@ -135,18 +135,18 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">通报巡查员</a>
+	                    <a id="newCreate">编辑通报巡查员</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">
 						<div class="block">
-						    <span>巡查员姓名</span>
-						    <el-select v-model="EditGriderName" clearable placeholder="请选择">
+						    <span>巡查员名称</span>
+						    <el-select v-model="EditGriderName" @change="EditSelect" clearable placeholder="请选择">
 							    <el-option
 							      v-for="item in EditGriderOptions"
 							      :key="item.value"
-							      :label="item.label"
-							      :value="item.value">
+							      :label="item.name"
+							      :value="item.userId">
 							    </el-option>
 							</el-select>
 						    <i>*</i>
@@ -194,76 +194,41 @@
         name: 'CaseReview',
         data() {
             return {
-            		
 		        tableData:[],
 			    currentPage: 1,
-			    pagesize:10,
+			    pageSize:10,
 				totalCount:'',
 				InfoData:[],
-				ListData:[{Name:'成龙',time:'2018-09-09',story:'哈哈哈',money:200}],
+				ListData:[],
 				pageNo:1,
 	         //网格
 	         gridName:'',
 	         //添加
-	         griderName:'',
-	         griderOptions:[
-	         {
-	         	value:'0',
-	         	label:'成龙'
-	         },
-	         {
-	         	value:'1',
-	         	label:'刘德华'
-	         },
-	         {
-	         	value:'2',
-	         	label:'毛泽东'
-	         },
-	         ],
+	         griderName:'',//巡查员姓名
+	         griderOptions:[],//巡查员姓名列表
 	         //添加
 	         AddGriderName:'',
-	         AddGriderOptions:[
-	         {
-	         	value:'0',
-	         	label:'成龙'
-	         },
-	         {
-	         	value:'1',
-	         	label:'刘德华'
-	         },
-	         {
-	         	value:'2',
-	         	label:'毛泽东'
-	         },
-	         ],
+	         AddGriderOptions:[],
 	         isAdd:false,
-	         AddDescribe:'',//备注
-	         AddMoney:'',//罚金
-	         AddStory:'',//原因
+	         AddDescribe:'',//说明
+	         AddMoney:'',//奖金
+	         AddStory:'',//事迹
+	         AddObj:{},
 	         //编辑
+	         userId:'',
+	         EditObj:{},
 	          EditGriderName:'',
-	         EditGriderOptions:[
-	         {
-	         	value:'0',
-	         	label:'成龙'
-	         },
-	         {
-	         	value:'1',
-	         	label:'刘德华'
-	         },
-	         {
-	         	value:'2',
-	         	label:'毛泽东'
-	         },
-	         ],
+	         EditGriderOptions:[],
 	         isEdit:false,
-	         EditDescribe:'',//备注
-	         EditMoney:'',//罚金
-	         EditStory:'',//原因
+	         EditDescribe:'',//说明
+	         EditMoney:'',//奖金
+	         EditStory:'',//事迹
+	         id:''
             }
         },
         created(){
         	this.GetMonitoringDay();
+        	this.GetGridName();
         },
         mounted() {
         	
@@ -272,12 +237,23 @@
             
         },
         methods: {
+        	//点击添加
+        	handleAdd(){
+        		this.isAdd = true;
+        		this.AddGriderName = '';
+        		this.AddMoney = '';
+        		this.AddStory = '';
+        		this.AddDescribe = '';
+        	},
         	//点击编辑
         	handleExamineClick(val){
+        		console.log(val)
         		this.isEdit = true;
-        		this.EditGriderName = val.Name;
+        		this.userId = val.userId;
+        		this.EditGriderName = val.userName;
         		this.EditMoney = val.money;
-        		this.EditStory = val.story;
+        		this.EditStory = val.event;
+        		this.id = val.id;
         		console.log(val);
         	},
       		//分页
@@ -286,46 +262,104 @@
 //      		this.GetMonitoringDay(10,val);
       		},
       		handleCurrentChange(val) {
-      			
+				this.pageNo = val;
+				this.GetMonitoringDay();
       		},
-      		
+      		//获取巡查员姓名
+      		GetGridName(){
+      			let t = this;
+      			api.GetStarGridName().then(res=>{
+      				console.log(res);
+      				this.griderOptions = res.data.data;
+      				this.AddGriderOptions = res.data.data;
+      				this.EditGriderOptions = res.data.data;
+      			})
+      		},
       		//获取列表
       		GetMonitoringDay(){
       			let t = this;
-//    			api.GetCaseList().then(result=>{
-//    				console.log(result)
-//    				if(result){
-//    					let InfoData = result.data.list;
-//    					t.totalCount = result.data.count;
+      			let userId = this.griderName;
+      			let pageSize = this.pageSize;
+      			let pageNo = this.pageNo;
+      			t.ListData = [];
+      			api.GetReportList(userId,pageSize,pageNo).then(result=>{
+      				console.log(result)
+      				if(result){
+      					let InfoData = result.data.data;
+      					t.totalCount = 100;
 //    					console.log(InfoData)
 //    					console.log('11')
-//    					if(InfoData){
-//    						InfoData.forEach(item=>{
-//								let tableData = {};
-//		                        t.ListData.push(tableData);
-//							})
-//    					}
-//						
-////						this.setPageTable(10000, 1);
-//    				}
-//				});
+      					if(InfoData){
+      						InfoData.forEach(item=>{
+								let tableData = {};
+								tableData.userId = item.userId;
+								tableData.userName = item.userName;
+								tableData.createTime = t.Format(item.createTime);
+								tableData.event = item.event;
+								tableData.money = item.money;
+								tableData.id = item.id;
+		                        t.ListData.push(tableData);
+							})
+      					}
+      				}
+				});
+      		},
+      		//添加下拉选择
+      		AddSelect(val){
+      			console.log(val)
+      			this.AddObj = {};  
+			    this.AddObj = this.AddGriderOptions.find((item)=>{//this.ruleForm  
+			    return item.userId === val;//筛选出匹配数据  
+			    });  
+      		},
+      		//编辑下拉选择
+      		EditSelect(val){
+      			console.log(val)
+      			this.EditObj = {};  
+			    this.EditObj = this.EditGriderOptions.find((item)=>{//this.ruleForm  
+			    return item.userId === val;//筛选出匹配数据  
+			    });  
       		},
       		//添加确定
       		AddOver(){
-      			if(!this.AddGriderName||!this.AddMoney){
+      			let t = this;
+      			let userId = this.AddObj.userId;
+      			let userName = this.AddObj.name;
+      			let money = this.AddMoney;
+      			let event = this.AddStory;
+      			let comment = this.AddDescribe;
+      			if(!this.AddGriderName||this.AddMoney==''){
       				 this.$message({
 				          message: '必填项不可为空',
 				          type: 'warning'
 				    });
+      			}else{
+      				api.AddReportEvent(userId,userName,money,event,comment).then(res=>{
+      					t.GetMonitoringDay();
+      					t.isAdd = false;
+      				})
       			}
       		},
       		//编辑确定
       		EditOver(){
-      			if(!this.EditGriderName||!this.EditMoney){
+      			let t = this;
+      			let id = this.id;
+      			let userName = this.EditObj.name;
+      			let userId = this.EditGriderName;
+      			let money = this.EditMoney;
+      			let event = this.EditStory;
+      			let comment = this.EditDescribe;
+      			console.log(userId)
+      			if(!this.EditGriderName||this.EditMoney==''){
       				 this.$message({
 				          message: '必填项不可为空',
 				          type: 'warning'
 				    });
+      			}else{
+      				api.EditStarEvent(id,userId,userName,money,event,comment).then(res=>{
+      					t.GetMonitoringDay();
+      					t.isEdit = false;
+      				})
       			}
       		},
       		//导出
@@ -356,6 +390,32 @@
 		    handlePreview(file) {
 		        console.log(file);
 		    },
+		    Format(timestamp){
+				//时间戳是整数，否则要parseInt转换
+				var time = new Date(timestamp*1000);
+				var year = time.getFullYear();
+				var month = time.getMonth()+1;
+				var day = time.getDate()+' ';
+				var h = time.getHours() + ':';
+		        var m = time.getMinutes() + ':';
+		        var s = time.getSeconds();
+				if(month<10){
+					month = "0" + month;
+				}
+				if(day<10){
+					day = "0" + day;
+				}
+				if(h<10){
+					h = "0" + h;
+				}
+				if(m<10){
+					m = "0" + m;
+				}
+				if(s<10){
+					s = "0" + s
+				}
+				return year+'-'+month+'-'+day +h+m+s;
+			},
         }, 
     }
 </script>

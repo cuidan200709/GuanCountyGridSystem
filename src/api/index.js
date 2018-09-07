@@ -172,6 +172,8 @@ import {
     PostupdateCompanyResource,//修改企业信息
     GetdeleteCompanyResource,//删除企业信息
     GetSingleCompanyResource,//获取单独企业信息
+    GetReportListResource,//通报巡查员列表
+    AddReportEventResource,//添加通报巡查员
 } from './resource'
 
 export default {
@@ -1381,6 +1383,26 @@ export default {
     	};
     	 let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(EditStarEventResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //通报巡查员列表
+    GetReportList(userId,pageSize,pageNo){
+    	return axios.get(GetReportListResource + 'userId=' + userId+"&pageSize="+pageSize+"&pageNo="+pageNo, {}
+        )
+    },
+    //添加通报巡查员
+    AddReportEvent(userId,userName,money,event,comment){
+    	let params = {
+    		'userId':userId,
+    		'userName':userName,
+    		'event':event,
+    		'comment':comment,
+    		'money':money
+    	};
+    	 let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(AddReportEventResource ,FormatParams, {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
         )

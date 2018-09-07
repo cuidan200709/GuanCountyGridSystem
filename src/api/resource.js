@@ -192,6 +192,8 @@ const apilangfangTDK = {
     AddStarEvent: apiconfig[icode].devc +'/guan/sysUserEvent/addStarEvent',//添加明星巡查员
     GetStarGridName: apiconfig[icode].devc +'/guan/sysUserEvent/getSysUserNameList',//明星巡查员姓名
     EditStarEvent: apiconfig[icode].devc +'/guan/sysUserEvent/update',//明星/通报巡查员编辑
+    GetReportList: apiconfig[icode].devc +'/guan/sysUserEvent/noticeList?',//通报巡查员
+    AddReportEvent: apiconfig[icode].devc +'/guan/sysUserEvent/addNoticeEvent',//添加通报巡查员
     GetcodeDepartmentlist: apiconfig[icode].devc +'/guan/codeDepartment/list',//责任部门管理列表接口
     GetcodeDepartmentlistadd: apiconfig[icode].devc +'/guan/codeDepartment/add',//责任部门添加接口
     GetcodeDepartmentlistdel: apiconfig[icode].devc +'/guan/codeDepartment/delete',//责任部门删除接口
@@ -373,3 +375,5 @@ export const PostAddCompanyResource = API_ROOT.concat(apilangfangTDK.PostAddComp
 export const PostupdateCompanyResource = API_ROOT.concat(apilangfangTDK.PostupdateCompany);
 export const GetdeleteCompanyResource = API_ROOT.concat(apilangfangTDK.GetdeleteCompany);
 export const GetSingleCompanyResource = API_ROOT.concat(apilangfangTDK.GetSingleCompany);
+export const GetReportListResource = API_ROOT.concat(apilangfangTDK.GetReportList);
+export const AddReportEventResource = API_ROOT.concat(apilangfangTDK.AddReportEvent);
