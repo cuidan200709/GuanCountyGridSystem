@@ -11,7 +11,7 @@
             <!-----------查询部分------->
 			<div class="search">
 				<span>部门名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
-				<el-button type="primary" class='btns' @click="">查询</el-button>
+				<el-button type="primary" class='btns' @click="QueryNeedsData">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加责任部门</el-button>
 				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
@@ -187,13 +187,16 @@
         },
         mounted() {
             this.getNotice();
-        	this.GetOperDeviceInfo()
+
         },
         computed: {
             
         },
         methods: {
-
+            QueryNeedsData(){
+                let condata = this.departmentVal;
+                this.getNotice(condata);
+            },
         	//列表删除
         	DeleteOperatorInfo(row) {
                 const _this = this;
@@ -226,10 +229,6 @@
                 this.openWin();
                 this.isNew = false;
 			},
-			//
-        	closeWin(){
-      			this.isNew = false;
-      		},
 			//编辑
 	        handleClick(row) {
 	        	this.isEdit = true;
@@ -288,10 +287,11 @@
 				});
       		},
       		//获取列表数据
-      		getNotice(){
+      		getNotice(name = ''){
+                let nm = name;
       			const _this = this;
       			this.ListData = [];
-      			api.GetcodeDepartmentlistdt().then(result=>{
+      			api.GetcodeDepartmentlistdt(nm).then(result=>{
       			    console.log(result);
 					let InfoData = result.data.data;
                     _this.totalCount = InfoData.length;

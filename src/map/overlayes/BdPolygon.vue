@@ -14,12 +14,12 @@
         layers: [{
           url: '/static/data/TY1.json',
           hasVisible: true,
-          displayFieldName: 'NAME99',
+          displayFieldName: 'FCNAME',
           geometry: []
         }, {
           url: '/static/data/TE1.json',
           hasVisible: false,
-          displayFieldName: 'NAME99',
+          displayFieldName: 'FCNAME',
           geometry: []
         }, {
           url: '/static/data/TS1.json',

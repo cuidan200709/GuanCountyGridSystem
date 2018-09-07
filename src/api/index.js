@@ -167,6 +167,11 @@ import {
     GetStarGridNameResource,//明星巡查员姓名
     AddStarEventResource,//明星巡查员添加接口
     EditStarEventResource,//明星和通报巡查员编辑接口
+    PosthtcompanyListResource,//获取企业列表（后台）
+    PostAddCompanyResource,//增加企业信息
+    PostupdateCompanyResource,//修改企业信息
+    GetdeleteCompanyResource,//删除企业信息
+    GetSingleCompanyResource,//获取单独企业信息
 } from './resource'
 
 export default {
@@ -175,18 +180,69 @@ export default {
     GetUserLoginRes() {
         return GetUserLoginResource
     },
+    //获取企业列表
+    PosthtcompanyListRt(name,PageIndex) {
+        let params = {
+            'name':name,//
+            'PageIndex':PageIndex,//
+            'PageSize':10,//
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PosthtcompanyListResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //增加企业信息
+    PostAddCompanyRt(userId,username,status,role,name) {
+        let params = {
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostAddCompanyResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //修改企业信息
+    PostupdateCompanyRt(userId,username,status,role,name) {
+        let params = {
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostupdateCompanyResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //删除企业信息
+    GetdeleteCompanyRt(id) {
+        return axios.get(GetdeleteCompanyResource  +'id='+id, {})
+    },
+    //获取单独企业信息
+    GetSingleCompanyRt(id) {
+        return axios.get(GetSingleCompanyResource  +'id='+id, {})
+    },
     //巡查员管理列表接口
-    GetsysUserlistdt() {
-        return axios.get(GetsysUserlist , {})
+    GetsysUserlistdt(name) {
+        return axios.get(GetsysUserlist  +'?name='+name, {})
     },
     //巡查员添加接口
-    POSTsysUseraddt(id,code,name,leader,contacts) {
+    POSTsysUseraddt(userId,username,status,role,name) {
         let params = {
-            'id':id,//部门ID,
-            'code':code,//部门编码
-            'name':name,//部门名称
-            'leader':leader,//主管领导
-            'contacts':contacts//联系方式
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(POSTsysUseradd ,FormatParams, {
@@ -195,13 +251,13 @@ export default {
         )
     },
     //巡查员删除接口
-    POSTsysUserdeletet(id,code,name,leader,contacts) {
+    POSTsysUserdeletet(userId,username,status,role,name) {
         let params = {
-            'id':id,//部门ID,
-            'code':code,//部门编码
-            'name':name,//部门名称
-            'leader':leader,//主管领导
-            'contacts':contacts//联系方式
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(POSTsysUserdelete ,FormatParams, {
@@ -210,13 +266,13 @@ export default {
         )
     },
     //巡查员编辑接口
-    POSTsysUserupdatet(id,code,name,leader,contacts) {
+    POSTsysUserupdatet(userId,username,status,role,name) {
         let params = {
-            'id':id,//部门ID,
-            'code':code,//部门编码
-            'name':name,//部门名称
-            'leader':leader,//主管领导
-            'contacts':contacts//联系方式
+            'userId':userId,//部门ID,
+            'username':username,//部门编码
+            'status':status,//部门名称
+            'role':role,//主管领导
+            'name':name//联系方式
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(POSTsysUserupdate ,FormatParams, {
@@ -225,8 +281,8 @@ export default {
         )
     },
     //责任部门列表
-    GetcodeDepartmentlistdt() {
-        return axios.get(GetcodeDepartmentlist , {})
+    GetcodeDepartmentlistdt(name) {
+        return axios.get(GetcodeDepartmentlist +'?name='+name, {})
     },
     //责任部门添加接口
     POSTcodeDepartmentlistaddt(id,code,name,leader,contacts) {

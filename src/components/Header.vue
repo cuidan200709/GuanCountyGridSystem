@@ -47,7 +47,8 @@
                             <div class="line"></div>
                             <a href="#/CityCheck">乡镇考核</a>
                         </div>
-                        <div style="margin-top: 10px;">
+                        <div>
+                            <h3>统计</h3>
                             <a href="#/TodayData">今日数据</a>
                         </div>
                     </div>
@@ -326,7 +327,7 @@
 
                     }
                     .Fiveitem {
-                        width: 460px;
+                        width: 200px;
                         position: absolute;
                         top: 56px;
                         right: 0px;
