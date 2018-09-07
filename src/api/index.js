@@ -174,6 +174,7 @@ import {
     GetSingleCompanyResource,//获取单独企业信息
     GetReportListResource,//通报巡查员列表
     AddReportEventResource,//添加通报巡查员
+    GetCaseAduitResource,//案件审核
 } from './resource'
 
 export default {
@@ -1481,6 +1482,18 @@ export default {
     	};
     	 let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(AddReportEventResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //案件审核
+    GetCaseAduit(id,state){
+    	let params = {
+    		'id':id,
+    		'state':state
+    	};
+    	 let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(GetCaseAduitResource ,FormatParams, {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
         )
