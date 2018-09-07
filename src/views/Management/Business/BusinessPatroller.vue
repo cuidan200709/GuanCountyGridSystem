@@ -61,7 +61,7 @@
 			      <template scope="scope">
 			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>编辑</el-button>
 			        <span style="color: #e0e0e0;">|</span>
-			        <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>修改密码</el-button>
+			        <el-button @click="changePassword(scope.row)" type="text" size="small" class='eidt'>修改密码</el-button>
 			        <span style="color: #e0e0e0;">|</span>
 			        <el-button @click="DeleteOperatorInfo(scope.row)" type="text" size="small" class='eidt'>删除</el-button>
 			      </template>
@@ -127,7 +127,7 @@
 	               </div>
 	            </div>
 	        </div>
-	        <!--------------编辑弹框部分--------------->
+	        <!--编辑弹框部分-->
 			<div class="popUp" v-show="isEdit">
 	            <div class="mask"></div>
 	            <div class="succ-pop">
@@ -175,6 +175,17 @@
 	               </div>
 	            </div>
 	        </div>
+			<!--修改密码-->
+			<el-dialog title="修改密码" :visible.sync="dialogVisible" width="30%">
+				<div class="block">
+					<span>新密码：</span>
+					<el-input v-model="newpossword" placeholder="请输入新密码"></el-input>
+				</div>
+				<span slot="footer" class="dialog-footer">
+				<el-button @click="dialogVisible = false">取 消</el-button>
+				<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+			  </span>
+			</el-dialog>
 		</div>
     </div>
 </template>
@@ -188,6 +199,10 @@
             return {
                 //
                 departmentVal:'',
+				//
+                dialogVisible:false,
+				//
+                newpossword:'',
 				//
 		        tableData:[{DeviceName:'00000'}],
 			    currentPage: 1,
@@ -266,18 +281,22 @@
                 this.isNew = false;
 
         	},
-
+			//
+			changePassword(row){
+                console.log(row.userId);
+                this.dialogVisible = true;
+			},
 			//编辑
 	        handleClick(row) {
 	        	this.isEdit = true;
-	        	//console.log(row)
+	        	console.log(row)
 	        	if(this.isEdit){
 	        		this.equipmentPersonidb = row.userId;
 	        		this.equipmentPerson1b = row.name;
 	      			this.equipmentPerson2b = row.username;
 	      			this.equipmentPerson3b = row.role;
-	      			this.equipmentName1 = row.status;
-	      			this.equipmentName2 = row.role;
+	      			this.equipmentName1 = (row.status ? 1 : 0);
+	      			this.equipmentName2 = (row.role === '巡查员' ? 0 : 1);
 
 	        	}
 	        	this.isNew = false;
