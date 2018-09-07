@@ -120,15 +120,16 @@
 			      width="200">
 			      <template scope="scope">
 			      	<div v-if="scope.row.status=='未处理'">
-						<el-button v-show="$store.state.responsibility" type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
-			      		<el-button v-show="$store.state.responsibility === false" @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
-				        <span style="color: #eee;">|</span>
-				        <span class="OverBox">
-				        	<el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='noeidt'>回复</el-button>
-				        </span>
+			      		<el-button v-show="$store.state.responsibility === false" @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
 			      	</div>
-			        <div v-else>
+			      	<div v-if="scope.row.status=='处理完毕'">
 			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
+			        </div>
+			        <div v-if="scope.row.status=='已派发'">
+			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
+			        </div>
+			        <div v-if="scope.row.status=='待审核'">
+			        	<el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='eidt'>审核</el-button>
 			        </div>
 			      </template>
 			    </el-table-column>
@@ -145,7 +146,7 @@
 			      :total="totalCount">
 			    </el-pagination>
 			</div>
-			<!--------------回复弹框部分--------------->
+			<!--------------审核弹框部分--------------->
 			<div class="popUp" v-if="isUpdate">
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
@@ -175,7 +176,7 @@
 						    <el-input v-model="CaseDutyPop" placeholder="" disabled></el-input>
 					  	</div>
 					  	<div class="block" style="margin-bottom: 20px;">
-					  		<span class="left">内容</span>
+					  		<span class="left">描述</span>
 						  	<el-input
 								type="textarea"
 								:rows="3"
@@ -193,20 +194,33 @@
 							        </el-carousel-item>
 							    </el-carousel>
 							</div>
-							<span class="left" style="margin-left: 50px;">案后照片</span>
-							<div class="left">
-								<div class="img-list">
+							<div class="block imgBox left" style="margin:0;">
+								<span class="left">案后照片</span>
+							    <el-carousel height="200px">
+							        <el-carousel-item v-for="(item,index) in afterCaseImg" :key="index">
+						        		<img :src="item" />						      
+							        </el-carousel-item>
+							    </el-carousel>
+							</div>
+							<!--<span class="left" style="margin-left: 50px;">案后照片</span>
+							<el-carousel height="200px">
+						      <el-carousel-item v-for="(item,index) in afterCaseImg" :key="index">
+						        <img :src="item" />
+						      </el-carousel-item>
+						    </el-carousel>-->
+							<!--<div class="left">-->
+								<!--<div class="img-list">
 									<div v-if="imagelist">
 										<div class="img-content" v-for="(item,key) in imagelist" :key="key">
-											<img :src="item.url" >
-											<!-- 删除icon -->
-											<div class="del">
+											<img :src="item.url" >-->
+											<!-- 删除icon 
+											<!--<div class="del">
 												<i @click="handleFileRemove(item,key)" class="el-icon-delete"></i>
 											</div>
 											
 										</div>
-									</div>
-									<div class="img-upload" v-if="!imagelist.length">
+									</div>-->
+									<!--<div class="img-upload" v-if="!imagelist.length">
 										<el-upload class="uploader"
 										  ref="upload"
 										  list-type="picture-card"
@@ -222,19 +236,24 @@
 										<img src="../../../../static/imgs/main/点击添加图片.png" />
 								        <div class="el-upload__text">点击选择图片<br>支持jpg/png格式<br>不超过5M</div>
 										</el-upload>
-									</div>
+									</div>-->
 									
-								</div>
-							</div>
+								<!--</div>-->
+							<!--</div>-->
 						</div>
-						<div class="block">
+						<div class="special">
+							<span>审核</span>
+							<el-button type="primary" plain @click="GetCaseAduit(0)">通过</el-button>
+							<el-button type="primary" plain @click="GetCaseAduit(1)">不通过</el-button>
+						</div>
+						<!--<div class="block">
 						    <span>处理结果</span>
 						    <el-input v-model="CaseDealPop" placeholder="" style='width:504px'></el-input>
 					  	</div>
 						<el-row style='position: absolute;bottom: 30px;right: 30px;'>
 							<el-button type="primary" @click='GetEditResult'>发布</el-button>
 							<el-button plain @click='isUpdate=false'>取消</el-button>
-						</el-row>
+						</el-row>-->
 	               </div>
 	            </div>
 	        </div>
@@ -267,7 +286,7 @@
 						    <span>责任主体</span>
 						    <el-input v-model="CaseDutyPopExamine" placeholder="" disabled></el-input>
 					  	</div>
-					  	<div class="block">
+					  	<div class="block" style="margin-bottom: 20px;">
 					  		<span class="left">内容</span>
 						  	<el-input
 								type="textarea"
@@ -277,6 +296,21 @@
 								disabled>
 							</el-input>
 						</div>
+						<div class="special" v-if="CaseStatusPopExamine=='未处理'">
+							<span>指派</span>
+	                		<el-select v-model="distributePopVal" placeholder="请选择" @change="selectFenPeiChangeDuty">
+							    <el-option
+							      v-for="item in optionsDistributePop"
+							      :key="item.value"
+							      :label="item.name"
+							      :value="item.code">
+							    </el-option>
+							</el-select>
+						</div>
+						<div class="special" v-else>
+						    <span>派发时间</span>
+						    <el-input v-model="DispatchTimePopExamine" placeholder="" disabled></el-input>
+						</div>
 						<div class="block imgBox">
 							<span>案件照片</span>
 						    <el-carousel height="200px">
@@ -285,47 +319,23 @@
 						      </el-carousel-item>
 						    </el-carousel>
 						</div>
-						<div class="block imgBox secSpan">
+						<div class="block imgBox secSpan" v-if="CaseStatusPopExamine=='处理完毕'">
 							<span>案后照片</span>
 						    <el-carousel height="200px">
-						      <el-carousel-item>
-						        <img v-if='afterCaseImg' :src="afterCaseImg" />
-						      </el-carousel-item>
+						        <el-carousel-item v-for="(item,index) in afterCaseImg" :key="index">
+					        		<img :src="item" />						      
+						        </el-carousel-item>
 						    </el-carousel>
 						</div>
-						<div class="block">
+						<!--<div class="block">
 						    <span>处理结果</span>
 						    <el-input v-model="CaseDealPopExamine" placeholder="" style='width:504px;' disabled></el-input>
-					  	</div>
+					  	</div>-->
 						<el-row style='position: absolute;bottom: 30px;right: 30px;'>
+							<el-button type="primary" @click='GetEditCase' v-if="CaseStatusPopExamine=='未处理'">确定</el-button>
 							<el-button plain @click='Examine=false'>取消</el-button>
 						</el-row>
 						
-	               </div>
-	            </div>
-	        </div>
-	        	<!--------------分配弹框部分--------------->
-			<div class="popUp" v-if="isDistribute">
-	            <div class="mask"></div>
-	            <div class="succ-pop distribute">
-	                <div class="title">
-	                    <a id="newCreate">提示</a>
-	                    <div class="el-icon-close" @click="isDistribute=false"></div>
-	                </div>
-	                <div class="content">
-                		<span>责任主体</span>
-                		<el-select v-model="distributePopVal" placeholder="请选择" @change="selectFenPeiChangeDuty">
-						    <el-option
-						      v-for="item in optionsDistributePop"
-						      :key="item.value"
-						      :label="item.name"
-						      :value="item.code">
-						    </el-option>
-						</el-select>
-						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
-							<el-button type="primary" @click='GetEditCase'>确定</el-button>
-							<el-button plain @click='isDistribute=false'>取消</el-button>
-						</el-row>
 	               </div>
 	            </div>
 	        </div>
@@ -340,20 +350,6 @@
         name: 'CaseReview',
         data() {
             return {
-            		progress: 0,//上传进度
-					pass: null,//是否上传成功
-					isEnlargeImage: false,//放大图片
-		//			enlargeImage: '',//放大图片地址
-					imagelist: [
-					],
-					params: {
-//						action: 
-//						'http://gkpt.zq12369.com:8013/servicePlatform/admin/caseData/uploadAnalysisFile',
-						data: {}
-					},
-            	//上传图片
-            	dialogImageUrl: '',
-        		dialogVisible: false,
             	//案件状态
             	optionsCase: [{
 		          value: '0',
@@ -466,7 +462,8 @@
 	         	],
 		     CaseOriginVal:'',
 		     origin:'',
-		     cityName:''
+		     cityName:'',
+		     DispatchTimePopExamine:'',//派发时间
             }
         },
         created(){
@@ -491,71 +488,6 @@
 			}
         },
         methods: {
-        	uploadOnProgress(e,file){//开始上传
-				console.log(e.percent,file)
-				this.progress = Math.floor(e.percent)
-			},
-			uploadOnChange(file){
-				console.log("——————————change——————————")
-				// console.log(file)
-				if(file.status == 'ready'){
-					console.log("ready")
-					this.pass = null;
-					this.progress = 0;
-				}else if(file.status == 'fail'){
-					this.$message.error("图片上传出错，请刷新重试！")
-				}
-			},
-			uploadOnSuccess(e,file){//上传附件
-				console.log("——————————success——————————")
-				console.log(file)
-				this.fileUrl = file.response.data;
-				this.pass = true;
-				this.$message.success("上传成功")
-				this.imagelist.push({
-					url: file.url,
-					name: '新增图片'
-				})
-			},
-			uploadOnError(e,file){
-				console.log("——————————error——————————")
-				console.log(e)
-				this.pass = false;
-			},
-        	handleFileRemove(file,i){//删除图片
-				console.log(file,i)
-				if(!file.url){
-					return false;
-				}
-				let that = this;
-				this.$confirm('是否删除此图片？','提示',{
-					confirmButtonText: '确定',
-					cancelButtonText: '取消',
-					type: 'warning'
-				}).then(() => {
-					//可添加ajax
-					this.$message.success("删除成功")
-					this.$message({
-						type: 'success',
-						message: '删除成功',
-						onClose: () => {
-							that.imagelist.splice(i,1)
-						}
-					})
-				}).catch((meg) => console.log(meg))
-			},
-			beforeAvatarUpload(file) {
-		        const isJPG = file.type === 'image/jpeg'||'image/png';
-		        const isLt5M = file.size / 1024 / 1024 < 5;
-		
-		        if (!isJPG) {
-		          this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
-		        }
-		        if (!isLt5M) {
-		          this.$message.error('上传头像图片大小不能超过 5MB!');
-		        }
-		        return isJPG && isLt5M;
-		   },
 		   //处理结果
 		   GetEditResult(){
 		   		let t = this;
@@ -572,19 +504,9 @@
 		   			
 		   		})
 		   },
-			GetCaseImg(caseCode){
-				api.GetCaseImg(caseCode).then(res=>{
-					console.log(res)
-				})
-			},
-        	//点击分配
-        	handleDistrbuteClick(row){
-        		console.log(row)
-        		this.isDistribute = true;
-        		this.id = row.id;
-        	},
-        	//点击回复
+        	//点击审核
         	handleReplyClick(row){
+        		//console.log(row)
         		this.isUpdate = true;
 	         	this.PollutionClassPop = row.pollutiontype;//污染类别
 		        this.CaseTimePop = row.createtime;//案发时间
@@ -593,12 +515,15 @@
 		        this.CaseDutyPop = row.departmenttype;//责任主体
 		        this.textarea = row.description;//内容
 		        this.hjwfBusCaseattachList = row.hjwfBusCaseattachList;
+		        this.afterCaseImg = row.afterCaseImg;
 		        this.id = row.id;
         	},
         	//点击查看
         	handleExamineClick(row){
         		this.Examine = true;
-        		console.log(row);
+        		this.distributePopVal = '';
+        		//console.log(row);
+        		this.id = row.id;
         		let casecode = row.casecode;
         		this.PollutionClassPopExamine = row.pollutiontype;//污染类别
 		        this.CaseTimePopExamine = row.createtime;//案发时间
@@ -609,6 +534,7 @@
 		        this.CaseDealPopExamine = row.handlingResult;//处理结果
 		        this.hjwfBusCaseattachList = row.hjwfBusCaseattachList;
 		        this.afterCaseImg = row.afterCaseImg;
+		        this.DispatchTimePopExamine = row.dispatchTime;
 		        console.log(this.hjwfBusCaseattachList)
         	},
             //开始时间选择
@@ -698,15 +624,26 @@
 		                        tableData.pollutiontype = item.pollutiontype;//污染类型
 		                        tableData.status = this.StatusDeal(item.status);//处理状态
 		                        tableData.hjwfBusCaseattachList = item.hjwfBusCaseattachList;//图片
-		                        tableData.afterCaseImg = item.aftercaseimg;//安后图片
+		                        tableData.afterCaseImg = item.aftercaseimg?item.aftercaseimg.split(','):[];//安后图片
 		                        tableData.username = item.username;
 		                        tableData.id = item.id;
 		                        tableData.handlingResult = item.handlingResult;//处理结果
+		                        tableData.dispatchTime = item.dispatchTime;//派发时间
 		                        t.ListData.push(tableData);
 							})
       					}
       				}
 				});
+      		},
+      		//案件审核
+      		GetCaseAduit(val){
+      			let t = this;
+      			let id = this.id;
+      			let state = val;
+      			api.GetCaseAduit(id,state).then(res=>{
+      				this.GetMonitoringDay();
+      				t.isUpdate = false;
+      			})
       		},
       		//分配责任主体
       		GetEditCase(){
@@ -714,7 +651,7 @@
       			let id = this.id;
       			let zrxtCode = this.zrxtCode;
       			api.GetEditCase(id,zrxtCode).then(res=>{
-      				t.isDistribute = false;
+      				t.Examine = false;
       				t.GetMonitoringDay();
       			})
       		},
@@ -972,19 +909,19 @@
         /*****回复弹出框内容********/
         .reply {
             width: 655px;
-            height: 690px;
+            height: 650px;
             background: #fff;
             position: fixed;
             left: 50%;
             top: 50%;
             margin-left: -327px;
-            margin-top: -345px;
+            margin-top: -325px;
             z-index: 999;
             border-radius: 10px;
             .title {
                 width: 100%;
-                height: 50px;
-                line-height: 50px;
+                height: 40px;
+                line-height: 40px;
                 text-align: left;
                 border-bottom: 2px solid #3a90b3;
                 a {
@@ -1011,6 +948,18 @@
             			display: inline-block;
             			width: 60px;
             			text-align: right;
+            		}
+            	}
+            	.special{
+            		text-align: left;
+            		span{
+            			margin-top: 20px;
+            			display: inline-block;
+            			width: 60px;
+            			text-align: right;
+            		}
+            		button{
+            			margin-left: 20px;
             		}
             	}
             	.el-textarea{
@@ -1101,6 +1050,14 @@
             	.block{
             		float:left;
             		margin-top:20px;
+            		span{
+            			display: inline-block;
+            			width: 60px;
+            			text-align: right;
+            		}
+            	}
+            	.special{
+            		text-align: left;
             		span{
             			display: inline-block;
             			width: 60px;

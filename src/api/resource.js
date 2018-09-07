@@ -104,6 +104,7 @@ const apilangfangTDK = {
     GetEditCase: apiconfig[icode].devc + '/guan/mobile/editCaseZrzt?',//分配责任主体(固安)
     GetExportCase: apiconfig[icode].devc + '/guan/mobile/export?',//导出案件(固安)
     GetEditResult: apiconfig[icode].devc + '/guan/mobile/editCasehandlingResult',//案件处理结果
+    GetCaseAduit: apiconfig[icode].devc + '/guan/mobile/editCaseAduit',//案件审核
     GetCaseImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/getImgByCaseCode?',//获取案件图片
     GetEmergencyInfoList: apiconfig[icode].devn + '/api/EmergencyBulletin/Notices?',//获取预警信息列表
     GetEmergencyInfoUpdate: apiconfig[icode].devn + '/api/EmergencyBulletin/Update?',//编辑预警信息
@@ -377,3 +378,4 @@ export const GetdeleteCompanyResource = API_ROOT.concat(apilangfangTDK.Getdelete
 export const GetSingleCompanyResource = API_ROOT.concat(apilangfangTDK.GetSingleCompany);
 export const GetReportListResource = API_ROOT.concat(apilangfangTDK.GetReportList);
 export const AddReportEventResource = API_ROOT.concat(apilangfangTDK.AddReportEvent);
+export const GetCaseAduitResource = API_ROOT.concat(apilangfangTDK.GetCaseAduit);
