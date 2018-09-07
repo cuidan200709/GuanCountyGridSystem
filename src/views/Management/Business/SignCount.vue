@@ -404,7 +404,7 @@
 				.el-upload .el-upload--picture-card{
 					width: 200px!important;
 					height: 200px!important;
-					line-height: none;
+
 				}
             }
             

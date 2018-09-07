@@ -82,7 +82,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">通报巡查员</a>
+	                    <a>通报巡查员</a>
 	                    <div class="el-icon-close" @click="isAdd=false"></div>
 	                </div>
 	                <div class="content">
@@ -135,7 +135,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">编辑通报巡查员</a>
+	                    <a>编辑通报巡查员</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">

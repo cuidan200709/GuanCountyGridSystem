@@ -81,7 +81,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">添加</a>
+	                    <a>添加</a>
 	                    <div class="el-icon-close" @click="isNew=false"></div>
 	                </div>
 	                <div class="content">
@@ -146,7 +146,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">编辑</a>
+	                    <a>编辑</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">

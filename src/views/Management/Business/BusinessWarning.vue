@@ -199,7 +199,7 @@ margin-left: 26px;"><span style="color: red;margin-right: 5px;">*</span>预警�
 				startTime:'',
 				endTime:'',
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				Id:'',

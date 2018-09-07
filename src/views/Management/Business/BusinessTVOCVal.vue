@@ -65,31 +65,7 @@
 	            	</div>
             	</div>
             </div>
-            <!--<div class="warningValSet" style=''>
-            	<div class="blueBox" style="">• TVOC预警值设置</div>		
-            	<div class="ValueSet" style="">
-            		<div class="PM25">
-	            		<span class="demonstration">安次区</span>
-	            		<el-input
-						  placeholder="请输入内容"
-						  v-model="AnCi"
-						  clearable>
-						</el-input>
-	            	</div>
-	            	<div class="PM25">
-	            		<span class="demonstration">开发区</span>
-	            		<el-input
-						  placeholder="请输入内容"
-						  v-model="KaiFa"
-						  clearable>
-						</el-input>
-	            	</div>
-	            	<div class="time" style="">
-	            		<div class="updateTime">数据更新时间：{{updateTime}}</div>
-	            		<el-button class='btn' type="primary" @click='TVOCAlarmValueSetting'>更改</el-button>
-	            	</div>
-            	</div>
-           	</div>-->
+
 		</div>
 	<!--------------弹框部分--------------->
 		<div class="popUp" v-if="isShow">

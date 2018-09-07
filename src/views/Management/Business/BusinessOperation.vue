@@ -111,7 +111,7 @@
 				startTime:'',
 				endTime:'',
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				Id:'',

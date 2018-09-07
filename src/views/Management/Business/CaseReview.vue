@@ -151,7 +151,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">提示</a>
+	                    <a>提示</a>
 	                    <div class="el-icon-close" @click="isUpdate=false"></div>
 	                </div>
 	                <div class="content">
@@ -262,7 +262,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop examine">
 	                <div class="title">
-	                    <a id="newCreate">提示</a>
+	                    <a>提示</a>
 	                    <div class="el-icon-close" @click="Examine=false"></div>
 	                </div>
 	                <div class="content">
@@ -390,7 +390,7 @@
 				startTime:'',
 				endTime:'',
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				Id:'',
@@ -968,7 +968,7 @@
 				.el-upload .el-upload--picture-card{
 					width: 200px!important;
 					height: 200px!important;
-					line-height: none;
+
 				}
             }
             

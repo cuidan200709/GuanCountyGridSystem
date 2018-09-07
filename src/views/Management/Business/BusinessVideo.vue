@@ -94,12 +94,13 @@
         data() {
             return {
             	//
+                departmentVal:'',
 		        tableData:[{CameraResourceName:'摄像头'}],
 			    currentPage: 1,
 			    pagesize:10,
                 dialogVisible: false,
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				//添加
@@ -126,12 +127,8 @@
             
         },
         methods: {
-        	getAddTime(val){
-        		this.equipmentTime = val;
-        	},
-        	getEditTime(val){
-        		this.equipmentEditTime = val;
-        	},
+            //
+            QueryNeedsData(){},
         	//列表删除
         	DeleteOperatorInfo(row) {
         		let t = this;
@@ -229,25 +226,25 @@
       		getNotice(){
       			let t = this;
       			this.ListData = [];
-      			api.GetOperatorInfo().then(result=>{
-					let InfoData = result.data.Data;
-					t.totalCount = InfoData.length;
-					InfoData.forEach(item=>{
-						let tableData = {};
-                        tableData.DeviceName = item.DeviceName;//设备名称
-                        tableData.CreateTime = item.CreateTime.replace('T',' ');//运维时间
-                        tableData.CheckCycle = item.CheckCycle;//巡查周期
-                        tableData.Description = item.Description;//用途描述
-                        tableData.DeviceId = item.DeviceId;//设备id
-                        tableData.Id = item.Id;//设备id
-                        tableData.DeviceChangeInfo = item.DeviceChangeInfo;//设备更换情况
-                        tableData.DeviceParam = item.DeviceParam;//设备参数
-                        tableData.DeviceVersion = item.DeviceVersion;//设备型号
-                        tableData.ChargeMan = item.ChargeMan;//负责人
-                        t.ListData.push(tableData);
-					})
-					this.setPageTable(10, 1);
-				});
+      			// api.GetOperatorInfo().then(result=>{
+				// 	let InfoData = result.data.Data;
+				// 	t.totalCount = InfoData.length;
+				// 	InfoData.forEach(item=>{
+				// 		let tableData = {};
+                 //        tableData.DeviceName = item.DeviceName;//设备名称
+                 //        tableData.CreateTime = item.CreateTime.replace('T',' ');//运维时间
+                 //        tableData.CheckCycle = item.CheckCycle;//巡查周期
+                 //        tableData.Description = item.Description;//用途描述
+                 //        tableData.DeviceId = item.DeviceId;//设备id
+                 //        tableData.Id = item.Id;//设备id
+                 //        tableData.DeviceChangeInfo = item.DeviceChangeInfo;//设备更换情况
+                 //        tableData.DeviceParam = item.DeviceParam;//设备参数
+                 //        tableData.DeviceVersion = item.DeviceVersion;//设备型号
+                 //        tableData.ChargeMan = item.ChargeMan;//负责人
+                 //        t.ListData.push(tableData);
+				// 	})
+				// 	this.setPageTable(10, 1);
+				// });
       		},
       		//运维设备列表
       		GetOperDeviceInfo(){

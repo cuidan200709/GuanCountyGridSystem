@@ -77,7 +77,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">提示</a>
+	                    <a>提示</a>
 	                    <div class="el-icon-close" @click="CloseWin"></div>
 	                </div>
 	                <div class="content">
@@ -94,7 +94,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop">
 	                <div class="title">
-	                    <a id="newCreate">批量导入</a>
+	                    <a>批量导入</a>
 	                    <div class="el-icon-close" @click="CloseInsert"></div>
 	                </div>
 	                <div class="content">
@@ -149,7 +149,7 @@
 				startTime:'',
 				endTime:'',
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				Id:'',

@@ -350,7 +350,7 @@
 				startTime:'',
 				endTime:'',
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				Id:'',
@@ -506,49 +506,7 @@
 		   			
 		   		})
 		   },
-        	//上传图片
-//      	handleRemove(file, fileList) {
-//		        console.log(file, fileList);
-//		    },
-//		    handlePictureCardPreview(file) {
-//		        this.dialogImageUrl = file.url;
-//		        this.dialogVisible = true;
-//		    },
-//		    success(response, file, fileList){
-//		    	 this.dialogVisible = true;
-//		    },
-		     // 上传前对文件的大小的判断
-//		    beforeAvatarUpload (file) {
-//			    const extension = file.name.split('.')[1] === 'jpg'
-//			    const extension2 = file.name.split('.')[1] === 'png'
-//			    const isLt2M = file.size / 1024 / 1024 < 5
-//			    if (!extension && !extension2) {
-//			        console.log('上传模板只能是jpg/png 格式!')
-//			    }
-//			    if (!isLt2M) {
-//			        console.log('上传模板大小不能超过 10MB!')
-//			    }
-//			    return extension || extension2 && isLt2M
-//		    },
-		     // 文件上传前
-//			beforeImgUpload (file) {
-//			    const self = this;  //这个很重要！
-//			    var reader = new FileReader();
-//			    reader.readAsDataURL(file);
-//			    reader.onloadend = function() {
-//			        self.form.upLoadData.img_base64 = this.result;
-//			        console.log(self.form.upLoadData.img_base64);
-//			    };
-//			},
-//			// 上传成功后的回调
-//			uploadSuccess (response, file, fileList) {
-//			    console.log('上传文件', response)
-//			    this.$alert(response.retData.msg);
-//			    console.log(this.form.upLoadData.img_base64);
-//			},
-//			uploadError(){
-//				
-//			},
+
 			GetUploadImg(){
 				
 			},

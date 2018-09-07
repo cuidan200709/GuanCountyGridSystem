@@ -82,7 +82,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">明星巡查员</a>
+	                    <a>明星巡查员</a>
 	                    <div class="el-icon-close" @click="isAdd=false"></div>
 	                </div>
 	                <div class="content">
@@ -135,7 +135,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a id="newCreate">明星巡查员</a>
+	                    <a>明星巡查员</a>
 	                    <div class="el-icon-close" @click="isEdit=false"></div>
 	                </div>
 	                <div class="content">
@@ -197,7 +197,7 @@
 		        tableData:[],
 			    currentPage: 1,
 			    pageSize:10,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[],
 				pageNo:1,

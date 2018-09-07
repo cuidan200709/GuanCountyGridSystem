@@ -99,7 +99,9 @@
         name: 'CaseReview',
         data() {
             return {
-
+                patrollerName:'',//
+                CaseStartTime:'',//
+                CaseEndTime:'',//
             	dialogImageUrl: '',
         		dialogVisible: false,
 		        //责任主体
@@ -118,7 +120,7 @@
 				startTime:'',
 				endTime:'',
 				TotalRowsCount:null,
-				totalCount:'',
+				totalCount:1,
 				InfoData:[],
 				ListData:[]
             }
@@ -428,6 +430,6 @@
     	margin-left: 170px;
     	padding-bottom: 90px;
     }
-   
+
 }
 </style>
