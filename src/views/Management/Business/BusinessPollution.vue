@@ -93,7 +93,7 @@
 								<li style="margin-top: 10px" v-for="(Vent, index) in todos">
 									<div class="block">
 										<span>排放口名称：</span>
-										<el-input v-model="Vent.name" placeholder="请输入排气口名称"></el-input>
+										<el-input v-model="Vent.outputname" placeholder="请输入排气口名称"></el-input>
 									</div>
 								</li>
 							</ul>
@@ -106,27 +106,27 @@
 					</el-tab-pane>
 					<el-tab-pane label="企业信息编辑" name="second">
 						<!---->
-						<div class="qiye-table" style="margin: 25px 55px">
+						<div class="qiye-table" style="margin: 25px 10px">
 							<!---->
 							<table border="1" class="table-up">
 								<!---->
-								<tr><th bgcolor="#f6f6f6">污染源名称</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">法人代码</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">法定代表人</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">污染源地址</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">行政区域</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">污染源规模</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">行政类型</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">污染源类别</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">单位类型</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">投产日期</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">占地面积(平方米)</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">地区名称</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">是否30千瓦电力企业</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">启用状态</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">关注程度</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">运行状态</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">流域</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">在线状态</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">通讯地址</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">通讯地址</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">联系人</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">移动电话</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">办公电话</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">污染源网址</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">中心经度</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">中心纬度</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">污染源环保部门</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">专职环保人员数</th><th colspan="2"><span class="cael">${GeneralData.contactor}</span></th><th bgcolor="#f6f6f6">环保负责人</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
-								<tr><th bgcolor="#f6f6f6">备注</th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">污染源名称</div></th><th colspan="4"><span class="cael"><el-input type="textarea" autosize placeholder="请输入内容" v-model="wryName"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">法人代码</div></th><th colspan="2"><span class="cael"> <el-input size="small" placeholder="请输入内容" v-model="frdm"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">法定代表人</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="frdb"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">污染源地址</div></th><th colspan="4"><span class="cael"><el-input type="textarea" autosize placeholder="请输入内容" v-model="wrydz"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">行政区域</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="xzqy"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">污染源规模</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="wrygm"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">行政类型</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="xzlx"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">污染源类别</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="wrylb"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">单位类型</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="dwlx"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">投产日期</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="tcrq"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">占地面积(m2)</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="zdmj"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">地区名称</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="dqmc"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">是否30千瓦电力企业</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="sfdlqy"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">启用状态</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="qyzt"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">关注程度</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="gzcd"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">运行状态</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="yxzt"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">流域</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="ly"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">在线状态</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="zxzt"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">emial</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="txdz2"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">通讯地址</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="txdz"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">联系人</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="lxr"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">移动电话</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="yddh"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">办公电话</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="bgdh"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">污染源网址</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="wrywz"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">中心经度</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="zxjd"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">中心纬度</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="zxwd"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">污染源环保部门</div></th><th colspan="4"><span class="cael"><el-input type="textarea" autosize placeholder="请输入内容" v-model="wryhbbm"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">专职环保人员数</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="zzhbrys"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">环保负责人</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="hbfzr"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">备注</div></th><th colspan="4"><span class="cael"><el-input type="textarea" autosize placeholder="请输入内容" v-model="bz"></el-input></span></th></tr>
 								<!---->
 							</table>
 						</div>
@@ -137,7 +137,7 @@
 				<!---->
 				<span slot="footer" class="dialog-footer">
 					<el-button @click="dialogVisible = false">取 消</el-button>
-					<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+					<el-button type="primary" @click="submitbtn">确 定</el-button>
 			  	</span>
 			</el-dialog>
 		</div>
@@ -151,7 +151,38 @@
         name: 'businessOperation',
         data() {
             return {
-                //
+                //企业信息表
+                wryName:'',//
+				frdm:'',//
+				frdb:'',//
+				wrydz:'',//
+				xzqy:'',//
+				wrygm:'',//
+				xzlx:'',//
+				wrylb:'',//
+				dwlx:'',//
+				tcrq:'',//
+				zdmj:'',//
+				dqmc:'',//
+				sfdlqy:'',//
+				qyzt:'',//
+				gzcd:'',//
+				yxzt:'',//
+				ly:'',//
+				zxzt:'',//
+				txdz:'',//
+				txdz2:'',//
+				lxr:'',//
+				yddh:'',//
+				bgdh:'',//
+				wrywz:'',//
+				zxjd:'',//
+				zxwd:'',//
+				wryhbbm:'',//
+				zzhbrys:'',//
+				hbfzr:'',//
+				bz:'',//
+				//
                 dialogVisible:false,
 				//
 		        tableData:[{DeviceName:'0000'}],
@@ -164,32 +195,24 @@
 			    isNew: false,
 			    textarea: '',
 			    title:'添加',
-				//新建预警信息
-				startTime:'',
-				endTime:'',
+				//
 				TotalRowsCount:null,
-				totalCount:'',
+				//
+				totalCount:1,
+				//
 				InfoData:[],
+				//
 				ListData:[],
 				//排气口添加数组
-                todos:[{name:'刘强东'},{name:'马云'}],
-				//
-				Id:'',
-				isend:false,
-				//添加
-				equipmentName:'',
-				equipmentPerson:'',
-				equipmentTime:'',
-				equipmentChenge:'',
-				//编辑
-				equipmentEditName:'',
-				equipmentEditPerson:'',
-				equipmentEditTime:'',
-				equipmentEditChenge:'',
-				defualtData:{},
-				isEdit:false,
+                todos:[{outputname:'刘强东'}],
+				//企业名称
 				componyName:'',
-				gridName:''
+				//
+				gridName:'',
+				//记录点击传递id
+                codeid:'',
+				//
+                zhuangtai:'',
             }
         },
         created(){
@@ -204,14 +227,23 @@
         },
         methods: {
             //
+            submitbtn(){
+                if(this.zhuangtai === '编辑'){
+                    this.EditUpdate();
+				}else {
+                    this.Insert();
+				}
+			},
+            //添加企业排气口dom
             addVent(){
+                //
                 let kname = '';
 				//
-				this.todos.push({name:kname});
+				this.todos.push({outputname:kname});
 				//
 				console.log(this.todos);
 			},
-			//
+			//查询数据
             QueryNeedsData(){
                 let condata = this.componyName;
                 this.getNotice(condata);
@@ -244,47 +276,109 @@
             },
         	///新建预警信息发布
         	publish(){
+                this.zhuangtai = '添加';
         		this.Insert();
         		this.closeWin();
         		this.getNotice();
         	},
+			//
         	closeWin(){
       			this.dialogVisible = false;
       		},
 			//编辑
 	        handleClick(row) {
-	        	this.dialogVisible = true;
+                const _this = this;
+	        	_this.dialogVisible = true;
+	        	_this.zhuangtai = '编辑';
+	        	_this.todos =[];
 	        	console.log(row)
-	        	if(this.dialogVisible){
-	        		this.Id = row.Id;
-	        		this.equipmentEditName = row.DeviceName;
-	      			this.defualtData.DeviceParam = row.DeviceParam;
-	      			this.defualtData.DeviceVersion = row.DeviceVersion;
-	      			this.defualtData.CheckCycle = row.CheckCycle;
-	      			this.defualtData.Description = row.Description;
-	      			this.equipmentEditPerson = row.ChargeMan;
-					this.equipmentEditTime = row.CreateTime;
-					this.equipmentEditChenge = row.DeviceChangeInfo;
-	        	}
-	        	this.dialogVisible = false;
+                this.codeid = row.pscode;
+                api.GetSingleCompanyRt(row.pscode).then(res =>{
+                    console.log(res.data.Data);
+                    let Data = res.data.Data;//
+                    this.wryName= Data.psname;//
+                    this.frdm=Data.pscode;//
+                    this.frdb=Data.legalperson;//
+                    this.wrydz=Data.pollutionAddress;//
+                    this.xzqy=Data.region;//
+                    this.wrygm=Data.pollutionScale;//8
+                    this.xzlx=Data.industryType;//
+                    this.wrylb=Data.pollutionType;//10
+                    this.dwlx=Data.companyType;//
+                    this.tcrq=Data.commissioningDate;//12
+                    this.zdmj=Data.floorSpace;//9
+                    this.dqmc=Data.areaName;//14
+                    this.sfdlqy=Data.is30Company;//11
+                    this.qyzt=Data.enabled;//16
+                    this.gzcd=Data.concernExtent;//13
+                    this.yxzt=Data.runningStatus;//18
+                    this.ly =Data.drainageBasin;//15
+                    this.zxzt =Data.isOnline;//17
+                    this.txdz =Data.contactAddress;//19
+                    this.txdz2 =Data.emial;//21
+                    this.lxr =Data.contactPerson;//20
+                    this.yddh =Data.mobilePhone;//23
+                    this.bgdh =Data.officePhone;//22
+                    this.wrywz =Data.pollutionUrl;//24
+                    this.zxjd =Data.longitude;//30
+                    this.zxwd = Data.latitude;//29
+                    this.wryhbbm = Data.pollutionOffice;//25
+                    this.zzhbrys = Data.pollutionPersonCount;//27
+                    this.hbfzr = Data.pollutionPerson;//26
+                    this.bz = Data.remarks;//28
+					this.todos = Data.outlet;//31
+				})
+
+	        	// this.dialogVisible = false;
       		},
       		//编辑发布
       		EditUpdate(){
-      			let t = this;
-      			let id = this.Id;
-      			let DeviceName = '';
-      			let DeviceParam = '';
-      			let DeviceVersion = '';
-      			let CheckCycle = '';
-      			let Description = '';
-      			let DeviceId = t.defualtData.Id;
-      			let ChargeMan = t.equipmentEditPerson;
-      			let CreateTime = t.equipmentEditTime;
-      			let DeviceChangeInfo = t.equipmentEditChange		
-      			api.UpdateOperatorInfo(id,DeviceId,DeviceName,DeviceParam,DeviceVersion,CheckCycle,Description,ChargeMan,CreateTime,DeviceChangeInfo).then(result=>{
-					t.getNotice();
-				});
-				this.dialogVisible = false;
+      			const _this = this;
+                let code0 = this.codeid;//
+                let data1 = this.wryName || '';//
+                let data2 = this.frdb ||'';//
+                let data3 = this.wrydz ||'';//
+                let data4 = this.xzqy ||'';//
+                let data7 = this.wrygm ||'';//
+                let data5 = this.xzlx ||'';//
+                let data9 = this.wrylb ||'';//
+                let data6 = this.dwlx ||'';//
+                let data11 =this.tcrq ||'';//
+                let data8 =this.zdmj ||'';//
+                let data13 =this.dqmc ||'';//
+                let data10 =this.sfdlqy ||'';//
+                let data15 =this.qyzt ||'';//
+                let data12 =this.gzcd ||'';//
+                let data17 =this.yxzt ||'';//
+                let data14 =this.ly ||'';//
+                let data16 =this.zxzt ||'';//
+                let data18 =this.txdz  ||'';//
+                let data20 =this.txdz2  ||'';//
+                let data19 =this.lxr  ||'';//
+                let data22 =this.yddh ||'';//
+                let data21 =this.bgdh ||'';//
+                let data23 =this.wrywz ||'';//
+                let data29 =this.zxjd ||'';//
+                let data28 =this.zxwd ||'';//
+                let data24 =this.wryhbbm ||'';//
+                let data26 =this.zzhbrys ||'';//
+                let data25 =this.hbfzr ||'';//
+                let data27 =this.bz ||'';//
+                let data30 = this.todos || [];//
+				//if(_this.zhuangtai === '编辑'){
+					api.PostupdateCompanyRt(code0,
+						data1,data2,data3,data4,data5,
+						data6,data7,data8,data9,data10,
+						data11,data12,data13,data14,data15,
+						data16,data17,data18,data19,data20,
+						data21,data22,data23,data24,data25,
+						data26,data27,data28,data29,data30
+					).then(result=>{
+						console.log(result);
+						_this.getNotice();
+					});
+                //}
+				_this.dialogVisible = false;
       		},
       		//分页
       		 handleSizeChange(val) {
@@ -294,34 +388,94 @@
         		// this.setPageTable(10, val);
                 this.getNotice('',val);
       		},
+			//
       		openWin(){
-      			this.isEdit = false;
-      			this.dialogVisible = true;
-      			this.equipmentName = '';
-      			this.defualtData = '';
-      			this.equipmentPerson = '';
-				this.equipmentTime = '';
-				this.equipmentChenge = '';
+					this.isEdit = false;
+					this.dialogVisible = true;
+					this.wryName='';//
+                    this.frdm='';//
+                    this.frdb='';//
+                    this.wrydz='';//
+                    this.xzqy='';//
+                    this.wrygm='';//
+                    this.xzlx='';//
+                    this.wrylb='';//
+                    this.dwlx='';//
+                    this.tcrq='';//
+                    this.zdmj='';//
+                    this.dqmc='';//
+                    this.sfdlqy='';//
+                    this.qyzt='';//
+                    this.gzcd='';//
+                    this.yxzt='';//
+                    this.ly ='';//
+                    this.zxzt ='';//
+                    this.txdz ='';//
+                    this.txdz2 ='';//
+                    this.lxr ='';//
+                    this.yddh ='';//
+                    this.bgdh ='';//
+                    this.wrywz ='';//
+                    this.zxjd ='';//
+                    this.zxwd = '';//
+                    this.wryhbbm = '';//
+                    this.zzhbrys = '';//
+                    this.hbfzr = '';//
+                    this.bz = '';//
+                	this.todos = [];
       		},
 
       		//添加运维记录确定
       		Insert(){
-      			let t = this;
-      			let id = '';
-      			let DeviceName = '';
-      			let DeviceParam = '';
-      			let DeviceVersion = '';
-      			let CheckCycle = '';
-      			let Description = '';
-      			let DeviceId = t.defualtData.Id;
-      			let ChargeMan = t.equipmentPerson;
-      			let CreateTime = t.equipmentTime;
-      			let DeviceChangeInfo = t.equipmentChenge;
-				api.AddOperatorInfo(id,DeviceId,DeviceName,DeviceParam,DeviceVersion,CheckCycle,Description,ChargeMan,CreateTime,DeviceChangeInfo).then(result=>{
-					
-				});
+      			const _this = this;
+                let code0 = this.codeid;//
+                let data1 = this.wryName || '';//
+                let data2 = this.frdb ||'';//
+                let data3 = this.wrydz ||'';//
+                let data4 = this.xzqy ||'';//
+                let data7 = this.wrygm ||'';//
+                let data5 = this.xzlx ||'';//
+                let data9 = this.wrylb ||'';//
+                let data6 = this.dwlx ||'';//
+                let data11 =this.tcrq ||'';//
+                let data8 =this.zdmj ||'';//
+                let data13 =this.dqmc ||'';//
+                let data10 =this.sfdlqy ||'';//
+                let data15 =this.qyzt ||'';//
+                let data12 =this.gzcd ||'';//
+                let data17 =this.yxzt ||'';//
+                let data14 =this.ly ||'';//
+                let data16 =this.zxzt ||'';//
+                let data18 =this.txdz  ||'';//
+                let data20 =this.txdz2  ||'';//
+                let data19 =this.lxr  ||'';//
+                let data22 =this.yddh ||'';//
+                let data21 =this.bgdh ||'';//
+                let data23 =this.wrywz ||'';//
+                let data29 =this.zxjd ||'';//
+                let data28 =this.zxwd ||'';//
+                let data24 =this.wryhbbm ||'';//
+                let data26 =this.zzhbrys ||'';//
+                let data25 =this.hbfzr ||'';//
+                let data27 =this.bz ||'';//
+                let data30 = this.todos || [];//
+      			//if(_this.zhuangtai === '添加'){
+      			    //
+                    api.PostAddCompanyRt(code0,
+                        data1,data2,data3,data4,data5,
+                        data6,data7,data8,data9,data10,
+                        data11,data12,data13,data14,data15,
+                        data16,data17,data18,data19,data20,
+                        data21,data22,data23,data24,data25,
+                        data26,data27,data28,data29,data30
+                    ).then(result=>{
+						console.log(result)
+						_this.getNotice();
+                    });
+				//}
+
       		},
-      		//获取运维记录列表
+      		//获取列表
       		getNotice(name = '',PageIndex = '1'){
         	    let nm =name;
         	    let page = PageIndex;
@@ -369,6 +523,13 @@
 .businessOperation{
 	.el-input{
 		width: 215px;
+	}
+	.table-up{
+		border-color: #e0e0e0;
+		.caeel{
+			width: 100px;
+			font-size: 12px;
+		}
 	}
 	#right{
 		width: 100%;

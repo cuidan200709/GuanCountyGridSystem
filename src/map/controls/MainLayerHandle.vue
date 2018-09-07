@@ -160,7 +160,16 @@
             checkedSrc: 'static/imgs/main/cx_c.png',
             checked:false,
             visible:true,
-            childs: []
+            childs: [{
+              text: 'PM2.5',
+              fieldName: 'pm25'
+            }, {
+              text: 'SO2',
+              fieldName: 'so2'
+            },{
+              text: '综指',
+              fieldName: 'com_index'
+            }]
           },
           {
             name: 'layer_gd',
@@ -170,7 +179,13 @@
             checkedSrc: 'static/imgs/main/gd_c.png',
             checked:false,
             visible:false,
-            childs:[]
+            childs:[{
+              text: 'PM2.5',
+              fieldName: 'pm25'
+            }, {
+              text: 'PM10',
+              fieldName: 'pm10'
+            }]
           },
           {
             name: 'layer_qy',
@@ -180,7 +195,16 @@
             checkedSrc: 'static/imgs/main/qy_c.png',
             checked:false,
             visible:true,
-            childs:[]
+            childs:[{
+              text: '烟尘',
+              fieldName: 'smokeStatus'
+            }, {
+              text: 'NOX',
+              fieldName: 'noxStatus'
+            }, {
+              text: 'SO2',
+              fieldName: 'so2Status'
+            }]
           },
           {
             name: 'layer_zt',
@@ -568,7 +592,8 @@
         let ckItem = item.childs[selectedIndex];
         let displayName = item.displayName;
         let primaryKey = item.primaryKey;
-        let type = item.code;
+        //let type = item.code;
+        let type = item.name;
         // console.log(type);
         bus.$emit('targetPollution', type, ckItem.fieldName, displayName, primaryKey);
       },

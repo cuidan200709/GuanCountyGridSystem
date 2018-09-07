@@ -197,13 +197,52 @@ export default {
         )
     },
     //增加企业信息
-    PostAddCompanyRt(userId,username,status,role,name) {
+    PostAddCompanyRt(pscode,psname,legalperson,pollutionAddress,region,
+                     industryType,companyType,pollutionScale,floorSpace,pollutionType,
+                     is30Company,commissioningDate,concernExtent,areaName,drainageBasin,
+                     enabled,isOnline,runningStatus,contactAddress,contactPerson,
+                     emial,officePhone,mobilePhone,pollutionUrl,pollutionOffice,
+                     pollutionPerson,pollutionPersonCount,remarks,latitude,
+                     longitude,outlet
+                     ) {
         let params = {
-            'userId':userId,//部门ID,
-            'username':username,//部门编码
-            'status':status,//部门名称
-            'role':role,//主管领导
-            'name':name//联系方式
+            'pscode':pscode,//企业编码,
+            'psname':psname,//企业名称
+            'legalperson':legalperson,//法定代表人
+            'pollutionAddress':pollutionAddress,//污染源地址
+            'region':region,//行政区划
+
+            'industryType':industryType,//企业编码,
+            'companyType':companyType,//企业名称
+            'pollutionScale':pollutionScale,//法定代表人
+            'floorSpace':floorSpace,//污染源地址
+            'pollutionType':pollutionType,//行政区划
+
+            'is30Company':is30Company,//企业编码,
+            'commissioningDate':commissioningDate,//企业名称
+            'concernExtent':concernExtent,//法定代表人
+            'areaName':areaName,//污染源地址
+            'drainageBasin':drainageBasin,//行政区划
+
+            'enabled':enabled,//企业编码,
+            'isOnline':isOnline,//企业名称
+            'runningStatus':runningStatus,//法定代表人
+            'contactAddress':contactAddress,//污染源地址
+            'contactPerson':contactPerson,//行政区划
+
+            'emial':emial,//企业编码,
+            'officePhone':officePhone,//企业名称
+            'mobilePhone':mobilePhone,//法定代表人
+            'pollutionUrl':pollutionUrl,//污染源地址
+            'pollutionOffice':pollutionOffice,//行政区划
+
+            'pollutionPerson':pollutionPerson,//企业编码,
+            'pollutionPersonCount':pollutionPersonCount,//企业名称
+            'remarks':remarks,//法定代表人
+            'latitude':latitude,//污染源地址
+            'longitude':longitude,//行政区划
+
+            'outlet':outlet//集合
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PostAddCompanyResource ,FormatParams, {
@@ -212,13 +251,52 @@ export default {
         )
     },
     //修改企业信息
-    PostupdateCompanyRt(userId,username,status,role,name) {
+    PostupdateCompanyRt(pscode,psname,legalperson,pollutionAddress,region,
+                        industryType,companyType,pollutionScale,floorSpace,pollutionType,
+                        is30Company,commissioningDate,concernExtent,areaName,drainageBasin,
+                        enabled,isOnline,runningStatus,contactAddress,contactPerson,
+                        emial,officePhone,mobilePhone,pollutionUrl,pollutionOffice,
+                        pollutionPerson,pollutionPersonCount,remarks,latitude,
+                        longitude,outlet
+                        ) {
         let params = {
-            'userId':userId,//部门ID,
-            'username':username,//部门编码
-            'status':status,//部门名称
-            'role':role,//主管领导
-            'name':name//联系方式
+            'pscode':pscode,//企业编码,
+            'psname':psname,//企业名称
+            'legalperson':legalperson,//法定代表人
+            'pollutionAddress':pollutionAddress,//污染源地址
+            'region':region,//行政区划
+
+            'industryType':industryType,//企业编码,
+            'companyType':companyType,//企业名称
+            'pollutionScale':pollutionScale,//法定代表人
+            'floorSpace':floorSpace,//污染源地址
+            'pollutionType':pollutionType,//行政区划
+
+            'is30Company':is30Company,//企业编码,
+            'commissioningDate':commissioningDate,//企业名称
+            'concernExtent':concernExtent,//法定代表人
+            'areaName':areaName,//污染源地址
+            'drainageBasin':drainageBasin,//行政区划
+
+            'enabled':enabled,//企业编码,
+            'isOnline':isOnline,//企业名称
+            'runningStatus':runningStatus,//法定代表人
+            'contactAddress':contactAddress,//污染源地址
+            'contactPerson':contactPerson,//行政区划
+
+            'emial':emial,//企业编码,
+            'officePhone':officePhone,//企业名称
+            'mobilePhone':mobilePhone,//法定代表人
+            'pollutionUrl':pollutionUrl,//污染源地址
+            'pollutionOffice':pollutionOffice,//行政区划
+
+            'pollutionPerson':pollutionPerson,//企业编码,
+            'pollutionPersonCount':pollutionPersonCount,//企业名称
+            'remarks':remarks,//法定代表人
+            'latitude':latitude,//污染源地址
+            'longitude':longitude,//行政区划
+
+            'outlet':outlet//集合
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PostupdateCompanyResource ,FormatParams, {
