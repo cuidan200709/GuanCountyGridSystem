@@ -266,8 +266,8 @@
           let attributes = feature.attributes || {};
           let geometry = feature.geometry;
           let rings = geometry.rings || [];
-//          rtValue.push({attributes: attributes, geometry: this.ringsTransform(rings)});//坐标转换
-          rtValue.push({attributes: attributes, geometry: rings});//转换后坐标
+         rtValue.push({attributes: attributes, geometry: this.ringsTransform(rings)});//坐标转换
+          // rtValue.push({attributes: attributes, geometry: rings});//转换后坐标
         }
         return rtValue
       },
