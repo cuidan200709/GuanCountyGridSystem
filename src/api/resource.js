@@ -15,8 +15,7 @@ const apiconfig = [
         {
             devn:'http://gkpt.zq12369.com:8016',//正式001
             devy:'http://gkpt.zq12369.com:8015',//正式(大气源清单)
-//          devc:'http://gkpt.zq12369.com:8013',//正式
-			devc:'http://117.119.97.150:8061',
+            devc:'http://gkpt.zq12369.com:8013',//正式
         }
     ];
 /*判断环境*/
@@ -26,8 +25,8 @@ console.log(process.env.API_ROOT);
 * icode === 0为测试  1为正式
 * */
 if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
-      icode = 1;
-//  icode = 0;
+//    icode = 1;
+    icode = 0;
 }else {
     icode = 1;
 };
