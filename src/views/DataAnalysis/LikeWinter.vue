@@ -946,8 +946,8 @@
             this.TwoTimesData();
             //默认选中优
             this.getbaoliangyouRes('0501');
-           this.GetCaseTypePie();
-
+           	this.GetCaseTypePie();
+			this.GetCaseDealPer();
         },
         mounted() {
             let t = this;
@@ -2122,10 +2122,28 @@
 			        // 使用刚指定的配置项和数据显示图表。
 			        myChart.setOption(options);
             },
+            //案件处理率同比
+            GetCaseDealPer(){
+            	let t = this;
+            	api.GetCaseDealPer().then(res=>{
+            		console.log(res);
+            		let data = res.data.data;
+            		let name = [];
+            		let benyue = [];
+            		let shangyue = [];
+            		data.forEach(item=>{
+            			name.push(item.name);
+            			benyue.push(item.benyu);
+            			shangyue.push(item.shangyu)
+            		})
+            		t.CaseDealPer(name,benyue,shangyue);
+            	})
+            },
             // 案件处理率同比
-             ElectricityConsumption() {
-//              let seriesData = this.Diandata.seriesData;
-//              let xAxisData = this.Diandata.xAxisData;
+             CaseDealPer(name,benyue,shangyue) {
+             	console.log(name)
+             	console.log(benyue)
+             	console.log(shangyue)
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('CaseDeal'));
 				let option = {
@@ -2136,7 +2154,7 @@
 				        }
 				    },
 				    legend: {
-				        data: ['2011年', '2012年'],
+				        data: ['上月', '本月'],
 				        textStyle: {
                             color: '#fff'
                         },
@@ -2155,7 +2173,7 @@
 				        axisLabel: {
 	                        formatter: '{value}%',
 	                        textStyle: {
-	                            color: '#fff'
+	                            color: '#2394f2'
 	                        }
 	                    },
 	                    axisLine:{
@@ -2167,7 +2185,7 @@
 				    },
 				    yAxis: {
 				        type: 'category',
-				        data: ['公主府乡','牛驼镇','马庄镇','环保局','固安镇'],
+				        data: name,
 				        axisLine:{
 	                        lineStyle:{
 	                            color:'#2394f2'
@@ -2176,15 +2194,15 @@
 				    },
 				    series: [
 				        {
-				            name: '2011年',
+				            name: '上月',
 				            type: 'bar',
-				            data: [18, 23, 29, 10, 13],
+				            data: shangyue,
 				            barWidth : 10
 				        },
 				        {
-				            name: '2012年',
+				            name: '本月',
 				            type: 'bar',
-				            data: [19, 28, 31, 14, 11],
+				            data: benyue,
 				            barWidth : 10
 				        }
 				    ]
@@ -2377,17 +2395,17 @@
                     }
                     this.WeatherWinterPre = data;
                 })
-                //用电量数据
-                api.GetElectricityChart().then(res => {
-
-                    let data = res.data.Data;
-                    let data2 = res.data.Message;
-                    this.DianTime = data2;
-                    this.Diandata = data;
-                    setTimeout(() => {
-                        this.ElectricityConsumption()
-                    }, 400)
-                })
+//              //用电量数据
+//              api.GetElectricityChart().then(res => {
+//
+//                  let data = res.data.Data;
+//                  let data2 = res.data.Message;
+//                  this.DianTime = data2;
+//                  this.Diandata = data;
+//                  setTimeout(() => {
+//                      this.ElectricityConsumption()
+//                  }, 400)
+//              })
 
                 //企业列表数据
                 api.GetqyWinterPreCompanyControl().then(res => {
@@ -2815,7 +2833,7 @@
         	/*background: #fff!important;*/
         }
         #CaseDeal{
-        	height: 312px!important;
+        	height: 600px!important;
         }
     }
 

@@ -176,6 +176,7 @@ import {
     AddReportEventResource,//添加通报巡查员
     GetCaseAduitResource,//案件审核
     GetCaseTypePieResource,//首页案件类型占比
+    GetCaseDealPerResource,//首页案件处理率同比
 } from './resource'
 
 export default {
@@ -1502,6 +1503,11 @@ export default {
     //首页案件类型占比
     GetCaseTypePie(type){
     	return axios.get(GetCaseTypePieResource + 'type=' + type, {}
+        )
+    },
+    //首页案件处理率同比
+    GetCaseDealPer(){
+    	return axios.get(GetCaseDealPerResource, {}
         )
     },
 }
