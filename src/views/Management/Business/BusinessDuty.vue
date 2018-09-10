@@ -8,7 +8,7 @@
                     <a>责任部门管理</a>
                 </div>
             </div>
-            <!-----------查询部分------->
+            <!--查询部分-->
 			<div class="search">
 				<span>部门名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
 				<el-button type="primary" class='btns' @click="QueryNeedsData">查询</el-button>
@@ -16,7 +16,7 @@
 				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
-			<!--------------列表部分---------->
+			<!--列表部分-->
 			<div class="box">
                 <div class="warning">
                     <a>列表</a>
@@ -142,7 +142,7 @@
 </template>
 
 <script>
-    import {Message} from 'element-ui';
+    //import {Message} from 'element-ui';
     import api from '../../../api/index'
     export default {
         name: 'businessOperation',
@@ -193,6 +193,7 @@
             
         },
         methods: {
+            //
             QueryNeedsData(){
                 let condata = this.departmentVal;
                 this.getNotice(condata);
@@ -252,6 +253,13 @@
       			let contacts = _this.equipmentPerson4b;
       			api.POSTcodeDepartmentlistupt(id,code,name,leader,contacts).then(result=>{
       			    console.log(result);
+      			    //let info = result.data.message;
+      			    let error = result.data.errorDesc;
+                    if(result.data.status > -1){
+                        _this.$message({showClose: true, message: '修改成功！', type: 'success'});
+                    }else {
+                        _this.$message({showClose: true, message:'修改失败！' +error, type: 'error'});
+                    }
                     _this.getNotice();
 				});
                 _this.isEdit = false;
@@ -283,6 +291,13 @@
                 let contacts = _this.equipmentPerson4;
 				api.POSTcodeDepartmentlistaddt(id,code,name,leader,contacts).then(result=>{
                     console.log(result);
+                    //let info = result.data.message;
+                    let error = result.data.errorDesc;
+                    if(result.data.status > -1){
+                        _this.$message({showClose: true, message: '修改成功！', type: 'success'});
+                    }else {
+                        _this.$message({showClose: true, message:'添加失败！'+error, type: 'error'});
+                    }
                     _this.getNotice();
 				});
       		},

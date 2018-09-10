@@ -61,7 +61,23 @@ td {
     width: 202px!important;
   }
 }
-
+//企业污染源弹窗
+.qiye-table{
+  .table-up{
+    border: 1px solid #e0e0e0;
+    th{
+      border: 1px solid #e0e0e0;
+    }
+    .el-input__inner{
+      border: none!important;
+      border-radius: 0;
+    }
+    .el-textarea__inner{
+      border-radius: 0;
+      border: none!important;
+    }
+  }
+}
 //
 .el-pagination {
   margin-top: 20px;
