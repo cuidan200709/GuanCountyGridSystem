@@ -8,7 +8,7 @@
                     <a>责任部门管理</a>
                 </div>
             </div>
-            <!-----------查询部分------->
+            <!--查询部分-->
 			<div class="search">
 				<span>部门名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
 				<el-button type="primary" class='btns' @click="QueryNeedsData">查询</el-button>
@@ -16,7 +16,7 @@
 				<el-button type="primary" class='btns' @click="">导出</el-button>
 			</div>
 			
-			<!--------------列表部分---------->
+			<!--列表部分-->
 			<div class="box">
                 <div class="warning">
                     <a>列表</a>
@@ -142,7 +142,7 @@
 </template>
 
 <script>
-    import {Message} from 'element-ui';
+    //import {Message} from 'element-ui';
     import api from '../../../api/index'
     export default {
         name: 'businessOperation',
