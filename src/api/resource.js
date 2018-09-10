@@ -15,7 +15,8 @@ const apiconfig = [
         {
             devn:'http://gkpt.zq12369.com:8016',//正式001
             devy:'http://gkpt.zq12369.com:8015',//正式(大气源清单)
-            devc:'http://gkpt.zq12369.com:8013',//正式
+//          devc:'http://gkpt.zq12369.com:8013',//正式
+			devc:'http://117.119.97.150:8061',
         }
     ];
 /*判断环境*/
@@ -25,8 +26,8 @@ console.log(process.env.API_ROOT);
 * icode === 0为测试  1为正式
 * */
 if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
-//    icode = 1;
-    icode = 0;
+      icode = 1;
+//  icode = 0;
 }else {
     icode = 1;
 };
@@ -208,6 +209,7 @@ const apilangfangTDK = {
     PostupdateCompany: apiconfig[icode].devn + '/api/Company/updateCompany',//修改企业信息
     GetdeleteCompany: apiconfig[icode].devn + '/api/Company/deleteCompany?',//删除企业信息
     GetSingleCompany: apiconfig[icode].devn + '/api/Company/getSingleCompany?',//获取单独企业信息
+    GetCaseTypePie: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByPollutionType?',//首页案件类型占比
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -379,3 +381,4 @@ export const GetSingleCompanyResource = API_ROOT.concat(apilangfangTDK.GetSingle
 export const GetReportListResource = API_ROOT.concat(apilangfangTDK.GetReportList);
 export const AddReportEventResource = API_ROOT.concat(apilangfangTDK.AddReportEvent);
 export const GetCaseAduitResource = API_ROOT.concat(apilangfangTDK.GetCaseAduit);
+export const GetCaseTypePieResource = API_ROOT.concat(apilangfangTDK.GetCaseTypePie);
