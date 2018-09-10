@@ -122,12 +122,9 @@
 			      	<div v-if="scope.row.status=='未处理'">
 			      		<el-button v-show="$store.state.responsibility === false" @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
 			      	</div>
-			      	<div v-if="scope.row.status=='处理完毕'">
+			      	<div v-if="scope.row.status=='处理完毕'||scope.row.status=='未通过'||scope.row.status=='已派发'">
 			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
-			        </div>
-			        <div v-if="scope.row.status=='已派发'">
-			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
-			        </div>
+			       </div>
 			        <div v-if="scope.row.status=='待审核'">
 			        	<el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='eidt'>审核</el-button>
 			        </div>
@@ -151,7 +148,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop reply">
 	                <div class="title">
-	                    <a>提示</a>
+	                    <a>案件详情</a>
 	                    <div class="el-icon-close" @click="isUpdate=false"></div>
 	                </div>
 	                <div class="content">
@@ -175,7 +172,7 @@
 						    <span>责任主体</span>
 						    <el-input v-model="CaseDutyPop" placeholder="" disabled></el-input>
 					  	</div>
-					  	<div class="block" style="margin-bottom: 20px;">
+					  	<div class="block" style="margin-bottom: 10px;">
 					  		<span class="left">描述</span>
 						  	<el-input
 								type="textarea"
@@ -184,6 +181,10 @@
 								v-model="textarea"
 								disabled>
 							</el-input>
+						</div>
+						<div class="special" style="margin-bottom: 20px;">
+						    <span>派发时间</span>
+						    <el-input v-model="DispatchTime" placeholder="" disabled></el-input>
 						</div>
 						<div>
 							<div class="block imgBox left" style="margin:0;">
@@ -262,7 +263,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop examine">
 	                <div class="title">
-	                    <a>提示</a>
+	                    <a>案件详情</a>
 	                    <div class="el-icon-close" @click="Examine=false"></div>
 	                </div>
 	                <div class="content">
@@ -310,7 +311,12 @@
 						<div class="special" v-else>
 						    <span>派发时间</span>
 						    <el-input v-model="DispatchTimePopExamine" placeholder="" disabled></el-input>
+						    <div style="display: inline-block;" v-if="CaseStatusPopExamine=='处理完毕'">
+								<span>结案时间</span>
+						    	<el-input v-model="closeTime" placeholder="" disabled></el-input>
+							</div>
 						</div>
+						
 						<div class="block imgBox">
 							<span>案件照片</span>
 						    <el-carousel height="200px">
@@ -319,7 +325,7 @@
 						      </el-carousel-item>
 						    </el-carousel>
 						</div>
-						<div class="block imgBox secSpan" v-if="CaseStatusPopExamine=='处理完毕'">
+						<div class="block imgBox secSpan" v-if="CaseStatusPopExamine=='处理完毕'||CaseStatusPopExamine=='未通过'">
 							<span>案后照片</span>
 						    <el-carousel height="200px">
 						        <el-carousel-item v-for="(item,index) in afterCaseImg" :key="index">
@@ -365,6 +371,9 @@
 		        },{
 		          value: '3',
 		          label: '处理完毕'
+		        },{
+		          value: '4',
+		          label: '未通过'
 		        }],
 		        //责任主体
             	optionsDuty: [],
@@ -464,6 +473,8 @@
 		     origin:'',
 		     cityName:'',
 		     DispatchTimePopExamine:'',//派发时间
+		     closeTime:'',
+		     DispatchTime:'',//审核派发时间
             }
         },
         created(){
@@ -506,7 +517,7 @@
 		   },
         	//点击审核
         	handleReplyClick(row){
-        		//console.log(row)
+          		console.log(row)
         		this.isUpdate = true;
 	         	this.PollutionClassPop = row.pollutiontype;//污染类别
 		        this.CaseTimePop = row.createtime;//案发时间
@@ -516,13 +527,14 @@
 		        this.textarea = row.description;//内容
 		        this.hjwfBusCaseattachList = row.hjwfBusCaseattachList;
 		        this.afterCaseImg = row.afterCaseImg;
+		        this.DispatchTime = row.dispatchTime;
 		        this.id = row.id;
         	},
         	//点击查看
         	handleExamineClick(row){
         		this.Examine = true;
         		this.distributePopVal = '';
-        		//console.log(row);
+          		console.log(row);
         		this.id = row.id;
         		let casecode = row.casecode;
         		this.PollutionClassPopExamine = row.pollutiontype;//污染类别
@@ -535,6 +547,7 @@
 		        this.hjwfBusCaseattachList = row.hjwfBusCaseattachList;
 		        this.afterCaseImg = row.afterCaseImg;
 		        this.DispatchTimePopExamine = row.dispatchTime;
+		        this.closeTime = row.closeTime;
 		        console.log(this.hjwfBusCaseattachList)
         	},
             //开始时间选择
@@ -629,6 +642,7 @@
 		                        tableData.id = item.id;
 		                        tableData.handlingResult = item.handlingResult;//处理结果
 		                        tableData.dispatchTime = item.dispatchTime;//派发时间
+		                        tableData.closeTime = item.closeTime;//结案时间
 		                        t.ListData.push(tableData);
 							})
       					}
@@ -723,6 +737,9 @@
 						break;
 					case 3:
 						return '处理完毕'
+						break;
+					case 4:
+						return '未通过'
 						break;
 					default:
 						break;
@@ -909,13 +926,13 @@
         /*****回复弹出框内容********/
         .reply {
             width: 655px;
-            height: 650px;
+            height: 690px;
             background: #fff;
             position: fixed;
             left: 50%;
             top: 50%;
             margin-left: -327px;
-            margin-top: -325px;
+            margin-top: -345px;
             z-index: 999;
             border-radius: 10px;
             .title {
