@@ -2,7 +2,7 @@
 <!--后台管理-巡查员管理-->
 <template>
     <div class="businessOperation">
-		<!--------------右侧数据展示------>
+		<!--右侧数据展示-->
 		<div id="right">
 			<div class="box">
                 <div class="warning">
@@ -41,12 +41,12 @@
 			     >
 			    </el-table-column>
 			    <el-table-column
-			      prop="lastLoginTime"
+			      prop="dlApp"
 			      label="登录APP"
 			      >
 			    </el-table-column>
 			    <el-table-column
-			      prop="status"
+			      prop="statusAj"
 			      label="处理案件"
 			      >
 			    </el-table-column>
@@ -75,7 +75,7 @@
 			      :total="totalCount">
 			    </el-pagination>
 			</div>
-			<!--------------添加弹框部分--------------->
+			<!--添加弹框部分-->
 			<div class="popUp" v-show="isNew">
 	            <div class="mask"></div>
 	            <div class="succ-pop">
@@ -241,6 +241,7 @@
             
         },
         methods: {
+            //查询
             QueryNeedsData(){
                 let condata = this.departmentVal;
                 this.getNotice(condata);
@@ -299,8 +300,9 @@
       			let userId = _this.equipmentPersonidb;
       			let username = _this.equipmentPerson2b;
       			let name = _this.equipmentPerson1b;
+                let status = _this.equipmentName1b;
       			let role = _this.equipmentName2b;
-      			let status = _this.equipmentName1b;
+
       			api.POSTsysUserupdatet(userId,username,status,role,name).then(result=>{
       			    console.log(result);
                     _this.getNotice();
@@ -328,18 +330,22 @@
       		},
       		//
       		DeviceNameChange1(val){
+                console.log(val);
                 this.equipmentName1 = val;
 			},
             //
             DeviceNameChange2(val){
+                console.log(val);
                 this.equipmentName2 = val;
 			},
             //
             DeviceNameChange3(val){
+                console.log(val);
                 this.equipmentName1b = val;
 			},
             //
             DeviceNameChange4(val){
+                console.log(val);
                 this.equipmentName2b = val;
 			},
       		//添加
@@ -365,24 +371,35 @@
                     _this.totalCount = InfoData.length;
 					InfoData.forEach(item=>{
 						let tableData = {};
-                        tableData.status = item.status;//
+                        tableData.statusAj = item.role ? '允许' : '禁止';//
                         tableData.username = item.username;//
                         tableData.sex = item.sex;//
-                        tableData.role = item.role?'责任主体人员':'巡查员';//
+                        tableData.role = item.role ? '责任主体人员':'巡查员';//
                         tableData.password = item.password;//
                         tableData.name = item.name;//
                         tableData.mobile = item.mobile;//
-                        tableData.lastLoginTime = item.lastLoginTime;//
-                        tableData.lastLoginIp = item.lastLoginIp;//
+                        //tableData.lastLoginTime = this.timestampToTime(item.lastLoginTime);//
+						tableData.dlApp = item.status ?'允许' : '禁止';
+                        //tableData.lastLoginIp = item.lastLoginIp;//
                         tableData.email = item.email;//
-                        tableData.createTime = item.createTime;//
+                        //tableData.createTime = _this.timestampToTime(item.createTime);//
                         tableData.userId = item.userId;//
                         _this.ListData.push(tableData);
 					})
                     _this.setPageTable(10, 1);
 				});
       		},
-
+			//时间戳转换时间
+            timestampToTime(timestamp) {
+                let date = new Date(timestamp);//如果date为10位不需要乘1000
+                let Y = date.getFullYear() + '-';
+                let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                let D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+                let h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+                let m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+                let s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+                return Y+M+D+h+m+s;
+            },
       		 //分页数据
             setPageTable(pageSize, pageNum) {
                 let i = 1;
