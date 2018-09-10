@@ -175,6 +175,7 @@ import {
     GetReportListResource,//通报巡查员列表
     AddReportEventResource,//添加通报巡查员
     GetCaseAduitResource,//案件审核
+    GetCaseTypePieResource,//首页案件类型占比
 } from './resource'
 
 export default {
@@ -1496,6 +1497,11 @@ export default {
         return axios.post(GetCaseAduitResource ,FormatParams, {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
+        )
+    },
+    //首页案件类型占比
+    GetCaseTypePie(type){
+    	return axios.get(GetCaseTypePieResource + 'type=' + type, {}
         )
     },
 }

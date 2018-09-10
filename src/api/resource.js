@@ -208,6 +208,7 @@ const apilangfangTDK = {
     PostupdateCompany: apiconfig[icode].devn + '/api/Company/updateCompany',//修改企业信息
     GetdeleteCompany: apiconfig[icode].devn + '/api/Company/deleteCompany?',//删除企业信息
     GetSingleCompany: apiconfig[icode].devn + '/api/Company/getSingleCompany?',//获取单独企业信息
+    GetCaseTypePie: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByPollutionType?',//首页案件类型占比
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -379,3 +380,4 @@ export const GetSingleCompanyResource = API_ROOT.concat(apilangfangTDK.GetSingle
 export const GetReportListResource = API_ROOT.concat(apilangfangTDK.GetReportList);
 export const AddReportEventResource = API_ROOT.concat(apilangfangTDK.AddReportEvent);
 export const GetCaseAduitResource = API_ROOT.concat(apilangfangTDK.GetCaseAduit);
+export const GetCaseTypePieResource = API_ROOT.concat(apilangfangTDK.GetCaseTypePie);

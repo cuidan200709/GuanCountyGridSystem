@@ -429,10 +429,10 @@
                     </el-tab-pane>
                     <el-tab-pane label="案件类型占比" name="first_t">
                         <div class="select" style="float: right;">
-                            <select id="" @change="">
-								<option value="2016" selected>近一周</option>
-								<option value="2017">近一月</option>
-								<option value="2018">近一年</option>
+                            <select id="TypeSelect" @change="GetCaseTypePie">
+								<option value='1'>近一周</option>
+								<option value="2">近一月</option>
+								<option value="3" selected>近一年</option>
 							</select>
                     	</div>
                     	<div id="CaseType" style="width: 366px;height: 200px;"></div>
@@ -930,7 +930,10 @@
 				CountySelectVal:'全市',
 		        area:'',
 		        WholeCityData:[],
-		        CityTableData:[]
+		        CityTableData:[],
+		        type:'1',
+		        TypeLengedData:[],//案件类型占比数据
+		        allData:[]
             };
         },
         created() {
@@ -943,17 +946,17 @@
             this.TwoTimesData();
             //默认选中优
             this.getbaoliangyouRes('0501');
+           this.GetCaseTypePie();
 
         },
         mounted() {
             let t = this;
             //mounted 挂载结束状态=====
             setTimeout(()=>{
-                t.DataConsumption(this.pm25);
-                t.YearRange();
-                t.AirQuality();
-                t.MonthAir();
-                t.MonthRange();
+//              t.YearRange();
+//              t.AirQuality();
+//              t.MonthAir();
+//              t.MonthRange();
                 //初始化显示预警控制优
                 this.selectStyle ({select:'PM2.5'},0);
                 //初始化控制目标
@@ -962,13 +965,13 @@
             //获取月考核数据
             this.GetMonthCheck();
             //获取月度累计综指排名
-            this.GetWinterPreComIndexMonthPc();
+//          this.GetWinterPreComIndexMonthPc();
             //获取月度累计空气质量
-            this.GetWinterPrePollutionDaysMonthPc();
+//          this.GetWinterPrePollutionDaysMonthPc();
             //获取年度累计综指排名
-            this.GetWinterPreComIndexYearPc();
+//          this.GetWinterPreComIndexYearPc();
             //获取年度累计空气质量
-            this.GetWinterPrePollutionDaysYearPc();
+//          this.GetWinterPrePollutionDaysYearPc();
             //冬防倒计时
             this.WinterCountDown();
             //获取乡镇月考核数据
@@ -1027,7 +1030,7 @@
         		let Time = '';
         		let isQuarter = true;
         		t.WholeCityData = [];
-        		let area = encodeURL(this.area);
+        		let area = encodeURI(this.area);
         		api.GetAssessment(Time,area,isQuarter).then(res=>{
         			let i = 1;
         			if(res&&isQuarter){
@@ -1236,54 +1239,6 @@
                 }
 
                 bus.$emit('targetPollution', typecode);
-            },
-            //判断大气污染值类型
-            DaQiWuRanTuBiao() {
-                let indexcode = $("#selectID").val();
-                // console.log(indexcode);
-                switch (indexcode) {
-                    case 'PM2.5':
-                        this.DaqiType = 'PM2.5';
-                        this.DaqiDanw = '(微克/立方米)';
-                        this.DataConsumption(this.pm25);
-                        break;
-                    case 'PM10':
-                        this.DaqiType = 'PM10';
-                        this.DaqiDanw = '(微克/立方米)';
-                        this.DataConsumption(this.pm10);
-                        break;
-                    case 'SO2':
-                        this.DaqiType = 'SO2';
-                        this.DaqiDanw = '(微克/立方米)';
-                        this.DataConsumption(this.so2);
-                        break;
-                    case 'NO2':
-                        this.DaqiType = 'NO2';
-                        this.DaqiDanw = '(微克/立方米)';
-                        this.DataConsumption(this.no2);
-                        break;
-                    case 'CO':
-                        this.DaqiType = 'CO';
-                        this.DaqiDanw = '(毫克/立方米)';
-                        this.DataConsumption(this.co);
-                        break;
-                    case 'O3':
-                        this.DaqiType = 'O3';
-                        this.DaqiDanw = '(微克/立方米)';
-                        this.DataConsumption(this.o3);
-                        break;
-                    case '综指':
-                        this.DaqiType = '综指';
-                        this.DaqiDanw = '';
-                        this.DataConsumption(this.zz);
-                        break;
-                    default:
-                        this.DaqiType = 'PM2.5';
-                        this.DaqiDanw = '(微克/立方米)';
-                        this.DataConsumption(this.pm25);
-                        break;
-                }
-
             },
             //获取月累计综指
             GetWinterPreComIndexMonthPc(){
@@ -2237,24 +2192,47 @@
 				myChart.setOption(option);
 
             },
+            //案件类型占比数据
+            GetCaseTypePie(){
+            	let t = this;
+            	this.TypeLengedData = [];
+            	let type = $('#TypeSelect option:selected').val()?$('#TypeSelect option:selected').val():'3';
+            	api.GetCaseTypePie(type).then(res=>{
+            		console.log(res);
+            		this.allData = res.data.data;
+            		this.allData.forEach(item=>{
+            			item.value = item.num;
+            			t.TypeLengedData.push(item.name)
+            		})
+            		t.DataConsumptionType();
+            	})
+            },
             // 案件类型占比
-            DataConsumption(data) {
-//              let value = data.data;
-//              let yvalue = data.ydata;
-//              let min = data.ymin;
-//              let max = data.ymax;
-//              let vd = data.vd;
+            DataConsumptionType() {
+            	let t = this;
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('CaseType'));
                 // 指定图表的配置项和数据
                 let option = {
 					title : {
 				        text: '案件类型占比',
-				        x:'left'
+				        x:'left',
+				        textStyle: {
+                            color: '#fff'
+                        },
 				    },
+				    legend: {
+                        orient: 'vertical',
+                        top:30,
+        				right:10,
+						data:t.TypeLengedData,
+                        textStyle: {
+                            color: '#fff'
+                        },
+                    },
                     series: [
                         {
-                            name: '---',
+                            name: '--',
                             type: 'pie',
                             //图大小
                             radius: ['0%', '65%'],
@@ -2272,30 +2250,14 @@
                                         show: false
                                     }
                                 }
-                            }
-                        }
+                            },
+                            data:t.allData,
+                        },
+                        
                     ]
                 };
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
-                //动态设置参数
-                myChart.setOption({
-                    legend: {
-                        orient: 'vertical',
-                        top:30,
-        				right:10,
-                        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-                    },
-                    series: [{
-                        data:[
-			                {value:335, name:'直接访问'},
-			                {value:310, name:'邮件营销'},
-			                {value:234, name:'联盟广告'},
-			                {value:135, name:'视频广告'},
-			                {value:1548, name:'搜索引擎'}
-			            ],
-                    }]
-                })
             },
             //获取更改要保值
             getbaoliangyouRes(qualityCode){
@@ -2850,7 +2812,7 @@
             /*margin-left: 10px!important;*/
         }
         #CaseType{
-        	background: #fff!important;
+        	/*background: #fff!important;*/
         }
         #CaseDeal{
         	height: 312px!important;
