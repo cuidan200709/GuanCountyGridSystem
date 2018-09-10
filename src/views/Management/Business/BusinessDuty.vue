@@ -193,6 +193,7 @@
             
         },
         methods: {
+            //
             QueryNeedsData(){
                 let condata = this.departmentVal;
                 this.getNotice(condata);
@@ -252,6 +253,13 @@
       			let contacts = _this.equipmentPerson4b;
       			api.POSTcodeDepartmentlistupt(id,code,name,leader,contacts).then(result=>{
       			    console.log(result);
+      			    //let info = result.data.message;
+      			    let error = result.data.errorDesc;
+                    if(result.data.status > -1){
+                        _this.$message({showClose: true, message: '修改成功！', type: 'success'});
+                    }else {
+                        _this.$message({showClose: true, message:'修改失败！' +error, type: 'error'});
+                    }
                     _this.getNotice();
 				});
                 _this.isEdit = false;
@@ -283,6 +291,13 @@
                 let contacts = _this.equipmentPerson4;
 				api.POSTcodeDepartmentlistaddt(id,code,name,leader,contacts).then(result=>{
                     console.log(result);
+                    //let info = result.data.message;
+                    let error = result.data.errorDesc;
+                    if(result.data.status > -1){
+                        _this.$message({showClose: true, message: '修改成功！', type: 'success'});
+                    }else {
+                        _this.$message({showClose: true, message:'添加失败！'+error, type: 'error'});
+                    }
                     _this.getNotice();
 				});
       		},

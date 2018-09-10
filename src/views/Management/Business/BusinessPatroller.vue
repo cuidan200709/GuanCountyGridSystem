@@ -102,8 +102,8 @@
 						    	clearable 
 						    	placeholder="请选择"
 						    	@change='DeviceNameChange1'>
-						        <el-option key="禁止" label="禁止" value="0"></el-option>
-								<el-option key="允许" label="允许" value="1"></el-option>
+								<el-option key="0" label="禁止" value="0"></el-option>
+								<el-option key="1" label="允许" value="1"></el-option>
 						    </el-select>
 						</div>
 						<div class="block" style="overflow: hidden;">
@@ -112,8 +112,8 @@
 									   clearable
 									   placeholder="请选择"
 									   @change='DeviceNameChange2'>
-								<el-option key="禁止" label="禁止" value="0"></el-option>
-								<el-option key="允许" label="允许" value="1"></el-option>
+								<el-option key="0" label="禁止" value="0"></el-option>
+								<el-option key="1" label="允许" value="1"></el-option>
 							</el-select>
 						</div>
 						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
@@ -150,8 +150,8 @@
 									   clearable
 									   placeholder="请选择"
 									   @change='DeviceNameChange3'>
-								<el-option key="禁止" label="禁止" value="0"></el-option>
-								<el-option key="允许" label="允许" value="1"></el-option>
+								<el-option key="0" label="禁止" value="0"></el-option>
+								<el-option key="1" label="允许" value="1"></el-option>
 							</el-select>
 						</div>
 						<div class="block" style="overflow: hidden;">
@@ -160,8 +160,8 @@
 									   clearable
 									   placeholder="请选择"
 									   @change='DeviceNameChange4'>
-								<el-option key="禁止" label="禁止" value="0"></el-option>
-								<el-option key="允许" label="允许" value="1"></el-option>
+								<el-option key="0" label="禁止" value="0"></el-option>
+								<el-option key="1" label="允许" value="1"></el-option>
 							</el-select>
 						</div>
 						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
@@ -278,7 +278,7 @@
                 this.isNew = false;
 
         	},
-			//
+			//修改密码初始化
 			changePassword(row){
                 console.log(row.userId);
                 this.dialogVisible = true;
@@ -300,8 +300,8 @@
       			let userId = _this.equipmentPersonidb;
       			let username = _this.equipmentPerson2b;
       			let name = _this.equipmentPerson1b;
-                let status = _this.equipmentName1b;
-      			let role = _this.equipmentName2b;
+                let status = _this.contenterChange(_this.equipmentName1b);
+      			let role = _this.contenterChange(_this.equipmentName2b);
 
       			api.POSTsysUserupdatet(userId,username,status,role,name).then(result=>{
       			    console.log(result);
@@ -309,14 +309,29 @@
 				});
 				this.isEdit = false;
       		},
+			//转换状态传值
+			contenterChange(val){
+                let keydata = val;
+                let data = null;
+                if(keydata === '允许'){
+                    data = 1;
+				}else if (keydata === '禁止'){
+                    data = 0;
+				} else {
+                    data = keydata;
+				}
+                //isNaN(val) === true && return val;
+                return data;
+			},
       		//分页
       		 handleSizeChange(val) {
         		console.log(`每页 ${val} 条`);
       		},
-			//
+			//分页请求
       		handleCurrentChange(val) {
         		this.setPageTable(10, val);
       		},
+			//打开添加
       		openWin(){
       			this.isEdit = false;
       			this.isNew = true;
@@ -328,27 +343,27 @@
 				this.equipmentName2 = '';
 
       		},
-      		//
+      		//添加登录权限
       		DeviceNameChange1(val){
                 console.log(val);
                 this.equipmentName1 = val;
 			},
-            //
+            //添加处理权限
             DeviceNameChange2(val){
                 console.log(val);
                 this.equipmentName2 = val;
 			},
-            //
+            //编辑登录权限
             DeviceNameChange3(val){
                 console.log(val);
                 this.equipmentName1b = val;
 			},
-            //
+            //编辑处理权限
             DeviceNameChange4(val){
                 console.log(val);
                 this.equipmentName2b = val;
 			},
-      		//添加
+      		//添加请求
       		Insert(){
       			const _this = this;
       			let userId = _this.equipmentPersonid ||'';
