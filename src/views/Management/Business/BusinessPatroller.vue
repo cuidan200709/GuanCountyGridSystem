@@ -285,13 +285,14 @@
 			},
 			//编辑
 	        handleClick(row) {
+                console.log(row);
 	        	this.isEdit = true;
 	        	this.equipmentPersonidb = row.userId;
 	        	this.equipmentPerson1b = row.name;
 	      		this.equipmentPerson2b = row.username;
 	      		this.equipmentPerson3b = row.role;
-	      		this.equipmentName1b = (row.status ? '允许' : '禁止');
-	      		this.equipmentName2b = (row.role === '巡查员' ? '禁止' : '允许');
+	      		this.equipmentName1b = row.dlApp;
+	      		this.equipmentName2b = row.statusAj ;
 	        	this.isNew = false;
       		},
       		//编辑发布
