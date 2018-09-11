@@ -90,17 +90,24 @@
 					<el-tab-pane label="排放口编辑" name="first">
 						<div class="addpaiqikou">
 							<ul>
-								<li style="margin-top: 10px" v-for="(Vent, index) in todos">
+								<li style="list-style: none;margin-top: 10px;height: 40px" v-for="(Vent, index) in todos">
 									<div class="block">
-										<span>排放口名称：</span>
-										<el-input v-model="Vent.outputname" placeholder="请输入排气口名称"></el-input>
+										<div style="float: left;margin-left: 10px">
+											<span>排放口编号：</span>
+											<el-input v-model="Vent.outputcode" placeholder="请输入排气口编号"></el-input>
+										</div>
+										<div style="float: left;margin-left: 20px">
+											<span>排放口名称：</span>
+											<el-input v-model="Vent.outputname" placeholder="请输入排气口名称"></el-input>
+										</div>
+
 									</div>
 								</li>
 							</ul>
 						</div>
 						<div class="add-pqbtn" style="margin-top: 10px">
 							<el-button type="primary" @click="addVent">添加排气口</el-button>
-							<el-button type="primary" @click="">保存排气口</el-button>
+							<el-button type="primary" @click="delVent">删除排气口</el-button>
 						</div>
 					<!---->
 					</el-tab-pane>
@@ -111,7 +118,7 @@
 							<table border="1" class="table-up">
 								<!---->
 								<tr><th bgcolor="#f6f6f6"><div class="caeel">污染源名称</div></th><th colspan="4"><span class="cael"><el-input type="textarea" autosize placeholder="请输入内容" v-model="wryName"></el-input></span></th></tr>
-								<tr><th bgcolor="#f6f6f6"><div class="caeel">法人代码</div></th><th colspan="2"><span class="cael"> <el-input size="small" placeholder="请输入内容" v-model="frdm"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">法定代表人</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="frdb"></el-input></span></th></tr>
+								<tr><th bgcolor="#f6f6f6"><div class="caeel">企业编码</div></th><th colspan="2"><span class="cael"> <el-input size="small" placeholder="请输入内容" v-model="frdm"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">法定代表人</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="frdb"></el-input></span></th></tr>
 								<tr><th bgcolor="#f6f6f6"><div class="caeel">污染源地址</div></th><th colspan="4"><span class="cael"><el-input type="textarea" autosize placeholder="请输入内容" v-model="wrydz"></el-input></span></th></tr>
 								<tr><th bgcolor="#f6f6f6"><div class="caeel">行政区域</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="xzqy"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">污染源规模</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="wrygm"></el-input></span></th></tr>
 								<tr><th bgcolor="#f6f6f6"><div class="caeel">行政类型</div></th><th colspan="2"><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="xzlx"></el-input></span></th><th bgcolor="#f6f6f6"><div class="caeel">污染源类别</div></th><th><span class="cael"><el-input size="small" placeholder="请输入内容" v-model="wrylb"></el-input></span></th></tr>
@@ -204,7 +211,7 @@
 				//
 				ListData:[],
 				//排气口添加数组
-                todos:[{outputname:'刘强东'}],
+                todos:[{outputcode:'001',outputname:'刘强东'}],
 				//企业名称
 				componyName:'',
 				//
@@ -238,10 +245,17 @@
             addVent(){
                 //
                 let kname = '';
+                let kcode = '';
 				//
-				this.todos.push({outputname:kname});
+				this.todos.push({outputcode:kcode,outputname:kname});
 				//
 				console.log(this.todos);
+			},
+			//
+            delVent(){
+                console.log('删除')
+                this.todos.pop();
+                console.log(this.todos);
 			},
 			//查询数据
             QueryNeedsData(){
@@ -384,6 +398,7 @@
       		 handleSizeChange(val) {
         		console.log(`每页 ${val} 条`);
       		},
+			//
       		handleCurrentChange(val) {
         		// this.setPageTable(10, val);
                 this.getNotice('',val);
@@ -425,7 +440,7 @@
                 	this.todos = [];
       		},
 
-      		//添加运维记录确定
+      		//添加
       		Insert(){
       			const _this = this;
                 let code0 = this.codeid;//
@@ -473,7 +488,7 @@
 						_this.getNotice();
                     });
 				//}
-
+                _this.dialogVisible = false;
       		},
       		//获取列表
       		getNotice(name = '',PageIndex = '1'){
