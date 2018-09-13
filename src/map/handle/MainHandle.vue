@@ -103,6 +103,7 @@
           case 'LAYER_YQD':
           case 'LAYER_YJ':
           case 'LAYER_QM':
+          case 'LAYER_XCY':
             //请求接口触发
             hasVisible ? this.requestData(type, from) : (this.removeMarkerByList(this.getMarkerByType(type), type), this.removeLabelValue(this.getLabelValueByType(type), type), this.removeLabelRed(this.getLabelRedByType(type), type), this.delDataSourceByCode(type));
             break;
@@ -449,6 +450,16 @@
               pageNo:1
             };
             break;
+          case "LAYER_XCY":
+            let urlYCY = RequestHandle.getRequestUrl('PATROLLER');
+            lsUrl.push(urlYCY);
+            fieldName = 'username';
+            displayName = '';
+            pms = {
+              pageSize:10000,
+              pageNo:1
+            };
+            break;
         }
         let reqPms = undefined;
         if (pms) {
@@ -464,6 +475,7 @@
           let url = lsUrl[i];
           let params = {url: url + (reqPms ? ('?' + reqPms) : ''), type: requestType, pms: null};
           RequestHandle.request(params, function (result) {
+            console.log("巡查员",result);
             if (result.status) {
               let rtValue = [];
               let dt = undefined;

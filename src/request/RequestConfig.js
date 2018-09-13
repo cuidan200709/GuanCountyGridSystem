@@ -184,6 +184,10 @@ export default {
         cf = apiConfig[0];
         url = cf.site + cf.port + cf.path + '724json/';
         break;
+      case 'PATROLLER':
+        cf = apiConfig[2];
+        url = cf.site + cf.port + cf.path + 'guan/sysUser/list';
+        break;
     }
     return url;
   }
