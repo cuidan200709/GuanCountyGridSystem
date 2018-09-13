@@ -48,42 +48,50 @@
 	                </el-table-column>
 	                <el-table-column
 	                        prop="PM25"
-	                        label="PM2.5">
+	                        label="PM2.5"
+	                        sortable
+	                        column>
 	                </el-table-column>
 	                <el-table-column
 	                        prop="PM10"
-	                        label="PM10">
+	                        label="PM10"
+	                        sortable>
 	                </el-table-column>
 	                <el-table-column
 	                        prop="SO2"
-	                        label="SO2">
+	                        label="SO2"
+	                        sortable>
 	                </el-table-column>
 	                <el-table-column
 	                        prop="NO2"
-	                        label="NO2">
+	                        label="NO2"
+	                        sortable>
 	                </el-table-column>
 	                <el-table-column
 	                        prop="CO"
-	                        label="CO">
+	                        label="CO"
+	                        sortable>
 	                </el-table-column>
 	                <el-table-column
 	                        prop="O3"
-	                        label="O3">
+	                        label="O3"
+	                        sortable>
 	                </el-table-column>
 	                <el-table-column
 	                        prop="Com_Index"
 	                        label="综合指数">
 	                </el-table-column>
 	                <el-table-column
-	                        prop="AQI"
-	                        label="AQI">
+	                        prop="aqi"
+	                        label="AQI"
+	                        sortable>
 	                </el-table-column>
-	                <el-table-column
+	                <!--<el-table-column
 	                        prop="AQI"
 	                        label="等级">
-	                </el-table-column>
+	                </el-table-column>-->
 	                <el-table-column
-	                        prop="AQI"
+	                        prop="primaryPollution"
 	                        label="首要污染物">
 	                </el-table-column>
 	            </el-table>
@@ -96,7 +104,7 @@
                         :current-page="currentPage"
                         :page-size="pagesize"
                         layout="total, prev, pager, next, jumper"
-                        :total="totalCount">
+                        :total="totalCountState">
 	                </el-pagination>
 	            </div>
 	        </div>
@@ -114,56 +122,50 @@
             return {
                 //每页数量
                 pagesize: 10,
+                page:1,
                 //当前页
                 currentPage: 1,
                 //数据量/分页
-                totalCount: 100,
+                totalCountState: 100,
                 pickerOptions0: {},
 		        //今日数据
 		        SelectVal:'小时',//选择
 		        timevalue:'',
 		        tableStateData:[],
 		        deadStateData:[],
+		        statePageData:[]
             }
         },
         created() {
-            
+            this.GetHourData();
         },
         mounted() {
         	
         },
         methods: {
-        	//国控点数据获取
-        	GetMonitoringRank(){
-        	
-        		api.GetMonitoringRank(ranktype,starttime,endtime).then(res=>{
+        	//小时数据
+        	GetHourData(){
+        		api.GetCountyHourRank().then(res=>{
         			console.log(res)
         			let t = this;
         			let allData = res.data.Data;
         			if(allData){
-        				let stateData=[];
-        				let proData=[];
-        				allData.forEach(item=>{
-        					if(item.pointlevel=='国控点'){
-        						stateData.push(item)
-        					}
-        				})
-        				t.statePageData = [];
-        				this.totalCountState = stateData.length;
-		                stateData.sort(this.compare('Com_Index'));
-		                this.deadStateData = stateData.map((v,i)=>{
+        				this.totalCountState = allData.length;
+		                allData.sort(this.compare('Com_Index'));
+		                this.deadStateData = allData.map((v,i)=>{
 		                	v['Ranking']=i+1;
-		                	v['Name']=v.pointname;
-		                	v['Com_Index']=v.complexindex;
+		                	v['Name']=v.Name;
+		                	v['Com_Index']=v.Com_Index;
 		                	v['PM25']=v.pm25;
 		                	v['SO2']=v.so2;
 		                	v['PM10']=v.pm10;
 		                	v['NO2']=v.no2;
 		                	v['CO']=v.co;
+		                	v['aqi']=v.aqi;
 		                	v['O3']=v.o3;
 		                	return v});
 		                let i = 1;
-		                stateData.forEach(item => {
+		                allData.forEach(item => {
 		                    let tableData = {};//数据
 		                    tableData.Ranking = item.Ranking;//排名
 		                    tableData.Name = item.Name;//名称
@@ -174,6 +176,8 @@
 		                    tableData.NO2 = item.NO2;//NO2
 		                    tableData.CO = item.CO;//CO
 		                    tableData.O3 = item.O3;//O3
+		                    tableData.aqi = item.aqi;//CO
+		                     tableData.primaryPollution = item.primaryPollution;//CO
 		                    t.statePageData.push(tableData);
 		                })
 		                this.setStatePageTable(10, this.page);
@@ -204,7 +208,7 @@
 	        		if(column.order=='ascending'){
 	        			var [ ...deadStateData3 ] = this.deadStateData;
 						this.statePageData=deadStateData3.sort(this.compare('Com_Index')).reverse();
-						console.log(this.CityData);
+//						console.log(this.CityData);
 						this.statePageData.map((v,i)=>{
 		                	v['Ranking']=i+1;
 		                	return v
@@ -247,7 +251,7 @@
 	        		if(column.order=='ascending'){
 	        			var [ ...deadStateData7 ] = this.deadStateData;
 						this.statePageData=deadStateData7.sort(this.compare('CO')).reverse();
-						console.log(this.CityData);
+//						console.log(this.CityData);
 						this.statePageData.map((v,i)=>{
 		                	v['Ranking']=i+1;
 		                	return v
@@ -332,6 +336,27 @@
 	        		if(column.order=='ascending'){
 	        			var [ ...deadStateData15 ] = this.deadStateData;
 						this.statePageData=deadStateData15.sort(this.compare('PM25')).reverse();
+						this.statePageData.map((v,i)=>{
+		                	v['Ranking']=i+1;
+		                	return v
+						})
+	        		}	
+        			this.setStatePageTable(10, this.page);
+        		}
+        		if(column.prop=='aqi'){
+        			//倒序
+	        		if(column.order=='descending'){
+	        			var [ ...deadStateData16 ] = this.deadStateData;
+						this.statePageData=deadStateData16.sort(this.compare('aqi'));
+						this.statePageData.map((v,i)=>{
+		                	v['Ranking']=i+1;
+		                	return v
+						})
+	        		}
+               		//正序
+	        		if(column.order=='ascending'){
+	        			var [ ...deadStateData17 ] = this.deadStateData;
+						this.statePageData=deadStateData17.sort(this.compare('aqi')).reverse();
 						this.statePageData.map((v,i)=>{
 		                	v['Ranking']=i+1;
 		                	return v

@@ -210,6 +210,7 @@ const apilangfangTDK = {
     GetSingleCompany: apiconfig[icode].devn + '/api/Company/getSingleCompany?',//获取单独企业信息
     GetCaseTypePie: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByPollutionType?',//首页案件类型占比
     GetCaseDealPer: apiconfig[icode].devc + '/guan/mobile/getCaseDepartmentDealPer?',//首页案件处理率同比
+    GetCountyHourRank: apiconfig[icode].devm + '/api/LfAir/GetCountyHourRank?',//今日数据小时
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -383,3 +384,4 @@ export const AddReportEventResource = API_ROOT.concat(apilangfangTDK.AddReportEv
 export const GetCaseAduitResource = API_ROOT.concat(apilangfangTDK.GetCaseAduit);
 export const GetCaseTypePieResource = API_ROOT.concat(apilangfangTDK.GetCaseTypePie);
 export const GetCaseDealPerResource = API_ROOT.concat(apilangfangTDK.GetCaseDealPer);
+export const GetCountyHourRankResource = API_ROOT.concat(apilangfangTDK.GetCountyHourRank);

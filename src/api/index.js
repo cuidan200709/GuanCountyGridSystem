@@ -177,6 +177,7 @@ import {
     GetCaseAduitResource,//案件审核
     GetCaseTypePieResource,//首页案件类型占比
     GetCaseDealPerResource,//首页案件处理率同比
+    GetCountyHourRankResource,//今日数据小时
 } from './resource'
 
 export default {
@@ -1508,6 +1509,11 @@ export default {
     //首页案件处理率同比
     GetCaseDealPer(){
     	return axios.get(GetCaseDealPerResource, {}
+        )
+    },
+    //今日数据小时
+    GetCountyHourRank(){
+    	return axios.get(GetCountyHourRankResource, {}
         )
     },
 }
