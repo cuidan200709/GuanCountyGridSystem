@@ -24,7 +24,7 @@
 					    </el-option>
 					</el-select>
 				    <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
-				    <el-button type="primary" class='btns' @click=''>导出</el-button>
+				    <el-button type="primary" class='btns' @click='ExportReportExcel'>导出</el-button>
 				    <el-button type="primary" class='btns' @click='handleAdd'>添加</el-button>
 				</div>
 			</div>
@@ -363,13 +363,9 @@
       			}
       		},
       		//导出
-      		GetExportCase(){
-      			let t = this;
-				let starTime = this.CaseStartTime?this.CaseStartTime:'';
-				let endTime = this.CaseEndTime?this.CaseEndTime:'';
-				let pageSize = 10;
-				let pageNo = 1;
-      			api.GetExportCase(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo);
+      		ExportReportExcel(){
+      			let userId = this.griderName;
+      			api.ExportReportExcel(userId);
       		},
       		 //分页数据
             setPageTable(pageSize, pageNum) {

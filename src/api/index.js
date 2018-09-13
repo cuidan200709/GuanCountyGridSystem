@@ -178,6 +178,8 @@ import {
     GetCaseTypePieResource,//首页案件类型占比
     GetCaseDealPerResource,//首页案件处理率同比
     GetCountyHourRankResource,//今日数据小时
+    ExportStarExcelResource,//明星巡查员导出
+    ExportReportExcelResource,//通报巡查员导出
 } from './resource'
 
 export default {
@@ -1515,5 +1517,13 @@ export default {
     GetCountyHourRank(){
     	return axios.get(GetCountyHourRankResource, {}
         )
+    },
+    //明星巡查员导出
+    ExportStarExcel(userId){
+    	window.open(ExportStarExcelResource+'userId='+ userId,{})
+    },
+    //通报巡查员导出
+    ExportReportExcel(userId){
+    	window.open(ExportReportExcelResource+'userId='+ userId,{})
     },
 }
