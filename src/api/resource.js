@@ -191,9 +191,11 @@ const apilangfangTDK = {
     GetCaseCountListExcel: apiconfig[icode].devc +'/guan/mobile/getCaseNumGroupByDepartmentDealPerExcel?',//案件处理率统计导出
     GetStarList: apiconfig[icode].devc +'/guan/sysUserEvent/starList?',//明星巡查员
     AddStarEvent: apiconfig[icode].devc +'/guan/sysUserEvent/addStarEvent',//添加明星巡查员
+    ExportStarExcel: apiconfig[icode].devc +'/guan/sysUserEvent/getStarEventExcel?',//明星巡查员导出
     GetStarGridName: apiconfig[icode].devc +'/guan/sysUserEvent/getSysUserNameList',//明星巡查员姓名
     EditStarEvent: apiconfig[icode].devc +'/guan/sysUserEvent/update',//明星/通报巡查员编辑
     GetReportList: apiconfig[icode].devc +'/guan/sysUserEvent/noticeList?',//通报巡查员
+    ExportReportExcel: apiconfig[icode].devc +'/guan/sysUserEvent/getNoticeEventExcel?',//通报巡查员导出
     AddReportEvent: apiconfig[icode].devc +'/guan/sysUserEvent/addNoticeEvent',//添加通报巡查员
     GetcodeDepartmentlist: apiconfig[icode].devc +'/guan/codeDepartment/list',//责任部门管理列表接口
     GetcodeDepartmentlistadd: apiconfig[icode].devc +'/guan/codeDepartment/add',//责任部门添加接口
@@ -385,3 +387,5 @@ export const GetCaseAduitResource = API_ROOT.concat(apilangfangTDK.GetCaseAduit)
 export const GetCaseTypePieResource = API_ROOT.concat(apilangfangTDK.GetCaseTypePie);
 export const GetCaseDealPerResource = API_ROOT.concat(apilangfangTDK.GetCaseDealPer);
 export const GetCountyHourRankResource = API_ROOT.concat(apilangfangTDK.GetCountyHourRank);
+export const ExportStarExcelResource = API_ROOT.concat(apilangfangTDK.ExportStarExcel);
+export const ExportReportExcelResource = API_ROOT.concat(apilangfangTDK.ExportReportExcel);
