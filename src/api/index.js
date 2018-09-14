@@ -185,6 +185,7 @@ import {
     GetInspectorChartResource,//获取巡查员图表
     PostSchduleListResource,//获取巡查员列表
     PostSendSchduleResource,//巡查员调度
+    GetsysUserPasswordResource,//巡查员管理修改密码
 } from './resource'
 
 export default {
@@ -193,9 +194,13 @@ export default {
     GetUserLoginRes() {
         return GetUserLoginResource
     },
+    //巡查员修改密码
+    GetsysUserPassword(password){
+        return axios.get(GetsysUserPasswordResource+'password='+ password ,{})
+    },
     //指挥调度巡查员饼图
     GetInspectorChartRt(name){
-        return axios.get(GetInspectorChartResource+'name ='+ encodeURI(name) ,{})
+        return axios.get(GetInspectorChartResource+'name='+ encodeURI(name) ,{})
 
     },
     //指挥调度获取巡查员列表

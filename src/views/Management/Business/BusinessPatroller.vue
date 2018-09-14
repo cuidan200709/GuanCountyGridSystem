@@ -96,6 +96,14 @@
 							<span>岗位</span>
 							<el-input v-model="equipmentPerson3" placeholder="请输入内容"></el-input>
 						</div>
+						<div class="block">
+							<span>经度</span>
+							<el-input v-model="equipmentPerson4" placeholder="请输入内容"></el-input>
+						</div>
+						<div class="block">
+							<span>纬度</span>
+							<el-input v-model="equipmentPerson5" placeholder="请输入内容"></el-input>
+						</div>
                 		<div class="block" style="overflow: hidden;">
 						    <span>登录权限</span>
 						    <el-select v-model="equipmentName1"
@@ -144,6 +152,14 @@
 							<span>岗位</span>
 							<el-input v-model="equipmentPerson3b" placeholder="请输入内容"></el-input>
 						</div>
+						<div class="block">
+							<span>经度</span>
+							<el-input v-model="equipmentPerson4b" placeholder="请输入内容"></el-input>
+						</div>
+						<div class="block">
+							<span>纬度</span>
+							<el-input v-model="equipmentPerson5b" placeholder="请输入内容"></el-input>
+						</div>
 						<div class="block" style="overflow: hidden;">
 							<span>登录权限</span>
 							<el-select v-model="equipmentName1b"
@@ -179,7 +195,7 @@
 				</div>
 				<span slot="footer" class="dialog-footer">
 				<el-button @click="dialogVisible = false">取 消</el-button>
-				<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+				<el-button type="primary" @click="PasswordChangeSubmit">确 定</el-button>
 			  </span>
 			</el-dialog>
 		</div>
@@ -216,6 +232,8 @@
                 equipmentPerson1:'',
                 equipmentPerson2:'',
                 equipmentPerson3:'',
+                equipmentPerson4:'',
+                equipmentPerson5:'',
                 equipmentPersonid:'',
                 equipmentName1:'',
                 equipmentName2:'',
@@ -223,6 +241,8 @@
                 equipmentPerson1b:'',
                 equipmentPerson2b:'',
                 equipmentPerson3b:'',
+                equipmentPerson4b:'',
+                equipmentPerson5b:'',
                 equipmentPersonidb:'',
                 equipmentName1b:'',
                 equipmentName2b:'',
@@ -274,14 +294,25 @@
             },
         	///新建预警信息发布
         	publish(){
+                //
         		this.Insert();
                 this.isNew = false;
-
         	},
 			//修改密码初始化
 			changePassword(row){
                 console.log(row.userId);
                 this.dialogVisible = true;
+			},
+			//修改密码于旧密码比较
+            sysUserPasswordChange(){
+                let password = this.newpossword;
+                api.GetsysUserPassword(password).then(res =>{
+                    console.log(res);
+				})
+			},
+			//修改密码提交
+            PasswordChangeSubmit(){
+                this.dialogVisible = false;
 			},
 			//编辑
 	        handleClick(row) {
