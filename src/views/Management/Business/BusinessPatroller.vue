@@ -13,7 +13,7 @@
 				<span>巡查员名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
 				<el-button type="primary" class='btns' @click="QueryNeedsData">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加巡查员</el-button>
-				<el-button type="primary" class='btns' @click="">导出</el-button>
+				<el-button type="primary" class='btns' @click="Export">导出</el-button>
 			</div>
 			<!--list-->
 			<div class="box">
@@ -303,7 +303,7 @@
       			let name = _this.equipmentPerson1b;
                 let status = _this.contenterChange(_this.equipmentName1b);
       			let role = _this.contenterChange(_this.equipmentName2b);
-
+				//
       			api.POSTsysUserupdatet(userId,username,status,role,name).then(result=>{
       			    console.log(result);
                     _this.getNotice();
@@ -428,6 +428,10 @@
                 }
                 this.tableData = rtValue;
             },
+			//导出
+            Export(){
+                api.ExportInspectorExcel();
+			}
         },
     }
 </script>

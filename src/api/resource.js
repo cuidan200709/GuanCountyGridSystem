@@ -71,6 +71,9 @@ const apilangfangTDK = {
     GetJingJinJiHourList: apiconfig[icode].devn + '/api/jingJinJi/GetJingJinJiHourListPc',//京津冀城市排名
     GetElectricityChart2: apiconfig[icode].devn + '/api/LargeData/GetElectricityChart?',//大数据资源统计
     GetPointNameListData: apiconfig[icode].devn + '/api/LargeData/GetPointNameList',//大数据资源统计
+    GetInspectorChart: apiconfig[icode].devn + '/api/Schedule/GetChart?',//巡查调度-巡查员饼图
+    PostSchduleList: apiconfig[icode].devn + '/api/Schedule/GetSchduleList',//巡查调度-巡查员列表
+    PostSendSchdule: apiconfig[icode].devn + '/api/Schedule/SendSchdule',//巡查调度-调度
     GetTownList: apiconfig[icode].devn + '/api/Town/GetTownList',//乡镇企业列表展示
     GetSingleTown: apiconfig[icode].devn + '/api/Town/GetSingleTown?StationId=',//乡镇企业详细数据展示
     GetTownAnalysisList: apiconfig[icode].devn + '/api/Town/GetTownAnalysisList?region=',//乡镇统计实时数据
@@ -201,10 +204,12 @@ const apilangfangTDK = {
     GetcodeDepartmentlistadd: apiconfig[icode].devc +'/guan/codeDepartment/add',//责任部门添加接口
     GetcodeDepartmentlistdel: apiconfig[icode].devc +'/guan/codeDepartment/delete',//责任部门删除接口
     GetcodeDepartmentlistup: apiconfig[icode].devc +'/guan/codeDepartment/update',//责任部门编辑接口
+    getCodeDepartmentExcel: apiconfig[icode].devc +'/guan/codeDepartment/getCodeDepartmentExcel?',//责任部门导出
     GetsysUserlist: apiconfig[icode].devc +'/guan/sysUser/list',//巡查员管理列表接口
     GetsysUseradd: apiconfig[icode].devc +'/guan/sysUser/add',//巡查员添加接口
     GetsysUserdelete: apiconfig[icode].devc +'/guan/sysUser/delete',//巡查员删除接口
     GetsysUserupdate: apiconfig[icode].devc +'/guan/sysUser/update',//巡查员编辑接口
+    ExportInspector: apiconfig[icode].devc +'/guan/sysUser/getSysUserExcel?',//巡查员导出
     PosthtcompanyList: apiconfig[icode].devn + '/api/Company/GetcompanyList',//获取企业列表（后台）
     PostAddCompany: apiconfig[icode].devn + '/api/Company/AddCompany',//增加企业信息
     PostupdateCompany: apiconfig[icode].devn + '/api/Company/updateCompany',//修改企业信息
@@ -389,3 +394,8 @@ export const GetCaseDealPerResource = API_ROOT.concat(apilangfangTDK.GetCaseDeal
 export const GetCountyHourRankResource = API_ROOT.concat(apilangfangTDK.GetCountyHourRank);
 export const ExportStarExcelResource = API_ROOT.concat(apilangfangTDK.ExportStarExcel);
 export const ExportReportExcelResource = API_ROOT.concat(apilangfangTDK.ExportReportExcel);
+export const ExportInspector = API_ROOT.concat(apilangfangTDK.ExportInspector);
+export const ExportResponsibilityExcel = API_ROOT.concat(apilangfangTDK.getCodeDepartmentExcel);
+export const GetInspectorChartResource = API_ROOT.concat(apilangfangTDK.GetInspectorChart);
+export const PostSchduleListResource = API_ROOT.concat(apilangfangTDK.PostSchduleList);
+export const PostSendSchduleResource = API_ROOT.concat(apilangfangTDK.PostSendSchdule);

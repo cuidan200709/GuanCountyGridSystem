@@ -180,6 +180,11 @@ import {
     GetCountyHourRankResource,//今日数据小时
     ExportStarExcelResource,//明星巡查员导出
     ExportReportExcelResource,//通报巡查员导出
+    ExportResponsibilityExcel,//责任部门管理
+    ExportInspector,//巡查员管理
+    GetInspectorChartResource,//获取巡查员图表
+    PostSchduleListResource,//获取巡查员列表
+    PostSendSchduleResource,//巡查员调度
 } from './resource'
 
 export default {
@@ -187,6 +192,38 @@ export default {
     //登录地址
     GetUserLoginRes() {
         return GetUserLoginResource
+    },
+    //指挥调度巡查员饼图
+    GetInspectorChartRt(name){
+        return axios.get(GetInspectorChartResource+'name ='+ encodeURI(name) ,{})
+
+    },
+    //指挥调度获取巡查员列表
+    PostSchduleListRt(name,PageIndex) {
+        let params = {
+            'name':name,//
+            'PageIndex':PageIndex,//
+            'PageSize':10,//
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostSchduleListResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
+    },
+    //指挥调度巡查员调度
+    PostSendSchduleRt(userId,title,message,sendId) {
+        let params = {
+            'userId':userId,//
+            'title':title,//
+            'message':message,//
+            'sendId':sendId,//
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostSendSchduleResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
     },
     //获取企业列表
     PosthtcompanyListRt(name,PageIndex) {
@@ -1525,5 +1562,13 @@ export default {
     //通报巡查员导出
     ExportReportExcel(userId){
     	window.open(ExportReportExcelResource+'userId='+ userId,{})
+    },
+    //责任部门管理导出
+    ExportResponsibilityExcel(){
+        window.open(ExportResponsibilityExcel,{})
+    },
+    //巡查员管理导出
+    ExportInspectorExcel(){
+        window.open(ExportInspector,{})
     },
 }

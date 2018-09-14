@@ -25,17 +25,17 @@
                         <div class="">
                             <div id="bing_item_1p" style="width: 390px;height: 180px;padding-left: 14px"></div>
                         </div>
-                        <!---->
-                        <div class="title-daqi">
-                            <div class="shuxian"></div>
-                            <div class="title-text">
-                                <div class="bing_text">乡镇名称</div>
-                            </div>
-                        </div>
-                        <!--案件类型占比-->
-                        <div class="">
-                            <div id="bing_item_2p" style="width: 390px;height: 180px;padding-left: 14px"></div>
-                        </div>
+                        <!--&lt;!&ndash;&ndash;&gt;-->
+                        <!--<div class="title-daqi">-->
+                            <!--<div class="shuxian"></div>-->
+                            <!--<div class="title-text">-->
+                                <!--<div class="bing_text">乡镇名称</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;案件类型占比&ndash;&gt;-->
+                        <!--<div class="">-->
+                            <!--<div id="bing_item_2p" style="width: 390px;height: 180px;padding-left: 14px"></div>-->
+                        <!--</div>-->
                     </div>
                     <!--排名-->
                     <div class="table_container">
@@ -47,22 +47,28 @@
                                 @current-change="RowCurrentChange"
                                 style="width: 400px">
                             <el-table-column
-                                    property="time"
-                                    label="时间"
-                                    width="160"
-                                    >
-                            </el-table-column>
-                            <el-table-column
-                                    property="reportType"
-                                    label="案件类型"
-                                    >
-                            </el-table-column>
-                            <el-table-column
-                                    property="grid"
-                                    label="所属网格"
-                                    >
-                            </el-table-column>
+                                    property="name"
+                                    label="姓名"
 
+                                    >
+                            </el-table-column>
+                            <el-table-column
+                                    property="Contact"
+                                    label="联系方式"
+                                    >
+                            </el-table-column>
+                            <el-table-column
+                                    property="state"
+                                    label="状态"
+                                    >
+                            </el-table-column>
+                            <el-table-column
+                                    label="操作"
+                                   >
+                                <template scope="scope">
+                                    <el-button @click="handleClick(scope.row)" type="text" size="small" class='eidt'>调度</el-button>
+                                </template>
+                            </el-table-column>
                         </el-table>
                         <!--分页条-->
                         <div class="Pagination" style="text-align: left;margin-top: 10px;">
@@ -77,7 +83,7 @@
                             </el-pagination>
                         </div>
                         <div class="pan-anniu">
-                            <el-button type="primary">一键调度</el-button>
+                            <el-button type="primary" @click="OnkeyScheduling">一键调度</el-button>
                         </div>
                     </div>
                 </div>
@@ -115,34 +121,16 @@
                 endtime: '',
             }
         },
-        created() {
-            //初始化数据接入
-            api.GetpeortpleselectCases().then(res =>{
-               //案件列表
-                let data = res.data.case;
-                //案件数量比
-                let grid = res.data.grid;
-                //案件类型比
-                let type = res.data.type;
-               // console.log(data)
-                this.InitializationDataMethod(data);
-                //数量表图例
-                this.NumberCasesChars(grid);
-                //类型比图例
-                this.TypeCasesChars(type);
-            })
-
-        },
+        created() {},
         mounted() {
-            //右侧收放
-            setTimeout(()=>{
-                //
-                this.NumberCasesChars();
-                //
-                this.TypeCasesChars();
-            },500)
+            //
+            this.GetListData();
+            //
+            this.GetChartRtdata();
         },
         methods: {
+            //
+            handleClick(val){},
             //排序
             compare(propertyName) {
                 return function (object1, object2) {
@@ -155,23 +143,20 @@
             InitializationDataMethod(data) {
                 const _this = this;
                 //
-                _this.alldata = [];
+                _this.tableData = [];
                 //
                 data.forEach(item => {
                     const tableData = {};
-                    tableData.time = item.createtime;//时间
-                    tableData.reportType = item.pollutiontype;//
-                    tableData.casecode = item.casecode;//城市id
-                    tableData.latitude = item.latitude;//纬度
-                    tableData.longitude = item.longitude;//经度
-                    tableData.grid = item.departmenttype;//网格
-                    _this.alldata.push(tableData);
-                    //this.tableData.push(tableData)
+                    tableData.id = item.Id;//城市id
+                    tableData.name = item.name;//
+                    tableData.Contact = item.mobile;//状态
+                    tableData.state = item.status?'开启':'关闭';//状态
+                    //tableData.latitude = item.latitude;//纬度
+                    //tableData.longitude = item.longitude;//经度
+                    _this.tableData.push(tableData);
+
                 })
-                console.log(this.alldata)
-                this.totalCount = this.alldata.length;
-                //
-                this.setPageTable(10, 1);
+                // console.log(this.tableData)
             },
             //table点击事件
             RowCurrentChange(val) {
@@ -185,8 +170,10 @@
             },
             //页码变更
             handleCurrentChange(val) {
-                this.setPageTable(10, val);
-                console.log(val)
+                //
+                let name = this.inputName;
+                let PageIndex = val;
+                this.GetListData(name,PageIndex)
             },
             //分页效果
             setPageTable(pageSize, pageNum) {
@@ -215,14 +202,9 @@
             },
             //查询事件
             btnClickEvent() {
-                const t = this;
-                //开始时间
-                let starttime = this.TimeConversion('yyyy-MM-dd hh:00:00', this.starttime);
-                //结束时间
-                let endtime = this.TimeConversion('yyyy-MM-dd hh:00:00', this.endtime);
                 //
-                console.log('开始时间' + starttime);
-                console.log('结束时间' + endtime);
+                let name = this.inputName;
+                this.GetListData(name,1)
             },
             //时间转换
             TimeConversion(fmt, date) {
@@ -244,12 +226,12 @@
             },
             //状态
             NumberCasesChars(data){
-                // let showData = data.map(function (v) {
-                //     return {value: (v.percent).replace('%',''), name: v.name}
-                // }) || [];
-                // let lenData = data.map(function (v) {
-                //     return {name: v.name}
-                // }) || [];
+                let showData = data.map(function (v) {
+                    return {value: (v.percent).replace('%',''), name: v.name}
+                }) || [];
+                let lenData = data.map(function (v) {
+                    return {name: v.name}
+                }) || [];
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('bing_item_1p'));
                 // 指定图表的配置项和数据
@@ -259,8 +241,8 @@
                         orient: 'right',
                         y:'center',
                         left:160,
-                        data: ['广阳区','安次区','开发区']
-                       // data:lenData
+                       // data: ['广阳区','安次区','开发区']
+                        data:lenData
                     },
                     series: [
                         {
@@ -297,7 +279,7 @@
                 //动态设置参数
                 myChart.setOption({
                     series: [{
-                       // data: showData,
+                        data: showData,
                         color: [
                             '#08a1ed',
                             '#a2c73b',
@@ -311,86 +293,115 @@
                 })
             },
             //乡镇名称
-            TypeCasesChars(data){
-                // let showData = data.map(function (v) {
-                //     return {value: (v.percent).replace('%',''), name: v.name}
-                // }) || [];
-                // let lenData = data.map(function (v) {
-                //     return {name: v.name}
-                // }) || [];
-                // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('bing_item_2p'));
-                // 指定图表的配置项和数据
-                let option = {
-
-                    legend: {
-                        orient: 'right',
-                        y:'center',
-                        left: 'right',
-                        data: ['垃圾堆放','土壤裸露','露天烧烤','垃圾焚烧','餐饮油烟','建筑扬尘','废气排放','汽车尾气']
-                        //data:lenData
-                    },
-                    series: [
-                        {
-                            name: '访问来源',
-                            type: 'pie',
-                            radius: '70%',
-                            center: ['20%', '50%'],
-                            hoverAnimation: false,
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'center'
-                                },
-                                emphasis: {
-                                    show: true,
-                                    textStyle: {
-                                        fontSize: '20',
-                                        fontWeight: 'bold'
-                                    }
-                                }
-                            },
-                            data: [
-                                {value: 335, name: '垃圾堆放'},
-                                {value: 310, name: '土壤裸露'},
-                                {value: 234, name: '露天烧烤'},
-                                {value: 135, name: '垃圾焚烧'},
-                                {value: 548, name: '餐饮油烟'},
-                                {value: 500, name: '建筑扬尘'},
-                                {value: 500, name: '废气排放'},
-                                {value: 300, name: '汽车尾气'}
-                            ],
-
-                        }
-                    ]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-                //动态设置参数
-                myChart.setOption({
-                    series: [{
-                       // data: showData,
-                        color: [
-                            '#08a1ed',
-                            '#a2c73b',
-                            '#f2cd49',
-                            '#85dbce',
-                            '#ce93e3',
-                            '#6c68e1',
-                            '#e5763f'
-                        ]
-                    }]
-                })
-                //触动当前方法
-                myChart.on('legendselectchanged', function(obj) {
-                    let selected = obj.selected;
-                    let legend = obj.name;
-                    if(selected[legend] == false){
-                        console.log(legend);
-                    }
-                });
-            },
+            // TypeCasesChars(data){
+            //     // let showData = data.map(function (v) {
+            //     //     return {value: (v.percent).replace('%',''), name: v.name}
+            //     // }) || [];
+            //     // let lenData = data.map(function (v) {
+            //     //     return {name: v.name}
+            //     // }) || [];
+            //     // 基于准备好的dom，初始化echarts实例
+            //     let myChart = echarts.init(document.getElementById('bing_item_2p'));
+            //     // 指定图表的配置项和数据
+            //     let option = {
             //
+            //         legend: {
+            //             orient: 'right',
+            //             y:'center',
+            //             left: 'right',
+            //             data: ['垃圾堆放','土壤裸露','露天烧烤','垃圾焚烧','餐饮油烟','建筑扬尘','废气排放','汽车尾气']
+            //             //data:lenData
+            //         },
+            //         series: [
+            //             {
+            //                 name: '访问来源',
+            //                 type: 'pie',
+            //                 radius: '70%',
+            //                 center: ['20%', '50%'],
+            //                 hoverAnimation: false,
+            //                 label: {
+            //                     normal: {
+            //                         show: false,
+            //                         position: 'center'
+            //                     },
+            //                     emphasis: {
+            //                         show: true,
+            //                         textStyle: {
+            //                             fontSize: '20',
+            //                             fontWeight: 'bold'
+            //                         }
+            //                     }
+            //                 },
+            //                 data: [
+            //                     {value: 335, name: '垃圾堆放'},
+            //                     {value: 310, name: '土壤裸露'},
+            //                     {value: 234, name: '露天烧烤'},
+            //                     {value: 135, name: '垃圾焚烧'},
+            //                     {value: 548, name: '餐饮油烟'},
+            //                     {value: 500, name: '建筑扬尘'},
+            //                     {value: 500, name: '废气排放'},
+            //                     {value: 300, name: '汽车尾气'}
+            //                 ],
+            //
+            //             }
+            //         ]
+            //     };
+            //     // 使用刚指定的配置项和数据显示图表。
+            //     myChart.setOption(option);
+            //     //动态设置参数
+            //     myChart.setOption({
+            //         series: [{
+            //            // data: showData,
+            //             color: [
+            //                 '#08a1ed',
+            //                 '#a2c73b',
+            //                 '#f2cd49',
+            //                 '#85dbce',
+            //                 '#ce93e3',
+            //                 '#6c68e1',
+            //                 '#e5763f'
+            //             ]
+            //         }]
+            //     })
+            //     //触动当前方法
+            //     myChart.on('legendselectchanged', function(obj) {
+            //         let selected = obj.selected;
+            //         let legend = obj.name;
+            //         if(selected[legend] == false){
+            //             console.log(legend);
+            //         }
+            //     });
+            // },
+            //获取饼图数据
+            GetChartRtdata(name = ''){
+                //饼图数据
+                api.GetInspectorChartRt(name).then(res =>{
+                    console.log(res)
+                    let data = res.data.Data.Data;
+                    this.NumberCasesChars(data);
+                })
+            },
+            //获取列表数据
+            GetListData(name = '',PageIndex = 1){
+
+                api.PostSchduleListRt(name,PageIndex).then(res =>{
+                   // console.log(res)
+                    let TotlePageNum = res.data.Data.TotlePageNum;
+                    let data = res.data.Data.Data;
+                    this.totalCount = TotlePageNum;
+                    this.InitializationDataMethod(data);
+                })
+            },
+            //一键调度
+            OnkeyScheduling(){
+                let userId = [];
+                let title ='';
+                let message = '';
+                let sendId ='';
+                this.PostSendSchduleRt(userId,title,message,sendId).then(res =>{
+                    console.log(res);
+                })
+            }
         },
         components: {}
     }

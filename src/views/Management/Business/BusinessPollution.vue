@@ -159,36 +159,36 @@
         data() {
             return {
                 //企业信息表
-                wryName:'',//
-				frdm:'',//
-				frdb:'',//
-				wrydz:'',//
-				xzqy:'',//
-				wrygm:'',//
-				xzlx:'',//
-				wrylb:'',//
-				dwlx:'',//
-				tcrq:'',//
-				zdmj:'',//
-				dqmc:'',//
-				sfdlqy:'',//
-				qyzt:'',//
-				gzcd:'',//
-				yxzt:'',//
-				ly:'',//
-				zxzt:'',//
-				txdz:'',//
-				txdz2:'',//
-				lxr:'',//
-				yddh:'',//
-				bgdh:'',//
-				wrywz:'',//
-				zxjd:'',//
-				zxwd:'',//
-				wryhbbm:'',//
-				zzhbrys:'',//
-				hbfzr:'',//
-				bz:'',//
+                wryName:'',//污染源名称
+				frdm:'',//企业编码
+				frdb:'',//法人代表
+				wrydz:'',//污染源地址
+				xzqy:'',//行政区域
+				wrygm:'',//污染源规模
+				xzlx:'',//行政类型
+				wrylb:'',//污染源类别
+				dwlx:'',//单位类型
+				tcrq:'',//投产日期
+				zdmj:'',//占地面积
+				dqmc:'',//地区名称
+				sfdlqy:'',//是否30千瓦
+				qyzt:'',//启用状态
+				gzcd:'',//关注程度
+				yxzt:'',//运行状态
+				ly:'',//流域
+				zxzt:'',//在线状态
+				txdz:'',//通讯地址
+				txdz2:'',//emial
+				lxr:'',//联系人
+				yddh:'',//移动电话
+				bgdh:'',//办公电话
+				wrywz:'',//污染源网址
+				zxjd:'',//中心经度
+				zxwd:'',//中心纬度
+				wryhbbm:'',//污染源环保部门
+				zzhbrys:'',//专职环保人员数
+				hbfzr:'',//环保负责人
+				bz:'',//备注
 				//
                 dialogVisible:false,
 				//
@@ -310,24 +310,24 @@
                 api.GetSingleCompanyRt(row.pscode).then(res =>{
                     console.log(res.data.Data);
                     let Data = res.data.Data;//
-                    this.wryName= Data.psname;//
-                    this.frdm=Data.pscode;//
-                    this.frdb=Data.legalperson;//
-                    this.wrydz=Data.pollutionAddress;//
-                    this.xzqy=Data.region;//
-                    this.wrygm=Data.pollutionScale;//8
-                    this.xzlx=Data.industryType;//
-                    this.wrylb=Data.pollutionType;//10
-                    this.dwlx=Data.companyType;//
-                    this.tcrq=Data.commissioningDate;//12
-                    this.zdmj=Data.floorSpace;//9
-                    this.dqmc=Data.areaName;//14
-                    this.sfdlqy=Data.is30Company;//11
-                    this.qyzt=Data.enabled;//16
-                    this.gzcd=Data.concernExtent;//13
-                    this.yxzt=Data.runningStatus;//18
-                    this.ly =Data.drainageBasin;//15
-                    this.zxzt =Data.isOnline;//17
+                    this.wryName= Data.psname;//污染源名称
+                    this.frdm=Data.pscode;//企业编码
+                    this.frdb=Data.legalperson;//法人代表
+                    this.wrydz=Data.pollutionAddress;//污染源地址
+                    this.xzqy=Data.region;//行政区域
+                    this.wrygm=Data.pollutionScale;//污染源规模
+                    this.xzlx=Data.industryType;//行政类型
+                    this.wrylb=Data.pollutionType;//污染源类别
+                    this.dwlx=Data.companyType;//单位类型
+                    this.tcrq=Data.commissioningDate;//投产日期
+                    this.zdmj=Data.floorSpace;//占地面积
+                    this.dqmc=Data.areaName;//地区名称
+                    this.sfdlqy=Data.is30Company;//是否30千瓦
+                    this.qyzt=Data.enabled;//启用状态
+                    this.gzcd=Data.concernExtent;//关注程度
+                    this.yxzt=Data.runningStatus;//运行状态
+                    this.ly =Data.drainageBasin;//流域
+                    this.zxzt =Data.isOnline;//在线状态
                     this.txdz =Data.contactAddress;//19
                     this.txdz2 =Data.emial;//21
                     this.lxr =Data.contactPerson;//20
@@ -349,23 +349,23 @@
       		EditUpdate(){
       			const _this = this;
                 let code0 = this.codeid;//
-                let data1 = this.wryName || '';//
-                let data2 = this.frdb ||'';//
-                let data3 = this.wrydz ||'';//
-                let data4 = this.xzqy ||'';//
-                let data7 = this.wrygm ||'';//
-                let data5 = this.xzlx ||'';//
-                let data9 = this.wrylb ||'';//
-                let data6 = this.dwlx ||'';//
-                let data11 =this.tcrq ||'';//
-                let data8 =this.zdmj ||'';//
-                let data13 =this.dqmc ||'';//
-                let data10 =this.sfdlqy ||'';//
-                let data15 =this.qyzt ||'';//
-                let data12 =this.gzcd ||'';//
-                let data17 =this.yxzt ||'';//
-                let data14 =this.ly ||'';//
-                let data16 =this.zxzt ||'';//
+                let data1 = this.wryName || '';//污染源名称
+                let data2 = this.frdb ||'';//法人代表
+                let data3 = this.wrydz ||'';//污染源地址
+                let data4 = this.xzqy ||'';//行政区域
+                let data7 = this.wrygm ||'';//污染源规模
+                let data5 = this.xzlx ||'';//行政类型
+                let data9 = this.wrylb ||'';//污染源类别
+                let data6 = this.dwlx ||'';//单位类型
+                let data11 =this.tcrq ||'';//投产日期
+                let data8 =this.zdmj ||'';//占地面积
+                let data13 =this.dqmc ||'';//地区名称
+                let data10 =this.sfdlqy ||'';//是否30千瓦
+                let data15 =this.qyzt ||'';//启用状态
+                let data12 =this.gzcd ||'';//关注程度
+                let data17 =this.yxzt ||'';//运行状态
+                let data14 =this.ly ||'';//流域
+                let data16 =this.zxzt ||'';//在线状态
                 let data18 =this.txdz  ||'';//
                 let data20 =this.txdz2  ||'';//
                 let data19 =this.lxr  ||'';//
@@ -407,24 +407,24 @@
       		openWin(){
 					this.isEdit = false;
 					this.dialogVisible = true;
-					this.wryName='';//
-                    this.frdm='';//
-                    this.frdb='';//
-                    this.wrydz='';//
-                    this.xzqy='';//
-                    this.wrygm='';//
-                    this.xzlx='';//
-                    this.wrylb='';//
-                    this.dwlx='';//
-                    this.tcrq='';//
-                    this.zdmj='';//
-                    this.dqmc='';//
-                    this.sfdlqy='';//
-                    this.qyzt='';//
-                    this.gzcd='';//
-                    this.yxzt='';//
-                    this.ly ='';//
-                    this.zxzt ='';//
+					this.wryName='';//污染源名称
+                    this.frdm='';//企业编码
+                    this.frdb='';//法人代表
+                    this.wrydz='';//污染源地址
+                    this.xzqy='';//行政区域
+                    this.wrygm='';//污染源规模
+                    this.xzlx='';//行政类型
+                    this.wrylb='';//污染源类别
+                    this.dwlx='';//单位类型
+                    this.tcrq='';//投产日期
+                    this.zdmj='';//占地面积
+                    this.dqmc='';//地区名称
+                    this.sfdlqy='';//是否30千瓦
+                    this.qyzt='';//启用状态
+                    this.gzcd='';//关注程度
+                    this.yxzt='';//运行状态
+                    this.ly ='';//流域
+                    this.zxzt ='';//在线状态
                     this.txdz ='';//
                     this.txdz2 ='';//
                     this.lxr ='';//
@@ -437,30 +437,30 @@
                     this.zzhbrys = '';//
                     this.hbfzr = '';//
                     this.bz = '';//
-                	this.todos = [];
+                	this.todos = [];//
       		},
 
       		//添加
       		Insert(){
       			const _this = this;
                 let code0 = this.codeid;//
-                let data1 = this.wryName || '';//
-                let data2 = this.frdb ||'';//
-                let data3 = this.wrydz ||'';//
-                let data4 = this.xzqy ||'';//
-                let data7 = this.wrygm ||'';//
-                let data5 = this.xzlx ||'';//
-                let data9 = this.wrylb ||'';//
-                let data6 = this.dwlx ||'';//
-                let data11 =this.tcrq ||'';//
-                let data8 =this.zdmj ||'';//
-                let data13 =this.dqmc ||'';//
-                let data10 =this.sfdlqy ||'';//
-                let data15 =this.qyzt ||'';//
-                let data12 =this.gzcd ||'';//
-                let data17 =this.yxzt ||'';//
-                let data14 =this.ly ||'';//
-                let data16 =this.zxzt ||'';//
+                let data1 = this.wryName || '';//污染源名称
+                let data2 = this.frdb ||'';//法人代表
+                let data3 = this.wrydz ||'';//污染源地址
+                let data4 = this.xzqy ||'';//行政区域
+                let data7 = this.wrygm ||'';//污染源规模
+                let data5 = this.xzlx ||'';//行政类型
+                let data9 = this.wrylb ||'';//污染源类别
+                let data6 = this.dwlx ||'';//单位类型
+                let data11 =this.tcrq ||'';//投产日期
+                let data8 =this.zdmj ||'';//占地面积
+                let data13 =this.dqmc ||'';//地区名称
+                let data10 =this.sfdlqy ||'';//是否30千瓦
+                let data15 =this.qyzt ||'';//启用状态
+                let data12 =this.gzcd ||'';//关注程度
+                let data17 =this.yxzt ||'';//运行状态
+                let data14 =this.ly ||'';//流域
+                let data16 =this.zxzt ||'';//在线状态
                 let data18 =this.txdz  ||'';//
                 let data20 =this.txdz2  ||'';//
                 let data19 =this.lxr  ||'';//

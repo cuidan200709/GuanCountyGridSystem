@@ -13,7 +13,7 @@
 				<span>部门名称</span><el-input v-model="departmentVal" placeholder="请输入内容"></el-input>
 				<el-button type="primary" class='btns' @click="QueryNeedsData">查询</el-button>
 				<el-button type="primary" class='btns' @click="openWin">添加责任部门</el-button>
-				<el-button type="primary" class='btns' @click="">导出</el-button>
+				<el-button type="primary" class='btns' @click="Export">导出</el-button>
 			</div>
 			
 			<!--列表部分-->
@@ -334,6 +334,10 @@
                 }
                 this.tableData = rtValue;
             },
+			//倒出
+            Export(){
+				api.ExportResponsibilityExcel();
+			}
         },
     }
 </script>
