@@ -38,29 +38,29 @@
                 </div>
            	</div>
            	<el-table
-			    :data="jsonData"
+			    :data="ListData"
 			    style="width: 100%">
 			    <el-table-column
-			      prop="con"
+			      prop="title"
 			      label="标题"
 			      width="200">
 			    </el-table-column>
 			    <el-table-column
-			      prop="time"
+			      prop="content"
 			      label="内容"
 			      width="350">
 			    </el-table-column>
 			    <el-table-column
-			      prop="ren"
+			      prop="sendtime"
 			      label="下发时间"
 			      width="">
 			    </el-table-column>
 			    <el-table-column
-			      prop="ren"
+			      prop="username"
 			      label="接收人">
 			    </el-table-column>
 			    <el-table-column
-			      prop="ren"
+			      prop="sendtime"
 			      label="下发人">
 			    </el-table-column>
 			    <el-table-column
@@ -113,7 +113,7 @@
 			      @size-change="handleSizeChange"
 			      @current-change="handleCurrentChange"
 			      :current-page="currentPage"
-			      :page-size="pagesize"
+			      :page-size="pageSize"
 			      layout="prev, pager, next, jumper"
 			      :total="totalCount">
 			    </el-pagination>
@@ -131,14 +131,14 @@
             return {
 		        tableData:[],
 			    currentPage: 1,
-			    pagesize:10,
+			    pageSize:10,
 			    totalCount:1,
 				//查询
 				BeginTime:'',
 				EndTime:'',
 				InfoData:[],
 				ListData:[],
-				jsonData:[{title:"哈哈",con:'胡',time:'急急急',ren:'几'}],
+//				jsonData:[{title:"哈哈",con:'胡',time:'急急急',ren:'几'}],
 				pageNo:1,
 				//查看
 				centerDialogVisible:false,
@@ -163,6 +163,11 @@
         	//点击查看
         	handleExamineClick(row){
         		this.centerDialogVisible = true;
+        		this.title = row.title;
+        		this.content = row.content;
+        		this.receivePerson = row.username;
+        		this.sendTime = row.sendtime;
+        		this.sendPerson = row.sendname;
         		console.log(row);
         		
         	},
@@ -176,8 +181,8 @@
         	},
       		//分页
       		 handleSizeChange(val) {
-        		console.log(`每页 ${val} 条`);
-//      		this.GetMonitoringDay(10,val);
+        		let PageIndex = val;
+        		this.GetMonitoringDay();
       		},
       		handleCurrentChange(val) {
       			let t = this;
@@ -189,40 +194,29 @@
       		//获取列表
       		GetMonitoringDay(){
       			let t = this;
-//				let starTime = this.CaseStartTime?this.CaseStartTime:'';
-//				let endTime = this.CaseEndTime?this.CaseEndTime:'';
-//				let pageSize = 10;
-//				let pageNo = this.pageNo;
-//    			this.ListData = [];
-//    			api.GetCaseList(status,departmenttype,pollutiontype,starTime,endTime,pageSize,pageNo).then(result=>{
-//    				console.log(result)
-//    				if(result){
-//    					let InfoData = result.data.list;
-//    					t.totalCount = result.data.count;
-//    					console.log(InfoData)
-//    					console.log('11')
-//    					if(InfoData){
-//    						InfoData.forEach(item=>{
-//								let tableData = {};
-//								tableData.casecode = item.casecode;
-//		                        tableData.createtime = item.createtime.replace('T',' ');//案发时间
-//		                        tableData.description = item.description;
-//		                        tableData.departmenttype = item.departmenttype;//责任主体
-//		                        tableData.location = item.location;//位置
-//		                        tableData.pollutiontype = item.pollutiontype;//污染类型
-//		                        tableData.status = item.status?'处理完毕':'未处理';//处理状态
-//		                        tableData.tupian = item.tupian;//图片
-//		                        tableData.afterCaseImg = item.afterCaseImg;//安后图片
-//		                        tableData.username = item.username;
-//		                        tableData.id = item.id;
-//		                        tableData.handlingResult = item.handlingResult;//处理结果
-//		                        t.ListData.push(tableData);
-//							})
-//    					}
-//						
-////						this.setPageTable(10000, 1);
-//    				}
-//				});
+				let beginTime = this.BeginTime;
+				let endTime = this.EndTime;
+				let PageSize = 10;
+				let PageIndex = this.pageNo;
+      			this.ListData = [];
+      			api.GetScheduleMessageList(beginTime,endTime,PageIndex,PageSize).then(result=>{
+      				console.log(result)
+      				if(result){
+      					let InfoData = result.data.Data.Data;
+      					t.totalCount = result.data.Data.TotlePageNum;
+      					if(InfoData){
+      						InfoData.forEach(item=>{
+								let tableData = {};
+								tableData.title = item.title;
+		                        tableData.sendtime = item.sendtime.replace('T',' ');
+		                        tableData.content = item.content;
+		                        tableData.sendname = item.sendname;
+		                        tableData.username = item.username;
+		                        t.ListData.push(tableData);
+							})
+      					}
+      				}
+				});
       		},
 		    handleRemove(file, fileList) {
 		        console.log(file, fileList);

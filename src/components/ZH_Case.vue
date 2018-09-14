@@ -88,7 +88,7 @@
                             </el-table-column>
                         </el-table>
                         <!--分页条-->
-                        <div class="Pagination" style="text-align: left;margin-top: 10px;">
+                        <!--<div class="Pagination" style="text-align: left;margin-top: 10px;">
                             <el-pagination
                                     background
                                     @size-change="handleSizeChange"
@@ -98,7 +98,7 @@
                                     layout="total, prev, pager, next"
                                     :total="totalCount">
                             </el-pagination>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
     </div>
@@ -188,7 +188,6 @@
             //案件列表
             GetCaseDate(){
             	let t = this;
-            	
 				let status = -1;
 				let datasource = '';//案件来源
 				let fkDepartmenttype = -1;
@@ -196,7 +195,7 @@
 				let fkPollutiontype = -1;
 				let startTime = this.starttime?this.starttime:'';
 				let endTime = this.endtime?this.endtime:'';
-				let pageSize = 10;
+				let pageSize = 100000;
 				let pageNo = this.pageNo;
 	  			this.ListData = [];
 	            api.GetCaseList(status,datasource,fkDepartmenttype,fkPollutiontype,location,startTime,endTime,pageSize,pageNo).then(res =>{
@@ -212,6 +211,7 @@
 	                this.InitializationDataMethod(data);
 	                t.GetCaseNum();
 	                t.GetCaseType();
+	                bus.$emit('loadCumulative', data, 'layer_qm', 'casecode','');
 	                //数量表图例
 //	                this.NumberCasesChars(grid);
 	                //类型比图例

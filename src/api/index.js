@@ -186,6 +186,7 @@ import {
     PostSchduleListResource,//获取巡查员列表
     PostSendSchduleResource,//巡查员调度
     GetsysUserPasswordResource,//巡查员管理修改密码
+    GetScheduleMessageListResource,//后台调度记录列表
 } from './resource'
 
 export default {
@@ -1578,5 +1579,19 @@ export default {
     //巡查员管理导出
     ExportInspectorExcel(){
         window.open(ExportInspector,{})
+    },
+    //后台调度记录列表
+    GetScheduleMessageList(beginTime,endTime,PageIndex,PageSize){
+    	let params = {
+    		'beginTime':beginTime,
+    		'endTime':endTime,
+    		'PageIndex':PageIndex,
+    		'PageSize':PageSize
+    	};
+    	 let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(GetScheduleMessageListResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
     },
 }
