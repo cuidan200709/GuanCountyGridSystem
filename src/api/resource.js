@@ -69,7 +69,7 @@ const apilangfangTDK = {
     GetLfAirAlerts: apiconfig[icode].devn + '/api/LfAir/GetLfAirAlerts',//获取今日控制目标和预警值及国控点数据
     GetWinterPreTVocControl: apiconfig[icode].devn + '/api/WinterPre/GetWinterPreTVocControl',//冬防战报tvoc
     GetJingJinJiHourList: apiconfig[icode].devn + '/api/jingJinJi/GetJingJinJiHourListPc',//京津冀城市排名
-    GetElectricityChart2: apiconfig[icode].devn + '/api/LargeData/GetElectricityChart?',//大数据资源统计
+    GetElectricityChart2: apiconfig[icode].devm + '/api/LargeData/GetElectricityChart?',//大数据资源统计
     GetPointNameListData: apiconfig[icode].devn + '/api/LargeData/GetPointNameList',//大数据资源统计
     GetInspectorChart: apiconfig[icode].devn + '/api/Schedule/GetChart?',//巡查调度-巡查员饼图
     PostSchduleList: apiconfig[icode].devn + '/api/Schedule/GetSchduleList',//巡查调度-巡查员列表
