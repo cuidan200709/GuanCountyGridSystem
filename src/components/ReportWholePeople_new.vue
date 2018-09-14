@@ -134,13 +134,16 @@
             //调度单个
             handleClick(val){
                 console.log(val)
-                let userId = val.id;
-                let title ='';
-                let message = '';
-                let sendId ='';
-                api.PostSendSchduleRt(userId,title,message,sendId).then(res =>{
-                    console.log(res);
-                })
+                // let userId = val.id;
+                // let title ='';
+                // let message = '';
+                // let sendId ='';
+                // api.PostSendSchduleRt(userId,title,message,sendId).then(res =>{
+                //     console.log(res);
+                // })
+                this.currentRow = val;
+                //地图联动
+                bus.$emit('locationClick', 'layer_xcy', this.currentRow ,this.type);
             },
             //排序
             compare(propertyName) {
@@ -173,9 +176,9 @@
             },
             //table点击事件
             RowCurrentChange(val) {
-                this.currentRow = val;
+               // this.currentRow = val;
                 //地图联动
-                bus.$emit('locationClick', 'layer_xcy', this.currentRow ,this.type);
+               // bus.$emit('locationClick', 'layer_xcy', this.currentRow ,this.type);
             },
             //每页显示数据量变更
             handleSizeChange(val) {
