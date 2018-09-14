@@ -69,7 +69,7 @@ const apilangfangTDK = {
     GetLfAirAlerts: apiconfig[icode].devn + '/api/LfAir/GetLfAirAlerts',//获取今日控制目标和预警值及国控点数据
     GetWinterPreTVocControl: apiconfig[icode].devn + '/api/WinterPre/GetWinterPreTVocControl',//冬防战报tvoc
     GetJingJinJiHourList: apiconfig[icode].devn + '/api/jingJinJi/GetJingJinJiHourListPc',//京津冀城市排名
-    GetElectricityChart2: apiconfig[icode].devn + '/api/LargeData/GetElectricityChart?',//大数据资源统计
+    GetElectricityChart2: apiconfig[icode].devm + '/api/LargeData/GetElectricityChart?',//大数据资源统计
     GetPointNameListData: apiconfig[icode].devn + '/api/LargeData/GetPointNameList',//大数据资源统计
     GetInspectorChart: apiconfig[icode].devn + '/api/Schedule/GetChart?',//巡查调度-巡查员饼图
     PostSchduleList: apiconfig[icode].devn + '/api/Schedule/GetSchduleList',//巡查调度-巡查员列表
@@ -220,6 +220,7 @@ const apilangfangTDK = {
     GetCaseTypePie: apiconfig[icode].devc + '/guan/mobile/getCaseNumGroupByPollutionType?',//首页案件类型占比
     GetCaseDealPer: apiconfig[icode].devc + '/guan/mobile/getCaseDepartmentDealPer?',//首页案件处理率同比
     GetCountyHourRank: apiconfig[icode].devm + '/api/LfAir/GetCountyHourRank?',//今日数据小时
+    GetScheduleMessageList: apiconfig[icode].devn + '/api/Schedule/GetScheduleMessageList',//调度记录列表
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -403,5 +404,4 @@ export const PostSchduleListResource = API_ROOT.concat(apilangfangTDK.PostSchdul
 export const PostSendSchduleResource = API_ROOT.concat(apilangfangTDK.PostSendSchdule);
 export const GetsysUserPasswordResource = API_ROOT.concat(apilangfangTDK.getsysUserPassword);
 export const PostchangePasswordResource = API_ROOT.concat(apilangfangTDK.PostchangePassword);
-
-
+export const GetScheduleMessageListResource = API_ROOT.concat(apilangfangTDK.GetScheduleMessageList);

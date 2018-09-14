@@ -5,12 +5,12 @@
         <!---->
         <div class="warp_conters">
             <el-tabs v-model="activeName" >
-                <el-tab-pane label="参数对比" name="first">
+                <el-tab-pane label="污染物对比" name="first">
 
                 </el-tab-pane>
-                <el-tab-pane label="站点对比" name="second">
+                <!--<el-tab-pane label="站点对比" name="second">
 
-                </el-tab-pane>
+                </el-tab-pane>-->
             </el-tabs>
         </div>
         <!---->
@@ -189,16 +189,16 @@
                 //
                 isActive: false,
                 timeZone: [
-                    {
-                        value: 1,
-                        label: '小时',
-                        disabled: false
-                    },
-                    {
-                        value: 2,
-                        label: '天',
-                        disabled: false
-                    }
+//                  {
+//                      value: 1,
+//                      label: '小时',
+//                      disabled: false
+//                  },
+//                  {
+//                      value: 2,
+//                      label: '天',
+//                      disabled: false
+//                  }
                     ],
                 //开始时间
                 startTime: '',
