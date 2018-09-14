@@ -102,7 +102,7 @@
                 //列表数据
                 tableData: [],
                 //存储分页数据
-                alldata: [],
+                idsdata: [],
                 //
                 currentRow: null,
                 //分页每页
@@ -129,8 +129,17 @@
             this.GetChartRtdata();
         },
         methods: {
-            //
-            handleClick(val){},
+            //调度单个
+            handleClick(val){
+                console.log(val)
+                let userId = val.id;
+                let title ='';
+                let message = '';
+                let sendId ='';
+                api.PostSendSchduleRt(userId,title,message,sendId).then(res =>{
+                    console.log(res);
+                })
+            },
             //排序
             compare(propertyName) {
                 return function (object1, object2) {
@@ -144,6 +153,7 @@
                 const _this = this;
                 //
                 _this.tableData = [];
+                _this.idsdata = [];
                 //
                 data.forEach(item => {
                     const tableData = {};
@@ -154,7 +164,7 @@
                     //tableData.latitude = item.latitude;//纬度
                     //tableData.longitude = item.longitude;//经度
                     _this.tableData.push(tableData);
-
+                    _this.idsdata.push(item.Id);
                 })
                 // console.log(this.tableData)
             },
@@ -166,7 +176,8 @@
             },
             //每页显示数据量变更
             handleSizeChange(val) {
-                //this.pagesize = val;
+                //
+                this.pagesize = val;
             },
             //页码变更
             handleCurrentChange(val) {
@@ -204,6 +215,7 @@
             btnClickEvent() {
                 //
                 let name = this.inputName;
+                this.GetChartRtdata(name);
                 this.GetListData(name,1)
             },
             //时间转换
@@ -226,11 +238,11 @@
             },
             //状态
             NumberCasesChars(data){
-                let showData = data.map(function (v) {
-                    return {value: (v.percent).replace('%',''), name: v.name}
+                let showData = data.seriesData.data.map(function (v) {
+                    return {value: v.value, name: v.name}
                 }) || [];
-                let lenData = data.map(function (v) {
-                    return {name: v.name}
+                let lenData = data.legend.map(function (v) {
+                    return v
                 }) || [];
                 // 基于准备好的dom，初始化echarts实例
                 let myChart = echarts.init(document.getElementById('bing_item_1p'));
@@ -377,7 +389,7 @@
                 //饼图数据
                 api.GetInspectorChartRt(name).then(res =>{
                     console.log(res)
-                    let data = res.data.Data.Data;
+                    let data = res.data.Data;
                     this.NumberCasesChars(data);
                 })
             },
@@ -394,11 +406,11 @@
             },
             //一键调度
             OnkeyScheduling(){
-                let userId = [];
+                let userId = this.idsdata;
                 let title ='';
                 let message = '';
                 let sendId ='';
-                this.PostSendSchduleRt(userId,title,message,sendId).then(res =>{
+                api.PostSendSchduleRt(userId,title,message,sendId).then(res =>{
                     console.log(res);
                 })
             }

@@ -207,7 +207,10 @@ export default {
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PostSchduleListResource ,FormatParams, {
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Auth':window.token
+                }
             }
         )
     },
