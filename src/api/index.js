@@ -187,9 +187,7 @@ import {
     PostSendSchduleResource,//巡查员调度
     GetsysUserPasswordResource,//巡查员管理修改密码查询
     PostchangePasswordResource,//修改密码
-    GetsysUserPasswordResource,//巡查员管理修改密码
     GetScheduleMessageListResource,//后台调度记录列表
-
 } from './resource'
 
 export default {
