@@ -209,7 +209,8 @@ const apilangfangTDK = {
     GetsysUseradd: apiconfig[icode].devc +'/guan/sysUser/add',//巡查员添加接口
     GetsysUserdelete: apiconfig[icode].devc +'/guan/sysUser/delete',//巡查员删除接口
     GetsysUserupdate: apiconfig[icode].devc +'/guan/sysUser/update',//巡查员编辑接口
-    getsysUserPassword: apiconfig[icode].devc +'/guan/sysUser/getPassword',//巡查员修改密码
+    getsysUserPassword: apiconfig[icode].devc +'/guan/sysUser/getPassword',//巡查员修改密码查询
+    PostchangePassword: apiconfig[icode].devc +'/guan/sysUser/changePassword',//巡查员修改密码
     ExportInspector: apiconfig[icode].devc +'/guan/sysUser/getSysUserExcel?',//巡查员导出
     PosthtcompanyList: apiconfig[icode].devn + '/api/Company/GetcompanyList',//获取企业列表（后台）
     PostAddCompany: apiconfig[icode].devn + '/api/Company/AddCompany',//增加企业信息
@@ -401,4 +402,6 @@ export const GetInspectorChartResource = API_ROOT.concat(apilangfangTDK.GetInspe
 export const PostSchduleListResource = API_ROOT.concat(apilangfangTDK.PostSchduleList);
 export const PostSendSchduleResource = API_ROOT.concat(apilangfangTDK.PostSendSchdule);
 export const GetsysUserPasswordResource = API_ROOT.concat(apilangfangTDK.getsysUserPassword);
+export const PostchangePasswordResource = API_ROOT.concat(apilangfangTDK.PostchangePassword);
+
 

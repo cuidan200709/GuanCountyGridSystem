@@ -191,7 +191,8 @@
 			<el-dialog title="修改密码" :visible.sync="dialogVisible" width="30%">
 				<div class="block">
 					<span>新密码：</span>
-					<el-input v-model="newpossword" placeholder="请输入新密码"></el-input>
+					<el-input v-model="newpossword" placeholder="请输入新密码" @change="sysUserPasswordChange"></el-input>
+					<div class="tishi" v-show="classts">{{tishiyu}}</div>
 				</div>
 				<span slot="footer" class="dialog-footer">
 				<el-button @click="dialogVisible = false">取 消</el-button>
@@ -215,6 +216,10 @@
                 dialogVisible:false,
 				//
                 newpossword:'',
+				//
+                tishiyu:'',
+				//
+                classts:false,
 				//
 		        tableData:[{DeviceName:'00000'}],
 			    currentPage: 1,
@@ -247,7 +252,8 @@
                 equipmentName1b:'',
                 equipmentName2b:'',
 				isEdit:false,
-
+				//
+                lodid:'',
             }
         },
         created(){
@@ -301,6 +307,7 @@
 			//修改密码初始化
 			changePassword(row){
                 console.log(row.userId);
+                this.lodid = row.userId
                 this.dialogVisible = true;
 			},
 			//修改密码于旧密码比较
@@ -308,10 +315,37 @@
                 let password = this.newpossword;
                 api.GetsysUserPassword(password).then(res =>{
                     console.log(res);
+                    //let data = res.data.Data.Data;
+
+					if(res.data.message === 'true'){
+                        this.tishiyu = '密碼可以使用';
+                        this.offend = true;
+                        this.classts = true;
+					}else {
+                        this.tishiyu = '密碼不可以使用,與舊密碼重複';
+                        this.offend = false;
+                        this.classts = true;
+					}
+
 				})
+				if(!password){
+                    this.classts =false;
+				}
 			},
 			//修改密码提交
             PasswordChangeSubmit(){
+				//
+				let offend = this.offend;
+                let userId = this.lodid;
+                let password = this.newpossword;
+                if(offend === true){
+                    api.PostchangePassword(userId,password).then(res =>{
+                        console.log(res);
+                    })
+				}else {
+                    return false
+				}
+
                 this.dialogVisible = false;
 			},
 			//编辑

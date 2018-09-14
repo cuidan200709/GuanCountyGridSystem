@@ -101,6 +101,8 @@
                 inputName:'',
                 //列表数据
                 tableData: [],
+                //
+                wathData:[],
                 //存储分页数据
                 idsdata: [],
                 //
@@ -152,7 +154,7 @@
             InitializationDataMethod(data) {
                 const _this = this;
                 //
-                _this.tableData = [];
+                _this.wathData = [];
                 _this.idsdata = [];
                 //
                 data.forEach(item => {
@@ -163,16 +165,17 @@
                     tableData.state = item.status?'开启':'关闭';//状态
                     //tableData.latitude = item.latitude;//纬度
                     //tableData.longitude = item.longitude;//经度
-                    _this.tableData.push(tableData);
+                    _this.wathData.push(tableData);
                     _this.idsdata.push(item.Id);
                 })
                 // console.log(this.tableData)
+                _this.setPageTable(10,1);
             },
             //table点击事件
             RowCurrentChange(val) {
                 this.currentRow = val;
                 //地图联动
-                //bus.$emit('locationClick', 'layer_gd', this.currentRow ,this.type);
+                bus.$emit('locationClick', 'layer_xcy', this.currentRow ,this.type);
             },
             //每页显示数据量变更
             handleSizeChange(val) {
@@ -182,18 +185,19 @@
             //页码变更
             handleCurrentChange(val) {
                 //
-                let name = this.inputName;
-                let PageIndex = val;
-                this.GetListData(name,PageIndex)
+                // let name = this.inputName;
+                // let PageIndex = val;
+                // this.GetListData(name)
+                this.setPageTable(10,val);
             },
             //分页效果
             setPageTable(pageSize, pageNum) {
                 let rtValue = [];
                 let startNum = pageSize * (pageNum - 1);
                 for (let i = 0; i < pageSize; i++) {
-                    if ((startNum + i + 1) > this.alldata.length)
+                    if ((startNum + i + 1) > this.wathData.length)
                         break;
-                    rtValue.push(this.alldata[startNum + i]);
+                    rtValue.push(this.wathData[startNum + i]);
                 }
                 this.tableData = rtValue;
             },
@@ -216,7 +220,7 @@
                 //
                 let name = this.inputName;
                 this.GetChartRtdata(name);
-                this.GetListData(name,1)
+                this.GetListData(name)
             },
             //时间转换
             TimeConversion(fmt, date) {
@@ -394,13 +398,14 @@
                 })
             },
             //获取列表数据
-            GetListData(name = '',PageIndex = 1){
+            GetListData(name = ''){
 
-                api.PostSchduleListRt(name,PageIndex).then(res =>{
+                api.PostSchduleListRt(name).then(res =>{
                    // console.log(res)
-                    let TotlePageNum = res.data.Data.TotlePageNum;
-                    let data = res.data.Data.Data;
-                    this.totalCount = TotlePageNum;
+                   // let TotlePageNum = res.data.Data.TotlePageNum;
+                    let data = res.data.Data;
+                    //this.totalCount = TotlePageNum;
+                    this.totalCount = data.length;
                     this.InitializationDataMethod(data);
                 })
             },
