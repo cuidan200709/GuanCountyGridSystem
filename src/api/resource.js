@@ -405,3 +405,4 @@ export const PostSendSchduleResource = API_ROOT.concat(apilangfangTDK.PostSendSc
 export const GetsysUserPasswordResource = API_ROOT.concat(apilangfangTDK.getsysUserPassword);
 export const PostchangePasswordResource = API_ROOT.concat(apilangfangTDK.PostchangePassword);
 export const GetScheduleMessageListResource = API_ROOT.concat(apilangfangTDK.GetScheduleMessageList);
+

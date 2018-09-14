@@ -220,9 +220,11 @@ export default {
 
     },
     //指挥调度获取巡查员列表
-    PostSchduleListRt(name) {
+    PostSchduleListRt(name,PageIndex=1,PageSize=10) {
         let params = {
             'name':name,//
+          PageIndex,
+          PageSize
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PostSchduleListResource ,FormatParams, {
@@ -1068,7 +1070,7 @@ export default {
     	if(endTime){
     		endTimestr="&endTime="+endTime
     	}
-    	
+
         return axios.get(GetCaseNumResource+"ids=" + ids+ startTimestr+endTimestr, {}
         )
     },
@@ -1082,7 +1084,7 @@ export default {
     	if(endTime){
     		endTimestr="&endTime="+endTime
     	}
-    	
+
         return axios.get(GetCaseTypeResource+"ids=" + ids+ startTimestr+endTimestr, {}
         )
     },

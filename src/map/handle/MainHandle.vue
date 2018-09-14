@@ -4,6 +4,7 @@
   import Coordtransform from 'coordtransform'
   import RequestHandle from '@/request/'
   import {bus} from '@/js/bus'
+  import {PostSchduleListResource} from '@/api/resource.js'
 
   export default {
     name: 'MainHandle',
@@ -103,6 +104,7 @@
           case 'LAYER_YQD':
           case 'LAYER_YJ':
           case 'LAYER_QM':
+          case 'LAYER_XCY':
             //请求接口触发
             hasVisible ? this.requestData(type, from) : (this.removeMarkerByList(this.getMarkerByType(type), type), this.removeLabelValue(this.getLabelValueByType(type), type), this.removeLabelRed(this.getLabelRedByType(type), type), this.delDataSourceByCode(type));
             break;
@@ -363,6 +365,7 @@
         let fieldName = undefined;
         let displayName = undefined;
         let pms = undefined;
+        let postPms=null;
         //let pmsKey = undefined;
         let requestType = 'GET';
         let uppercaseType = type.toUpperCase();
@@ -449,6 +452,16 @@
               pageNo:1
             };
             break;
+          case 'LAYER_XCY':
+            lsUrl.push(PostSchduleListResource);
+            requestType = 'POST';
+            // fieldName = 'mobile';
+            // displayName = 'name';
+            postPms = {
+              PageSize:10000,
+              PageIndex:1
+            };
+            break;
         }
         let reqPms = undefined;
         if (pms) {
@@ -462,7 +475,7 @@
         }
         for (let i = 0, length = lsUrl.length; i < length; i++) {
           let url = lsUrl[i];
-          let params = {url: url + (reqPms ? ('?' + reqPms) : ''), type: requestType, pms: null};
+          let params = {url: url + (reqPms ? ('?' + reqPms) : ''), type: requestType, pms: postPms};
           RequestHandle.request(params, function (result) {
             if (result.status) {
               let rtValue = [];
@@ -850,6 +863,7 @@
 
       //获取Marker状态
       getMarkerState(data, ptType, fieldName) {
+        console.log(data);
         let value = fieldName && (data[fieldName] || data[fieldName.toLocaleLowerCase()]) || 0;
         let level = 0;
         ptType = ptType.toUpperCase();
@@ -872,6 +886,9 @@
           case 'LAYER_SP_GKW':
           case 'LAYER_QM':
             level = 1;
+            break;
+          case 'LAYER_XCY':
+            level=data.status==true?1:0;
             break;
           default:
             level = this.getPollutionState(value, fieldName);
@@ -994,6 +1011,9 @@
           case 'LAYER_QM':
             iconName = 'qm-';
             break;
+          case 'LAYER_XCY':
+            iconName='xcy-';
+            break;
         }
         switch (level) {
           case -1:
@@ -1073,6 +1093,71 @@
             title: '<sapn style="font-size:16px" ><b title="' + (attributes[displayFieldName] || '') + '">' + (attributes[displayFieldName] || '') + '</b>' + '</span>',             //标题
             width: '720',
             height: 'auto',
+            enableAutoPan: true,
+            enableSendToPhone: false,
+            searchTypes: []
+          });
+          this.searchInfoWindow.open(m);
+        } else if (attributes.hasOwnProperty('ptType') && (attributes.ptType.toUpperCase() === 'LAYER_XCY')) {
+          global.QueryTrack=function(){
+            alert("显示轨迹");
+          }
+          Date.prototype.format = function(format){
+            var o = {
+              "M+" : this.getMonth()+1, //month
+              "d+" : this.getDate(),    //day
+              "h+" : this.getHours(),   //hour
+              "m+" : this.getMinutes(), //minute
+              "s+" : this.getSeconds(), //second
+              "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+              "S" : this.getMilliseconds() //millisecond
+            }
+            if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+              (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+            for(var k in o)if(new RegExp("("+ k +")").test(format))
+              format = format.replace(RegExp.$1,
+                RegExp.$1.length==1 ? o[k] :
+                  ("00"+ o[k]).substr((""+ o[k]).length));
+            return format;
+          }
+          const today=new Date();
+          // TODO:// 定位时间暂无，故写死，后续修改
+          let res = `
+<style>
+.infowindow-table{
+margin: 15px auto;width:90%;
+}
+.infowindow-table td{
+padding:2px 0;
+}
+.infowindow-table tr:last-child td>button{
+height: 30px;
+width:80px;
+margin: 5px 0 0;
+background-color: #0899ff;
+color: white;
+line-height: 12px;
+font-size: 12px;
+vertical-align: middle;
+}
+.infowindow-table input{
+width:100%;
+}
+</style>
+<table class="infowindow-table">
+<tr><td>编&nbsp;&nbsp;号：</td><td>${attributes.Id||'暂无'}</td></tr>
+<tr><td>联系方式：</td><td>${attributes.mobile||'暂无'}</td></tr>
+<tr><td>定位时间：</td><td>${today.toLocaleString()}</td></tr>
+<tr><td>查询日期：</td><td><input type="date" value="${today.format('yyyy-MM-dd')}"/></td></tr>
+<tr><td>开始时间：</td><td><input type="time" value="00:00"/></td></tr>
+<tr><td>结束时间：</td><td><input type="time" value="23:59"/></td></tr>
+<tr><td colspan="2" style="text-align: center;margin-top:3px;"><button onclick="QueryTrack()">查询轨迹</button></td></tr>
+</table>`;
+          let displayFieldName = 'name';
+          this.searchInfoWindow = new BMapLib.SearchInfoWindow(t.map, res || '无数据', {
+            title: '<div style="font-size:14px;background-color: #259ae0;color:#fff;margin:0 -5px 0 -20px; padding:0 5px;" title="' + (attributes[displayFieldName] || '') + '">' + (attributes[displayFieldName] || '') + '</div>',             //标题
+            width: '224px',
+            height: '228px',
             enableAutoPan: true,
             enableSendToPhone: false,
             searchTypes: []
