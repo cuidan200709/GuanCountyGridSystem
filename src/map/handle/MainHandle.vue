@@ -863,7 +863,6 @@
 
       //获取Marker状态
       getMarkerState(data, ptType, fieldName) {
-        console.log(data);
         let value = fieldName && (data[fieldName] || data[fieldName.toLocaleLowerCase()]) || 0;
         let level = 0;
         ptType = ptType.toUpperCase();
