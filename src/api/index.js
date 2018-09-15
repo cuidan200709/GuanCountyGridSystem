@@ -185,7 +185,8 @@ import {
     GetInspectorChartResource,//获取巡查员图表
     PostSchduleListResource,//获取巡查员列表
     PostSendSchduleResource,//巡查员调度
-    GetsysUserPasswordResource,//巡查员管理修改密码
+    GetsysUserPasswordResource,//巡查员管理修改密码查询
+    PostchangePasswordResource,//修改密码
     GetScheduleMessageListResource,//后台调度记录列表
     GetdustResource,//沙尘天气
     GetsmogResource,//雾霾预报
@@ -199,7 +200,21 @@ export default {
     },
     //巡查员修改密码
     GetsysUserPassword(password){
-        return axios.get(GetsysUserPasswordResource+'password='+ password ,{})
+        return axios.get(GetsysUserPasswordResource+'?password='+ password ,{})
+    },
+    //巡查员修改密码
+    PostchangePassword(userId,password) {
+        let params = {
+            'userId':userId,//
+            'password':password,//
+            // 'message':message,//
+            // 'sendId':sendId,//
+        };
+        let FormatParams = Qs.stringify(params);//转换数据格式
+        return axios.post(PostchangePasswordResource ,FormatParams, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        )
     },
     //指挥调度巡查员饼图
     GetInspectorChartRt(name){
@@ -207,18 +222,13 @@ export default {
 
     },
     //指挥调度获取巡查员列表
-    PostSchduleListRt(name,PageIndex) {
+    PostSchduleListRt(name) {
         let params = {
             'name':name,//
-            'PageIndex':PageIndex,//
-            'PageSize':10,//
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PostSchduleListResource ,FormatParams, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Auth':window.token
-                }
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
         )
     },
@@ -232,7 +242,7 @@ export default {
         };
         let FormatParams = Qs.stringify(params);//转换数据格式
         return axios.post(PostSendSchduleResource ,FormatParams, {
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Auth': window.token}
             }
         )
     },
