@@ -188,6 +188,8 @@ import {
     GetsysUserPasswordResource,//巡查员管理修改密码查询
     PostchangePasswordResource,//修改密码
     GetScheduleMessageListResource,//后台调度记录列表
+    GetdustResource,//沙尘天气
+    GetsmogResource,//雾霾预报
 } from './resource'
 
 export default {
@@ -1604,6 +1606,16 @@ export default {
         return axios.post(GetScheduleMessageListResource ,FormatParams, {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }
+        )
+    },
+    //沙尘天气
+    Getdust(){
+    	return axios.get(GetdustResource, {}
+        )
+    },
+    //雾霾预报
+    Getsmog(){
+    	return axios.get(GetsmogResource, {}
         )
     },
 }

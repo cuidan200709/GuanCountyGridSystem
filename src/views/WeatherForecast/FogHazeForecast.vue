@@ -3,23 +3,23 @@
         <!--雾霾预报-->
         <v-header></v-header>
        <!---->
-        <h1>雾霾预报正在开发中</h1>
+        <img :src="ImgSrc" />
     </div>
 </template>
 
 <script>
-    //import GridMap from '@/map/GridMapMain'
-
+	import api from '../../api/index'
     export default {
         name: 'foghazeforecast',
         data() {
             return {
-                fullscreenLoading: false
+                fullscreenLoading: false,
+                ImgSrc:''
             }
         },
         mounted() {
-            this.openFullScreen()
-
+            this.openFullScreen();
+			this.Getsmog();
         },
         methods: {
             //加载动画
@@ -28,7 +28,13 @@
                 setTimeout(() => {
                     this.fullscreenLoading = false;
                 }, 2000);
-            }
+            },
+            Getsmog(){
+            	api.Getsmog().then(res=>{
+            		let url = res.data.Data;
+            		this.ImgSrc = url;
+            	})
+            },
         },
         components: {
 
@@ -41,5 +47,10 @@
     .foghazeforecast {
         width: 100%;
         height: 100%;
+        img{
+        	width: 686px;
+        	height: 500px;
+        	margin-top: 40px;
+        }
     }
 </style>

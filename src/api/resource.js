@@ -221,6 +221,8 @@ const apilangfangTDK = {
     GetCaseDealPer: apiconfig[icode].devc + '/guan/mobile/getCaseDepartmentDealPer?',//首页案件处理率同比
     GetCountyHourRank: apiconfig[icode].devm + '/api/LfAir/GetCountyHourRank?',//今日数据小时
     GetScheduleMessageList: apiconfig[icode].devn + '/api/Schedule/GetScheduleMessageList',//调度记录列表
+    Getdust: apiconfig[icode].devn + '/api/Prediction/Getdust',//沙尘预报
+    Getsmog: apiconfig[icode].devn + '/api/Prediction/Getsmog',//雾霾预报
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -405,4 +407,8 @@ export const PostSendSchduleResource = API_ROOT.concat(apilangfangTDK.PostSendSc
 export const GetsysUserPasswordResource = API_ROOT.concat(apilangfangTDK.getsysUserPassword);
 export const PostchangePasswordResource = API_ROOT.concat(apilangfangTDK.PostchangePassword);
 export const GetScheduleMessageListResource = API_ROOT.concat(apilangfangTDK.GetScheduleMessageList);
+
+export const GetdustResource = API_ROOT.concat(apilangfangTDK.Getdust);
+export const GetsmogResource = API_ROOT.concat(apilangfangTDK.Getsmog);
+
 
